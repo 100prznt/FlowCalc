@@ -22,8 +22,8 @@ todo...
 ## Releases
 Dieses Projekt wird auf der Continuous Integration Plattform [AppVeyor](https://www.appveyor.com/) kompiliert und im [Release-Feed](https://github.com/100prznt/FlowCalc/releases) veröffentlicht.
 
-[![AppVeyor Build](https://img.shields.io/appveyor/ci/100prznt/FlowCalc.svg)](https://ci.appveyor.com/project/100prznt/FlowCalc)  
-[![AppVeyor Tests](https://img.shields.io/appveyor/tests/100prznt/FlowCalc/master.svg)](https://ci.appveyor.com/project/100prznt/FlowCalc/build/tests)
+[![AppVeyor Build](https://img.shields.io/appveyor/ci/100prznt/flowcalc.svg)](https://ci.appveyor.com/project/100prznt/flowcalc)  
+[![AppVeyor Tests](https://img.shields.io/appveyor/tests/100prznt/flowcalc/master.svg)](https://ci.appveyor.com/project/100prznt/flowcalc/build/tests)
 
 [![GitHub Release](https://img.shields.io/github/release/100prznt/FlowCalc.svg)](https://github.com/100prznt/FlowCalc/releases/latest)  
 [![GitHub (Pre-)Release](https://img.shields.io/github/release/100prznt/FlowCalc/all.svg)](https://github.com/100prznt/FlowCalc/releases) (Pre-)Release
