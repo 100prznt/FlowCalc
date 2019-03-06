@@ -73,12 +73,12 @@ namespace FlowCalc
         /// <summary>
         /// Name des Erstellers der Pumpendefinition
         /// </summary>
-        public string AuthorDescriptionFile { get; set; }
+        public string AuthorPumpFile { get; set; }
 
         /// <summary>
         /// Emailadresse des Erstellers der Pumpendefinition
         /// </summary>
-        public string AuthorEmailDescriptionFile { get; set; }
+        public string AuthorEmailPumpFile { get; set; }
 
         #endregion Properties
 
