@@ -20,6 +20,31 @@ Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form e
 ### Aufbau der Pumpen-Definitionsdatei
 TODO...
 
+### Beispiel
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ModellName>AquaPlus 6</ModellName>
+  <Manufacturer>Aqua TechniX GmbH</Manufacturer>
+  <PowerOutput>0.25</PowerOutput>
+  <NominalFlowRate>6</NominalFlowRate>
+  <NominalDynamicHead>8</NominalDynamicHead>
+  <AuthorPumpFile>Elias Ruemmler</AuthorPumpFile>
+  <AuthorEmailPumpFile>pool@100prznt.de</AuthorEmailPumpFile>
+  <PerformanceCurve>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>10.9</TotalDynamicHead>
+      <FlowRate>0</FlowRate>
+    </PumpPerformancePoint>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>10.6</TotalDynamicHead>
+      <FlowRate>1</FlowRate>
+    </PumpPerformancePoint>
+    <!-- Beliebige Anzahl weiterer PumpPerformancePoint Nodes hier -->
+  </PerformanceCurve>
+</Pump>
+```
+
 ## Releases
 Dieses Projekt wird auf der Continuous Integration Plattform [AppVeyor](https://www.appveyor.com/) kompiliert und im [Release-Feed](https://github.com/100prznt/FlowCalc/releases) veröffentlicht.
 
