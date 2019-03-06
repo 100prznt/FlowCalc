@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btn_LoadPump = new System.Windows.Forms.Button();
             this.txt_PumpModel = new System.Windows.Forms.TextBox();
             this.txt_SystemPressure = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txt_PumpNominalFlowRate = new System.Windows.Forms.TextBox();
+            this.txt_PumpNominalHead = new System.Windows.Forms.TextBox();
             this.lbl_PumpFileAuthor = new System.Windows.Forms.LinkLabel();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txt_PumpMaxHead = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txt_PumpNominalHead = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txt_PumpNominalFlowRate = new System.Windows.Forms.TextBox();
             this.txt_PumpPowerOut = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_PumpManufracturer = new System.Windows.Forms.TextBox();
@@ -57,10 +57,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_LoadPump
@@ -125,6 +124,53 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pumpe";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.txt_PumpNominalFlowRate);
+            this.groupBox3.Controls.Add(this.txt_PumpNominalHead);
+            this.groupBox3.Location = new System.Drawing.Point(22, 138);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(421, 100);
+            this.groupBox3.TabIndex = 101;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Nennleistung";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 34);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Volumenstrom";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Meter Wassersäule";
+            // 
+            // txt_PumpNominalFlowRate
+            // 
+            this.txt_PumpNominalFlowRate.Enabled = false;
+            this.txt_PumpNominalFlowRate.Location = new System.Drawing.Point(145, 31);
+            this.txt_PumpNominalFlowRate.Name = "txt_PumpNominalFlowRate";
+            this.txt_PumpNominalFlowRate.Size = new System.Drawing.Size(256, 20);
+            this.txt_PumpNominalFlowRate.TabIndex = 8;
+            // 
+            // txt_PumpNominalHead
+            // 
+            this.txt_PumpNominalHead.Enabled = false;
+            this.txt_PumpNominalHead.Location = new System.Drawing.Point(145, 57);
+            this.txt_PumpNominalHead.Name = "txt_PumpNominalHead";
+            this.txt_PumpNominalHead.Size = new System.Drawing.Size(256, 20);
+            this.txt_PumpNominalHead.TabIndex = 10;
+            // 
             // lbl_PumpFileAuthor
             // 
             this.lbl_PumpFileAuthor.Location = new System.Drawing.Point(164, 252);
@@ -161,23 +207,6 @@
             this.txt_PumpMaxHead.Size = new System.Drawing.Size(276, 20);
             this.txt_PumpMaxHead.TabIndex = 12;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Meter Wassersäule";
-            // 
-            // txt_PumpNominalHead
-            // 
-            this.txt_PumpNominalHead.Enabled = false;
-            this.txt_PumpNominalHead.Location = new System.Drawing.Point(145, 57);
-            this.txt_PumpNominalHead.Name = "txt_PumpNominalHead";
-            this.txt_PumpNominalHead.Size = new System.Drawing.Size(256, 20);
-            this.txt_PumpNominalHead.TabIndex = 10;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -186,23 +215,6 @@
             this.label3.Size = new System.Drawing.Size(110, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Abgabeleistung Motor";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 34);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Volumenstrom";
-            // 
-            // txt_PumpNominalFlowRate
-            // 
-            this.txt_PumpNominalFlowRate.Enabled = false;
-            this.txt_PumpNominalFlowRate.Location = new System.Drawing.Point(145, 31);
-            this.txt_PumpNominalFlowRate.Name = "txt_PumpNominalFlowRate";
-            this.txt_PumpNominalFlowRate.Size = new System.Drawing.Size(256, 20);
-            this.txt_PumpNominalFlowRate.TabIndex = 8;
             // 
             // txt_PumpPowerOut
             // 
@@ -309,19 +321,6 @@
             this.label11.TabIndex = 17;
             this.label11.Text = "bar";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.txt_PumpNominalFlowRate);
-            this.groupBox3.Controls.Add(this.txt_PumpNominalHead);
-            this.groupBox3.Location = new System.Drawing.Point(22, 138);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(421, 100);
-            this.groupBox3.TabIndex = 101;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Nennleistung";
-            // 
             // Form1
             // 
             this.AcceptButton = this.btn_CalcFlowRate;
@@ -334,10 +333,10 @@
             this.Text = "FlowCalc";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }

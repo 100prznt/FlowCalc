@@ -104,5 +104,12 @@ namespace FlowCalc
             // Navigate to a URL.
             System.Diagnostics.Process.Start("mailto:" + m_Controller.Pump.AuthorEmailPumpFile);
         }
+
+        private void btn_ToJson_Click(object sender, EventArgs e)
+        {
+            var path = m_Controller.PumpDefinitionPath.Replace(".xml", ".json");
+
+            m_Controller.Pump.ToFile(path);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FlowCalc.Mathematics;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -113,11 +114,18 @@ namespace FlowCalc
         /// <param name="path"></param>
         public void ToFile(string path)
         {
-            var xs = new XmlSerializer(typeof(Pump));
+            //var xs = new XmlSerializer(typeof(Pump));
+
+            //using (var sw = new StreamWriter(path))
+            //{
+            //    xs.Serialize(sw, this);
+            //}
+
 
             using (var sw = new StreamWriter(path))
             {
-                xs.Serialize(sw, this);
+                sw.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
+                sw.Flush();
             }
         }
 
