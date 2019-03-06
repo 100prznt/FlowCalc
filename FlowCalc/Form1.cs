@@ -31,6 +31,7 @@ namespace FlowCalc
             InitializeComponent();
 
             this.Text = WindowTitle; //Title
+            lbl_PumpFileAuthor.Text = "";
 
             m_Controller = new Controller();
 
