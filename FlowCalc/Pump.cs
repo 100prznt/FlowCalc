@@ -9,6 +9,9 @@ using System.Xml.Serialization;
 
 namespace FlowCalc
 {
+    /// <summary>
+    /// Pumpendefinition
+    /// </summary>
     [Serializable]
     public class Pump
     {
@@ -66,6 +69,16 @@ namespace FlowCalc
                     return PerformanceCurve.Max(x => x.TotalDynamicHead);
             }
         }
+
+        /// <summary>
+        /// Name des Erstellers der Pumpendefinition
+        /// </summary>
+        public string AuthorDescriptionFile { get; set; }
+
+        /// <summary>
+        /// Emailadresse des Erstellers der Pumpendefinition
+        /// </summary>
+        public string AuthorEmailDescriptionFile { get; set; }
 
         #endregion Properties
 

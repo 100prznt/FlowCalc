@@ -5,6 +5,8 @@
   <PowerOutput>0.25</PowerOutput>
   <NominalFlowRate>6</NominalFlowRate>
   <NominalDynamicHead>8</NominalDynamicHead>
+  <AuthorPumpFile>Elias Ruemmler</AuthorPumpFile>
+  <AuthorEmailPumpFile>pool@100prznt.de</AuthorEmailPumpFile>
   <PerformanceCurve>
     <PumpPerformancePoint>
       <TotalDynamicHead>12</TotalDynamicHead>
