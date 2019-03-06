@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Mathematics\CheckRoutines.cs" />
     <Compile Include="Mathematics\LinInterp.cs" />
+    <Compile Include="PoolSystem\Pipe.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pump.cs" />
