@@ -24,22 +24,22 @@ TODO...
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ModellName>AquaPlus 6</ModellName>
+  <Modell>AquaPlus 6</Modell>
   <Manufacturer>Aqua TechniX GmbH</Manufacturer>
   <PowerOutput>0.25</PowerOutput>
-  <NominalFlowRate>6</NominalFlowRate>
+  <NominalQ>6</NominalQ>
   <NominalDynamicHead>8</NominalDynamicHead>
-  <AuthorPumpFile>Elias Ruemmler</AuthorPumpFile>
-  <AuthorEmailPumpFile>pool@100prznt.de</AuthorEmailPumpFile>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>10.9</TotalDynamicHead>
-      <FlowRate>0</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>10.6</TotalDynamicHead>
-      <FlowRate>1</FlowRate>
-    </PumpPerformancePoint>
+    <Ipp>
+      <H>10.9</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.6</H>
+      <Q>1</Q>
+    </Ipp>
     <!-- Beliebige Anzahl weiterer PumpPerformancePoint Nodes hier -->
   </PerformanceCurve>
 </Pump>
