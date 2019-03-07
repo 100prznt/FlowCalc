@@ -1,64 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Modell>AquaPlus 6</Modell>
+  <Modell>AquaPlus 11</Modell>
   <Manufacturer>Aqua TechniX GmbH</Manufacturer>
-  <PowerOutput>0.25</PowerOutput>
-  <NominalQ>6</NominalQ>
-  <NominalH>8</NominalH>
+  <PowerOutput>0.45</PowerOutput>
+  <NominalQ>11</NominalQ>
+  <NominalH>9</NominalH>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>
     <Ipp>
-      <H>10.9</H>
+      <H>13.4</H>
       <Q>0</Q>
     </Ipp>
     <Ipp>
-      <H>10.6</H>
+      <H>13.2</H>
       <Q>1</Q>
     </Ipp>
     <Ipp>
-      <H>10.2</H>
+      <H>12.9</H>
       <Q>2</Q>
     </Ipp>
     <Ipp>
-      <H>9.8</H>
+      <H>12.65</H>
       <Q>3</Q>
     </Ipp>
     <Ipp>
-      <H>9.3</H>
+      <H>12.3</H>
       <Q>4</Q>
     </Ipp>
     <Ipp>
-      <H>8.8</H>
+      <H>12</H>
       <Q>5</Q>
     </Ipp>
     <Ipp>
-      <H>8</H>
+      <H>11.5</H>
       <Q>6</Q>
     </Ipp>
     <Ipp>
-      <H>7.25</H>
+      <H>11</H>
       <Q>7</Q>
     </Ipp>
     <Ipp>
-      <H>6.4</H>
+      <H>10.5</H>
       <Q>8</Q>
     </Ipp>
     <Ipp>
-      <H>5.5</H>
+      <H>10</H>
       <Q>9</Q>
     </Ipp>
     <Ipp>
-      <H>4.8</H>
+      <H>9.5</H>
       <Q>10</Q>
     </Ipp>
     <Ipp>
-      <H>3.3</H>
+      <H>8.7</H>
       <Q>11</Q>
     </Ipp>
     <Ipp>
-      <H>1.6</H>
+      <H>8</H>
       <Q>12</Q>
+    </Ipp>
+    <Ipp>
+      <H>7.3</H>
+      <Q>13</Q>
+    </Ipp>
+    <Ipp>
+      <H>6.5</H>
+      <Q>14</Q>
+    </Ipp>
+    <Ipp>
+      <H>6</H>
+      <Q>15</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.8</H>
+      <Q>16</Q>
+    </Ipp>
+    <Ipp>
+      <H>3.5</H>
+      <Q>17</Q>
     </Ipp>
   </PerformanceCurve>
 </Pump>

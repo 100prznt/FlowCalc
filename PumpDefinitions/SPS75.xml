@@ -4,7 +4,7 @@
   <Manufacturer></Manufacturer>
   <PowerOutput>0.2</PowerOutput>
   <NominalQ>4.8</NominalQ>
-  <NominalDynamicHead>6</NominalDynamicHead>
+  <NominalH>6</NominalH>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>

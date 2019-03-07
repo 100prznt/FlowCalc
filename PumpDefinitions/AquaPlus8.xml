@@ -4,7 +4,7 @@
   <Manufacturer>Aqua TechniX GmbH</Manufacturer>
   <PowerOutput>0.40</PowerOutput>
   <NominalQ>8</NominalQ>
-  <NominalDynamicHead>9</NominalDynamicHead>
+  <NominalH>9</NominalH>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>

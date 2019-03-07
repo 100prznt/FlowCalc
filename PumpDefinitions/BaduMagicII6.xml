@@ -4,7 +4,7 @@
   <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
   <PowerOutput>0.25</PowerOutput>
   <NominalQ>6</NominalQ>
-  <NominalDynamicHead>8</NominalDynamicHead>
+  <NominalH>8</NominalH>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>

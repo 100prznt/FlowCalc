@@ -38,12 +38,14 @@ namespace FlowCalc
         /// in [m^3/h]
         /// bei Nennförderhöhe
         /// </summary>
+        [XmlElement("NominalQ")]
         public double NominalFlowRate { get; set; }
 
         /// <summary>
         /// Nenn Meter Wassersäule (Förderhöhe) H_N
         /// in [mWS]
         /// </summary>
+        [XmlElement("NominalH")]
         public double NominalDynamicHead { get; set; }
 
         /// <summary>
