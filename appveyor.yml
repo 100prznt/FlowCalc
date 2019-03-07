@@ -27,12 +27,12 @@ build:
   project: FlowCalc.sln
   verbosity: minimal
 after_build:
-- cmd: 7z a FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\FlowCalc\bin\%CONFIGURATION%\*.exe %APPVEYOR_BUILD_FOLDER%\FlowCalc\bin\%CONFIGURATION%\*.dll
+- cmd: 7z a FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\FlowCalc\bin\%CONFIGURATION%\*.exe %APPVEYOR_BUILD_FOLDER%\FlowCalc\bin\%CONFIGURATION%\*.dll %APPVEYOR_BUILD_FOLDER%\PumpDefinitions\*.xml
 artifacts:
 - path: FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip
 deploy:
 - provider: GitHub
-  description: "`FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip` enthält die Anwendung (FlowCalc.exe) sowie benötigte Programmbibliotheken (*.dll).\nDie Anwendung `FlowCalc.exe` kann direkt gestartet werden.\n\n#### Last commit message\n%APPVEYOR_REPO_COMMIT_MESSAGE%"
+  description: "`FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip` enthält die Anwendung (FlowCalc.exe) sowie benötigte Programmbibliotheken (.dll). Ebenfalls enthalten sind die verfügbaren Pumpendefinitionen, in Form von Xml-Dateien (.xml).\n\nDie Anwendung `FlowCalc.exe` kann direkt gestartet werden.\n\n#### Last commit message\n%APPVEYOR_REPO_COMMIT_MESSAGE%"
   auth_token:
     secure: f6bHUrxjNRP23jMDGRd4QM2CFVCLYROeYndAlsXhdiPirrViZ2lgp+Vg79PuSDRT
   prerelease: true

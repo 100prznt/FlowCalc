@@ -48,7 +48,7 @@ namespace FlowCalc
         }
 
         /// <summary>
-        /// Aktueller Systemförderstrom
+        /// Aktueller Systemvolumenstrom
         /// in [m³/h]
         /// </summary>
         public double SystemFlowRate { get; set; }

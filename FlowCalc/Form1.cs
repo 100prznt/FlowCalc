@@ -31,6 +31,7 @@ namespace FlowCalc
             InitializeComponent();
 
             this.Text = WindowTitle; //Title
+            this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
             lbl_PumpFileAuthor.Text = "";
 
             m_Controller = new Controller();
@@ -65,7 +66,7 @@ namespace FlowCalc
             {
                 var flowRate = m_Controller.CalcFlowRate(pressure);
                 txt_SystemFlowRate.Text = flowRate.ToString("f2") + " m³/h";
-                txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " m";
+                txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " mWS";
 
                 if (flowRate <= 0)
                     MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt.\n\n" +
@@ -79,8 +80,8 @@ namespace FlowCalc
             txt_PumpManufracturer.Text = m_Controller.Pump.Manufacturer;
             txt_PumpPowerOut.Text = m_Controller.Pump.PowerOutput + " kW";
             txt_PumpNominalFlowRate.Text = m_Controller.Pump.NominalFlowRate + " m³/h";
-            txt_PumpNominalHead.Text = m_Controller.Pump.NominalDynamicHead + " m";
-            txt_PumpMaxHead.Text = m_Controller.Pump.MaxTotalHead + " m";
+            txt_PumpNominalHead.Text = m_Controller.Pump.NominalDynamicHead + " mWS";
+            txt_PumpMaxHead.Text = m_Controller.Pump.MaxTotalHead + " mWS";
 
             lbl_PumpFileAuthor.Text = m_Controller.Pump.AuthorPumpFile;
             toolTip1.SetToolTip(lbl_PumpFileAuthor, m_Controller.Pump.AuthorEmailPumpFile);
@@ -102,6 +103,13 @@ namespace FlowCalc
 
             // Navigate to a URL.
             System.Diagnostics.Process.Start("mailto:" + m_Controller.Pump.AuthorEmailPumpFile);
+        }
+
+        private void btn_ToJson_Click(object sender, EventArgs e)
+        {
+            var path = m_Controller.PumpDefinitionPath.Replace(".xml", ".json");
+
+            m_Controller.Pump.ToFile(path);
         }
     }
 }

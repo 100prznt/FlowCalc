@@ -1,4 +1,5 @@
 ﻿using FlowCalc.Mathematics;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,20 +33,20 @@ namespace FlowCalc
         public string Manufacturer { get; set; }
 
         /// <summary>
-        /// Nennflusststrom Q_N
+        /// Nennvolumenstrom Q_N
         /// in [m^3/h]
         /// bei Nennförderhöhe
         /// </summary>
         public double NominalFlowRate { get; set; }
 
         /// <summary>
-        /// Nennförderhöhe H_N
-        /// in [m^3/h]
+        /// Nenn Meter Wassersäule (Förderhöhe) H_N
+        /// in [mWS]
         /// </summary>
         public double NominalDynamicHead { get; set; }
 
         /// <summary>
-        /// Power output P_2
+        /// Leistung an der Motorwelle P_2
         /// in [kW]
         /// </summary>
         public double PowerOutput { get; set; }
@@ -56,7 +57,7 @@ namespace FlowCalc
         public List<PumpPerformancePoint> PerformanceCurve { get; set; }
 
         /// <summary>
-        /// Maximale Förderhöhe
+        /// Maximale Meter Wassersäule (Förderhöhe)
         /// in [m]
         /// </summary>
         public double MaxTotalHead
@@ -91,6 +92,11 @@ namespace FlowCalc
 
         }
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="name">Pumpen Modell-Bezeichnung</param>
+        /// <param name="manufracturer">Pumpen Hersteller</param>
         public Pump(string name, string manufracturer)
         {
             ModellName = name;
@@ -102,16 +108,32 @@ namespace FlowCalc
         #endregion Constructor
 
         #region Services
+        /// <summary>
+        /// Als xml-Datei speichern
+        /// </summary>
+        /// <param name="path"></param>
         public void ToFile(string path)
         {
-            var xs = new XmlSerializer(typeof(Pump));
+            //var xs = new XmlSerializer(typeof(Pump));
+
+            //using (var sw = new StreamWriter(path))
+            //{
+            //    xs.Serialize(sw, this);
+            //}
+
 
             using (var sw = new StreamWriter(path))
             {
-                xs.Serialize(sw, this);
+                sw.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
+                sw.Flush();
             }
         }
 
+        /// <summary>
+        /// Objekt aus xml-Datei generieren
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static Pump FromFile(string path)
         {
             Pump pump;

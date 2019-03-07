@@ -18,13 +18,13 @@ namespace FlowCalc
 
         #region Properties
         /// <summary>
-        /// Gesamtförderhöhe H
-        /// in m
+        /// Meter Wassersäule (Förderhöhe) H
+        /// in mWS
         /// </summary>
         public double TotalDynamicHead { get; set; }
 
         /// <summary>
-        /// Förderstrom Q
+        /// Volumenstrom Q
         /// in [m^3/h]
         /// </summary>
         public double FlowRate { get; set; }
@@ -43,8 +43,8 @@ namespace FlowCalc
         /// <summary>
         /// Konstruktor
         /// </summary>
-        /// <param name="flow">Förderstrom Q in [m^3/h]</param>
-        /// <param name="head">Gesamtförderhöhe H in m</param>
+        /// <param name="flow">Volumenstrom Q in [m^3/h]</param>
+        /// <param name="head">Gesamtförderhöhe H in mWS</param>
         public PumpPerformancePoint(double head, double flow)
         {
             TotalDynamicHead = head;

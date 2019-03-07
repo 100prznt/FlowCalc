@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ModellName>BADU Picco II</ModellName>
+  <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
+  <PowerOutput>0.2</PowerOutput>
+  <NominalFlowRate>4</NominalFlowRate>
+  <NominalDynamicHead>8</NominalDynamicHead>
+  <AuthorPumpFile>Elias Ruemmler</AuthorPumpFile>
+  <AuthorEmailPumpFile>pool@100prznt.de</AuthorEmailPumpFile>
+  <PerformanceCurve>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>11</TotalDynamicHead>
+      <FlowRate>0</FlowRate>
+    </PumpPerformancePoint>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>10.6</TotalDynamicHead>
+      <FlowRate>1</FlowRate>
+    </PumpPerformancePoint>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>9.9</TotalDynamicHead>
+      <FlowRate>2</FlowRate>
+    </PumpPerformancePoint>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>9.25</TotalDynamicHead>
+      <FlowRate>3</FlowRate>
+    </PumpPerformancePoint>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>8.4</TotalDynamicHead>
+      <FlowRate>4</FlowRate>
+    </PumpPerformancePoint>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>5.4</TotalDynamicHead>
+      <FlowRate>5</FlowRate>
+    </PumpPerformancePoint>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>4.5</TotalDynamicHead>
+      <FlowRate>6</FlowRate>
+    </PumpPerformancePoint>
+    <PumpPerformancePoint>
+      <TotalDynamicHead>3</TotalDynamicHead>
+      <FlowRate>6.2</FlowRate>
+    </PumpPerformancePoint>
+  </PerformanceCurve>
+</Pump>
