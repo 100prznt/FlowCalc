@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ModellName>AquaPlus 6</ModellName>
+  <Modell>AquaPlus 6</Modell>
   <Manufacturer>Aqua TechniX GmbH</Manufacturer>
   <PowerOutput>0.25</PowerOutput>
-  <NominalFlowRate>6</NominalFlowRate>
+  <NominalQ>6</NominalQ>
   <NominalDynamicHead>8</NominalDynamicHead>
-  <AuthorPumpFile>Elias Ruemmler</AuthorPumpFile>
-  <AuthorEmailPumpFile>pool@100prznt.de</AuthorEmailPumpFile>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>10.9</TotalDynamicHead>
-      <FlowRate>0</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>10.6</TotalDynamicHead>
-      <FlowRate>1</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>10.2</TotalDynamicHead>
-      <FlowRate>2</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>9.8</TotalDynamicHead>
-      <FlowRate>3</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>9.3</TotalDynamicHead>
-      <FlowRate>4</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>8.8</TotalDynamicHead>
-      <FlowRate>5</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>8</TotalDynamicHead>
-      <FlowRate>6</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>7.25</TotalDynamicHead>
-      <FlowRate>7</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>6.4</TotalDynamicHead>
-      <FlowRate>8</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>5.5</TotalDynamicHead>
-      <FlowRate>9</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>4.8</TotalDynamicHead>
-      <FlowRate>10</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>3.3</TotalDynamicHead>
-      <FlowRate>11</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>1.6</TotalDynamicHead>
-      <FlowRate>12</FlowRate>
-    </PumpPerformancePoint>
+    <Ipp>
+      <H>10.9</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.6</H>
+      <Q>1</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.2</H>
+      <Q>2</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.8</H>
+      <Q>3</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.3</H>
+      <Q>4</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.8</H>
+      <Q>5</Q>
+    </Ipp>
+    <Ipp>
+      <H>8</H>
+      <Q>6</Q>
+    </Ipp>
+    <Ipp>
+      <H>7.25</H>
+      <Q>7</Q>
+    </Ipp>
+    <Ipp>
+      <H>6.4</H>
+      <Q>8</Q>
+    </Ipp>
+    <Ipp>
+      <H>5.5</H>
+      <Q>9</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.8</H>
+      <Q>10</Q>
+    </Ipp>
+    <Ipp>
+      <H>3.3</H>
+      <Q>11</Q>
+    </Ipp>
+    <Ipp>
+      <H>1.6</H>
+      <Q>12</Q>
+    </Ipp>
   </PerformanceCurve>
 </Pump>

@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ModellName>BADU Picco II</ModellName>
+  <Modell>BADU Picco II</Modell>
   <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
   <PowerOutput>0.2</PowerOutput>
-  <NominalFlowRate>4</NominalFlowRate>
+  <NominalQ>4</NominalQ>
   <NominalDynamicHead>8</NominalDynamicHead>
-  <AuthorPumpFile>Elias Ruemmler</AuthorPumpFile>
-  <AuthorEmailPumpFile>pool@100prznt.de</AuthorEmailPumpFile>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>11</TotalDynamicHead>
-      <FlowRate>0</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>10.6</TotalDynamicHead>
-      <FlowRate>1</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>9.9</TotalDynamicHead>
-      <FlowRate>2</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>9.25</TotalDynamicHead>
-      <FlowRate>3</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>8.4</TotalDynamicHead>
-      <FlowRate>4</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>5.4</TotalDynamicHead>
-      <FlowRate>5</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>4.5</TotalDynamicHead>
-      <FlowRate>6</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>3</TotalDynamicHead>
-      <FlowRate>6.2</FlowRate>
-    </PumpPerformancePoint>
+    <Ipp>
+      <H>11</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.6</H>
+      <Q>1</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.9</H>
+      <Q>2</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.25</H>
+      <Q>3</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.4</H>
+      <Q>4</Q>
+    </Ipp>
+    <Ipp>
+      <H>5.4</H>
+      <Q>5</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.5</H>
+      <Q>6</Q>
+    </Ipp>
+    <Ipp>
+      <H>3</H>
+      <Q>6.2</Q>
+    </Ipp>
   </PerformanceCurve>
 </Pump>

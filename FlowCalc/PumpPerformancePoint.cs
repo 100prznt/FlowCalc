@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace FlowCalc
 {
@@ -21,12 +22,14 @@ namespace FlowCalc
         /// Meter Wassersäule (Förderhöhe) H
         /// in mWS
         /// </summary>
+        [XmlElement("H")]
         public double TotalDynamicHead { get; set; }
 
         /// <summary>
         /// Volumenstrom Q
         /// in [m^3/h]
         /// </summary>
+        [XmlElement("Q")]
         public double FlowRate { get; set; }
 
         #endregion Properties

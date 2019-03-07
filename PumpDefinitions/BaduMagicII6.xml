@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ModellName>BADU Magic II/6</ModellName>
+  <Modell>BADU Magic II/6</Modell>
   <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
   <PowerOutput>0.25</PowerOutput>
-  <NominalFlowRate>6</NominalFlowRate>
+  <NominalQ>6</NominalQ>
   <NominalDynamicHead>8</NominalDynamicHead>
-  <AuthorPumpFile>Elias Ruemmler</AuthorPumpFile>
-  <AuthorEmailPumpFile>pool@100prznt.de</AuthorEmailPumpFile>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>12</TotalDynamicHead>
-      <FlowRate>0</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>11.85</TotalDynamicHead>
-      <FlowRate>1</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>11.4</TotalDynamicHead>
-      <FlowRate>2</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>10.9</TotalDynamicHead>
-      <FlowRate>3</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>10.1</TotalDynamicHead>
-      <FlowRate>4</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>9.4</TotalDynamicHead>
-      <FlowRate>5</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>8</TotalDynamicHead>
-      <FlowRate>6</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>6.2</TotalDynamicHead>
-      <FlowRate>7</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>4.4</TotalDynamicHead>
-      <FlowRate>8</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>2.6</TotalDynamicHead>
-      <FlowRate>9</FlowRate>
-    </PumpPerformancePoint>
+    <Ipp>
+      <H>12</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>11.85</H>
+      <Q>1</Q>
+    </Ipp>
+    <Ipp>
+      <H>11.4</H>
+      <Q>2</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.9</H>
+      <Q>3</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.1</H>
+      <Q>4</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.4</H>
+      <Q>5</Q>
+    </Ipp>
+    <Ipp>
+      <H>8</H>
+      <Q>6</Q>
+    </Ipp>
+    <Ipp>
+      <H>6.2</H>
+      <Q>7</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.4</H>
+      <Q>8</Q>
+    </Ipp>
+    <Ipp>
+      <H>2.6</H>
+      <Q>9</Q>
+    </Ipp>
   </PerformanceCurve>
 </Pump>

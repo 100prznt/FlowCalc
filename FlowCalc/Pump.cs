@@ -25,6 +25,7 @@ namespace FlowCalc
         /// <summary>
         /// Modellname der Pumpe
         /// </summary>
+        [XmlElement("Modell")]
         public string ModellName { get; set; }
 
         /// <summary>
@@ -50,16 +51,32 @@ namespace FlowCalc
         /// in [kW]
         /// </summary>
         public double PowerOutput { get; set; }
+        
+
+        /// <summary>
+        /// Name des Erstellers der Pumpendefinition
+        /// </summary>
+        [XmlElement("Author")]
+        public string AuthorPumpFile { get; set; }
+
+        /// <summary>
+        /// Emailadresse des Erstellers der Pumpendefinition
+        /// </summary>
+
+        [XmlElement("AuthorEmail")]
+        public string AuthorEmailPumpFile { get; set; }
 
         /// <summary>
         /// Leistungskurve
         /// </summary>
+        [XmlArrayItem("Ipp")]
         public List<PumpPerformancePoint> PerformanceCurve { get; set; }
 
         /// <summary>
         /// Maximale Meter Wassersäule (Förderhöhe)
         /// in [m]
         /// </summary>
+        [XmlIgnore]
         public double MaxTotalHead
         {
             get
@@ -70,16 +87,6 @@ namespace FlowCalc
                     return PerformanceCurve.Max(x => x.TotalDynamicHead);
             }
         }
-
-        /// <summary>
-        /// Name des Erstellers der Pumpendefinition
-        /// </summary>
-        public string AuthorPumpFile { get; set; }
-
-        /// <summary>
-        /// Emailadresse des Erstellers der Pumpendefinition
-        /// </summary>
-        public string AuthorEmailPumpFile { get; set; }
 
         #endregion Properties
 

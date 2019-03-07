@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ModellName>SPS-75</ModellName>
+  <Modell>SPS-75</Modell>
   <Manufacturer></Manufacturer>
   <PowerOutput>0.2</PowerOutput>
-  <NominalFlowRate>4.8</NominalFlowRate>
+  <NominalQ>4.8</NominalQ>
   <NominalDynamicHead>6</NominalDynamicHead>
-  <AuthorPumpFile>Elias Ruemmler</AuthorPumpFile>
-  <AuthorEmailPumpFile>pool@100prznt.de</AuthorEmailPumpFile>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>6</TotalDynamicHead>
-      <FlowRate>4.8</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>4</TotalDynamicHead>
-      <FlowRate>6.6</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>9</TotalDynamicHead>
-      <FlowRate>0.75</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>8.6</TotalDynamicHead>
-      <FlowRate>1.5</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>8.1</TotalDynamicHead>
-      <FlowRate>2.25</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>7.5</TotalDynamicHead>
-      <FlowRate>3</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>7</TotalDynamicHead>
-      <FlowRate>3.75</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>6.25</TotalDynamicHead>
-      <FlowRate>4.5</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>5.75</TotalDynamicHead>
-      <FlowRate>5.25</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>4.9</TotalDynamicHead>
-      <FlowRate>6</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>3.75</TotalDynamicHead>
-      <FlowRate>6.75</FlowRate>
-    </PumpPerformancePoint>
-    <PumpPerformancePoint>
-      <TotalDynamicHead>2.6</TotalDynamicHead>
-      <FlowRate>7.5</FlowRate>
-    </PumpPerformancePoint>
+    <Ipp>
+      <H>6</H>
+      <Q>4.8</Q>
+    </Ipp>
+    <Ipp>
+      <H>4</H>
+      <Q>6.6</Q>
+    </Ipp>
+    <Ipp>
+      <H>9</H>
+      <Q>0.75</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.6</H>
+      <Q>1.5</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.1</H>
+      <Q>2.25</Q>
+    </Ipp>
+    <Ipp>
+      <H>7.5</H>
+      <Q>3</Q>
+    </Ipp>
+    <Ipp>
+      <H>7</H>
+      <Q>3.75</Q>
+    </Ipp>
+    <Ipp>
+      <H>6.25</H>
+      <Q>4.5</Q>
+    </Ipp>
+    <Ipp>
+      <H>5.75</H>
+      <Q>5.25</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.9</H>
+      <Q>6</Q>
+    </Ipp>
+    <Ipp>
+      <H>3.75</H>
+      <Q>6.75</Q>
+    </Ipp>
+    <Ipp>
+      <H>2.6</H>
+      <Q>7.5</Q>
+    </Ipp>
   </PerformanceCurve>
 </Pump>
