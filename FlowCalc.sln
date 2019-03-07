@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowCalc", "FlowCalc\FlowCalc.csproj", "{43E44C73-0DB7-478D-8766-BD1D884D3090}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowCalc_Test", "FlowCalc_Test\FlowCalc_Test.csproj", "{81F19295-D779-4FF4-AC3E-90360E7360B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{43E44C73-0DB7-478D-8766-BD1D884D3090}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43E44C73-0DB7-478D-8766-BD1D884D3090}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43E44C73-0DB7-478D-8766-BD1D884D3090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81F19295-D779-4FF4-AC3E-90360E7360B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F19295-D779-4FF4-AC3E-90360E7360B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F19295-D779-4FF4-AC3E-90360E7360B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F19295-D779-4FF4-AC3E-90360E7360B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
