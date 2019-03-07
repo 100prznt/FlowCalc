@@ -87,7 +87,7 @@ Unter [Contributors](https://github.com/100prznt/FlowCalc/contributors) können 
 
 ## Lizenz
 
-Dieses Projekt (FlowCalcN) ist lizenziert unter der [MIT Lizenz](http://www.opensource.org/licenses/mit-license.php "Read more about the MIT license form").  
+Dieses Projekt (FlowCalc) ist lizenziert unter der [MIT Lizenz](http://www.opensource.org/licenses/mit-license.php "Read more about the MIT license form").  
 Weitere Details unter [LICENSE.txt](https://github.com/100prznt/FlowCalc/blob/master/LICENSE.txt).
 
 [![license](https://img.shields.io/github/license/100prznt/FlowCalc.svg)](https://github.com/100prznt/FlowCalc/blob/master/LICENSE.txt) 
