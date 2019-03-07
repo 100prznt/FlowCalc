@@ -7,7 +7,7 @@ Das Programm erfordert keine Installation. Es kann nach dem kompilieren direkt g
 
 ## Bedienung
 1. Über die Schaltfläche `Lade Pumpendefinition...` muss eine gültige Pumpen-Definitionsdatei geladen werden. Unter [PumpDefinitions](https://github.com/100prznt/FlowCalc/tree/master/PumpDefinitions) finden sich einige dieser Dateien.
-Siehe auch [Pumpendefinition](#pumpendefinition)
+Siehe auch Abschnitt [Pumpendefinition](#pumpendefinition) hier im Readme.
 2. Eingabe des Systemdrucks, im Feld _Systemdruck [bar]_. Dies ist der Druck nach der Pumpe, beziehungsweise vor dem Filter, Eingabe hat in __bar__ zu erfolgen.
 3. Die Berechnung der Fördermenge wird mit der Schaltfläche `Berechne Fördermenge` gestartet und direkt angezeigt.
 
