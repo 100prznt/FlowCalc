@@ -57,6 +57,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btn_ShowPumpCurve = new System.Windows.Forms.Button();
+            this.btn_ShowPowerPoint = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -66,7 +68,7 @@
             // 
             this.btn_LoadPump.Location = new System.Drawing.Point(22, 279);
             this.btn_LoadPump.Name = "btn_LoadPump";
-            this.btn_LoadPump.Size = new System.Drawing.Size(421, 23);
+            this.btn_LoadPump.Size = new System.Drawing.Size(192, 23);
             this.btn_LoadPump.TabIndex = 98;
             this.btn_LoadPump.Text = "Lade Pumpendefinition...";
             this.btn_LoadPump.UseVisualStyleBackColor = true;
@@ -105,6 +107,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_ShowPumpCurve);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.lbl_PumpFileAuthor);
             this.groupBox1.Controls.Add(this.label10);
@@ -297,6 +300,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn_ShowPowerPoint);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label8);
@@ -320,6 +324,28 @@
             this.label11.Size = new System.Drawing.Size(22, 13);
             this.label11.TabIndex = 17;
             this.label11.Text = "bar";
+            // 
+            // btn_ShowPumpCurve
+            // 
+            this.btn_ShowPumpCurve.Enabled = false;
+            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(235, 279);
+            this.btn_ShowPumpCurve.Name = "btn_ShowPumpCurve";
+            this.btn_ShowPumpCurve.Size = new System.Drawing.Size(204, 23);
+            this.btn_ShowPumpCurve.TabIndex = 18;
+            this.btn_ShowPumpCurve.Text = "Pumpenkennlinie anzeigen";
+            this.btn_ShowPumpCurve.UseVisualStyleBackColor = true;
+            this.btn_ShowPumpCurve.Click += new System.EventHandler(this.btn_ShowPumpCurve_Click);
+            // 
+            // btn_ShowWorkPoint
+            // 
+            this.btn_ShowPowerPoint.Enabled = false;
+            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(25, 279);
+            this.btn_ShowPowerPoint.Name = "btn_ShowWorkPoint";
+            this.btn_ShowPowerPoint.Size = new System.Drawing.Size(219, 23);
+            this.btn_ShowPowerPoint.TabIndex = 19;
+            this.btn_ShowPowerPoint.Text = "Arbeitspunkt anzeigen";
+            this.btn_ShowPowerPoint.UseVisualStyleBackColor = true;
+            this.btn_ShowPowerPoint.Click += new System.EventHandler(this.btn_ShowPowerPoint_Click);
             // 
             // Form1
             // 
@@ -371,6 +397,8 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btn_ShowPumpCurve;
+        private System.Windows.Forms.Button btn_ShowPowerPoint;
     }
 }
 

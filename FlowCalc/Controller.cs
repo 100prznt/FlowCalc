@@ -82,14 +82,14 @@ namespace FlowCalc
             return true;
         }
 
-        public double CalcFlowRate(double pressure)
+        public void CalcFlowRate(double pressure)
         {
             SystemPressure = pressure;
 
             if (SystemHead > Pump.MaxTotalHead)
-                return 0;
-
-            return LinInterp.LinearInterpolation(Pump.GetPerformanceHeadValues(), Pump.GetPerformanceFlowValues(), SystemHead);
+                SystemFlowRate = 0;
+            else
+                SystemFlowRate = LinInterp.LinearInterpolation(Pump.GetPerformanceHeadValues(), Pump.GetPerformanceFlowValues(), SystemHead);
         }
 
         #endregion Services

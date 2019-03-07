@@ -16,6 +16,7 @@ namespace FlowCalc
     public partial class Form1 : Form
     {
         Controller m_Controller;
+        ChartView m_ChartView;
 
         public string WindowTitle
         {
@@ -48,11 +49,13 @@ namespace FlowCalc
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                m_Controller.LoadPump(openFileDialog1.FileName);
-                applyPumpDefinition();
+                if (m_Controller.LoadPump(openFileDialog1.FileName))
+                {
+                    applyPumpDefinition();
 
-                Properties.Settings.Default.PumpDefinitionPath = openFileDialog1.FileName;
-                Properties.Settings.Default.Save();
+                    Properties.Settings.Default.PumpDefinitionPath = openFileDialog1.FileName;
+                    Properties.Settings.Default.Save();
+                }
             }
         }
 
@@ -64,13 +67,15 @@ namespace FlowCalc
 
             if (double.TryParse(txt_SystemPressure.Text, out pressure))
             {
-                var flowRate = m_Controller.CalcFlowRate(pressure);
-                txt_SystemFlowRate.Text = flowRate.ToString("f2") + " m³/h";
+                m_Controller.CalcFlowRate(pressure);
+                txt_SystemFlowRate.Text = m_Controller.SystemFlowRate.ToString("f2") + " m³/h";
                 txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " mWS";
 
-                if (flowRate <= 0)
+                if (m_Controller.SystemFlowRate <= 0)
                     MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt.\n\n" +
                         "Es kann keine Fördermenge berechnet werden.", "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                    btn_ShowPowerPoint.Enabled = true;
             }
         }
 
@@ -89,6 +94,7 @@ namespace FlowCalc
             this.Text = string.Concat(WindowTitle, " - ", m_Controller.PumpDefinitionPath);
 
             clearSystemOutput();
+            btn_ShowPumpCurve.Enabled = true;
         }
 
         private void clearSystemOutput()
@@ -110,6 +116,27 @@ namespace FlowCalc
             var path = m_Controller.PumpDefinitionPath.Replace(".xml", ".json");
 
             m_Controller.Pump.ToFile(path);
+        }
+
+        private void btn_ShowPumpCurve_Click(object sender, EventArgs e)
+        {
+            if (m_ChartView == null || !m_ChartView.Visible)
+                m_ChartView = new ChartView("Anzeige Pumpenkennlinie");
+
+            m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());
+
+            m_ChartView.Show();
+        }
+
+        private void btn_ShowPowerPoint_Click(object sender, EventArgs e)
+        {
+            if (m_ChartView == null || !m_ChartView.Visible)
+                m_ChartView = new ChartView("Anzeige Arbeitspunkt auf Pumpenkennlinie");
+
+            m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());
+            m_ChartView.PowerPoint = new Tuple<double, double>(m_Controller.SystemFlowRate, m_Controller.SystemHead);
+
+            m_ChartView.Show();
         }
     }
 }

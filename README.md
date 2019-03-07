@@ -12,10 +12,26 @@ Siehe auch [Pumpendefinition](#pumpendefinition)
 3. Die Berechnung der Fördermenge wird mit der Schaltfläche `Berechne Fördermenge` gestartet und direkt angezeigt.
 
 ## Anwendung
-![Screenshoot](docs/FlowCalc_Screen.png)
+### Hauptfenster
+![Hauptfenster](docs/FlowCalc_Screen.png)
+
+### Anzeige - Pumpenkennlinien
+![Anzeige - Pumpenkennlinien](docs/FlowCalc_PumpPerformanceCurve_Screen.png)
+
+### Anzeige - Arbeitspumkt auf Pumpenkennlinie
+![Anzeige - Arbeitspumkt auf Pumpenkennlinie](docs/FlowCalc_PowerPoint_Screen.png)
 
 ## Pumpendefinition
 Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form einer Pumpen-Definitionsdatei angegeben werden. 
+
+### Vorhandene Pumpen-Definitionsdateien
+* Speck - Badu Picco II
+* Speck - Badu Magic II/6
+* Speck - Badu Magic II/11
+* Aqua TechniX - AquaPlus 6
+* Aqua TechniX - AquaPlus 8
+* Aqua TechniX - AquaPlus 11
+*  - SPS-75
 
 ### Aufbau der Pumpen-Definitionsdatei
 TODO...
