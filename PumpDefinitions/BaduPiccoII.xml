@@ -17,7 +17,7 @@
       <Q>1</Q>
     </Ipp>
     <Ipp>
-      <H>9.9</H>
+      <H>10</H>
       <Q>2</Q>
     </Ipp>
     <Ipp>
@@ -29,7 +29,7 @@
       <Q>4</Q>
     </Ipp>
     <Ipp>
-      <H>5.4</H>
+      <H>7.1</H>
       <Q>5</Q>
     </Ipp>
     <Ipp>
@@ -38,7 +38,7 @@
     </Ipp>
     <Ipp>
       <H>3</H>
-      <Q>6.2</Q>
+      <Q>6.3</Q>
     </Ipp>
   </PerformanceCurve>
 </Pump>
