@@ -39,7 +39,7 @@ namespace FlowCalc
             if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpDefinitionPath) &&
                 File.Exists(Properties.Settings.Default.PumpDefinitionPath))
             {
-                m_Controller.LoadPump(Properties.Settings.Default.PumpDefinitionPath);
+                if (m_Controller.LoadPump(Properties.Settings.Default.PumpDefinitionPath))
                 applyPumpDefinition();
             }
         }

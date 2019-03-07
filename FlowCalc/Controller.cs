@@ -66,11 +66,20 @@ namespace FlowCalc
         #endregion Constructor
 
         #region Services
-        public void LoadPump(string path)
+        public bool LoadPump(string path)
         {
-            Pump = Pump.FromFile(path);
+            try
+            {
+                Pump = Pump.FromFile(path);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
 
             PumpDefinitionPath = path;
+            return true;
         }
 
         public double CalcFlowRate(double pressure)
