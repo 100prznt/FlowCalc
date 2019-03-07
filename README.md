@@ -31,7 +31,7 @@ Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form e
 * Aqua TechniX - AquaPlus 6
 * Aqua TechniX - AquaPlus 8
 * Aqua TechniX - AquaPlus 11
-*  - SPS-75
+* _Unbekannt_ - SPS-75
 
 ### Aufbau der Pumpen-Definitionsdatei
 TODO...
@@ -56,7 +56,7 @@ TODO...
       <H>10.6</H>
       <Q>1</Q>
     </Ipp>
-    <!-- Beliebige Anzahl weiterer PumpPerformancePoint Nodes hier -->
+    <!-- Beliebige Anzahl weiterer Ipp-Nodes hier -->
   </PerformanceCurve>
 </Pump>
 ```
