@@ -50,8 +50,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Pumpendefinition|*.xml";
-            this.openFileDialog1.Title = "Pumpendefinition laden";
             // 
             // btn_LoadPump
             // 

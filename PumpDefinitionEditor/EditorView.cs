@@ -46,6 +46,9 @@ namespace PumpDefinitionEditor
 
         private void btn_LoadPump_Click(object sender, EventArgs e)
         {
+            openFileDialog1.Title = "Pumpendefinition laden";
+            openFileDialog1.Filter = "Pumpendefinition|*.xml";
+
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
