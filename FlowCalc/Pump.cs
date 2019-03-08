@@ -260,6 +260,39 @@ namespace FlowCalc
             return pump;
         }
 
+        public void ImportMatCurve(string path)
+        {
+            var mfr = new MatFileReader(path);
+            var h = (mfr.GetMLArray("H") as MLDouble)?.GetArray();
+            var q = (mfr.GetMLArray("Q") as MLDouble)?.GetArray();
+            var hOpt = (mfr.GetMLArray("H_Opt") as MLDouble)?.GetArray();
+            var qOpt = (mfr.GetMLArray("Q_Opt") as MLDouble)?.GetArray();
+
+            var curve = new List<PumpPerformancePoint>();
+
+            if (qOpt != null && hOpt != null && qOpt[0].Count() == hOpt[0].Count())
+            {
+                for (int i = 0; i < qOpt[0].Count(); i++)
+                    curve.Add(new PumpPerformancePoint(hOpt[0][i], qOpt[0][i]));
+            }
+            else if (hOpt != null && q != null && hOpt[0].Count() == q[0].Count())
+            {
+                for (int i = 0; i < q.Count(); i++)
+                    curve.Add(new PumpPerformancePoint(hOpt[0][i], q[0][i]));
+            }
+            else if (h != null && q != null && h[0].Count() == q[0].Count())
+            {
+                for (int i = 0; i < q[0].Count(); i++)
+                    curve.Add(new PumpPerformancePoint(h[0][i], q[0][i]));
+            }
+            else
+            {
+                throw new InvalidDataException("Keine gültigen Daten in MAT-File vorhanden.");
+            }
+            
+            PerformanceCurve = curve.ToArray();
+        }
+
         public double[] GetPerformanceHeadValues()
         {
             return PerformanceCurve.Select(x => x.TotalDynamicHead).ToArray();
