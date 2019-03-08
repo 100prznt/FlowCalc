@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>BADU Top II/8</Modell>
+  <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
+  <NominalQ>8</NominalQ>
+  <NominalH>8</NominalH>
+  <PowerOutput>0.3</PowerOutput>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <PerformanceCurve>
+    <Ipp>
+      <H>14.45</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>14.25</H>
+      <Q>1</Q>
+    </Ipp>
+    <Ipp>
+      <H>13.9</H>
+      <Q>2</Q>
+    </Ipp>
+    <Ipp>
+      <H>13.5</H>
+      <Q>3</Q>
+    </Ipp>
+    <Ipp>
+      <H>12.75</H>
+      <Q>4</Q>
+    </Ipp>
+    <Ipp>
+      <H>12</H>
+      <Q>5</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.95</H>
+      <Q>6</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.85</H>
+      <Q>7</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.7</H>
+      <Q>8</Q>
+    </Ipp>
+    <Ipp>
+      <H>7.5</H>
+      <Q>9</Q>
+    </Ipp>
+    <Ipp>
+      <H>6.2</H>
+      <Q>10</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.35</H>
+      <Q>11</Q>
+    </Ipp>
+    <Ipp>
+      <H>2.4</H>
+      <Q>12</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>
