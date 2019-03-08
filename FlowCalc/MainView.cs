@@ -106,7 +106,7 @@ namespace FlowCalc
 
                 if (cbx_CalcSuctionPipe.Checked)
                 {
-                    txt_PipeSuctionPressureDrop.Text = m_Controller.SuctionPressureDrop.ToString("f2") + " bar";
+                    txt_PipeSuctionPressureDrop.Text = m_Controller.SuctionPressureDrop.ToString("f3") + " bar";
                 }
 
                 if (m_Controller.SystemFlowRate <= 0)
