@@ -51,6 +51,14 @@ namespace FlowCalc
                     // Fehler beim automatischen Laden ignorieren
                 }
             }
+
+            cbx_CalcSuctionPipe.Checked = Properties.Settings.Default.EnableSuctionPressureDrop;
+            if (Properties.Settings.Default.SuctionPipeDiameter > 0)
+                txt_SuctionPipeDiameter.Text = Properties.Settings.Default.SuctionPipeDiameter.ToString("f2");
+            if (Properties.Settings.Default.SuctionPipeLength > 0)
+                txt_SuctionPiepLength.Text = Properties.Settings.Default.SuctionPipeLength.ToString("f2");
+            if (Properties.Settings.Default.SystemPressure > 0)
+                txt_SystemPressure.Text = Properties.Settings.Default.SystemPressure.ToString("f2");
         }
 
         private void btn_LoadPump_Click(object sender, EventArgs e)
@@ -86,6 +94,9 @@ namespace FlowCalc
                     var di = double.Parse(txt_SuctionPipeDiameter.Text);
 
                     m_Controller.SuctionPipe = new Pipe(l, di, 0.1);
+
+                    Properties.Settings.Default.SuctionPipeLength = l;
+                    Properties.Settings.Default.SuctionPipeDiameter = di;
                 }
                 catch (Exception)
                 {
@@ -112,10 +123,16 @@ namespace FlowCalc
                 }
 
                 if (m_Controller.SystemFlowRate <= 0)
-                MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt.\n\n" +
-                    "Es kann keine Fördermenge berechnet werden.", "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt.\n\n" +
+                        "Es kann keine Fördermenge berechnet werden.", "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
+                {
+                    Properties.Settings.Default.EnableSuctionPressureDrop = cbx_CalcSuctionPipe.Checked;
+                    Properties.Settings.Default.SystemPressure = pressure;
+                    Properties.Settings.Default.Save();
+
                     btn_ShowPowerPoint.Enabled = true;
+                }
             }
         }
 
@@ -145,6 +162,7 @@ namespace FlowCalc
             txt_PipeSuctionPressureDrop.Clear();
             toolTip1.SetToolTip(lbl_PipeSuctionPressureDrop, string.Empty);
         }
+
 
         private void lbl_PumpFileAuthor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

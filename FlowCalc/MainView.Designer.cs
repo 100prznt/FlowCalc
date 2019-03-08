@@ -417,7 +417,6 @@
             this.txt_SuctionPipeDiameter.Name = "txt_SuctionPipeDiameter";
             this.txt_SuctionPipeDiameter.Size = new System.Drawing.Size(62, 20);
             this.txt_SuctionPipeDiameter.TabIndex = 21;
-            this.txt_SuctionPipeDiameter.Text = "42,6";
             // 
             // cbx_CalcSuctionPipe
             // 
@@ -467,8 +466,8 @@
             this.ClientSize = new System.Drawing.Size(781, 401);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(797, 440);
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(797, 440);
             this.Name = "MainView";
             this.Text = "FlowCalc";
