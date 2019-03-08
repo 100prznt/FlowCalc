@@ -35,6 +35,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_ShowPumpCurve = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,10 +56,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txt_SystemHead = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_ShowPowerPoint = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btn_ShowPumpCurve = new System.Windows.Forms.Button();
-            this.btn_ShowPowerPoint = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -126,6 +126,17 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pumpe";
+            // 
+            // btn_ShowPumpCurve
+            // 
+            this.btn_ShowPumpCurve.Enabled = false;
+            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(235, 279);
+            this.btn_ShowPumpCurve.Name = "btn_ShowPumpCurve";
+            this.btn_ShowPumpCurve.Size = new System.Drawing.Size(204, 23);
+            this.btn_ShowPumpCurve.TabIndex = 18;
+            this.btn_ShowPumpCurve.Text = "Pumpenkennlinie anzeigen";
+            this.btn_ShowPumpCurve.UseVisualStyleBackColor = true;
+            this.btn_ShowPumpCurve.Click += new System.EventHandler(this.btn_ShowPumpCurve_Click);
             // 
             // groupBox3
             // 
@@ -316,6 +327,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
             // 
+            // btn_ShowPowerPoint
+            // 
+            this.btn_ShowPowerPoint.Enabled = false;
+            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(25, 279);
+            this.btn_ShowPowerPoint.Name = "btn_ShowPowerPoint";
+            this.btn_ShowPowerPoint.Size = new System.Drawing.Size(219, 23);
+            this.btn_ShowPowerPoint.TabIndex = 19;
+            this.btn_ShowPowerPoint.Text = "Arbeitspunkt anzeigen";
+            this.btn_ShowPowerPoint.UseVisualStyleBackColor = true;
+            this.btn_ShowPowerPoint.Click += new System.EventHandler(this.btn_ShowPowerPoint_Click);
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -325,29 +347,7 @@
             this.label11.TabIndex = 17;
             this.label11.Text = "bar";
             // 
-            // btn_ShowPumpCurve
-            // 
-            this.btn_ShowPumpCurve.Enabled = false;
-            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(235, 279);
-            this.btn_ShowPumpCurve.Name = "btn_ShowPumpCurve";
-            this.btn_ShowPumpCurve.Size = new System.Drawing.Size(204, 23);
-            this.btn_ShowPumpCurve.TabIndex = 18;
-            this.btn_ShowPumpCurve.Text = "Pumpenkennlinie anzeigen";
-            this.btn_ShowPumpCurve.UseVisualStyleBackColor = true;
-            this.btn_ShowPumpCurve.Click += new System.EventHandler(this.btn_ShowPumpCurve_Click);
-            // 
-            // btn_ShowWorkPoint
-            // 
-            this.btn_ShowPowerPoint.Enabled = false;
-            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(25, 279);
-            this.btn_ShowPowerPoint.Name = "btn_ShowWorkPoint";
-            this.btn_ShowPowerPoint.Size = new System.Drawing.Size(219, 23);
-            this.btn_ShowPowerPoint.TabIndex = 19;
-            this.btn_ShowPowerPoint.Text = "Arbeitspunkt anzeigen";
-            this.btn_ShowPowerPoint.UseVisualStyleBackColor = true;
-            this.btn_ShowPowerPoint.Click += new System.EventHandler(this.btn_ShowPowerPoint_Click);
-            // 
-            // Form1
+            // MainView
             // 
             this.AcceptButton = this.btn_CalcFlowRate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,7 +355,10 @@
             this.ClientSize = new System.Drawing.Size(781, 359);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.MaximumSize = new System.Drawing.Size(797, 398);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(797, 398);
+            this.Name = "MainView";
             this.Text = "FlowCalc";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
