@@ -64,10 +64,9 @@ namespace FlowCalc
 
         private void SetupChart(ZedGraphControl zgc)
         {
-            zgc.BorderStyle = BorderStyle.None;
-
             var pane = zgc.GraphPane;
 
+            pane.Border.IsVisible = false;
             pane.Title.IsVisible = false;
             pane.XAxis.Title.Text = "Volumenstrom Q in m³/h";
             pane.XAxis.Type = AxisType.Exponent;
