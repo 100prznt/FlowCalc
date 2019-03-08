@@ -99,8 +99,9 @@ namespace FlowCalc
                 wp.Line.IsOptimizedDraw = true;
                 wp.Line.IsVisible = false;
                 wp.Symbol.Type = SymbolType.Diamond;
-                wp.Symbol.Size = 6f;
+                wp.Symbol.Size = 6.5f;
                 wp.Symbol.Fill.Type = FillType.Solid;
+                wp.Symbol.IsAntiAlias = true;
 
                 wp = pane.AddCurve("Arbeitspunkt Q", new double[2] { PowerPoint.Item1, PowerPoint.Item1 },
                     new double[2] { 0, PowerPoint.Item2 }, Color.DarkOrange);
@@ -126,12 +127,13 @@ namespace FlowCalc
                 //Add the data
                 LineItem curve = pane.AddCurve(curveData.Key, curveData.Value, GetColorByIndex(i++));
 
-                curve.Line.IsOptimizedDraw = true;
-                curve.Line.Width = 2f;
+                //curve.Line.IsOptimizedDraw = true;
+                curve.Line.Width = 1.7f;
+                curve.Line.IsAntiAlias = true;
                 curve.Symbol.Type = SymbolType.Circle;
-                curve.Symbol.Size = 3f;
+                curve.Symbol.Size = 3.2f;
                 curve.Symbol.Fill.Type = FillType.Solid;
-                curve.Symbol.IsAntiAlias = true; //Makes the circles smoother
+                curve.Symbol.IsAntiAlias = true;
             }
 
             //Refresh the graph in order to show the new data
