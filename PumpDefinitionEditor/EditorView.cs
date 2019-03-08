@@ -16,6 +16,7 @@ namespace PumpDefinitionEditor
     public partial class EditorView : Form
     {
         Controller m_Controller;
+        ChartView m_ChartView;
 
         public string WindowTitle
         {
@@ -71,6 +72,7 @@ namespace PumpDefinitionEditor
                 btn_SaveJson.Enabled = true;
                 btn_SaveMat.Enabled = true;
                 btn_LoadMat.Enabled = true;
+                btn_ShowPerformanceCurve.Enabled = true;
             }
             else
             {
@@ -78,6 +80,7 @@ namespace PumpDefinitionEditor
                 btn_SaveJson.Enabled = false;
                 btn_SaveMat.Enabled = false;
                 btn_LoadMat.Enabled = false;
+                btn_ShowPerformanceCurve.Enabled = false;
             }
         }
 
@@ -209,6 +212,16 @@ namespace PumpDefinitionEditor
                     MessageBox.Show(ex.Message, "Import fehlgeschlagen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btn_ShowPerformanceCurve_Click(object sender, EventArgs e)
+        {
+            if (m_ChartView == null || !m_ChartView.Visible)
+                m_ChartView = new ChartView("Anzeige Pumpenkennlinie");
+
+            m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());
+
+            m_ChartView.Show();
         }
     }
 }

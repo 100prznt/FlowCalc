@@ -42,6 +42,7 @@
             this.btn_SaveMat = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_LoadMat = new System.Windows.Forms.Button();
+            this.btn_ShowPerformanceCurve = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -54,9 +55,9 @@
             // 
             // btn_LoadPump
             // 
-            this.btn_LoadPump.Location = new System.Drawing.Point(243, 359);
+            this.btn_LoadPump.Location = new System.Drawing.Point(166, 359);
             this.btn_LoadPump.Name = "btn_LoadPump";
-            this.btn_LoadPump.Size = new System.Drawing.Size(220, 38);
+            this.btn_LoadPump.Size = new System.Drawing.Size(143, 38);
             this.btn_LoadPump.TabIndex = 0;
             this.btn_LoadPump.Text = "Lade Pumpendefinition...";
             this.btn_LoadPump.UseVisualStyleBackColor = true;
@@ -121,7 +122,7 @@
             // 
             this.btn_NewPump.Location = new System.Drawing.Point(12, 359);
             this.btn_NewPump.Name = "btn_NewPump";
-            this.btn_NewPump.Size = new System.Drawing.Size(220, 38);
+            this.btn_NewPump.Size = new System.Drawing.Size(143, 38);
             this.btn_NewPump.TabIndex = 6;
             this.btn_NewPump.Text = "Neue Pumpendefinition";
             this.btn_NewPump.UseVisualStyleBackColor = true;
@@ -162,11 +163,23 @@
             this.btn_LoadMat.UseVisualStyleBackColor = true;
             this.btn_LoadMat.Click += new System.EventHandler(this.btn_LoadMat_Click);
             // 
+            // btn_ShowPerformanceCurve
+            // 
+            this.btn_ShowPerformanceCurve.Enabled = false;
+            this.btn_ShowPerformanceCurve.Location = new System.Drawing.Point(320, 359);
+            this.btn_ShowPerformanceCurve.Name = "btn_ShowPerformanceCurve";
+            this.btn_ShowPerformanceCurve.Size = new System.Drawing.Size(143, 38);
+            this.btn_ShowPerformanceCurve.TabIndex = 8;
+            this.btn_ShowPerformanceCurve.Text = "Pumpenkennlinie anzeigen";
+            this.btn_ShowPerformanceCurve.UseVisualStyleBackColor = true;
+            this.btn_ShowPerformanceCurve.Click += new System.EventHandler(this.btn_ShowPerformanceCurve_Click);
+            // 
             // EditorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(475, 495);
+            this.Controls.Add(this.btn_ShowPerformanceCurve);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_NewPump);
             this.Controls.Add(this.groupBox1);
@@ -195,6 +208,7 @@
         private System.Windows.Forms.Button btn_SaveMat;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btn_LoadMat;
+        private System.Windows.Forms.Button btn_ShowPerformanceCurve;
     }
 }
 
