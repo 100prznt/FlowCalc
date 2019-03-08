@@ -59,6 +59,8 @@ namespace FlowCalc
 
         public double SuctionPressureDrop { get; set; }
 
+        public int SuctionPressureDropCalcIterations { get; set; }
+
         #endregion Properties
 
         #region Constructor
@@ -110,6 +112,7 @@ namespace FlowCalc
 
             //Iterative Berechnung, da Volumenstrom auch vom suagseitigen Druckverlust abhängt
 
+            SuctionPressureDropCalcIterations = 0;
             double lastFlowRate = 0;
             double pressureDrop = 0;
             double systemPressure = 0;
@@ -119,6 +122,8 @@ namespace FlowCalc
                 systemPressure = pressure + pressureDrop;
                 lastFlowRate = systemFlowRate;
                 systemFlowRate = LinInterp.LinearInterpolation(Pump.GetPerformanceHeadValues(), Pump.GetPerformanceFlowValues(), systemPressure / 0.0980665);
+
+                SuctionPressureDropCalcIterations++;
             }
 
             if (SystemHead > Pump.MaxTotalHead || double.IsInfinity(systemPressure) || double.IsInfinity(systemFlowRate) || double.IsInfinity(pressureDrop))
@@ -137,6 +142,7 @@ namespace FlowCalc
             SystemPressure = 0;
             SystemFlowRate = 0;
             SuctionPressureDrop = 0;
+            SuctionPressureDropCalcIterations = 0;
         }
 
         #endregion Services

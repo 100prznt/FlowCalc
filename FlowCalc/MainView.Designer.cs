@@ -58,7 +58,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txt_PipeSuctionPressureDrop = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lbl_PipeSuctionPressureDrop = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txt_SuctionPiepLength = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -343,7 +343,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txt_PipeSuctionPressureDrop);
-            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.lbl_PipeSuctionPressureDrop);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.txt_SuctionPiepLength);
             this.groupBox4.Controls.Add(this.label14);
@@ -366,14 +366,14 @@
             this.txt_PipeSuctionPressureDrop.Size = new System.Drawing.Size(85, 20);
             this.txt_PipeSuctionPressureDrop.TabIndex = 28;
             // 
-            // label16
+            // lbl_PipeSuctionPressureDrop
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(15, 104);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(88, 13);
-            this.label16.TabIndex = 27;
-            this.label16.Text = "Pumpenvordruck";
+            this.lbl_PipeSuctionPressureDrop.AutoSize = true;
+            this.lbl_PipeSuctionPressureDrop.Location = new System.Drawing.Point(15, 104);
+            this.lbl_PipeSuctionPressureDrop.Name = "lbl_PipeSuctionPressureDrop";
+            this.lbl_PipeSuctionPressureDrop.Size = new System.Drawing.Size(88, 13);
+            this.lbl_PipeSuctionPressureDrop.TabIndex = 27;
+            this.lbl_PipeSuctionPressureDrop.Text = "Pumpenvordruck";
             // 
             // label15
             // 
@@ -525,7 +525,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txt_PipeSuctionPressureDrop;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lbl_PipeSuctionPressureDrop;
     }
 }
 
