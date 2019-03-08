@@ -99,7 +99,7 @@ namespace FlowCalc
             txt_PumpPowerOut.Text = m_Controller.Pump.PowerOutput + " kW";
             txt_PumpNominalFlowRate.Text = m_Controller.Pump.NominalFlowRate + " m³/h";
             txt_PumpNominalHead.Text = m_Controller.Pump.NominalDynamicHead + " m WS";
-            txt_PumpMaxHead.Text = m_Controller.Pump.MaxTotalHead + " m WS";
+            txt_PumpMaxHead.Text = m_Controller.Pump.MaxTotalHead.ToString("f2") + " m WS";
 
             lbl_PumpFileAuthor.Text = m_Controller.Pump.AuthorPumpFile;
             toolTip1.SetToolTip(lbl_PumpFileAuthor, m_Controller.Pump.AuthorEmailPumpFile);
