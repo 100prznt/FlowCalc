@@ -64,7 +64,19 @@ namespace PumpDefinitionEditor
             propertyGrid1.SelectedObject = m_Controller.Pump;
 
             if (m_Controller.PumpDefinitionPath != null)
+            {
                 this.Text = string.Concat(WindowTitle, " - ", m_Controller.PumpDefinitionPath.Split('/', '\\').Last());
+
+                btn_SaveCsv.Enabled = true;
+                btn_SaveJson.Enabled = true;
+                btn_SaveMat.Enabled = true;
+            }
+            else
+            {
+                btn_SaveCsv.Enabled = false;
+                btn_SaveJson.Enabled = false;
+                btn_SaveMat.Enabled = false;
+            }
         }
 
         private void btn_SaveCsv_Click(object sender, EventArgs e)
@@ -148,6 +160,29 @@ namespace PumpDefinitionEditor
                 if (MessageBox.Show("XML Datei erfolgreich gespeichert.\n\nSoll die Datei extern geöffnet werden?", "Speichern erfolgreich",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     Process.Start(saveFileDialog1.FileName);
+            }
+        }
+
+        private void btn_SaveMat_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Title = "Matlab Export";
+            saveFileDialog1.Filter = "MAT File | *.mat";
+
+            var path = m_Controller.PumpDefinitionPath.Replace(".xml", ".mat");
+            saveFileDialog1.FileName = path.Split('/', '\\').Last();
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    m_Controller.Pump.ToMatFile(saveFileDialog1.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Speichern fehlgeschlagen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                MessageBox.Show("Mat File erfolgreich gespeichert.", "Speichern erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

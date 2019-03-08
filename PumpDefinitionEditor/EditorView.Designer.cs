@@ -39,6 +39,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btn_NewPump = new System.Windows.Forms.Button();
+            this.btn_SaveMat = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,9 +68,9 @@
             // btn_SaveXml
             // 
             this.btn_SaveXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SaveXml.Location = new System.Drawing.Point(17, 32);
+            this.btn_SaveXml.Location = new System.Drawing.Point(12, 32);
             this.btn_SaveXml.Name = "btn_SaveXml";
-            this.btn_SaveXml.Size = new System.Drawing.Size(130, 23);
+            this.btn_SaveXml.Size = new System.Drawing.Size(99, 23);
             this.btn_SaveXml.TabIndex = 2;
             this.btn_SaveXml.Text = "XML";
             this.toolTip1.SetToolTip(this.btn_SaveXml, "Speichern im XML Format, Standard für FlowCalc");
@@ -78,9 +79,10 @@
             // 
             // btn_SaveJson
             // 
-            this.btn_SaveJson.Location = new System.Drawing.Point(153, 32);
+            this.btn_SaveJson.Enabled = false;
+            this.btn_SaveJson.Location = new System.Drawing.Point(117, 32);
             this.btn_SaveJson.Name = "btn_SaveJson";
-            this.btn_SaveJson.Size = new System.Drawing.Size(130, 23);
+            this.btn_SaveJson.Size = new System.Drawing.Size(99, 23);
             this.btn_SaveJson.TabIndex = 3;
             this.btn_SaveJson.Text = "JSON";
             this.toolTip1.SetToolTip(this.btn_SaveJson, "Speichern im JSON Format");
@@ -89,9 +91,10 @@
             // 
             // btn_SaveCsv
             // 
-            this.btn_SaveCsv.Location = new System.Drawing.Point(289, 32);
+            this.btn_SaveCsv.Enabled = false;
+            this.btn_SaveCsv.Location = new System.Drawing.Point(225, 32);
             this.btn_SaveCsv.Name = "btn_SaveCsv";
-            this.btn_SaveCsv.Size = new System.Drawing.Size(130, 23);
+            this.btn_SaveCsv.Size = new System.Drawing.Size(99, 23);
             this.btn_SaveCsv.TabIndex = 4;
             this.btn_SaveCsv.Text = "CSV";
             this.toolTip1.SetToolTip(this.btn_SaveCsv, "Speichern im CSV Format");
@@ -100,6 +103,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_SaveMat);
             this.groupBox1.Controls.Add(this.btn_SaveXml);
             this.groupBox1.Controls.Add(this.btn_SaveCsv);
             this.groupBox1.Controls.Add(this.btn_SaveJson);
@@ -119,6 +123,18 @@
             this.btn_NewPump.Text = "Neue Pumpendefinition";
             this.btn_NewPump.UseVisualStyleBackColor = true;
             this.btn_NewPump.Click += new System.EventHandler(this.btn_NewPump_Click);
+            // 
+            // btn_SaveMat
+            // 
+            this.btn_SaveMat.Enabled = false;
+            this.btn_SaveMat.Location = new System.Drawing.Point(330, 32);
+            this.btn_SaveMat.Name = "btn_SaveMat";
+            this.btn_SaveMat.Size = new System.Drawing.Size(99, 23);
+            this.btn_SaveMat.TabIndex = 5;
+            this.btn_SaveMat.Text = "MAT";
+            this.toolTip1.SetToolTip(this.btn_SaveMat, "Speichern der Pumpenkennlinie im MAT Format (Matlab)");
+            this.btn_SaveMat.UseVisualStyleBackColor = true;
+            this.btn_SaveMat.Click += new System.EventHandler(this.btn_SaveMat_Click);
             // 
             // EditorView
             // 
@@ -148,6 +164,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btn_NewPump;
+        private System.Windows.Forms.Button btn_SaveMat;
     }
 }
 

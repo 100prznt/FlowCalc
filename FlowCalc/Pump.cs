@@ -1,4 +1,6 @@
-﻿using FlowCalc.Mathematics;
+﻿using csmatio.io;
+using csmatio.types;
+using FlowCalc.Mathematics;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -209,6 +211,24 @@ namespace FlowCalc
                 }
                 sw.Flush();
             }
+        }
+
+        /// <summary>
+        /// Im Matlab (MAT) Format speichern
+        /// </summary>
+        /// <param name="path">Pfad unter welchem die Datei angelegt wird</param>
+        public void ToMatFile(string path)
+        {
+            var h = new MLDouble("H", GetPerformanceHeadValues(), 1);
+            var q = new MLDouble("Q", GetPerformanceFlowValues(), 1);
+
+            var mlList = new List<MLArray>
+            {
+                h,
+                q
+            };
+
+            MatFileWriter mfw = new MatFileWriter(path, mlList, false);
         }
 
         /// <summary>
