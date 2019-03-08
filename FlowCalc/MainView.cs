@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlowCalc.PoolSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -76,6 +77,25 @@ namespace FlowCalc
         {
             txt_SystemHead.ForeColor = Color.Black;
 
+            if (cbx_CalcSuctionPipe.Checked)
+            {
+                try
+                {
+                    var l = double.Parse(txt_SuctionPiepLength.Text);
+                    var di = double.Parse(txt_SuctionPipeDiameter.Text);
+
+                    m_Controller.SuctionPipe = new Pipe(l, di, 0.1);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Die eingegebenen Daten zur Berechnung des saugseitigen Druckabfalls fehlen oder sind fehlerhaft.\n\nSaugseitiger Druckabfall kann nicht berechnet werden.",
+                        "Eingabe Fehlerhaft", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cbx_CalcSuctionPipe.Checked = false;
+                }
+            }
+            else
+                m_Controller.SuctionPipe = null;
+
             double pressure = 0;
 
             if (double.TryParse(txt_SystemPressure.Text, out pressure))
@@ -84,9 +104,14 @@ namespace FlowCalc
                 txt_SystemFlowRate.Text = m_Controller.SystemFlowRate.ToString("f2") + " m³/h";
                 txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " m WS";
 
+                if (cbx_CalcSuctionPipe.Checked)
+                {
+                    txt_PipeSuctionPressureDrop.Text = m_Controller.SuctionPressureDrop.ToString("f2") + " bar";
+                }
+
                 if (m_Controller.SystemFlowRate <= 0)
-                    MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt.\n\n" +
-                        "Es kann keine Fördermenge berechnet werden.", "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt.\n\n" +
+                    "Es kann keine Fördermenge berechnet werden.", "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                     btn_ShowPowerPoint.Enabled = true;
             }
@@ -143,6 +168,12 @@ namespace FlowCalc
             m_ChartView.PowerPoint = new Tuple<double, double>(m_Controller.SystemFlowRate, m_Controller.SystemHead);
 
             m_ChartView.Show();
+        }
+
+        private void cbx_CalcSuctionPipe_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_SuctionPiepLength.Enabled = cbx_CalcSuctionPipe.Checked;
+            txt_SuctionPipeDiameter.Enabled = cbx_CalcSuctionPipe.Checked;
         }
     }
 }

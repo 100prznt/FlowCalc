@@ -1,4 +1,5 @@
 ﻿using FlowCalc.Mathematics;
+using FlowCalc.PoolSystem;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,6 +54,11 @@ namespace FlowCalc
         /// in [m³/h]
         /// </summary>
         public double SystemFlowRate { get; set; }
+
+        public Pipe SuctionPipe { get; set; }
+
+        public double SuctionPressureDrop { get; set; }
+
         #endregion Properties
 
         #region Constructor
@@ -89,9 +95,48 @@ namespace FlowCalc
             SystemPressure = pressure;
 
             if (SystemHead > Pump.MaxTotalHead)
-                SystemFlowRate = 0;
+            {
+                ResetSystem();
+                return;
+            }
+
+            var systemFlowRate = LinInterp.LinearInterpolation(Pump.GetPerformanceHeadValues(), Pump.GetPerformanceFlowValues(), SystemHead);
+
+            if (SuctionPipe == null)
+            {
+                SystemFlowRate = systemFlowRate;
+                return;
+            }
+
+            //Iterative Berechnung, da Volumenstrom auch vom suagseitigen Druckverlust abhängt
+
+            double lastFlowRate = 0;
+            double pressureDrop = 0;
+            double systemPressure = 0;
+            while (Math.Round(systemFlowRate, 4) != Math.Round(lastFlowRate, 4))
+            {
+                pressureDrop = SuctionPipe.CalcPressureDrop(Medium.Water20, systemFlowRate);
+                systemPressure = pressure + pressureDrop;
+                lastFlowRate = systemFlowRate;
+                systemFlowRate = LinInterp.LinearInterpolation(Pump.GetPerformanceHeadValues(), Pump.GetPerformanceFlowValues(), systemPressure / 0.0980665);
+            }
+
+            if (SystemHead > Pump.MaxTotalHead || double.IsInfinity(systemPressure) || double.IsInfinity(systemFlowRate) || double.IsInfinity(pressureDrop))
+                ResetSystem();
             else
-                SystemFlowRate = LinInterp.LinearInterpolation(Pump.GetPerformanceHeadValues(), Pump.GetPerformanceFlowValues(), SystemHead);
+            {
+                SystemPressure = systemPressure;
+                SystemFlowRate = systemFlowRate;
+                SuctionPressureDrop = -pressureDrop;
+            }
+        }
+
+        public void ResetSystem()
+        {
+            SuctionPipe = null;
+            SystemPressure = 0;
+            SystemFlowRate = 0;
+            SuctionPressureDrop = 0;
         }
 
         #endregion Services
