@@ -70,12 +70,14 @@ namespace PumpDefinitionEditor
                 btn_SaveCsv.Enabled = true;
                 btn_SaveJson.Enabled = true;
                 btn_SaveMat.Enabled = true;
+                btn_LoadMat.Enabled = true;
             }
             else
             {
                 btn_SaveCsv.Enabled = false;
                 btn_SaveJson.Enabled = false;
                 btn_SaveMat.Enabled = false;
+                btn_LoadMat.Enabled = false;
             }
         }
 
@@ -150,7 +152,7 @@ namespace PumpDefinitionEditor
             {
                 try
                 {
-                    m_Controller.Pump.ToJsonFile(saveFileDialog1.FileName);
+                    m_Controller.Pump.ToXmlFile(saveFileDialog1.FileName);
                 }
                 catch (Exception ex)
                 {
@@ -183,6 +185,29 @@ namespace PumpDefinitionEditor
                 }
 
                 MessageBox.Show("Mat File erfolgreich gespeichert.", "Speichern erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btn_LoadMat_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Title = "Pumpenkennlinie importieren";
+            openFileDialog1.Filter = "MAT-File|*.mat";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    m_Controller.Pump.ImportMatCurve(openFileDialog1.FileName);
+
+                    if (MessageBox.Show("Pumpenkennlinie wurde erfolgreich aus der MAT-File importiert.\n\nSoll die Pumpendefinitionsdatei gespeichert werden?",
+                        "Import erfolgreich", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        btn_SaveXml_Click(sender, e);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Import fehlgeschlagen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
