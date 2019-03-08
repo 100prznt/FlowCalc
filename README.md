@@ -1,6 +1,6 @@
 # FlowCalc
 
-Berechnung der Fördermenge von Pool-Pumpen in Abhängigkeit des Systemdrucks und Vergleich verschiedener Pumpenkennlinien.
+Berechnung der Fördermenge von Pool-Pumpen in Abhängigkeit des Systemdrucks und des saugseitigem Druckverlustes.
 
 ## Installation
 Das Programm erfordert keine Installation. Es kann nach dem kompilieren direkt gestartet werden, beziehungsweise kann eine im [Release-Feed](https://github.com/100prznt/FlowCalc/releases) veröffentlichte Version herunter geladen und gestartet werden.
