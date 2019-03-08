@@ -18,8 +18,8 @@ Siehe auch Abschnitt [Pumpendefinition](#pumpendefinition) hier im Readme.
 ### Anzeige - Pumpenkennlinien
 ![Anzeige - Pumpenkennlinien](docs/FlowCalc_PumpPerformanceCurve_Screen.png)
 
-### Anzeige - Arbeitspumkt auf Pumpenkennlinie
-![Anzeige - Arbeitspumkt auf Pumpenkennlinie](docs/FlowCalc_PowerPoint_Screen.png)
+### Anzeige - Arbeitspunkt auf Pumpenkennlinie
+![Anzeige - Arbeitspunkt auf Pumpenkennlinie](docs/FlowCalc_PowerPoint_Screen.png)
 
 ## Pumpendefinition
 Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form einer Pumpen-Definitionsdatei angegeben werden. 
