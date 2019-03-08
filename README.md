@@ -22,9 +22,9 @@ Siehe auch Abschnitt [Pumpendefinition](#pumpendefinition) hier im Readme.
 ![Anzeige - Arbeitspunkt auf Pumpenkennlinie](docs/FlowCalc_PowerPoint_Screen.png)
 
 ## Pumpendefinition
-Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form einer Pumpen-Definitionsdatei angegeben werden. 
+Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form einer Pumpendefinitionsdatei angegeben werden. 
 
-### Vorhandene Pumpen-Definitionsdateien
+### Vorhandene Pumpendefinitionsdateien
 * Speck - Badu Picco II
 * Speck - Badu Magic II/6
 * Speck - Badu Magic II/11
@@ -33,7 +33,9 @@ Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form e
 * Aqua TechniX - AquaPlus 11
 * _Unbekannt_ - SPS-75
 
-### Aufbau der Pumpen-Definitionsdatei
+### Pumpendefinitionsdatei erstellen
+siehe [/PumpDefinitionEditor](/PumpDefinitionEditor)
+
 TODO...
 
 ### Beispiel
