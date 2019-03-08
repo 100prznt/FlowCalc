@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,10 @@ namespace FlowCalc
         #region Properties
         /// <summary>
         /// Meter Wassersäule (Förderhöhe) H
-        /// in mWS
+        /// in m WS
         /// </summary>
+        [Category("Stützpunkt")]
+        [DisplayName("Förderhöhe in m WS")]
         [XmlElement("H")]
         public double TotalDynamicHead { get; set; }
 
@@ -29,6 +32,8 @@ namespace FlowCalc
         /// Volumenstrom Q
         /// in [m^3/h]
         /// </summary>
+        [Category("Stützpunkt")]
+        [DisplayName("Fördermenge in m³/h")]
         [XmlElement("Q")]
         public double FlowRate { get; set; }
 
@@ -57,7 +62,10 @@ namespace FlowCalc
         #endregion Constructor
 
         #region Services
-
+        public override string ToString()
+        {
+            return "Stützpunkt " + TotalDynamicHead + " m WS";
+        }
 
         #endregion Services
 

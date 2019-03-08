@@ -1,0 +1,44 @@
+{
+  "ModellName": "BADU Picco II",
+  "Manufacturer": "SPECK Pumpen Verkaufsgesellschaft GmbH",
+  "NominalFlowRate": 4.0,
+  "NominalDynamicHead": 8.0,
+  "PowerOutput": 0.2,
+  "AuthorPumpFile": "Elias Ruemmler",
+  "AuthorEmailPumpFile": "pool@100prznt.de",
+  "PerformanceCurve": [
+    {
+      "TotalDynamicHead": 3.0,
+      "FlowRate": 6.3
+    },
+    {
+      "TotalDynamicHead": 4.5,
+      "FlowRate": 6.0
+    },
+    {
+      "TotalDynamicHead": 7.1,
+      "FlowRate": 5.0
+    },
+    {
+      "TotalDynamicHead": 8.4,
+      "FlowRate": 4.0
+    },
+    {
+      "TotalDynamicHead": 9.25,
+      "FlowRate": 3.0
+    },
+    {
+      "TotalDynamicHead": 10.0,
+      "FlowRate": 2.0
+    },
+    {
+      "TotalDynamicHead": 10.6,
+      "FlowRate": 1.0
+    },
+    {
+      "TotalDynamicHead": 11.0,
+      "FlowRate": 0.0
+    }
+  ],
+  "MaxTotalHead": 11.0
+}

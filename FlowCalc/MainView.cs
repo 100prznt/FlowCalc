@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace FlowCalc
 {
-    public partial class Form1 : Form
+    public partial class MainView : Form
     {
         Controller m_Controller;
         ChartView m_ChartView;
@@ -23,11 +23,11 @@ namespace FlowCalc
             get
             {
                 var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-                return string.Concat(typeof(Form1).Assembly.GetName().Name, " ",versionInfo.ProductVersion);
+                return string.Concat(typeof(MainView).Assembly.GetName().Name, " ",versionInfo.ProductVersion);
             }
         }
 
-        public Form1()
+        public MainView()
         {
             InitializeComponent();
 
@@ -40,8 +40,15 @@ namespace FlowCalc
             if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpDefinitionPath) &&
                 File.Exists(Properties.Settings.Default.PumpDefinitionPath))
             {
-                if (m_Controller.LoadPump(Properties.Settings.Default.PumpDefinitionPath))
-                applyPumpDefinition();
+                try
+                {
+                    m_Controller.LoadPump(Properties.Settings.Default.PumpDefinitionPath);
+                    applyPumpDefinition();
+                }
+                catch (Exception)
+                {
+                    // Fehler beim automatischen Laden ignorieren
+                }
             }
         }
 
@@ -49,12 +56,18 @@ namespace FlowCalc
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (m_Controller.LoadPump(openFileDialog1.FileName))
+                try
                 {
+                    m_Controller.LoadPump(openFileDialog1.FileName);
+
                     applyPumpDefinition();
 
                     Properties.Settings.Default.PumpDefinitionPath = openFileDialog1.FileName;
                     Properties.Settings.Default.Save();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Laden fehlgeschlagen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -69,7 +82,7 @@ namespace FlowCalc
             {
                 m_Controller.CalcFlowRate(pressure);
                 txt_SystemFlowRate.Text = m_Controller.SystemFlowRate.ToString("f2") + " m³/h";
-                txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " mWS";
+                txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " m WS";
 
                 if (m_Controller.SystemFlowRate <= 0)
                     MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt.\n\n" +
@@ -85,8 +98,8 @@ namespace FlowCalc
             txt_PumpManufracturer.Text = m_Controller.Pump.Manufacturer;
             txt_PumpPowerOut.Text = m_Controller.Pump.PowerOutput + " kW";
             txt_PumpNominalFlowRate.Text = m_Controller.Pump.NominalFlowRate + " m³/h";
-            txt_PumpNominalHead.Text = m_Controller.Pump.NominalDynamicHead + " mWS";
-            txt_PumpMaxHead.Text = m_Controller.Pump.MaxTotalHead + " mWS";
+            txt_PumpNominalHead.Text = m_Controller.Pump.NominalDynamicHead + " m WS";
+            txt_PumpMaxHead.Text = m_Controller.Pump.MaxTotalHead + " m WS";
 
             lbl_PumpFileAuthor.Text = m_Controller.Pump.AuthorPumpFile;
             toolTip1.SetToolTip(lbl_PumpFileAuthor, m_Controller.Pump.AuthorEmailPumpFile);
@@ -109,13 +122,6 @@ namespace FlowCalc
 
             // Navigate to a URL.
             System.Diagnostics.Process.Start("mailto:" + m_Controller.Pump.AuthorEmailPumpFile);
-        }
-
-        private void btn_ToJson_Click(object sender, EventArgs e)
-        {
-            var path = m_Controller.PumpDefinitionPath.Replace(".xml", ".json");
-
-            m_Controller.Pump.ToFile(path);
         }
 
         private void btn_ShowPumpCurve_Click(object sender, EventArgs e)

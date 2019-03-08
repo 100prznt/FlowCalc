@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43E44C73-0DB7-478D-8766-BD1D884D3090}</ProjectGuid>
+    <ProjectGuid>{04EBFC93-AED9-4A05-B69C-EDAE07447100}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FlowCalc</RootNamespace>
-    <AssemblyName>FlowCalc</AssemblyName>
+    <RootNamespace>PumpDefinitionEditor</RootNamespace>
+    <AssemblyName>PumpDefinitionEditor</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,16 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Media\iconfinder_100_Pressure_Reading_183415.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,42 +44,18 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="ZedGraph, Version=5.1.7.430, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
-      <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChartView.cs">
+    <Compile Include="EditorView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChartView.Designer.cs">
-      <DependentUpon>ChartView.cs</DependentUpon>
+    <Compile Include="EditorView.Designer.cs">
+      <DependentUpon>EditorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controller.cs" />
-    <Compile Include="IppCollectionEditor.cs" />
-    <Compile Include="MainView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainView.Designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Mathematics\CheckRoutines.cs" />
-    <Compile Include="Mathematics\LinInterp.cs" />
-    <Compile Include="PoolSystem\Elbow.cs" />
-    <Compile Include="PoolSystem\FittingDetailAttribute.cs" />
-    <Compile Include="PoolSystem\Fittings.cs" />
-    <Compile Include="PoolSystem\Medium.cs" />
-    <Compile Include="PoolSystem\Pipe.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pump.cs" />
-    <Compile Include="PumpPerformancePoint.cs" />
-    <Compile Include="PoolSystem\BaseFitting.cs" />
-    <EmbeddedResource Include="ChartView.resx">
-      <DependentUpon>ChartView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainView.resx">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <EmbeddedResource Include="EditorView.resx">
+      <DependentUpon>EditorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -98,7 +67,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,7 +81,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Media\iconfinder_100_Pressure_Reading_183415.ico" />
+    <ProjectReference Include="..\FlowCalc\FlowCalc.csproj">
+      <Project>{43e44c73-0db7-478d-8766-bd1d884d3090}</Project>
+      <Name>FlowCalc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_100_Pressure_Reading_183415.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowCalc", "FlowCalc\FlowCa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowCalc_Test", "FlowCalc_Test\FlowCalc_Test.csproj", "{81F19295-D779-4FF4-AC3E-90360E7360B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpDefinitionEditor", "PumpDefinitionEditor\PumpDefinitionEditor.csproj", "{04EBFC93-AED9-4A05-B69C-EDAE07447100}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{81F19295-D779-4FF4-AC3E-90360E7360B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81F19295-D779-4FF4-AC3E-90360E7360B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81F19295-D779-4FF4-AC3E-90360E7360B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04EBFC93-AED9-4A05-B69C-EDAE07447100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04EBFC93-AED9-4A05-B69C-EDAE07447100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04EBFC93-AED9-4A05-B69C-EDAE07447100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04EBFC93-AED9-4A05-B69C-EDAE07447100}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

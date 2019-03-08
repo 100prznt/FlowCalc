@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -66,20 +67,21 @@ namespace FlowCalc
         #endregion Constructor
 
         #region Services
-        public bool LoadPump(string path)
+        /// <summary>
+        /// Pumpendefinitionsdatei laden und in <see cref="Pump"/> ablegen
+        /// </summary>
+        /// <param name="path">Pafd zur Pumpendefinitionsdatei</param>
+        /// <exception cref="InvalidDataException">Fehler beim laden der Pumpendefinitionsdatei</exception>
+        public void LoadPump(string path)
         {
-            try
-            {
-                Pump = Pump.FromFile(path);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-
+            Pump = Pump.FromFile(path);
             PumpDefinitionPath = path;
-            return true;
+        }
+
+        public void NewPump()
+        {
+            PumpDefinitionPath = null;
+            Pump = new Pump();
         }
 
         public void CalcFlowRate(double pressure)

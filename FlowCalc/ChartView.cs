@@ -36,7 +36,7 @@ namespace FlowCalc
             get
             {
                 var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-                return string.Concat(typeof(Form1).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
+                return string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
             }
         }
 

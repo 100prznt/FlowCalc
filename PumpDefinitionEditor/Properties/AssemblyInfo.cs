@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("FlowCalc")]
-[assembly: AssemblyDescription("Berechnung der Fördermenge von Pool-Pumpen in Abhängigkeit des Systemdrucks.")]
+[assembly: AssemblyTitle("PumpDefinitionEditor")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RC-Art Solutions")]
-[assembly: AssemblyProduct("FlowCalc")]
+[assembly: AssemblyProduct("PumpDefinitionEditor")]
 [assembly: AssemblyCopyright("Copyright © RC-Art Solutions 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-[assembly: Guid("43e44c73-0db7-478d-8766-bd1d884d3090")]
+[assembly: Guid("04ebfc93-aed9-4a05-b69c-edae07447100")]
 
 // Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 //
