@@ -84,6 +84,11 @@ Ich bin auf der Suche nach weiteren Entwicklern für dieses Projekt. Ideeen und 
 
 Unter [Contributors](https://github.com/100prznt/FlowCalc/contributors) können weitere Projekt-Unterstützer eingesehen werden.
 
+### Open Source Project Credits
+
+* [csmatio](https://sourceforge.net/projects/csmatio/) .NET Library for Matlab MAT-files 
+* [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) Json.NET is a popular high-performance JSON framework for .NET
+* [ZedGraph](https://www.nuget.org/packages/ZedGraph/) ZedGraph is a class library, user control, and web control for .net, written in C#, for drawing 2D Line, Bar, and Pie Charts.
 
 ## Lizenz
 
