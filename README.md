@@ -25,13 +25,14 @@ Siehe auch Abschnitt [Pumpendefinition](#pumpendefinition) hier im Readme.
 Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form einer Pumpendefinitionsdatei angegeben werden. 
 
 ### Vorhandene Pumpendefinitionsdateien
-* Speck - Badu Picco II
-* Speck - Badu Magic II/6
-* Speck - Badu Magic II/8
-* Speck - Badu Magic II/11
 * Aqua TechniX - AquaPlus 6
 * Aqua TechniX - AquaPlus 8
 * Aqua TechniX - AquaPlus 11
+* Speck - Badu Magic II/6
+* Speck - Badu Magic II/8
+* Speck - Badu Magic II/11
+* Speck - Badu Picco II
+* Speck - Badu Top II/8
 * _Unbekannt_ - SPS-75
 
 ### Pumpendefinitionsdatei erstellen
