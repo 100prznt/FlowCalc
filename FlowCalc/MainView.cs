@@ -270,5 +270,11 @@ namespace FlowCalc
 
             m_Controller.LoadPump(pumpFileName);
         }
+
+        private void volumenstromFließgeschwindigkeitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var calcView = new PipeCalcView();
+            calcView.Show();
+        }
     }
 }
