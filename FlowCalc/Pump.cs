@@ -126,6 +126,10 @@ namespace FlowCalc
             }
         }
 
+        [Browsable(false)]
+        [XmlIgnore]
+        public string FilePath { get; set; }
+
         #endregion Properties
 
         #region Constructor

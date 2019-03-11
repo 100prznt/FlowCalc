@@ -69,10 +69,22 @@
             this.btn_ShowPowerPoint = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.stToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.überToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ladePumpendefinitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.suchverzeichnisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auswahlPumpeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.rechnerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_LoadPump
@@ -131,7 +143,7 @@
             this.groupBox1.Controls.Add(this.btn_LoadPump);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txt_PumpModel);
-            this.groupBox1.Location = new System.Drawing.Point(12, 24);
+            this.groupBox1.Location = new System.Drawing.Point(12, 53);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(469, 365);
             this.groupBox1.TabIndex = 4;
@@ -333,7 +345,7 @@
             this.groupBox2.Controls.Add(this.btn_CalcFlowRate);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txt_SystemFlowRate);
-            this.groupBox2.Location = new System.Drawing.Point(498, 24);
+            this.groupBox2.Location = new System.Drawing.Point(498, 53);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(271, 365);
             this.groupBox2.TabIndex = 0;
@@ -458,17 +470,96 @@
             this.label11.TabIndex = 17;
             this.label11.Text = "bar";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stToolStripMenuItem,
+            this.überToolStripMenuItem,
+            this.rechnerToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(781, 24);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // stToolStripMenuItem
+            // 
+            this.stToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.beendenToolStripMenuItem});
+            this.stToolStripMenuItem.Name = "stToolStripMenuItem";
+            this.stToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.stToolStripMenuItem.Text = "Datei";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 439);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(781, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // beendenToolStripMenuItem
+            // 
+            this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.beendenToolStripMenuItem.Text = "Beenden";
+            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
+            // 
+            // überToolStripMenuItem
+            // 
+            this.überToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.auswahlPumpeToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.suchverzeichnisToolStripMenuItem,
+            this.ladePumpendefinitionToolStripMenuItem});
+            this.überToolStripMenuItem.Name = "überToolStripMenuItem";
+            this.überToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.überToolStripMenuItem.Text = "Pumpe";
+            // 
+            // ladePumpendefinitionToolStripMenuItem
+            // 
+            this.ladePumpendefinitionToolStripMenuItem.Name = "ladePumpendefinitionToolStripMenuItem";
+            this.ladePumpendefinitionToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.ladePumpendefinitionToolStripMenuItem.Text = "Lade Pumpendefinition...";
+            this.ladePumpendefinitionToolStripMenuItem.Click += new System.EventHandler(this.btn_LoadPump_Click);
+            // 
+            // suchverzeichnisToolStripMenuItem
+            // 
+            this.suchverzeichnisToolStripMenuItem.Name = "suchverzeichnisToolStripMenuItem";
+            this.suchverzeichnisToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.suchverzeichnisToolStripMenuItem.Text = "Suchverzeichnis...";
+            this.suchverzeichnisToolStripMenuItem.Click += new System.EventHandler(this.suchverzeichnisToolStripMenuItem_Click);
+            // 
+            // auswahlPumpeToolStripMenuItem
+            // 
+            this.auswahlPumpeToolStripMenuItem.Name = "auswahlPumpeToolStripMenuItem";
+            this.auswahlPumpeToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.auswahlPumpeToolStripMenuItem.Text = "Auswahl Pumpe";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(204, 6);
+            // 
+            // rechnerToolStripMenuItem
+            // 
+            this.rechnerToolStripMenuItem.Name = "rechnerToolStripMenuItem";
+            this.rechnerToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.rechnerToolStripMenuItem.Text = "Rechner";
+            // 
             // MainView
             // 
             this.AcceptButton = this.btn_CalcFlowRate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 401);
+            this.ClientSize = new System.Drawing.Size(781, 461);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(797, 440);
-            this.MinimumSize = new System.Drawing.Size(797, 440);
+            this.MaximumSize = new System.Drawing.Size(797, 500);
+            this.MinimumSize = new System.Drawing.Size(797, 500);
             this.Name = "MainView";
             this.Text = "FlowCalc";
             this.groupBox1.ResumeLayout(false);
@@ -479,7 +570,10 @@
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -525,6 +619,17 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txt_PipeSuctionPressureDrop;
         private System.Windows.Forms.Label lbl_PipeSuctionPressureDrop;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem stToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripMenuItem überToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ladePumpendefinitionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem suchverzeichnisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem auswahlPumpeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem rechnerToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

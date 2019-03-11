@@ -21,9 +21,14 @@ namespace FlowCalc
 
         #region Properties
         /// <summary>
-        /// Geladene Pumpe
+        /// Aktive Pumpe
         /// </summary>
         public Pump Pump { get; set; }
+
+        /// <summary>
+        /// Verfügbare Pumpe
+        /// </summary>
+        public List<Pump> Pumps { get; set; }
 
         /// <summary>
         /// Pfad zur aktuell verwendeten Pumpendefinition
@@ -84,6 +89,42 @@ namespace FlowCalc
         {
             Pump = Pump.FromFile(path);
             PumpDefinitionPath = path;
+
+            NewPumpLoaded?.Invoke();
+        }
+
+        /// <summary>
+        /// Alle Pumpen laden
+        /// </summary>
+        /// <param name="searchPath">Pfad in welchem Pumpen gesucht werden sollen</param>
+        public void LoadPumps(string searchPath)
+        {
+            var pumps = new List<Pump>();
+
+            if (Directory.Exists(searchPath))
+            {
+                var fileNames = Directory.GetFiles(searchPath);
+
+                foreach (var fileName in fileNames)
+                {
+                    if (fileName.EndsWith(".xml"))
+                    {
+                        try
+                        {
+                            var pump = Pump.FromFile(fileName);
+                            pump.FilePath = fileName;
+                            pumps.Add(pump);
+                        }
+                        catch (Exception)
+                        {
+                            //Überspringen TODO: dirty
+                        }
+                    }
+                }
+
+                if (pumps.Count > 0)
+                    Pumps = pumps;
+            }
         }
 
         public void NewPump()
@@ -152,7 +193,8 @@ namespace FlowCalc
         #endregion Internal services
 
         #region Events
-
+        
+        public Action NewPumpLoaded;
 
         #endregion Events
 
@@ -163,10 +205,7 @@ namespace FlowCalc
         /// <param name="propName">Name of changed property</param>
         protected void PropChanged([CallerMemberName] string propName = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         /// <summary>

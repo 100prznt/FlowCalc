@@ -38,6 +38,10 @@ namespace FlowCalc
 
             m_Controller = new Controller();
 
+            //Events anhängen
+
+            m_Controller.NewPumpLoaded += applyPumpDefinition;
+
             if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpDefinitionPath) &&
                 File.Exists(Properties.Settings.Default.PumpDefinitionPath))
             {
@@ -51,6 +55,8 @@ namespace FlowCalc
                     // Fehler beim automatischen Laden ignorieren
                 }
             }
+
+            loadPumps();
 
             cbx_CalcSuctionPipe.Checked = Properties.Settings.Default.EnableSuctionPressureDrop;
             if (Properties.Settings.Default.SuctionPipeDiameter > 0)
@@ -68,8 +74,6 @@ namespace FlowCalc
                 try
                 {
                     m_Controller.LoadPump(openFileDialog1.FileName);
-
-                    applyPumpDefinition();
 
                     Properties.Settings.Default.PumpDefinitionPath = openFileDialog1.FileName;
                     Properties.Settings.Default.Save();
@@ -197,6 +201,74 @@ namespace FlowCalc
         {
             txt_SuctionPiepLength.Enabled = cbx_CalcSuctionPipe.Checked;
             txt_SuctionPipeDiameter.Enabled = cbx_CalcSuctionPipe.Checked;
+        }
+
+        private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void suchverzeichnisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.PumpSearchPath = folderBrowserDialog1.SelectedPath;
+                Properties.Settings.Default.Save();
+
+                loadPumps();
+            }
+        }
+
+        private void loadPumps()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpSearchPath) &&
+                    Directory.Exists(Properties.Settings.Default.PumpSearchPath))
+                {
+                    try
+                    {
+                        m_Controller.LoadPumps(Properties.Settings.Default.PumpSearchPath);
+                    }
+                    catch (Exception)
+                    {
+                        // Fehler beim automatischen Laden ignorieren
+                    }
+                    finally
+                    {
+                        Cursor.Current = Cursors.Default;
+                    }
+                }
+
+                if (m_Controller.Pumps != null && m_Controller.Pumps.Count > 0)
+                {
+                    var pumps = new List<ToolStripItem>();
+                    foreach (var pump in m_Controller.Pumps)
+                    {
+                        pumps.Add(new ToolStripMenuItem(pump.ModellName, null, selectPump)
+                        {
+                            Tag = pump.FilePath
+                        });
+                    }
+                    auswahlPumpeToolStripMenuItem.DropDownItems.AddRange(pumps.ToArray());
+                }
+            }
+            catch (Exception)
+            {
+                // Fehler beim automatischen Laden ignorieren
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+        private void selectPump(object sender, EventArgs e)
+        {
+            string pumpFileName = (string)((ToolStripMenuItem)sender).Tag;
+
+            m_Controller.LoadPump(pumpFileName);
         }
     }
 }
