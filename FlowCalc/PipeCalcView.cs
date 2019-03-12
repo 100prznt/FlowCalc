@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,9 +21,21 @@ namespace FlowCalc
         public Units CurrentFlowRateUnit { get; set; }
         public Units CurrentFlowVelocityUnit { get; set; }
 
+        public string WindowTitle
+        {
+            get
+            {
+                var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
+                return string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
+            }
+        }
+
         public PipeCalcView()
         {
             InitializeComponent();
+
+            this.Text = WindowTitle; //Title
+            this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
 
             cmb_FlowRateUnit.ValueMember = nameof(DisplayUnit.DisplayName);
             cmb_FlowVelocityUnit.ValueMember = nameof(DisplayUnit.DisplayName);
@@ -47,20 +61,32 @@ namespace FlowCalc
 
             CurrentFlowRateUnit = flowRateBaseUnit.Unit;
             CurrentFlowVelocityUnit = flowVelocityBaseUnit.Unit;
+
+            if (Properties.Settings.Default.CalcPipeDiameter > 0)
+                txt_PipeDiameter.Text = Properties.Settings.Default.CalcPipeDiameter.ToString();
+            //if (Properties.Settings.Default.CalcPipeLength > 0)
+            //    txt_PipeLength.Text = Properties.Settings.Default.CalcPipeLength.ToString();
+            //if (Properties.Settings.Default.CalcPipeRoughness > 0)
+            //    txt_PipeRoughness.Text = Properties.Settings.Default.CalcPipeRoughness.ToString();
         }
 
         private void btn_Clac_Click(object sender, EventArgs e)
         {
-
             txt_FlowVelocity.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
             txt_FlowRate.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
 
             try
             {
                 //TODO: TryParse in Pipe bereitstellen
-                var l = double.Parse(txt_PipeLength.Text);    //m
-                var di = double.Parse(txt_PipeDiameter.Text); //mm
-                var k = double.Parse(txt_PipeRoughness.Text); //mm
+                double.TryParse(txt_PipeLength.Text, out var l);    //m
+                if (!double.TryParse(txt_PipeDiameter.Text, out var di)) //mm
+                    throw new ArgumentException("Inner diameter is mandatory");
+                double.TryParse(txt_PipeRoughness.Text, out var k); //mm
+
+                Properties.Settings.Default.CalcPipeDiameter = di;
+                Properties.Settings.Default.CalcPipeLength = l;
+                Properties.Settings.Default.CalcPipeRoughness = k;
+                Properties.Settings.Default.Save();
 
                 Pipe = new Pipe(l, di, k);
             }

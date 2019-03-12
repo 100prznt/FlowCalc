@@ -63,7 +63,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 133);
+            this.groupBox1.Size = new System.Drawing.Size(329, 133);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rohrdaten";
@@ -79,11 +79,11 @@
             // 
             // txt_PipeRoughness
             // 
+            this.txt_PipeRoughness.Enabled = false;
             this.txt_PipeRoughness.Location = new System.Drawing.Point(163, 82);
             this.txt_PipeRoughness.Name = "txt_PipeRoughness";
             this.txt_PipeRoughness.Size = new System.Drawing.Size(85, 20);
             this.txt_PipeRoughness.TabIndex = 7;
-            this.txt_PipeRoughness.Text = "0,1";
             // 
             // label6
             // 
@@ -105,6 +105,7 @@
             // 
             // txt_PipeLength
             // 
+            this.txt_PipeLength.Enabled = false;
             this.txt_PipeLength.Location = new System.Drawing.Point(163, 56);
             this.txt_PipeLength.Name = "txt_PipeLength";
             this.txt_PipeLength.Size = new System.Drawing.Size(85, 20);
@@ -155,7 +156,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Location = new System.Drawing.Point(12, 151);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(351, 163);
+            this.groupBox2.Size = new System.Drawing.Size(329, 163);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Berechnung";
@@ -166,7 +167,7 @@
             this.cmb_FlowVelocityUnit.FormattingEnabled = true;
             this.cmb_FlowVelocityUnit.Location = new System.Drawing.Point(254, 62);
             this.cmb_FlowVelocityUnit.Name = "cmb_FlowVelocityUnit";
-            this.cmb_FlowVelocityUnit.Size = new System.Drawing.Size(75, 21);
+            this.cmb_FlowVelocityUnit.Size = new System.Drawing.Size(54, 21);
             this.cmb_FlowVelocityUnit.TabIndex = 21;
             this.cmb_FlowVelocityUnit.SelectedIndexChanged += new System.EventHandler(this.cmb_FlowVelocityUnit_SelectedIndexChanged);
             // 
@@ -176,7 +177,7 @@
             this.cmb_FlowRateUnit.FormattingEnabled = true;
             this.cmb_FlowRateUnit.Location = new System.Drawing.Point(254, 35);
             this.cmb_FlowRateUnit.Name = "cmb_FlowRateUnit";
-            this.cmb_FlowRateUnit.Size = new System.Drawing.Size(75, 21);
+            this.cmb_FlowRateUnit.Size = new System.Drawing.Size(54, 21);
             this.cmb_FlowRateUnit.TabIndex = 20;
             this.cmb_FlowRateUnit.SelectedIndexChanged += new System.EventHandler(this.cmb_FlowRateUnit_SelectedIndexChanged);
             // 
@@ -200,7 +201,7 @@
             // 
             this.btn_Clac.Location = new System.Drawing.Point(22, 109);
             this.btn_Clac.Name = "btn_Clac";
-            this.btn_Clac.Size = new System.Drawing.Size(307, 33);
+            this.btn_Clac.Size = new System.Drawing.Size(286, 33);
             this.btn_Clac.TabIndex = 0;
             this.btn_Clac.Text = "Berechnen";
             this.btn_Clac.UseVisualStyleBackColor = true;
@@ -226,9 +227,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 326);
+            this.ClientSize = new System.Drawing.Size(353, 326);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(369, 365);
+            this.MinimumSize = new System.Drawing.Size(369, 365);
             this.Name = "PipeCalcView";
             this.Text = "PipeCalcView";
             this.groupBox1.ResumeLayout(false);

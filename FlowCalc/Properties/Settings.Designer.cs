@@ -94,5 +94,41 @@ namespace FlowCalc.Properties {
                 this["PumpSearchPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double CalcPipeDiameter {
+            get {
+                return ((double)(this["CalcPipeDiameter"]));
+            }
+            set {
+                this["CalcPipeDiameter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double CalcPipeLength {
+            get {
+                return ((double)(this["CalcPipeLength"]));
+            }
+            set {
+                this["CalcPipeLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double CalcPipeRoughness {
+            get {
+                return ((double)(this["CalcPipeRoughness"]));
+            }
+            set {
+                this["CalcPipeRoughness"] = value;
+            }
+        }
     }
 }
