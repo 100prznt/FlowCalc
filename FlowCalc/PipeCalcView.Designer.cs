@@ -46,8 +46,13 @@
             this.btn_Clac = new System.Windows.Forms.Button();
             this.txt_FlowRate = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.cmb_DeltaPUnit = new System.Windows.Forms.ComboBox();
+            this.txt_DeltaP = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -63,7 +68,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(329, 133);
+            this.groupBox1.Size = new System.Drawing.Size(329, 122);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rohrdaten";
@@ -79,11 +84,11 @@
             // 
             // txt_PipeRoughness
             // 
-            this.txt_PipeRoughness.Enabled = false;
             this.txt_PipeRoughness.Location = new System.Drawing.Point(163, 82);
             this.txt_PipeRoughness.Name = "txt_PipeRoughness";
             this.txt_PipeRoughness.Size = new System.Drawing.Size(85, 20);
             this.txt_PipeRoughness.TabIndex = 7;
+            this.txt_PipeRoughness.Text = "0,1";
             // 
             // label6
             // 
@@ -105,11 +110,11 @@
             // 
             // txt_PipeLength
             // 
-            this.txt_PipeLength.Enabled = false;
             this.txt_PipeLength.Location = new System.Drawing.Point(163, 56);
             this.txt_PipeLength.Name = "txt_PipeLength";
             this.txt_PipeLength.Size = new System.Drawing.Size(85, 20);
             this.txt_PipeLength.TabIndex = 4;
+            this.txt_PipeLength.Text = "1";
             // 
             // label4
             // 
@@ -154,9 +159,9 @@
             this.groupBox2.Controls.Add(this.btn_Clac);
             this.groupBox2.Controls.Add(this.txt_FlowRate);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(12, 151);
+            this.groupBox2.Location = new System.Drawing.Point(12, 140);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(329, 163);
+            this.groupBox2.Size = new System.Drawing.Size(329, 169);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Berechnung";
@@ -199,7 +204,7 @@
             // 
             // btn_Clac
             // 
-            this.btn_Clac.Location = new System.Drawing.Point(22, 109);
+            this.btn_Clac.Location = new System.Drawing.Point(22, 112);
             this.btn_Clac.Name = "btn_Clac";
             this.btn_Clac.Size = new System.Drawing.Size(286, 33);
             this.btn_Clac.TabIndex = 0;
@@ -223,22 +228,63 @@
             this.label8.TabIndex = 9;
             this.label8.Text = "Volumenstrom";
             // 
+            // cmb_DeltaPUnit
+            // 
+            this.cmb_DeltaPUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_DeltaPUnit.FormattingEnabled = true;
+            this.cmb_DeltaPUnit.Location = new System.Drawing.Point(254, 31);
+            this.cmb_DeltaPUnit.Name = "cmb_DeltaPUnit";
+            this.cmb_DeltaPUnit.Size = new System.Drawing.Size(54, 21);
+            this.cmb_DeltaPUnit.TabIndex = 24;
+            this.cmb_DeltaPUnit.SelectedIndexChanged += new System.EventHandler(this.cmb_DeltaPUnit_SelectedIndexChanged);
+            // 
+            // txt_DeltaP
+            // 
+            this.txt_DeltaP.Location = new System.Drawing.Point(163, 31);
+            this.txt_DeltaP.Name = "txt_DeltaP";
+            this.txt_DeltaP.Size = new System.Drawing.Size(85, 20);
+            this.txt_DeltaP.TabIndex = 23;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 34);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(61, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Druckabfall";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cmb_DeltaPUnit);
+            this.groupBox3.Controls.Add(this.txt_DeltaP);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Location = new System.Drawing.Point(12, 315);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(329, 72);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Druck";
+            // 
             // PipeCalcView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 326);
+            this.ClientSize = new System.Drawing.Size(353, 411);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(369, 365);
-            this.MinimumSize = new System.Drawing.Size(369, 365);
+            this.MaximumSize = new System.Drawing.Size(369, 500);
+            this.MinimumSize = new System.Drawing.Size(369, 450);
             this.Name = "PipeCalcView";
             this.Text = "PipeCalcView";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -263,5 +309,9 @@
         private System.Windows.Forms.Button btn_Clac;
         private System.Windows.Forms.TextBox txt_FlowRate;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cmb_DeltaPUnit;
+        private System.Windows.Forms.TextBox txt_DeltaP;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

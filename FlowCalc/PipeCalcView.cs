@@ -20,6 +20,7 @@ namespace FlowCalc
 
         public Units CurrentFlowRateUnit { get; set; }
         public Units CurrentFlowVelocityUnit { get; set; }
+        public Units CurrentPressureUnit { get; set; }
 
         public string WindowTitle
         {
@@ -39,6 +40,7 @@ namespace FlowCalc
 
             cmb_FlowRateUnit.ValueMember = nameof(DisplayUnit.DisplayName);
             cmb_FlowVelocityUnit.ValueMember = nameof(DisplayUnit.DisplayName);
+            cmb_DeltaPUnit.ValueMember = nameof(DisplayUnit.DisplayName);
 
             foreach (Units unit in Enum.GetValues(typeof(Units)))
             {
@@ -50,38 +52,44 @@ namespace FlowCalc
                     case Dimensions.Velocity:
                         cmb_FlowVelocityUnit.Items.Add(new DisplayUnit(unit));
                         break;
+                    case Dimensions.Pressure:
+                        cmb_DeltaPUnit.Items.Add(new DisplayUnit(unit));
+                        break;
                 }
             }
 
             var flowRateBaseUnit = new DisplayUnit(Dimensions.FlowRate.GetBaseUnit());
-            var flowVelocityBaseUnit = new DisplayUnit(Dimensions.Velocity.GetBaseUnit());
+            var velocityBaseUnit = new DisplayUnit(Dimensions.Velocity.GetBaseUnit());
+            var pressureBaseUnit = new DisplayUnit(Dimensions.Pressure.GetBaseUnit());
 
             cmb_FlowRateUnit.SelectedItem = flowRateBaseUnit;
-            cmb_FlowVelocityUnit.SelectedItem = flowVelocityBaseUnit;
+            cmb_FlowVelocityUnit.SelectedItem = velocityBaseUnit;
+            cmb_DeltaPUnit.SelectedItem = pressureBaseUnit;
 
             CurrentFlowRateUnit = flowRateBaseUnit.Unit;
-            CurrentFlowVelocityUnit = flowVelocityBaseUnit.Unit;
+            CurrentFlowVelocityUnit = velocityBaseUnit.Unit;
+            CurrentPressureUnit = pressureBaseUnit.Unit;
 
             if (Properties.Settings.Default.CalcPipeDiameter > 0)
                 txt_PipeDiameter.Text = Properties.Settings.Default.CalcPipeDiameter.ToString();
-            //if (Properties.Settings.Default.CalcPipeLength > 0)
-            //    txt_PipeLength.Text = Properties.Settings.Default.CalcPipeLength.ToString();
-            //if (Properties.Settings.Default.CalcPipeRoughness > 0)
-            //    txt_PipeRoughness.Text = Properties.Settings.Default.CalcPipeRoughness.ToString();
+            if (Properties.Settings.Default.CalcPipeLength > 0)
+                txt_PipeLength.Text = Properties.Settings.Default.CalcPipeLength.ToString();
+            if (Properties.Settings.Default.CalcPipeRoughness > 0)
+                txt_PipeRoughness.Text = Properties.Settings.Default.CalcPipeRoughness.ToString();
         }
 
         private void btn_Clac_Click(object sender, EventArgs e)
         {
             txt_FlowVelocity.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
             txt_FlowRate.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
+            txt_DeltaP.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
 
             try
             {
                 //TODO: TryParse in Pipe bereitstellen
-                double.TryParse(txt_PipeLength.Text, out var l);    //m
-                if (!double.TryParse(txt_PipeDiameter.Text, out var di)) //mm
-                    throw new ArgumentException("Inner diameter is mandatory");
-                double.TryParse(txt_PipeRoughness.Text, out var k); //mm
+                var l = double.Parse(txt_PipeLength.Text);    //m
+                var di = double.Parse(txt_PipeDiameter.Text); //mm
+                var k = double.Parse(txt_PipeRoughness.Text); //mm
 
                 Properties.Settings.Default.CalcPipeDiameter = di;
                 Properties.Settings.Default.CalcPipeLength = l;
@@ -100,7 +108,6 @@ namespace FlowCalc
 
             if (string.IsNullOrWhiteSpace(txt_FlowRate.Text) ^ string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
             {
-
                 double flowRate = 0;
                 double flowVelocity = 0;
 
@@ -116,6 +123,10 @@ namespace FlowCalc
                     txt_FlowRate.Text = UnitConverter.ToUnit(flowRate, Dimensions.FlowRate.GetBaseUnit(), ((DisplayUnit)cmb_FlowRateUnit.SelectedItem).Unit).ToString("f3");
                     txt_FlowRate.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F, FontStyle.Bold);
                 }
+
+                double deltaP = Pipe.CalcPressureDrop(Medium.Water20, flowRate);
+                txt_DeltaP.Text = UnitConverter.ToUnit(deltaP, Dimensions.Pressure.GetBaseUnit(), ((DisplayUnit)cmb_DeltaPUnit.SelectedItem).Unit).ToString("f3");
+                txt_DeltaP.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F, FontStyle.Bold);
             }
             else
             {
@@ -152,6 +163,21 @@ namespace FlowCalc
             }
 
             CurrentFlowVelocityUnit = newUnit.Unit;
+        }
+
+        private void cmb_DeltaPUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var newUnit = (DisplayUnit)cmb_DeltaPUnit.SelectedItem;
+
+            if (double.TryParse(txt_DeltaP.Text, out double deltaP))
+            {
+                txt_DeltaP.Text = UnitConverter.ToUnit(deltaP,
+                    CurrentPressureUnit,
+                    newUnit.Unit
+                    ).ToString("f3");
+            }
+
+            CurrentPressureUnit = newUnit.Unit;
         }
     }
 }

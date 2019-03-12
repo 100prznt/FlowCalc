@@ -19,11 +19,29 @@ namespace FlowCalc.PhysicalUnits
         [PhysicalDimension(Dimensions.FlowRate)]
         [PhysicalUnit("l/min", 0.06)]
         L_Per_Min,
+        [PhysicalDimension(Dimensions.FlowRate)]
+        [PhysicalUnit("ml/min", 0.00006)]
+        Ml_Per_Min,
         [PhysicalDimension(Dimensions.Velocity)]
         [PhysicalUnit("m/s", true)]
         M_Per_S,
         [PhysicalDimension(Dimensions.Velocity)]
         [PhysicalUnit("cm/s", 0.01)]
-        Cm_Per_S
+        Cm_Per_S,
+        [PhysicalDimension(Dimensions.Pressure)]
+        [PhysicalUnit("Bar", true)]
+        Bar,
+        [PhysicalDimension(Dimensions.Pressure)]
+        [PhysicalUnit("mBar", 0.001)]
+        MBar,
+        [PhysicalDimension(Dimensions.Pressure)]
+        [PhysicalUnit("Pa", 0.00001)]
+        Pa,
+        [PhysicalDimension(Dimensions.Pressure)]
+        [PhysicalUnit("kPa", 0.01)]
+        KPa,
+        [PhysicalDimension(Dimensions.Pressure)]
+        [PhysicalUnit("m WS", 0.0980665)]
+        MWs
     }
 }

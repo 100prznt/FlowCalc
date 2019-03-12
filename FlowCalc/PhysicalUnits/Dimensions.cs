@@ -12,6 +12,7 @@ namespace FlowCalc.PhysicalUnits
         Length,
         Mass,
         FlowRate,
-        Velocity
+        Velocity,
+        Pressure
     }
 }

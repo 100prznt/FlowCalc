@@ -17,6 +17,13 @@ namespace FlowCalc_Test
 
         [TestCategory("FlowRate")]
         [TestMethod]
+        public void Ml_Per_Min_ToBase_Test()
+        {
+            Assert.AreEqual(10.05, UnitConverter.ToBase(167500, Units.Ml_Per_Min), 1E-9);
+        }
+
+        [TestCategory("FlowRate")]
+        [TestMethod]
         public void L_Per_H_ToBase_Test()
         {
             Assert.AreEqual(10.05, UnitConverter.ToBase(10050, Units.L_Per_H), 1E-9);
@@ -41,6 +48,34 @@ namespace FlowCalc_Test
         public void Cm_Per_S_ToBase_Test()
         {
             Assert.AreEqual(10.05, UnitConverter.ToBase(1005, Units.Cm_Per_S), 1E-9);
+        }
+
+        [TestCategory("Pressure")]
+        [TestMethod]
+        public void MBar_ToBase_Test()
+        {
+            Assert.AreEqual(10.05, UnitConverter.ToBase(10050, Units.MBar), 1E-9);
+        }
+
+        [TestCategory("Pressure")]
+        [TestMethod]
+        public void Pa_ToBase_Test()
+        {
+            Assert.AreEqual(10.05, UnitConverter.ToBase(1005000, Units.Pa), 1E-9);
+        }
+
+        [TestCategory("Pressure")]
+        [TestMethod]
+        public void KPa_ToBase_Test()
+        {
+            Assert.AreEqual(10.05, UnitConverter.ToBase(1005, Units.KPa), 1E-9);
+        }
+
+        [TestCategory("Pressure")]
+        [TestMethod]
+        public void Mws_ToBase_Test()
+        {
+            Assert.AreEqual(10.05, UnitConverter.ToBase(102.4814794042818, Units.MWs), 1E-9);
         }
 
     }
