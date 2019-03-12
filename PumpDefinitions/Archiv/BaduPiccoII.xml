@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>BADU Picco II</Modell>
+  <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
+  <PowerOutput>0.2</PowerOutput>
+  <NominalQ>4</NominalQ>
+  <NominalH>8</NominalH>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <PerformanceCurve>
+    <Ipp>
+      <H>11</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.6</H>
+      <Q>1</Q>
+    </Ipp>
+    <Ipp>
+      <H>10</H>
+      <Q>2</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.25</H>
+      <Q>3</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.4</H>
+      <Q>4</Q>
+    </Ipp>
+    <Ipp>
+      <H>7.1</H>
+      <Q>5</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.5</H>
+      <Q>6</Q>
+    </Ipp>
+    <Ipp>
+      <H>3</H>
+      <Q>6.3</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>

@@ -2,42 +2,74 @@
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Modell>BADU Picco II</Modell>
   <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
-  <PowerOutput>0.2</PowerOutput>
   <NominalQ>4</NominalQ>
   <NominalH>8</NominalH>
+  <PowerOutput>0.2</PowerOutput>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <PerformanceCurve>
     <Ipp>
-      <H>11</H>
+      <H>11.002552664435664</H>
       <Q>0</Q>
     </Ipp>
     <Ipp>
-      <H>10.6</H>
-      <Q>1</Q>
+      <H>10.821568453240145</H>
+      <Q>0.42</Q>
     </Ipp>
     <Ipp>
-      <H>10</H>
-      <Q>2</Q>
+      <H>10.656058844990078</H>
+      <Q>0.84</Q>
     </Ipp>
     <Ipp>
-      <H>9.25</H>
-      <Q>3</Q>
+      <H>10.464696387982896</H>
+      <Q>1.26</Q>
     </Ipp>
     <Ipp>
-      <H>8.4</H>
-      <Q>4</Q>
+      <H>10.229656645548316</H>
+      <Q>1.68</Q>
     </Ipp>
     <Ipp>
-      <H>7.1</H>
-      <Q>5</Q>
+      <H>9.9499040568096344</H>
+      <Q>2.1</Q>
     </Ipp>
     <Ipp>
-      <H>4.5</H>
-      <Q>6</Q>
+      <H>9.6344777974450437</H>
+      <Q>2.52</Q>
     </Ipp>
     <Ipp>
-      <H>3</H>
+      <H>9.2957776404489252</H>
+      <Q>2.94</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.9428498168931654</H>
+      <Q>3.36</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.574672876688453</H>
+      <Q>3.78</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.1734435493455848</H>
+      <Q>4.2</Q>
+    </Ipp>
+    <Ipp>
+      <H>7.697862604736784</H>
+      <Q>4.62</Q>
+    </Ipp>
+    <Ipp>
+      <H>7.0764207138569848</H>
+      <Q>5.04</Q>
+    </Ipp>
+    <Ipp>
+      <H>6.2006843095851583</H>
+      <Q>5.4599999999999991</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.918581447445586</H>
+      <Q>5.88</Q>
+    </Ipp>
+    <Ipp>
+      <H>3.0276876663692232</H>
       <Q>6.3</Q>
     </Ipp>
   </PerformanceCurve>

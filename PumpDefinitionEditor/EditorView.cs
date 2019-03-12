@@ -168,6 +168,9 @@ namespace PumpDefinitionEditor
                 if (MessageBox.Show("XML Datei erfolgreich gespeichert.\n\nSoll die Datei extern geöffnet werden?", "Speichern erfolgreich",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     Process.Start(saveFileDialog1.FileName);
+
+                this.Text = string.Concat(WindowTitle, " - ", saveFileDialog1.FileName.Split('/', '\\').Last());
+                m_Controller.PumpDefinitionPath = saveFileDialog1.FileName.Split('/', '\\').Last();
             }
         }
 
