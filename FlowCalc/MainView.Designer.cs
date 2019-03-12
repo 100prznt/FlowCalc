@@ -81,13 +81,13 @@
             this.editorStartenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.volumenstromFließgeschwindigkeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.überToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.äquivalenteRohrlängeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -485,7 +485,6 @@
             this.stToolStripMenuItem,
             this.überToolStripMenuItem,
             this.rechnerToolStripMenuItem,
-            this.toolStripMenuItem1,
             this.hilfeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -563,7 +562,8 @@
             // rechnerToolStripMenuItem
             // 
             this.rechnerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.volumenstromFließgeschwindigkeitToolStripMenuItem});
+            this.volumenstromFließgeschwindigkeitToolStripMenuItem,
+            this.äquivalenteRohrlängeToolStripMenuItem});
             this.rechnerToolStripMenuItem.Name = "rechnerToolStripMenuItem";
             this.rechnerToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.rechnerToolStripMenuItem.Text = "Rechner";
@@ -571,14 +571,11 @@
             // volumenstromFließgeschwindigkeitToolStripMenuItem
             // 
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.Name = "volumenstromFließgeschwindigkeitToolStripMenuItem";
-            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.Text = "p-v-Q";
+            this.volumenstromFließgeschwindigkeitToolStripMenuItem.ToolTipText = "Berechnung von Strömungsgeschwindigkeit, Volumenstrom und Druckverlust in Rohrlei" +
+    "tungen";
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.Click += new System.EventHandler(this.volumenstromFließgeschwindigkeitToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
             // 
             // statusStrip1
             // 
@@ -619,6 +616,13 @@
             this.überToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.überToolStripMenuItem1.Text = "Über";
             this.überToolStripMenuItem1.Click += new System.EventHandler(this.überToolStripMenuItem1_Click);
+            // 
+            // äquivalenteRohrlängeToolStripMenuItem
+            // 
+            this.äquivalenteRohrlängeToolStripMenuItem.Name = "äquivalenteRohrlängeToolStripMenuItem";
+            this.äquivalenteRohrlängeToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.äquivalenteRohrlängeToolStripMenuItem.Text = "Äquivalente Rohrlänge";
+            this.äquivalenteRohrlängeToolStripMenuItem.Click += new System.EventHandler(this.äquivalenteRohrlängeToolStripMenuItem_Click);
             // 
             // MainView
             // 
@@ -710,9 +714,9 @@
         private System.Windows.Forms.ToolStripStatusLabel stl_Info;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem editorStartenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem überToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem äquivalenteRohrlängeToolStripMenuItem;
     }
 }
 

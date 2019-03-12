@@ -8,14 +8,25 @@ namespace FlowCalc.PoolSystem
 {
     public enum Fittings
     {
-        [FittingDetail("Bogen 90°", 40, 0.191, 42.6)]
-        Dn40Elbow90,
-        [FittingDetail("Winkel 90°", 40, 0.565, 50)]
-        Dn40Angle90,
-        [FittingDetail("Winkel 45°", 40, 0.565, 50)]
+        [FittingDetail("Winkel 45°", NominalDiameters.DN40, 0.5)]
         Dn40Angle45,
-        Dn40TPipe90,
-        Dn40TPipe45,
-        Dn40YPipe
+        [FittingDetail("Bogen 90°", NominalDiameters.DN40, 0.9)]
+        Dn40Elbow90,
+        [FittingDetail("Winkel 90°", NominalDiameters.DN40, 2.3)]
+        Dn40Angle90,
+        [FittingDetail("T-Sück gerader Durchgang", NominalDiameters.DN40, 0.28)]
+        Dn40TPipeStraight,
+        [FittingDetail("T-Sück Abzweig", NominalDiameters.DN40, 3.2)]
+        Dn40TPipeRight,
+        [FittingDetail("Winkel 45°", NominalDiameters.DN50, 0.4)]
+        Dn50Angle45,
+        [FittingDetail("Bogen 90°", NominalDiameters.DN50, 0.75)]
+        Dn50Elbow90,
+        //[FittingDetail("Winkel 90°", NominalDiameters.DN50, ??)]
+        //Dn50Angle90,
+        [FittingDetail("T-Sück gerader Durchgang", NominalDiameters.DN50, 0.24)]
+        Dn50TPipeStraight,
+        [FittingDetail("T-Sück Abzweig", NominalDiameters.DN50, 2.6)]
+        Dn50TPipeRight,
     }
 }

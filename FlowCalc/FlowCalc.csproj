@@ -96,10 +96,18 @@
     <Compile Include="PipeCalcView.Designer.cs">
       <DependentUpon>PipeCalcView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PipeLengthCalcView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PipeLengthCalcView.Designer.cs">
+      <DependentUpon>PipeLengthCalcView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PoolSystem\FittingExtensions.cs" />
     <Compile Include="PoolSystem\Elbow.cs" />
     <Compile Include="PoolSystem\FittingDetailAttribute.cs" />
     <Compile Include="PoolSystem\Fittings.cs" />
     <Compile Include="PoolSystem\Medium.cs" />
+    <Compile Include="PoolSystem\NominalDiameters.cs" />
     <Compile Include="PoolSystem\Pipe.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PipeCalcView.resx">
       <DependentUpon>PipeCalcView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipeLengthCalcView.resx">
+      <DependentUpon>PipeLengthCalcView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

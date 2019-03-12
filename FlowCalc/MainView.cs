@@ -48,7 +48,7 @@ namespace FlowCalc
                 try
                 {
                     m_Controller.LoadPump(Properties.Settings.Default.PumpDefinitionPath);
-                    applyPumpDefinition();
+                    //applyPumpDefinition();
                 }
                 catch (Exception)
                 {
@@ -79,8 +79,8 @@ namespace FlowCalc
                 {
                     m_Controller.LoadPump(openFileDialog1.FileName);
 
-                    Properties.Settings.Default.PumpDefinitionPath = openFileDialog1.FileName;
-                    Properties.Settings.Default.Save();
+                    //Properties.Settings.Default.PumpDefinitionPath = openFileDialog1.FileName;
+                    //Properties.Settings.Default.Save();
                 }
                 catch (Exception ex)
                 {
@@ -157,6 +157,8 @@ namespace FlowCalc
             toolTip1.SetToolTip(lbl_PumpFileAuthor, m_Controller.Pump.AuthorEmailPumpFile);
 
             this.Text = string.Concat(WindowTitle, " - ", m_Controller.PumpDefinitionPath);
+            Properties.Settings.Default.PumpDefinitionPath = m_Controller.PumpDefinitionPath;
+            Properties.Settings.Default.Save();
 
             clearSystemOutput();
             btn_ShowPumpCurve.Enabled = true;
@@ -301,6 +303,13 @@ namespace FlowCalc
             };
 
             aboutView.ShowDialog();
+        }
+
+        private void äquivalenteRohrlängeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var lengthCalcView = new PipeLengthCalcView();
+
+            lengthCalcView.Show();
         }
     }
 }

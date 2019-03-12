@@ -11,18 +11,27 @@ namespace FlowCalc.PoolSystem
     {
         public string DisplayName { get; set; }
 
-        public int NominalDiameter { get; set; }
+        /// <summary>
+        /// Nennweite
+        /// </summary>
+        public NominalDiameters NominalDiameter { get; set; }
 
-        public double InnerDiameter { get; set; }
-
+        /// <summary>
+        /// Zeta-Wert (Druckverlustbeiwert)
+        /// </summary>
         public double Zeta { get; set; }
 
-        public FittingDetailAttribute(string name, int dn, double zeta, double diameter)
+        /// <summary>
+        /// Äquivalente Länge
+        /// in [m]
+        /// </summary>
+        public double EquivalentLength { get; set; }
+
+        public FittingDetailAttribute(string name, NominalDiameters dn, double equivalentLength)
         {
             DisplayName = name;
             NominalDiameter = dn;
-            Zeta = zeta;
-            InnerDiameter = diameter;
+            EquivalentLength = equivalentLength;
         }
     }
 }
