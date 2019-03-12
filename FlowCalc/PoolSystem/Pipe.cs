@@ -85,6 +85,19 @@ namespace FlowCalc.PoolSystem
         }
 
         /// <summary>
+        /// Volumenstrom berechnen
+        /// </summary>
+        /// <param name="flowVelocity">Strömungsgeschwindigkeit in [m/s]</param>
+        /// <returns>Volumenstrom in [m^3/h]</returns>
+        public double CalcFlowRate(double flowVelocity)
+        {
+            double a = CrossArea / 1E6; // [m^2]
+            double q = flowVelocity * a; // [m^3/s]
+
+            return q * 3600;
+        }
+
+        /// <summary>
         /// Druckverlust berechnen
         /// (es wird von einer turbulenten Strömung ausgegangen)
         /// </summary>

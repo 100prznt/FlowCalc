@@ -17,6 +17,15 @@ namespace FlowCalc_Test
         }
 
         [TestMethod]
+        public void CalcFlowRate_Test()
+        {
+            var testPipe = new Pipe(1, 45.2, 0.1);
+
+            // Vergleichsergebnis aus Druckverlust 7.0 (http://druckverlust.de)
+            Assert.AreEqual(10, testPipe.CalcFlowRate(1.731), 1E-3);
+        }
+
+        [TestMethod]
         public void CalcPressureDrop_Test()
         {
             var testPipe = new Pipe(1, 45.2, 0.1);

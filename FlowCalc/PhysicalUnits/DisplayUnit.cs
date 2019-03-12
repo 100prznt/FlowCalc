@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,19 @@ namespace FlowCalc.PhysicalUnits
         public DisplayUnit(Units unit)
         {
             Unit = unit;
+        }
+
+        public override string ToString()
+        {
+            return DisplayName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !(obj is DisplayUnit))
+                return false;
+
+            return ((DisplayUnit)obj).Unit == this.Unit;
         }
     }
 }

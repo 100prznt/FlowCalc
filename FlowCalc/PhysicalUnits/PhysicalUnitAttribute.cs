@@ -24,7 +24,7 @@ namespace FlowCalc.PhysicalUnits
             if (baseUnit)
             {
                 IsBaseUnit = true;
-                BaseFactor = 0;
+                BaseFactor = 1;
                 BaseOffset = 0;
             }
             else
