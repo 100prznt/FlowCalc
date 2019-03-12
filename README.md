@@ -21,6 +21,9 @@ Siehe auch Abschnitt [Pumpendefinition](#pumpendefinition) hier im Readme.
 ### Anzeige - Arbeitspunkt auf Pumpenkennlinie
 ![Anzeige - Arbeitspunkt auf Pumpenkennlinie](docs/FlowCalc_PowerPoint_Screen.png)
 
+### p-v-Q Rechner
+![Anzeige - p-v-Q Rechner](docs/FlowCalc_Pvq_Screen.png)
+
 ## Pumpendefinition
 Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form einer Pumpendefinitionsdatei angegeben werden. 
 
