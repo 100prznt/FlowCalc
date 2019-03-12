@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("PumpDefinitionEditor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("RC-Art Solutions")]
+[assembly: AssemblyCompany("100prznt.de")]
 [assembly: AssemblyProduct("PumpDefinitionEditor")]
 [assembly: AssemblyCopyright("Copyright © RC-Art Solutions 2019")]
 [assembly: AssemblyTrademark("")]

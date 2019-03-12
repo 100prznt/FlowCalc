@@ -56,6 +56,10 @@ namespace FlowCalc
                 }
             }
 
+
+            if (File.Exists("PumpDefinitionEditor.exe"))
+                editorStartenToolStripMenuItem.Enabled = true;
+
             loadPumps();
 
             cbx_CalcSuctionPipe.Checked = Properties.Settings.Default.EnableSuctionPressureDrop;
@@ -173,7 +177,7 @@ namespace FlowCalc
             lbl_PumpFileAuthor.LinkVisited = true;
 
             // Navigate to a URL.
-            System.Diagnostics.Process.Start("mailto:" + m_Controller.Pump.AuthorEmailPumpFile);
+            Process.Start("mailto:" + m_Controller.Pump.AuthorEmailPumpFile);
         }
 
         private void btn_ShowPumpCurve_Click(object sender, EventArgs e)
@@ -222,6 +226,7 @@ namespace FlowCalc
         private void loadPumps()
         {
             Cursor.Current = Cursors.WaitCursor;
+
             try
             {
                 if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpSearchPath) &&
@@ -230,6 +235,7 @@ namespace FlowCalc
                     try
                     {
                         m_Controller.LoadPumps(Properties.Settings.Default.PumpSearchPath);
+                        stl_PumpSearchDirectory.Text = "Suchverzeichnis: " + Properties.Settings.Default.PumpSearchPath;
                     }
                     catch (Exception)
                     {
@@ -246,13 +252,17 @@ namespace FlowCalc
                     var pumps = new List<ToolStripItem>();
                     foreach (var pump in m_Controller.Pumps)
                     {
+                        Debug.WriteLine("Add menuitem (" + pump.ModellName + ")");
                         pumps.Add(new ToolStripMenuItem(pump.ModellName, null, selectPump)
                         {
                             Tag = pump.FilePath
                         });
                     }
+                    auswahlPumpeToolStripMenuItem.Enabled = true;
                     auswahlPumpeToolStripMenuItem.DropDownItems.AddRange(pumps.ToArray());
                 }
+                else
+                    auswahlPumpeToolStripMenuItem.Enabled = false;
             }
             catch (Exception)
             {
@@ -275,6 +285,22 @@ namespace FlowCalc
         {
             var calcView = new PipeCalcView();
             calcView.Show();
+        }
+
+        private void editorStartenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("PumpDefinitionEditor.exe");
+        }
+
+        private void überToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var aboutView = new AboutView()
+            {
+                RepoUrl = "https://github.com/100prznt/FlowCalc",
+                AuthorEmail = "pool@100prznt.de"
+            };
+
+            aboutView.ShowDialog();
         }
     }
 }

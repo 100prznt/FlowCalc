@@ -77,15 +77,23 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.suchverzeichnisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ladePumpendefinitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.editorStartenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.volumenstromFließgeschwindigkeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.überToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_LoadPump
@@ -476,7 +484,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stToolStripMenuItem,
             this.überToolStripMenuItem,
-            this.rechnerToolStripMenuItem});
+            this.rechnerToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.hilfeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(781, 24);
@@ -504,13 +514,16 @@
             this.auswahlPumpeToolStripMenuItem,
             this.toolStripSeparator1,
             this.suchverzeichnisToolStripMenuItem,
-            this.ladePumpendefinitionToolStripMenuItem});
+            this.ladePumpendefinitionToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.editorStartenToolStripMenuItem});
             this.überToolStripMenuItem.Name = "überToolStripMenuItem";
             this.überToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.überToolStripMenuItem.Text = "Pumpe";
             // 
             // auswahlPumpeToolStripMenuItem
             // 
+            this.auswahlPumpeToolStripMenuItem.Enabled = false;
             this.auswahlPumpeToolStripMenuItem.Name = "auswahlPumpeToolStripMenuItem";
             this.auswahlPumpeToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.auswahlPumpeToolStripMenuItem.Text = "Auswahl Pumpe";
@@ -534,6 +547,19 @@
             this.ladePumpendefinitionToolStripMenuItem.Text = "Lade Pumpendefinition...";
             this.ladePumpendefinitionToolStripMenuItem.Click += new System.EventHandler(this.btn_LoadPump_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(204, 6);
+            // 
+            // editorStartenToolStripMenuItem
+            // 
+            this.editorStartenToolStripMenuItem.Enabled = false;
+            this.editorStartenToolStripMenuItem.Name = "editorStartenToolStripMenuItem";
+            this.editorStartenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.editorStartenToolStripMenuItem.Text = "Editor starten";
+            this.editorStartenToolStripMenuItem.Click += new System.EventHandler(this.editorStartenToolStripMenuItem_Click);
+            // 
             // rechnerToolStripMenuItem
             // 
             this.rechnerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -542,20 +568,57 @@
             this.rechnerToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.rechnerToolStripMenuItem.Text = "Rechner";
             // 
+            // volumenstromFließgeschwindigkeitToolStripMenuItem
+            // 
+            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Name = "volumenstromFließgeschwindigkeitToolStripMenuItem";
+            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Text = "p-v-Q";
+            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Click += new System.EventHandler(this.volumenstromFließgeschwindigkeitToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
+            // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stl_PumpSearchDirectory,
+            this.stl_Info});
             this.statusStrip1.Location = new System.Drawing.Point(0, 439);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(781, 22);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // volumenstromFließgeschwindigkeitToolStripMenuItem
+            // stl_PumpSearchDirectory
             // 
-            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Name = "volumenstromFließgeschwindigkeitToolStripMenuItem";
-            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
-            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Text = "Volumenstrom, Fließgeschwindigkeit";
-            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Click += new System.EventHandler(this.volumenstromFließgeschwindigkeitToolStripMenuItem_Click);
+            this.stl_PumpSearchDirectory.Name = "stl_PumpSearchDirectory";
+            this.stl_PumpSearchDirectory.Size = new System.Drawing.Size(167, 17);
+            this.stl_PumpSearchDirectory.Text = "Bitte Suchverzeichnis angeben";
+            // 
+            // stl_Info
+            // 
+            this.stl_Info.Name = "stl_Info";
+            this.stl_Info.Size = new System.Drawing.Size(599, 17);
+            this.stl_Info.Spring = true;
+            this.stl_Info.Text = "Bereit";
+            this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // hilfeToolStripMenuItem
+            // 
+            this.hilfeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.überToolStripMenuItem1});
+            this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
+            this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.hilfeToolStripMenuItem.Text = "Hilfe";
+            // 
+            // überToolStripMenuItem1
+            // 
+            this.überToolStripMenuItem1.Name = "überToolStripMenuItem1";
+            this.überToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.überToolStripMenuItem1.Text = "Über";
+            this.überToolStripMenuItem1.Click += new System.EventHandler(this.überToolStripMenuItem1_Click);
             // 
             // MainView
             // 
@@ -582,6 +645,8 @@
             this.groupBox4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -641,6 +706,13 @@
         private System.Windows.Forms.ToolStripMenuItem rechnerToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ToolStripMenuItem volumenstromFließgeschwindigkeitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel stl_PumpSearchDirectory;
+        private System.Windows.Forms.ToolStripStatusLabel stl_Info;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem editorStartenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem überToolStripMenuItem1;
     }
 }
 

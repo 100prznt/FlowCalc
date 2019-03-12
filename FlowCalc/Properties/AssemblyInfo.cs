@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FlowCalc")]
 [assembly: AssemblyDescription("Berechnung der Fördermenge von Pool-Pumpen in Abhängigkeit des Systemdrucks und des saugseitigem Druckverlustes. ")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("RC-Art Solutions")]
+[assembly: AssemblyCompany("100prznt.de")]
 [assembly: AssemblyProduct("FlowCalc")]
 [assembly: AssemblyCopyright("Copyright © RC-Art Solutions 2019")]
 [assembly: AssemblyTrademark("")]

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FlowCalc_Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("RC-Art Solutions")]
+[assembly: AssemblyCompany("100prznt.de")]
 [assembly: AssemblyProduct("FlowCalc_Test")]
 [assembly: AssemblyCopyright("Copyright © RC-Art Solutions 2019")]
 [assembly: AssemblyTrademark("")]

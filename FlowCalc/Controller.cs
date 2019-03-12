@@ -3,6 +3,7 @@ using FlowCalc.PoolSystem;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -107,8 +108,9 @@ namespace FlowCalc
 
                 foreach (var fileName in fileNames)
                 {
-                    if (fileName.EndsWith(".xml"))
+                    if (fileName.EndsWith(".xml") &!fileName.EndsWith("Blanko.xml"))
                     {
+                        Debug.WriteLine("Deserialize " + fileName);
                         try
                         {
                             var pump = Pump.FromFile(fileName);
