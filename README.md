@@ -71,6 +71,34 @@ TODO...
 </Pump>
 ```
 
+## Fittingdefinition
+Das Programm benötigt zur Berechnung der äquivalenten Rohrlängen die entsprechenden Daten der einzelnen Fittings. Diese werden in den Fittingsdefinitionsdateien gespeichert.
+
+### Vorhandenen Fittingsdefinitionsdateien
+* Winkel 45°  DN40
+* Winkel 90°  DN40
+* Bogen 90° r=3d  DN40
+* Bogen 90° r=4d  DN40
+* T-Stück Abzweig DN40
+* T-Stück gerader Durchgang DN40
+* Winkel 45°  DN50
+* Bogen 90° r=3d  DN50
+* Bogen 90° r=4d  DN50
+* T-Stück Abzweig DN50
+* T-Sück gerader Durchgang  DN50
+
+### Beispiel
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Fitting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DisplayName>Winkel 45°</DisplayName>
+  <Diameter>DN40</Diameter>
+  <Zeta>0</Zeta> <!-- Druckverlustbeiwertes (Zeta-Wert) wird aktuell nicht berücksichtet -->
+  <EquivalentLength>0.5</EquivalentLength>
+  <Source>http://www.poolpowershop-forum.de/d/11110-druckanstieg-durch-armaturen-winkel-b-gen.html</Source>
+</Fitting>
+```
+
 ## Releases
 Dieses Projekt wird auf der Continuous Integration Plattform [AppVeyor](https://www.appveyor.com/) kompiliert und im [Release-Feed](https://github.com/100prznt/FlowCalc/releases) veröffentlicht.
 
