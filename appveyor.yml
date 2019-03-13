@@ -12,6 +12,8 @@ assembly_info:
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
+only_commits:
+  message: /\[ci\]/
 skip_commits:
   files:
     - docs/
