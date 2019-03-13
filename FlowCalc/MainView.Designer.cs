@@ -79,6 +79,8 @@
             this.ladePumpendefinitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.editorStartenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fittingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.suchverzeichnisToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.volumenstromFließgeschwindigkeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.äquivalenteRohrlängeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,8 +90,6 @@
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.fittingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.suchverzeichnisToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -562,6 +562,21 @@
             this.editorStartenToolStripMenuItem.Text = "Editor starten";
             this.editorStartenToolStripMenuItem.Click += new System.EventHandler(this.editorStartenToolStripMenuItem_Click);
             // 
+            // fittingsToolStripMenuItem
+            // 
+            this.fittingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.suchverzeichnisToolStripMenuItem1});
+            this.fittingsToolStripMenuItem.Name = "fittingsToolStripMenuItem";
+            this.fittingsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.fittingsToolStripMenuItem.Text = "Fittings";
+            // 
+            // suchverzeichnisToolStripMenuItem1
+            // 
+            this.suchverzeichnisToolStripMenuItem1.Name = "suchverzeichnisToolStripMenuItem1";
+            this.suchverzeichnisToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.suchverzeichnisToolStripMenuItem1.Text = "Suchverzeichnis...";
+            this.suchverzeichnisToolStripMenuItem1.Click += new System.EventHandler(this.searchPathFittingsToolStripMenuItem_Click);
+            // 
             // rechnerToolStripMenuItem
             // 
             this.rechnerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -585,6 +600,8 @@
             this.äquivalenteRohrlängeToolStripMenuItem.Name = "äquivalenteRohrlängeToolStripMenuItem";
             this.äquivalenteRohrlängeToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.äquivalenteRohrlängeToolStripMenuItem.Text = "Äquivalente Rohrlänge";
+            this.äquivalenteRohrlängeToolStripMenuItem.ToolTipText = "Berechnung der äquivalente Rohrlänge in Abhängigkeit der verbauten Fittings und A" +
+    "rmaturen";
             this.äquivalenteRohrlängeToolStripMenuItem.Click += new System.EventHandler(this.äquivalenteRohrlängeToolStripMenuItem_Click);
             // 
             // hilfeToolStripMenuItem
@@ -626,21 +643,6 @@
             this.stl_Info.Spring = true;
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // fittingsToolStripMenuItem
-            // 
-            this.fittingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.suchverzeichnisToolStripMenuItem1});
-            this.fittingsToolStripMenuItem.Name = "fittingsToolStripMenuItem";
-            this.fittingsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.fittingsToolStripMenuItem.Text = "Fittings";
-            // 
-            // suchverzeichnisToolStripMenuItem1
-            // 
-            this.suchverzeichnisToolStripMenuItem1.Name = "suchverzeichnisToolStripMenuItem1";
-            this.suchverzeichnisToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.suchverzeichnisToolStripMenuItem1.Text = "Suchverzeichnis...";
-            this.suchverzeichnisToolStripMenuItem1.Click += new System.EventHandler(this.searchPathFittingsToolStripMenuItem_Click);
             // 
             // MainView
             // 
