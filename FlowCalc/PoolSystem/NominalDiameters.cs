@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FlowCalc.PoolSystem
 {
+    /// <summary>
+    /// Typische Nennweiten
+    /// </summary>
     public enum NominalDiameters
     {
         NotSpecified = 0,

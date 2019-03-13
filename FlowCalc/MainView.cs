@@ -61,6 +61,7 @@ namespace FlowCalc
                 editorStartenToolStripMenuItem.Enabled = true;
 
             loadPumps();
+            loadFittings();
 
             cbx_CalcSuctionPipe.Checked = Properties.Settings.Default.EnableSuctionPressureDrop;
             if (Properties.Settings.Default.SuctionPipeDiameter > 0)
@@ -214,16 +215,39 @@ namespace FlowCalc
             this.Close();
         }
 
-        private void suchverzeichnisToolStripMenuItem_Click(object sender, EventArgs e)
+        private void loadFittings()
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-            {
-                Properties.Settings.Default.PumpSearchPath = folderBrowserDialog1.SelectedPath;
-                Properties.Settings.Default.Save();
+            Cursor.Current = Cursors.WaitCursor;
 
-                loadPumps();
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpSearchPath) &&
+                    Directory.Exists(Properties.Settings.Default.PumpSearchPath))
+                {
+                    try
+                    {
+                        m_Controller.LoadFittings(Properties.Settings.Default.FittingsSearchPath);
+                    }
+                    catch (Exception)
+                    {
+                        // Fehler beim automatischen Laden ignorieren
+                    }
+                    finally
+                    {
+                        Cursor.Current = Cursors.Default;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Fehler beim automatischen Laden ignorieren
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
             }
         }
+        
 
         private void loadPumps()
         {
@@ -307,9 +331,31 @@ namespace FlowCalc
 
         private void äquivalenteRohrlängeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var lengthCalcView = new PipeLengthCalcView();
+            var lengthCalcView = new PipeLengthCalcView(ref m_Controller);
 
             lengthCalcView.Show();
+        }
+
+        private void searchPathPumpsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.PumpSearchPath = folderBrowserDialog1.SelectedPath;
+                Properties.Settings.Default.Save();
+
+                loadPumps();
+            }
+        }
+
+        private void searchPathFittingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.FittingsSearchPath = folderBrowserDialog1.SelectedPath;
+                Properties.Settings.Default.Save();
+
+                loadFittings();
+            }
         }
     }
 }

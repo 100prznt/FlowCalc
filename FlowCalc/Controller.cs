@@ -32,6 +32,11 @@ namespace FlowCalc
         public List<Pump> Pumps { get; set; }
 
         /// <summary>
+        /// Verfügbare Fittings
+        /// </summary>
+        public List<Fitting> Fittings { get; set; }
+
+        /// <summary>
         /// Pfad zur aktuell verwendeten Pumpendefinition
         /// </summary>
         public string PumpDefinitionPath { get; set; }
@@ -82,6 +87,15 @@ namespace FlowCalc
 
         #region Services
         /// <summary>
+        /// Initialisiere neue Pumpe
+        /// </summary>
+        public void NewPump()
+        {
+            PumpDefinitionPath = null;
+            Pump = new Pump();
+        }
+
+        /// <summary>
         /// Pumpendefinitionsdatei laden und in <see cref="Pump"/> ablegen
         /// </summary>
         /// <param name="path">Pafd zur Pumpendefinitionsdatei</param>
@@ -129,10 +143,35 @@ namespace FlowCalc
             }
         }
 
-        public void NewPump()
+        public void LoadFittings(string searchPath)
         {
-            PumpDefinitionPath = null;
-            Pump = new Pump();
+            var fittings = new List<Fitting>();
+
+            if (Directory.Exists(searchPath))
+            {
+                var fileNames = Directory.GetFiles(searchPath);
+
+                foreach (var fileName in fileNames)
+                {
+                    if (fileName.EndsWith(".xml") & !fileName.EndsWith("Blanko.xml"))
+                    {
+                        Debug.WriteLine("Deserialize " + fileName);
+                        try
+                        {
+                            var fitting = Fitting.FromFile(fileName);
+                            fitting.FilePath = fileName;
+                            fittings.Add(fitting);
+                        }
+                        catch (Exception)
+                        {
+                            //Überspringen TODO: dirty
+                        }
+                    }
+                }
+
+                if (fittings.Count > 0)
+                    Fittings = fittings;
+            }
         }
 
         public void CalcFlowRate(double pressure)

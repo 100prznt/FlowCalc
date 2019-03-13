@@ -102,18 +102,14 @@
     <Compile Include="PipeLengthCalcView.Designer.cs">
       <DependentUpon>PipeLengthCalcView.cs</DependentUpon>
     </Compile>
-    <Compile Include="PoolSystem\FittingExtensions.cs" />
-    <Compile Include="PoolSystem\Elbow.cs" />
-    <Compile Include="PoolSystem\FittingDetailAttribute.cs" />
-    <Compile Include="PoolSystem\Fittings.cs" />
     <Compile Include="PoolSystem\Medium.cs" />
     <Compile Include="PoolSystem\NominalDiameters.cs" />
     <Compile Include="PoolSystem\Pipe.cs" />
+    <Compile Include="PoolSystem\Fitting.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pump.cs" />
     <Compile Include="PumpPerformancePoint.cs" />
-    <Compile Include="PoolSystem\BaseFitting.cs" />
     <EmbeddedResource Include="AboutView.resx">
       <DependentUpon>AboutView.cs</DependentUpon>
     </EmbeddedResource>
