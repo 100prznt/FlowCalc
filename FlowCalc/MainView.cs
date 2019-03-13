@@ -16,6 +16,19 @@ namespace FlowCalc
 {
     public partial class MainView : Form
     {
+        #region Constants
+        /// <summary>
+        /// Standard Suchpfad für Pumpendefinitionen
+        /// </summary>
+        const string DEFAULT_PUMPDEF_PATH = @"PumpDefinitions";
+
+        /// <summary>
+        /// Standard Suchpfad für Fittingdefinitionen
+        /// </summary>
+        const string DEFAULT_FITTINGDEF_PATH = @"FittingDefinitions";
+
+        #endregion Constats
+
         Controller m_Controller;
         ChartView m_ChartView;
 
@@ -42,20 +55,30 @@ namespace FlowCalc
 
             m_Controller.NewPumpLoaded += applyPumpDefinition;
 
-            if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpDefinitionPath) &&
-                File.Exists(Properties.Settings.Default.PumpDefinitionPath))
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpDefinitionPath) && Directory.Exists(DEFAULT_PUMPDEF_PATH))
+            {
+                Properties.Settings.Default.PumpSearchPath = DEFAULT_PUMPDEF_PATH;
+                Properties.Settings.Default.Save();
+            }
+
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.FittingsSearchPath) && Directory.Exists(DEFAULT_FITTINGDEF_PATH))
+            {
+                Properties.Settings.Default.FittingsSearchPath = DEFAULT_FITTINGDEF_PATH;
+                Properties.Settings.Default.Save();
+            }
+
+            //Letzte Pumpe laden
+            if (File.Exists(Properties.Settings.Default.PumpDefinitionPath))
             {
                 try
                 {
                     m_Controller.LoadPump(Properties.Settings.Default.PumpDefinitionPath);
-                    //applyPumpDefinition();
                 }
                 catch (Exception)
                 {
                     // Fehler beim automatischen Laden ignorieren
                 }
             }
-
 
             if (File.Exists("PumpDefinitionEditor.exe"))
                 editorStartenToolStripMenuItem.Enabled = true;
@@ -79,9 +102,6 @@ namespace FlowCalc
                 try
                 {
                     m_Controller.LoadPump(openFileDialog1.FileName);
-
-                    //Properties.Settings.Default.PumpDefinitionPath = openFileDialog1.FileName;
-                    //Properties.Settings.Default.Save();
                 }
                 catch (Exception ex)
                 {
