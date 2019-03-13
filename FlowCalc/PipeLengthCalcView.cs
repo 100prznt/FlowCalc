@@ -19,6 +19,10 @@ namespace FlowCalc
 
         Controller m_Controller;
 
+        public BindingList<SystemItem> SystemItems { get; set; }
+
+        public double TotalPipeLength { get; private set; }
+
         public string WindowTitle
         {
             get
@@ -30,10 +34,6 @@ namespace FlowCalc
 
         public PipeLengthCalcView(ref Controller controller)
         {
-#if (!DEBUG)
-            throw new NotImplementedException("Hier wird im Moment gearbeitet, bitte letztes Stable Release verwenden.");
-#endif
-
             m_Controller = controller;
 
             InitializeComponent();
@@ -41,77 +41,122 @@ namespace FlowCalc
             this.Text = WindowTitle; //Title
             this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
 
-            generateFittingButtons();
+            //Setup DGV
+            dgv_System.AutoGenerateColumns = false;
+            SystemItems = new BindingList<SystemItem>();
+            var source = new BindingSource(SystemItems, null);
+            dgv_System.DataSource = source;
+
+            generateFittingButtons(NominalDiameters.DN40);
+            txt_PipeDiameter.Text = "45,2";
         }
 
-        private void generateFittingButtons()
+        private void generateFittingButtons(NominalDiameters dn)
         {
             Controls["box_FittingButtons"].Controls.Clear();
 
             var yOffset = 30;
             int i = 1;
-            NominalDiameters dn = NominalDiameters.NotSpecified;
-            if (rbtn_Dn40.Checked)
-                dn = NominalDiameters.DN40;
-            else if (rbtn_Dn50.Checked)
-                dn = NominalDiameters.DN50;
+            
+            if (m_Controller.Fittings != null && m_Controller.Fittings.Count > 0)
+            {
+                stl_FittingSearchDirectory.Text = "Suchverzeichnis: " + Properties.Settings.Default.FittingsSearchPath;
 
-            if (m_Controller.Fittings.Count > 0)
-                stl_FittingSearchDirectory.Text = Properties.Settings.Default.FittingsSearchPath;
+                foreach (var fitting in m_Controller.Fittings)
+                {
+                    if (fitting.Diameter == dn)
+                    {
+                        var btn = new Button()
+                        {
+                            Name = "btn_" + fitting.UniqueName,
+                            Tag = fitting,
+                            Text = fitting.DisplayName,
+                            Size = new Size(187, 23),
+                            Location = new Point(16, 5 + yOffset * i)
+                        };
+                        btn.Click += btn_Fitting_Click;
+
+                        Controls["box_FittingButtons"].Controls.Add(btn);
+
+                        i++;
+                    }
+                }
+            }
             else
             {
                 stl_FittingSearchDirectory.Text = "Kein Suchpfad für Fittings angegeben oder keine Fittingdefinitionen gefunden.";
                 stl_FittingSearchDirectory.ForeColor = Color.Red;
             }
+        }
 
-            foreach (var fitting in m_Controller.Fittings)
-            {
-                if (fitting.Diameter == dn)
-                {
-                    var btn = new Button()
-                    {
-                        Name = "btn_" + fitting.UniqueName,
-                        Tag = fitting,
-                        Text = fitting.DisplayName,
-                        Size = new Size(150, 23),
-                        Location = new Point(20, 5 + yOffset * i)
-                    };
-                    btn.Click += btn_Fitting_Click;
+        private void calcTotalLength()
+        {
+            TotalPipeLength = SystemItems.Sum(x => x.Length * x.Amount);
 
-                    Controls["box_FittingButtons"].Controls.Add(btn);
-
-                    i++;
-                }
-            }
+            txt_TotalPipeLength.Text = TotalPipeLength.ToString("f2") + " m";
         }
 
         private void btn_Fitting_Click(object sender, EventArgs e)
         {
             var fitting = (Fitting)((Button)sender).Tag;
 
+            SystemItems.Add(new SystemItem(fitting));
 
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            generateFittingButtons();
+            rbtn_Dn40.Enabled = false;
+            rbtn_Dn50.Enabled = false;
+
+
+            calcTotalLength();
         }
 
         private void rbtn_Dn_CheckedChanged(object sender, EventArgs e)
         {
-            generateFittingButtons();
+            var dn = NominalDiameters.NotSpecified;
+            if (rbtn_Dn40.Checked)
+            {
+                dn = NominalDiameters.DN40;
+                txt_PipeDiameter.Text = "45,2";
+            }
+            else if (rbtn_Dn50.Checked)
+            {
+                dn = NominalDiameters.DN50;
+                txt_PipeDiameter.Text = "57";
+            }
+
+            generateFittingButtons(dn);
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void dgv_System_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            var fitting = new Fitting("uid", NominalDiameters.DN40)
+            calcTotalLength();
+        }
+
+        private void btn_AddPipe_Click(object sender, EventArgs e)
+        {
+            try
             {
-                DisplayName = "Bogen 90°",
-                EquivalentLength = 0.5
-            };
+                //TODO: TryParse in Pipe bereitstellen
+                var l = double.Parse(txt_PipeLength.Text);    //m
+                var di = double.Parse(txt_PipeDiameter.Text); //mm
 
-            fitting.ToFile("fittig.xml");
+                SystemItems.Add(new SystemItem(new Pipe(l, di, 0.1)));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Die eingegebenen Rohrdaten sind fehlerhaft.",
+                    "Eingabe Fehlerhaft", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                return;
+            }
+        }
+
+        private void btn_Clear_Click(object sender, EventArgs e)
+        {
+            SystemItems.Clear();
+            txt_TotalPipeLength.Clear();
+            rbtn_Dn40.Enabled = true;
+            rbtn_Dn50.Enabled = true;
         }
     }
 }
