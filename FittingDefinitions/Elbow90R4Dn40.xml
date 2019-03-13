@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Fitting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DisplayName>Bogen 90° r=4d</DisplayName>
+  <Diameter>DN40</Diameter>
+  <Zeta>0</Zeta>
+  <EquivalentLength>0.7</EquivalentLength>
+  <Source>http://www.poolpowershop-forum.de/d/11110-druckanstieg-durch-armaturen-winkel-b-gen.html</Source>
+</Fitting>
