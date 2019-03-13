@@ -24,6 +24,9 @@ Siehe auch Abschnitt [Pumpendefinition](#pumpendefinition) hier im Readme.
 ### p-v-Q Rechner
 ![Anzeige - p-v-Q Rechner](docs/FlowCalc_Pvq_Screen.png)
 
+### Äquivalente Rohrlänge Rechner
+![Anzeige - äquivalente Rohrlänge Rechner](docs/FlowCalc_PipeLength_Screen.png)
+
 ## Pumpendefinition
 Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form einer Pumpendefinitionsdatei angegeben werden. 
 
