@@ -90,6 +90,7 @@
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -100,7 +101,7 @@
             // 
             // btn_LoadPump
             // 
-            this.btn_LoadPump.Location = new System.Drawing.Point(22, 310);
+            this.btn_LoadPump.Location = new System.Drawing.Point(26, 349);
             this.btn_LoadPump.Name = "btn_LoadPump";
             this.btn_LoadPump.Size = new System.Drawing.Size(192, 39);
             this.btn_LoadPump.TabIndex = 98;
@@ -119,7 +120,7 @@
             // 
             // txt_SystemPressure
             // 
-            this.txt_SystemPressure.Location = new System.Drawing.Point(144, 172);
+            this.txt_SystemPressure.Location = new System.Drawing.Point(144, 211);
             this.txt_SystemPressure.Name = "txt_SystemPressure";
             this.txt_SystemPressure.Size = new System.Drawing.Size(62, 20);
             this.txt_SystemPressure.TabIndex = 1;
@@ -156,7 +157,7 @@
             this.groupBox1.Controls.Add(this.txt_PumpModel);
             this.groupBox1.Location = new System.Drawing.Point(12, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(469, 365);
+            this.groupBox1.Size = new System.Drawing.Size(469, 410);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pumpe";
@@ -164,7 +165,7 @@
             // btn_ShowPumpCurve
             // 
             this.btn_ShowPumpCurve.Enabled = false;
-            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(235, 310);
+            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(239, 349);
             this.btn_ShowPumpCurve.Name = "btn_ShowPumpCurve";
             this.btn_ShowPumpCurve.Size = new System.Drawing.Size(204, 39);
             this.btn_ShowPumpCurve.TabIndex = 18;
@@ -291,7 +292,7 @@
             // 
             // btn_CalcFlowRate
             // 
-            this.btn_CalcFlowRate.Location = new System.Drawing.Point(25, 201);
+            this.btn_CalcFlowRate.Location = new System.Drawing.Point(25, 240);
             this.btn_CalcFlowRate.Name = "btn_CalcFlowRate";
             this.btn_CalcFlowRate.Size = new System.Drawing.Size(219, 39);
             this.btn_CalcFlowRate.TabIndex = 5;
@@ -302,7 +303,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 175);
+            this.label6.Location = new System.Drawing.Point(22, 214);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 12;
@@ -313,7 +314,7 @@
             // 
             this.txt_SystemFlowRate.Enabled = false;
             this.txt_SystemFlowRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SystemFlowRate.Location = new System.Drawing.Point(144, 279);
+            this.txt_SystemFlowRate.Location = new System.Drawing.Point(144, 318);
             this.txt_SystemFlowRate.Name = "txt_SystemFlowRate";
             this.txt_SystemFlowRate.Size = new System.Drawing.Size(100, 20);
             this.txt_SystemFlowRate.TabIndex = 13;
@@ -321,7 +322,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 282);
+            this.label7.Location = new System.Drawing.Point(22, 321);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 14;
@@ -330,7 +331,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 256);
+            this.label8.Location = new System.Drawing.Point(22, 295);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(98, 13);
             this.label8.TabIndex = 16;
@@ -339,7 +340,7 @@
             // txt_SystemHead
             // 
             this.txt_SystemHead.Enabled = false;
-            this.txt_SystemHead.Location = new System.Drawing.Point(144, 253);
+            this.txt_SystemHead.Location = new System.Drawing.Point(144, 292);
             this.txt_SystemHead.Name = "txt_SystemHead";
             this.txt_SystemHead.Size = new System.Drawing.Size(100, 20);
             this.txt_SystemHead.TabIndex = 15;
@@ -358,13 +359,14 @@
             this.groupBox2.Controls.Add(this.txt_SystemFlowRate);
             this.groupBox2.Location = new System.Drawing.Point(498, 53);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(271, 365);
+            this.groupBox2.Size = new System.Drawing.Size(271, 410);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.txt_PipeSuctionPressureDrop);
             this.groupBox4.Controls.Add(this.lbl_PipeSuctionPressureDrop);
             this.groupBox4.Controls.Add(this.label15);
@@ -376,7 +378,7 @@
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Location = new System.Drawing.Point(25, 19);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(219, 138);
+            this.groupBox4.Size = new System.Drawing.Size(219, 177);
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Saugseitige Rohrleitung";
@@ -384,7 +386,7 @@
             // txt_PipeSuctionPressureDrop
             // 
             this.txt_PipeSuctionPressureDrop.Enabled = false;
-            this.txt_PipeSuctionPressureDrop.Location = new System.Drawing.Point(119, 101);
+            this.txt_PipeSuctionPressureDrop.Location = new System.Drawing.Point(119, 141);
             this.txt_PipeSuctionPressureDrop.Name = "txt_PipeSuctionPressureDrop";
             this.txt_PipeSuctionPressureDrop.Size = new System.Drawing.Size(85, 20);
             this.txt_PipeSuctionPressureDrop.TabIndex = 28;
@@ -392,7 +394,7 @@
             // lbl_PipeSuctionPressureDrop
             // 
             this.lbl_PipeSuctionPressureDrop.AutoSize = true;
-            this.lbl_PipeSuctionPressureDrop.Location = new System.Drawing.Point(15, 104);
+            this.lbl_PipeSuctionPressureDrop.Location = new System.Drawing.Point(15, 144);
             this.lbl_PipeSuctionPressureDrop.Name = "lbl_PipeSuctionPressureDrop";
             this.lbl_PipeSuctionPressureDrop.Size = new System.Drawing.Size(88, 13);
             this.lbl_PipeSuctionPressureDrop.TabIndex = 27;
@@ -464,7 +466,7 @@
             // btn_ShowPowerPoint
             // 
             this.btn_ShowPowerPoint.Enabled = false;
-            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(25, 310);
+            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(25, 349);
             this.btn_ShowPowerPoint.Name = "btn_ShowPowerPoint";
             this.btn_ShowPowerPoint.Size = new System.Drawing.Size(219, 39);
             this.btn_ShowPowerPoint.TabIndex = 19;
@@ -475,7 +477,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(208, 175);
+            this.label11.Location = new System.Drawing.Point(208, 214);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(22, 13);
             this.label11.TabIndex = 17;
@@ -624,7 +626,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stl_PumpSearchDirectory,
             this.stl_Info});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 439);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 479);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(781, 22);
             this.statusStrip1.TabIndex = 6;
@@ -644,19 +646,29 @@
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(18, 103);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(186, 23);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Äquivalente Länge ermitteln";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainView
             // 
             this.AcceptButton = this.btn_CalcFlowRate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 461);
+            this.ClientSize = new System.Drawing.Size(781, 501);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(797, 500);
-            this.MinimumSize = new System.Drawing.Size(797, 500);
+            this.MaximumSize = new System.Drawing.Size(797, 540);
+            this.MinimumSize = new System.Drawing.Size(797, 540);
             this.Name = "MainView";
             this.Text = "FlowCalc";
             this.groupBox1.ResumeLayout(false);
@@ -739,6 +751,7 @@
         private System.Windows.Forms.ToolStripMenuItem äquivalenteRohrlängeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fittingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suchverzeichnisToolStripMenuItem1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

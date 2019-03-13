@@ -50,6 +50,8 @@
             this.col_Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_Length = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
+            this.btn_Apply = new System.Windows.Forms.Button();
+            this.btn_Cancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_System)).BeginInit();
@@ -104,7 +106,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stl_FittingSearchDirectory});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 559);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 611);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(659, 22);
             this.statusStrip1.TabIndex = 3;
@@ -265,11 +267,37 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Äquivalente Gesamtlänge";
             // 
+            // btn_Apply
+            // 
+            this.btn_Apply.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Apply.Location = new System.Drawing.Point(512, 572);
+            this.btn_Apply.Name = "btn_Apply";
+            this.btn_Apply.Size = new System.Drawing.Size(135, 26);
+            this.btn_Apply.TabIndex = 9;
+            this.btn_Apply.Text = "Übernehmen";
+            this.btn_Apply.UseVisualStyleBackColor = true;
+            this.btn_Apply.Click += new System.EventHandler(this.btn_Apply_Click);
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_Cancel.Location = new System.Drawing.Point(355, 572);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(135, 26);
+            this.btn_Cancel.TabIndex = 10;
+            this.btn_Cancel.Text = "Abbrechen";
+            this.btn_Cancel.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
             // PipeLengthCalcView
             // 
+            this.AcceptButton = this.btn_Apply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 581);
+            this.CancelButton = this.btn_Cancel;
+            this.ClientSize = new System.Drawing.Size(659, 633);
+            this.Controls.Add(this.btn_Cancel);
+            this.Controls.Add(this.btn_Apply);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txt_TotalPipeLength);
@@ -278,7 +306,11 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.box_FittingButtons);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(675, 672);
+            this.MinimumSize = new System.Drawing.Size(675, 672);
             this.Name = "PipeLengthCalcView";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "PipeLengthCalcView";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -315,5 +347,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_Length;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_Apply;
+        private System.Windows.Forms.Button btn_Cancel;
     }
 }

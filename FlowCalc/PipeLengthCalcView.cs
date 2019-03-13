@@ -22,7 +22,8 @@ namespace FlowCalc
         public BindingList<SystemItem> SystemItems { get; set; }
 
         public double TotalPipeLength { get; private set; }
-
+        public double PipeDiameter { get; private set; }
+        
         public string WindowTitle
         {
             get
@@ -38,6 +39,14 @@ namespace FlowCalc
 
             InitializeComponent();
 
+            btn_Cancel.Visible = false;
+            btn_Apply.Visible = false;
+
+            var size = new Size(Size.Width, Size.Height - 54);
+            Size = size;
+            MinimumSize = size;
+            MaximumSize = size;
+
             this.Text = WindowTitle; //Title
             this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
 
@@ -48,7 +57,23 @@ namespace FlowCalc
             dgv_System.DataSource = source;
 
             generateFittingButtons(NominalDiameters.DN40);
-            txt_PipeDiameter.Text = "45,2";
+            PipeDiameter = 45.2;
+            txt_PipeDiameter.Text = PipeDiameter.ToString("f2");
+        }
+
+        public new DialogResult ShowDialog()
+        {
+            btn_Cancel.Visible = true;
+            btn_Apply.Visible = true;
+
+            statusStrip1.Visible = false;
+
+            var size = new Size(Size.Width, Size.Height + 40);
+            Size = size;
+            MinimumSize = size;
+            MaximumSize = size;
+
+            return base.ShowDialog();
         }
 
         private void generateFittingButtons(NominalDiameters dn)
@@ -116,13 +141,15 @@ namespace FlowCalc
             if (rbtn_Dn40.Checked)
             {
                 dn = NominalDiameters.DN40;
-                txt_PipeDiameter.Text = "45,2";
+                PipeDiameter = 45.2;
             }
             else if (rbtn_Dn50.Checked)
             {
                 dn = NominalDiameters.DN50;
-                txt_PipeDiameter.Text = "57";
+                PipeDiameter = 57;
             }
+
+            txt_PipeDiameter.Text = PipeDiameter.ToString("f2");
 
             generateFittingButtons(dn);
         }
@@ -141,6 +168,8 @@ namespace FlowCalc
                 var di = double.Parse(txt_PipeDiameter.Text); //mm
 
                 SystemItems.Add(new SystemItem(new Pipe(l, di, 0.1)));
+
+                calcTotalLength();
             }
             catch (Exception)
             {
@@ -157,6 +186,18 @@ namespace FlowCalc
             txt_TotalPipeLength.Clear();
             rbtn_Dn40.Enabled = true;
             rbtn_Dn50.Enabled = true;
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void btn_Apply_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

@@ -55,7 +55,9 @@ namespace FlowCalc
 
             m_Controller.NewPumpLoaded += applyPumpDefinition;
 
-            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpDefinitionPath) && Directory.Exists(DEFAULT_PUMPDEF_PATH))
+            var sdf = Properties.Settings.Default.PumpSearchPath;
+
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.PumpSearchPath) && Directory.Exists(DEFAULT_PUMPDEF_PATH))
             {
                 Properties.Settings.Default.PumpSearchPath = DEFAULT_PUMPDEF_PATH;
                 Properties.Settings.Default.Save();
@@ -375,6 +377,17 @@ namespace FlowCalc
                 Properties.Settings.Default.Save();
 
                 loadFittings();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var lengthCalcView = new PipeLengthCalcView(ref m_Controller);
+
+            if (lengthCalcView.ShowDialog() == DialogResult.OK)
+            {
+                txt_SuctionPiepLength.Text = lengthCalcView.TotalPipeLength.ToString("f2");
+                txt_SuctionPipeDiameter.Text = lengthCalcView.PipeDiameter.ToString("f2");
             }
         }
     }
