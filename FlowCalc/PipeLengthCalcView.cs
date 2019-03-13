@@ -91,6 +91,9 @@ namespace FlowCalc
                 {
                     if (fitting.Diameter == dn)
                     {
+                        if (i > 9)
+                            throw new NotImplementedException("Maximale Button Anzahl erreicht, hier muss noch gerabeitet werden."); //TODO:
+
                         var btn = new Button()
                         {
                             Name = "btn_" + fitting.UniqueName,
