@@ -57,6 +57,7 @@
             this.txt_SystemHead = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btn_CalcLength = new System.Windows.Forms.Button();
             this.txt_PipeSuctionPressureDrop = new System.Windows.Forms.TextBox();
             this.lbl_PipeSuctionPressureDrop = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -90,7 +91,6 @@
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -366,7 +366,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.btn_CalcLength);
             this.groupBox4.Controls.Add(this.txt_PipeSuctionPressureDrop);
             this.groupBox4.Controls.Add(this.lbl_PipeSuctionPressureDrop);
             this.groupBox4.Controls.Add(this.label15);
@@ -382,6 +382,16 @@
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Saugseitige Rohrleitung";
+            // 
+            // btn_CalcLength
+            // 
+            this.btn_CalcLength.Location = new System.Drawing.Point(18, 103);
+            this.btn_CalcLength.Name = "btn_CalcLength";
+            this.btn_CalcLength.Size = new System.Drawing.Size(186, 23);
+            this.btn_CalcLength.TabIndex = 29;
+            this.btn_CalcLength.Text = "Äquivalente Länge ermitteln";
+            this.btn_CalcLength.UseVisualStyleBackColor = true;
+            this.btn_CalcLength.Click += new System.EventHandler(this.btn_CalcLength_Click);
             // 
             // txt_PipeSuctionPressureDrop
             // 
@@ -646,16 +656,6 @@
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(18, 103);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 23);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Äquivalente Länge ermitteln";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainView
             // 
             this.AcceptButton = this.btn_CalcFlowRate;
@@ -751,7 +751,7 @@
         private System.Windows.Forms.ToolStripMenuItem äquivalenteRohrlängeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fittingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suchverzeichnisToolStripMenuItem1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_CalcLength;
     }
 }
 

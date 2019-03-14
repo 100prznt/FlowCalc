@@ -380,12 +380,13 @@ namespace FlowCalc
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_CalcLength_Click(object sender, EventArgs e)
         {
             var lengthCalcView = new PipeLengthCalcView(ref m_Controller);
 
             if (lengthCalcView.ShowDialog() == DialogResult.OK)
             {
+                cbx_CalcSuctionPipe.Checked = true;
                 txt_SuctionPiepLength.Text = lengthCalcView.TotalPipeLength.ToString("f2");
                 txt_SuctionPipeDiameter.Text = lengthCalcView.PipeDiameter.ToString("f2");
             }
