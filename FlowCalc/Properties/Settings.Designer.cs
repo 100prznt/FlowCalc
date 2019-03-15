@@ -142,5 +142,17 @@ namespace FlowCalc.Properties {
                 this["FittingsSearchPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double PumpHeight {
+            get {
+                return ((double)(this["PumpHeight"]));
+            }
+            set {
+                this["PumpHeight"] = value;
+            }
+        }
     }
 }

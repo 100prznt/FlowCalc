@@ -91,6 +91,9 @@
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txt_PumpHeight = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -101,7 +104,7 @@
             // 
             // btn_LoadPump
             // 
-            this.btn_LoadPump.Location = new System.Drawing.Point(26, 349);
+            this.btn_LoadPump.Location = new System.Drawing.Point(26, 380);
             this.btn_LoadPump.Name = "btn_LoadPump";
             this.btn_LoadPump.Size = new System.Drawing.Size(192, 39);
             this.btn_LoadPump.TabIndex = 98;
@@ -120,7 +123,7 @@
             // 
             // txt_SystemPressure
             // 
-            this.txt_SystemPressure.Location = new System.Drawing.Point(144, 211);
+            this.txt_SystemPressure.Location = new System.Drawing.Point(144, 242);
             this.txt_SystemPressure.Name = "txt_SystemPressure";
             this.txt_SystemPressure.Size = new System.Drawing.Size(62, 20);
             this.txt_SystemPressure.TabIndex = 1;
@@ -157,7 +160,7 @@
             this.groupBox1.Controls.Add(this.txt_PumpModel);
             this.groupBox1.Location = new System.Drawing.Point(12, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(469, 410);
+            this.groupBox1.Size = new System.Drawing.Size(469, 437);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pumpe";
@@ -165,7 +168,7 @@
             // btn_ShowPumpCurve
             // 
             this.btn_ShowPumpCurve.Enabled = false;
-            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(239, 349);
+            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(239, 380);
             this.btn_ShowPumpCurve.Name = "btn_ShowPumpCurve";
             this.btn_ShowPumpCurve.Size = new System.Drawing.Size(204, 39);
             this.btn_ShowPumpCurve.TabIndex = 18;
@@ -292,7 +295,7 @@
             // 
             // btn_CalcFlowRate
             // 
-            this.btn_CalcFlowRate.Location = new System.Drawing.Point(25, 240);
+            this.btn_CalcFlowRate.Location = new System.Drawing.Point(25, 271);
             this.btn_CalcFlowRate.Name = "btn_CalcFlowRate";
             this.btn_CalcFlowRate.Size = new System.Drawing.Size(219, 39);
             this.btn_CalcFlowRate.TabIndex = 5;
@@ -303,7 +306,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 214);
+            this.label6.Location = new System.Drawing.Point(22, 245);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 12;
@@ -314,7 +317,7 @@
             // 
             this.txt_SystemFlowRate.Enabled = false;
             this.txt_SystemFlowRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SystemFlowRate.Location = new System.Drawing.Point(144, 318);
+            this.txt_SystemFlowRate.Location = new System.Drawing.Point(144, 349);
             this.txt_SystemFlowRate.Name = "txt_SystemFlowRate";
             this.txt_SystemFlowRate.Size = new System.Drawing.Size(100, 20);
             this.txt_SystemFlowRate.TabIndex = 13;
@@ -322,7 +325,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 321);
+            this.label7.Location = new System.Drawing.Point(22, 352);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 14;
@@ -331,7 +334,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 295);
+            this.label8.Location = new System.Drawing.Point(22, 326);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(98, 13);
             this.label8.TabIndex = 16;
@@ -340,13 +343,16 @@
             // txt_SystemHead
             // 
             this.txt_SystemHead.Enabled = false;
-            this.txt_SystemHead.Location = new System.Drawing.Point(144, 292);
+            this.txt_SystemHead.Location = new System.Drawing.Point(144, 323);
             this.txt_SystemHead.Name = "txt_SystemHead";
             this.txt_SystemHead.Size = new System.Drawing.Size(100, 20);
             this.txt_SystemHead.TabIndex = 15;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.txt_PumpHeight);
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.btn_ShowPowerPoint);
             this.groupBox2.Controls.Add(this.label11);
@@ -359,7 +365,7 @@
             this.groupBox2.Controls.Add(this.txt_SystemFlowRate);
             this.groupBox2.Location = new System.Drawing.Point(498, 53);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(271, 410);
+            this.groupBox2.Size = new System.Drawing.Size(271, 437);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
@@ -476,7 +482,7 @@
             // btn_ShowPowerPoint
             // 
             this.btn_ShowPowerPoint.Enabled = false;
-            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(25, 349);
+            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(25, 380);
             this.btn_ShowPowerPoint.Name = "btn_ShowPowerPoint";
             this.btn_ShowPowerPoint.Size = new System.Drawing.Size(219, 39);
             this.btn_ShowPowerPoint.TabIndex = 19;
@@ -487,7 +493,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(208, 214);
+            this.label11.Location = new System.Drawing.Point(208, 245);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(22, 13);
             this.label11.TabIndex = 17;
@@ -636,7 +642,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stl_PumpSearchDirectory,
             this.stl_Info});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 479);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 509);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(781, 22);
             this.statusStrip1.TabIndex = 6;
@@ -656,19 +662,46 @@
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(208, 219);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(15, 13);
+            this.label16.TabIndex = 25;
+            this.label16.Text = "m";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(22, 219);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 13);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "Ansaughöhe";
+            this.toolTip1.SetToolTip(this.label17, "Höhe in welcher die Pumpe über dem Wasserspiegel steht");
+            // 
+            // txt_PumpHeight
+            // 
+            this.txt_PumpHeight.Location = new System.Drawing.Point(144, 216);
+            this.txt_PumpHeight.Name = "txt_PumpHeight";
+            this.txt_PumpHeight.Size = new System.Drawing.Size(62, 20);
+            this.txt_PumpHeight.TabIndex = 23;
+            this.txt_PumpHeight.Text = "0,0";
+            // 
             // MainView
             // 
             this.AcceptButton = this.btn_CalcFlowRate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 501);
+            this.ClientSize = new System.Drawing.Size(781, 531);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(797, 540);
-            this.MinimumSize = new System.Drawing.Size(797, 540);
+            this.MaximumSize = new System.Drawing.Size(797, 570);
+            this.MinimumSize = new System.Drawing.Size(797, 570);
             this.Name = "MainView";
             this.Text = "FlowCalc";
             this.groupBox1.ResumeLayout(false);
@@ -752,6 +785,9 @@
         private System.Windows.Forms.ToolStripMenuItem fittingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suchverzeichnisToolStripMenuItem1;
         private System.Windows.Forms.Button btn_CalcLength;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txt_PumpHeight;
     }
 }
 
