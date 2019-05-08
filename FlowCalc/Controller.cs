@@ -192,15 +192,13 @@ namespace FlowCalc
             }
             else
             {
-                //Iterative Berechnung, da Volumenstrom auch vom suagseitigen Druckverlust abhängt
-
-                double s = -0.01; // Schrittweite für Antastung
-                int i = 7; // Anzahl der Richtungswechsel
-
                 double pressureDrop = 0;
                 double systemPressure = 0;
+                //Iterative Berechnung, da Volumenstrom auch vom saugseitigen Druckverlust abhängt
+                double s = -0.01; // Schrittweite für Antastung
+                int i = 7; // Anzahl der Richtungswechsel
                 double error = double.MaxValue;
-                double lastError = double.MaxValue;
+                double lastError;
                 while (i > 0)
                 {
                     lastError = error;
@@ -212,7 +210,7 @@ namespace FlowCalc
                     Array.Reverse(performanceFlowValues);
                     Array.Reverse(performanceHeadValues);
 
-                    systemPressure = LinInterp.LinearInterpolation(performanceFlowValues, performanceHeadValues, systemFlowRate) * 0.0980665; //TODO: brauche x wert zu y wert!
+                    systemPressure = LinInterp.LinearInterpolation(performanceFlowValues, performanceHeadValues, systemFlowRate) * 0.0980665;
 
                     error = systemPressure - pressureDrop - pressure;
 
@@ -221,41 +219,11 @@ namespace FlowCalc
                         s /= -10;
                         i--;
                     }
+
+                    SuctionPressureDropCalcIterations++;
                 }
 
 
-                //double lambda = 0.005; // Startwert für Lambda
-                //double s = 0.001; // Schrittweite für Antastung
-                //int i = 7; // Anzahl der Richtungswechsel
-
-                //double error = double.MaxValue - 1;
-                //double lastError = double.MaxValue;
-                //while (i > 0)
-                //{
-                //    lastError = error;
-                //    error = 1 / Math.Sqrt(lambda) - (-2 * Math.Log10((2.51 / (re * Math.Sqrt(lambda))) + (k / (3.71 * di))));
-
-                //    if (Math.Abs(error) >= Math.Abs(lastError))
-                //    {
-                //        s /= -10;
-                //        i--;
-                //    }
-                //    lambda += s;
-                //}
-
-
-                //double lastFlowRate = 0;
-                //double pressureDrop = 0;
-                //double systemPressure = 0;
-                //while (Math.Round(systemFlowRate, 4) != Math.Round(lastFlowRate, 4))
-                //{
-                //    pressureDrop = SuctionPipe.CalcPressureDrop(Medium.Water20, systemFlowRate);
-                //    systemPressure = pressure + pressureDrop;
-                //    lastFlowRate = systemFlowRate;
-                //    systemFlowRate = LinInterp.LinearInterpolation(Pump.GetPerformanceHeadValues(), Pump.GetPerformanceFlowValues(), systemPressure / 0.0980665);
-
-                //    SuctionPressureDropCalcIterations++;
-                //}
 
                 if (SystemHead > Pump.MaxTotalHead || double.IsInfinity(systemPressure) || double.IsInfinity(systemFlowRate) || double.IsInfinity(pressureDrop))
                     ResetSystem();
