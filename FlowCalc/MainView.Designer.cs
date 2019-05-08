@@ -56,6 +56,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txt_SystemHead = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txt_PumpHeight = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btn_CalcLength = new System.Windows.Forms.Button();
             this.txt_PipeSuctionPressureDrop = new System.Windows.Forms.TextBox();
@@ -91,9 +94,8 @@
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txt_PumpHeight = new System.Windows.Forms.TextBox();
+            this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -370,6 +372,33 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(208, 219);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(15, 13);
+            this.label16.TabIndex = 25;
+            this.label16.Text = "m";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(22, 219);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 13);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "Ansaughöhe";
+            this.toolTip1.SetToolTip(this.label17, "Höhe in welcher die Pumpe über dem Wasserspiegel steht");
+            // 
+            // txt_PumpHeight
+            // 
+            this.txt_PumpHeight.Location = new System.Drawing.Point(144, 216);
+            this.txt_PumpHeight.Name = "txt_PumpHeight";
+            this.txt_PumpHeight.Size = new System.Drawing.Size(62, 20);
+            this.txt_PumpHeight.TabIndex = 23;
+            this.txt_PumpHeight.Text = "0,0";
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btn_CalcLength);
@@ -516,6 +545,8 @@
             // stToolStripMenuItem
             // 
             this.stToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.einstellungenToolStripMenuItem,
+            this.toolStripSeparator3,
             this.beendenToolStripMenuItem});
             this.stToolStripMenuItem.Name = "stToolStripMenuItem";
             this.stToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
@@ -524,7 +555,7 @@
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
             // 
@@ -662,32 +693,17 @@
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label16
+            // einstellungenToolStripMenuItem
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(208, 219);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(15, 13);
-            this.label16.TabIndex = 25;
-            this.label16.Text = "m";
+            this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.einstellungenToolStripMenuItem.Text = "Einstellungen";
+            this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.einstellungenToolStripMenuItem_Click);
             // 
-            // label17
+            // toolStripSeparator3
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(22, 219);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(67, 13);
-            this.label17.TabIndex = 24;
-            this.label17.Text = "Ansaughöhe";
-            this.toolTip1.SetToolTip(this.label17, "Höhe in welcher die Pumpe über dem Wasserspiegel steht");
-            // 
-            // txt_PumpHeight
-            // 
-            this.txt_PumpHeight.Location = new System.Drawing.Point(144, 216);
-            this.txt_PumpHeight.Name = "txt_PumpHeight";
-            this.txt_PumpHeight.Size = new System.Drawing.Size(62, 20);
-            this.txt_PumpHeight.TabIndex = 23;
-            this.txt_PumpHeight.Text = "0,0";
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // MainView
             // 
@@ -788,6 +804,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txt_PumpHeight;
+        private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 

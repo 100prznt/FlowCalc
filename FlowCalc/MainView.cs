@@ -291,7 +291,10 @@ namespace FlowCalc
                     try
                     {
                         m_Controller.LoadPumps(Properties.Settings.Default.PumpSearchPath);
-                        stl_PumpSearchDirectory.Text = "Suchverzeichnis: " + Properties.Settings.Default.PumpSearchPath;
+                        var path = Properties.Settings.Default.PumpSearchPath;
+                        if (!(path.Contains('/') || path.Contains('\\')))
+                            path = Directory.GetCurrentDirectory() + "\\" + path;
+                        stl_PumpSearchDirectory.Text = "Suchverzeichnis: " + path;
                     }
                     catch (Exception)
                     {
@@ -398,6 +401,11 @@ namespace FlowCalc
                 txt_SuctionPiepLength.Text = lengthCalcView.TotalPipeLength.ToString("f2");
                 txt_SuctionPipeDiameter.Text = lengthCalcView.PipeDiameter.ToString("f2");
             }
+        }
+
+        private void einstellungenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
