@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -85,7 +86,10 @@ namespace FlowCalc
             
             if (m_Controller.Fittings != null && m_Controller.Fittings.Count > 0)
             {
-                stl_FittingSearchDirectory.Text = "Suchverzeichnis: " + Properties.Settings.Default.FittingsSearchPath;
+                var path = Properties.Settings.Default.FittingsSearchPath;
+                if (!(path.Contains('/') || path.Contains('\\')))
+                    path = Directory.GetCurrentDirectory() + "\\" + path;
+                stl_FittingSearchDirectory.Text = "Suchverzeichnis: " + path;
 
                 foreach (var fitting in m_Controller.Fittings)
                 {
