@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlowCalc.Mathematics
 {
-    public class CheckRoutines
+    public static class CheckRoutines
     {
         /// <summary>
         /// Ermittelt die Richtung der Werte
@@ -32,6 +32,36 @@ namespace FlowCalc.Mathematics
             else
                 return Direction.Ascending;
         }
+
+        /// <summary>
+        /// Prüft ob ein Wert innerhalb der vorgegebenen Grenzen liegt
+        /// </summary>
+        /// <param name="value">Zu prüfender Wert</param>
+        /// <param name="limits">Vorgegebene Grenzen</param>
+        public static CheckLimitResult CheckLimits(this double value, DoubleLimits limits)
+        {
+            var result = CheckLimitResult.ValuePassLimits;
+
+            if (value < limits.LowerLimit)
+                result = CheckLimitResult.ValueCrossLowerLimit;
+            else if (value > limits.UpperLimit)
+                result = CheckLimitResult.ValueCrossUpperLimit;
+
+            return result;
+        }
+    }
+
+    public struct DoubleLimits
+    {
+        public double UpperLimit;
+        public double LowerLimit;
+    }
+
+    public enum CheckLimitResult
+    {
+        ValueCrossUpperLimit = -2,
+        ValueCrossLowerLimit = -1,
+        ValuePassLimits = 0
     }
 
     public enum Direction

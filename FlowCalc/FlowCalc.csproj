@@ -80,6 +80,7 @@
     <Compile Include="MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mathematics\CheckLimits.cs" />
     <Compile Include="Mathematics\CheckRoutines.cs" />
     <Compile Include="Mathematics\LinInterp.cs" />
     <Compile Include="PhysicalUnits\DimensionExtensions.cs" />

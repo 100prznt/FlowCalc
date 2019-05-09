@@ -1,4 +1,5 @@
-﻿using FlowCalc.PoolSystem;
+﻿using FlowCalc.Mathematics;
+using FlowCalc.PoolSystem;
 using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
@@ -14,8 +15,21 @@ namespace FlowCalc
     [Serializable]
     public class CalcPresets
     {
-        #region Member
+        public static readonly DoubleLimits RoughnessLimits = new DoubleLimits()
+        {
+            LowerLimit = 0,
+            UpperLimit = 1
+        };
 
+        public static readonly DoubleLimits MetresAboveSeaLevelLimits = new DoubleLimits()
+        {
+            LowerLimit = -50,
+            UpperLimit = 2500
+        };
+
+        #region Member
+        double m_MetresAboveSeaLevel;
+        double m_Roughness;
 
         #endregion Member
 
@@ -43,14 +57,42 @@ namespace FlowCalc
         [Category("Umgebung")]
         [DisplayName("Höhe über dem Meeresspiegel in m")]
         [XmlElement("Masl")]
-        public double MetresAboveSeaLevel { get; set; }
+        public double MetresAboveSeaLevel
+        {
+            get
+            {
+                return m_MetresAboveSeaLevel;
+            }
+            set
+            {
+                var res = value.CheckLimits(MetresAboveSeaLevelLimits);
+                if (res == CheckLimitResult.ValuePassLimits)
+                    m_MetresAboveSeaLevel = value;
+                else
+                    throw new ArgumentOutOfRangeException("MetresAboveSeaLevel not in limits! Checkresult: " + res);
+            }
+        }
 
         /// <summary>
         /// Rohrrauheit in [mm]
         /// </summary>
         [Category("Rohr")]
         [DisplayName("Rohrrauheit in mm")]
-        public double Roughness { get; set; }
+        public double Roughness
+        {
+            get
+            {
+                return m_Roughness;
+            }
+            set
+            {
+                var res = value.CheckLimits(RoughnessLimits);
+                if (res == CheckLimitResult.ValuePassLimits)
+                    m_Roughness = value;
+                else
+                    throw new ArgumentOutOfRangeException("Roughness not in limits! Checkresult: " + res);
+            }
+        }
 
         /// <summary>
         /// Standardvoreinstellungen erzeugen
