@@ -124,7 +124,7 @@ namespace FlowCalc
                     var l = double.Parse(txt_SuctionPiepLength.Text);
                     var di = double.Parse(txt_SuctionPipeDiameter.Text);
 
-                    m_Controller.SuctionPipe = new Pipe(l, di, 0.1);
+                    m_Controller.SuctionPipe = new Pipe(l, di, Controller.CurrentPresets.Roughness);
 
                     Properties.Settings.Default.SuctionPipeLength = l;
                     Properties.Settings.Default.SuctionPipeDiameter = di;
@@ -405,7 +405,15 @@ namespace FlowCalc
 
         private void einstellungenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var presetDgl = new PresetView()
+            {
+                Settings = Controller.CurrentPresets
+            };
 
+            if (presetDgl.ShowDialog() == DialogResult.OK)
+            {
+                m_Controller.ApplyPresets(presetDgl.Settings);
+            }
         }
     }
 }

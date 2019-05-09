@@ -75,6 +75,8 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.stToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.überToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auswahlPumpeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,8 +96,6 @@
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -552,6 +552,18 @@
             this.stToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.stToolStripMenuItem.Text = "Datei";
             // 
+            // einstellungenToolStripMenuItem
+            // 
+            this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.einstellungenToolStripMenuItem.Text = "Voreinstellungen";
+            this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.einstellungenToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
@@ -692,18 +704,6 @@
             this.stl_Info.Spring = true;
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // einstellungenToolStripMenuItem
-            // 
-            this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
-            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.einstellungenToolStripMenuItem.Text = "Einstellungen";
-            this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.einstellungenToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // MainView
             // 

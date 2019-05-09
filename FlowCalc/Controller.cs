@@ -15,6 +15,17 @@ namespace FlowCalc
 {
     public class Controller : INotifyPropertyChanged
     {
+        #region Constants
+
+        const string PRESETS_PATH = "FlowCalc.settings";
+
+        #endregion Constants
+
+        /// <summary>
+        /// Aktuell geladene Voreinstellungen
+        /// </summary>
+        public static CalcPresets CurrentPresets;
+
         #region Member
 
 
@@ -80,12 +91,24 @@ namespace FlowCalc
         /// </summary>
         public Controller()
         {
-
+            if (File.Exists(PRESETS_PATH))
+                CurrentPresets = CalcPresets.FromFile(PRESETS_PATH);
+            else
+            {
+                CurrentPresets = CalcPresets.Default;
+                CurrentPresets.ToFile(PRESETS_PATH);
+            }
         }
 
         #endregion Constructor
 
         #region Services
+        public void ApplyPresets(CalcPresets presets)
+        {
+            CurrentPresets = presets;
+            CurrentPresets.ToFile(PRESETS_PATH);
+        }
+
         /// <summary>
         /// Initialisiere neue Pumpe
         /// </summary>
@@ -203,7 +226,7 @@ namespace FlowCalc
                 {
                     lastError = error;
                     systemFlowRate += s;
-                    pressureDrop = SuctionPipe.CalcPressureDrop(Medium.Water20, systemFlowRate);
+                    pressureDrop = SuctionPipe.CalcPressureDrop(CurrentPresets.Medium, systemFlowRate);
 
                     var performanceFlowValues = Pump.GetPerformanceFlowValues();
                     var performanceHeadValues = Pump.GetPerformanceHeadValues();

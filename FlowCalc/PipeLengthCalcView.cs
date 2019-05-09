@@ -14,10 +14,8 @@ using System.Windows.Forms;
 
 namespace FlowCalc
 {
-
     public partial class PipeLengthCalcView : Form
     {
-
         Controller m_Controller;
 
         public BindingList<SystemItem> SystemItems { get; set; }
@@ -174,7 +172,7 @@ namespace FlowCalc
                 var l = double.Parse(txt_PipeLength.Text);    //m
                 var di = double.Parse(txt_PipeDiameter.Text); //mm
 
-                SystemItems.Add(new SystemItem(new Pipe(l, di, 0.1)));
+                SystemItems.Add(new SystemItem(new Pipe(l, di, Controller.CurrentPresets.Roughness)));
 
                 calcTotalLength();
             }

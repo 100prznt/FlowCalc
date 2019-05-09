@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using FlowCalc.PoolSystem;
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace FlowCalc
@@ -18,29 +20,56 @@ namespace FlowCalc
         #endregion Member
 
         #region Properties
-        /// <summary>
-        /// Rohrrauheit in [mm]
-        /// </summary>
-        [Category("Rohr")]
-        [DisplayName("Rohrrauheit in mm")]
-        public string Roughness { get; set; }
+        [XmlAnyElement("MediumComment")]
+        public XmlComment MediumComment
+        {
+            get
+            {
+                return new XmlDocument().CreateComment("Changes made to the media parameters here are not taken into account by the program!");
+            }
+            set { }
+        }
 
         /// <summary>
-        /// Wasertemperatur in [°C]
+        /// Medium
         /// </summary>
-        [Category("Wasser")]
-        [DisplayName("Temperatur in °C")]
-        public double WaterTemperature { get; set; }
+        [Category("Medium")]
+        [DisplayName("Medium")]
+        public Medium Medium { get; set; }
 
         /// <summary>
-        /// Nennvolumenstrom Q_N
-        /// in [m^3/h]
-        /// bei Nennförderhöhe
+        /// Höhe über dem Meeresspiegel (N.N.) in m
         /// </summary>
         [Category("Umgebung")]
         [DisplayName("Höhe über dem Meeresspiegel in m")]
         [XmlElement("Masl")]
         public double MetresAboveSeaLevel { get; set; }
+
+        /// <summary>
+        /// Rohrrauheit in [mm]
+        /// </summary>
+        [Category("Rohr")]
+        [DisplayName("Rohrrauheit in mm")]
+        public double Roughness { get; set; }
+
+        /// <summary>
+        /// Standardvoreinstellungen erzeugen
+        /// </summary>
+        [XmlIgnore]
+        public static CalcPresets Default
+        {
+            get
+            {
+                var defalut = new CalcPresets()
+                {
+                    Medium = Medium.Water20,
+                    MetresAboveSeaLevel = 0,
+                    Roughness = 0.1
+                };
+
+                return defalut;
+            }
+        }
 
         #endregion Properties
 
@@ -57,38 +86,16 @@ namespace FlowCalc
 
         #region Services
         /// <summary>
-        /// Im Standard-Format (XML) speichern
-        /// </summary>
-        /// <param name="path">Pfad unter welchem die Datei angelegt wird</param>
-        public void ToFile(string path)
-        {
-            ToXmlFile(path);
-        }
-
-        /// <summary>
         /// Im XML Format speichern
         /// </summary>
         /// <param name="path">Pfad unter welchem die Datei angelegt wird</param>
-        public void ToXmlFile(string path)
+        public void ToFile(string path)
         {
             var xs = new XmlSerializer(typeof(CalcPresets));
 
             using (var sw = new StreamWriter(path))
             {
                 xs.Serialize(sw, this);
-            }
-        }
-
-        /// <summary>
-        /// Im JSON Format speichern
-        /// </summary>
-        /// <param name="path">Pfad unter welchem die Datei angelegt wird</param>
-        public void ToJsonFile(string path)
-        {
-            using (var sw = new StreamWriter(path))
-            {
-                sw.Write(JsonConvert.SerializeObject(this, Formatting.Indented));
-                sw.Flush();
             }
         }
 
@@ -100,7 +107,7 @@ namespace FlowCalc
         public static CalcPresets FromFile(string path)
         {
             CalcPresets presets;
-            var xs = new XmlSerializer(typeof(Pump));
+            var xs = new XmlSerializer(typeof(CalcPresets));
 
             using (var sr = new StreamReader(path))
             {
