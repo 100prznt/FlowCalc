@@ -121,18 +121,6 @@ namespace FlowCalc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double CalcPipeRoughness {
-            get {
-                return ((double)(this["CalcPipeRoughness"]));
-            }
-            set {
-                this["CalcPipeRoughness"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string FittingsSearchPath {
             get {

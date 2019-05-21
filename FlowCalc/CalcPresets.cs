@@ -95,7 +95,7 @@ namespace FlowCalc
         }
 
         /// <summary>
-        /// Standardvoreinstellungen erzeugen
+        /// Standard-Voreinstellungen erzeugen
         /// </summary>
         [XmlIgnore]
         public static CalcPresets Default

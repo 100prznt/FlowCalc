@@ -67,8 +67,8 @@ namespace FlowCalc
             }
 
             cbx_Medium.DataSource = m_AavailableMedia;
-            cbx_Medium.DisplayMember = "DisplayName";
-            cbx_Medium.ValueMember = "DisplayName";
+            cbx_Medium.DisplayMember = nameof(Medium.DisplayName);
+            cbx_Medium.ValueMember = nameof(Medium.DisplayName);
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)

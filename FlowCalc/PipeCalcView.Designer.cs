@@ -88,7 +88,6 @@
             this.txt_PipeRoughness.Name = "txt_PipeRoughness";
             this.txt_PipeRoughness.Size = new System.Drawing.Size(85, 20);
             this.txt_PipeRoughness.TabIndex = 7;
-            this.txt_PipeRoughness.Text = "0,1";
             // 
             // label6
             // 

@@ -74,8 +74,8 @@ namespace FlowCalc
                 txt_PipeDiameter.Text = Properties.Settings.Default.CalcPipeDiameter.ToString();
             if (Properties.Settings.Default.CalcPipeLength > 0)
                 txt_PipeLength.Text = Properties.Settings.Default.CalcPipeLength.ToString();
-            if (Properties.Settings.Default.CalcPipeRoughness > 0)
-                txt_PipeRoughness.Text = Properties.Settings.Default.CalcPipeRoughness.ToString();
+
+                txt_PipeRoughness.Text = Controller.CurrentPresets.Roughness.ToString("F4");
         }
 
         private void btn_Clac_Click(object sender, EventArgs e)
@@ -93,7 +93,6 @@ namespace FlowCalc
 
                 Properties.Settings.Default.CalcPipeDiameter = di;
                 Properties.Settings.Default.CalcPipeLength = l;
-                Properties.Settings.Default.CalcPipeRoughness = k;
                 Properties.Settings.Default.Save();
 
                 Pipe = new Pipe(l, di, k);
