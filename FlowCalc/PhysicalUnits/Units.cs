@@ -42,6 +42,19 @@ namespace FlowCalc.PhysicalUnits
         KPa,
         [PhysicalDimension(Dimensions.Pressure)]
         [PhysicalUnit("m WS", 0.0980665)]
-        MWs
+        MWs,
+        [PhysicalDimension(Dimensions.Volume)]
+        [PhysicalUnit("m³", true)]
+        M3,
+        [PhysicalDimension(Dimensions.Volume)]
+        [PhysicalUnit("l", 0.001)]
+        L,
+        [PhysicalDimension(Dimensions.Length)]
+        [PhysicalUnit("m", true)]
+        M,
+        [PhysicalDimension(Dimensions.Ratio)]
+        [PhysicalUnit("%", true)]
+        Percent,
+
     }
 }

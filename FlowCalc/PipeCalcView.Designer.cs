@@ -263,7 +263,7 @@
             this.groupBox3.Size = new System.Drawing.Size(329, 72);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Druck";
+            this.groupBox3.Text = "Ergebnis";
             // 
             // PipeCalcView
             // 

@@ -415,5 +415,12 @@ namespace FlowCalc
                 m_Controller.ApplyPresets(presetDgl.Settings);
             }
         }
+
+        private void poolvolumenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var volumeCalcView = new VolumeCalcView();
+
+            volumeCalcView.Show();
+        }
     }
 }

@@ -91,6 +91,14 @@
     <Compile Include="PhysicalUnits\UnitExtensions.cs" />
     <Compile Include="PhysicalUnits\Units.cs" />
     <Compile Include="PhysicalUnits\PhysicalDimensionAttribute.cs" />
+    <Compile Include="Objects\Pool.cs" />
+    <Compile Include="Objects\PoolShape.cs" />
+    <Compile Include="VolumeCalcView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VolumeCalcView.Designer.cs">
+      <DependentUpon>VolumeCalcView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PipeCalcView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VolumeCalcView.resx">
+      <DependentUpon>VolumeCalcView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PipeCalcView.resx">
       <DependentUpon>PipeCalcView.cs</DependentUpon>
