@@ -422,5 +422,15 @@ namespace FlowCalc
 
             volumeCalcView.Show();
         }
+
+        private void umwälzleistungToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var circulationCalcView = new CirculationCalcView()
+            {
+                FlowRate = m_Controller.SystemFlowRate
+            };
+
+            circulationCalcView.Show();
+        }
     }
 }

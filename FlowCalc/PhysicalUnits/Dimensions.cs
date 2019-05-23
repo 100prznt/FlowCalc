@@ -16,6 +16,7 @@ namespace FlowCalc.PhysicalUnits
         Pressure,
         Volume,
         Level,
-        Ratio
+        Ratio,
+        Time
     }
 }

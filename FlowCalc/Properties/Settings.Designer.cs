@@ -142,5 +142,29 @@ namespace FlowCalc.Properties {
                 this["PumpHeight"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double CalcFlowRate {
+            get {
+                return ((double)(this["CalcFlowRate"]));
+            }
+            set {
+                this["CalcFlowRate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double CalcVolume {
+            get {
+                return ((double)(this["CalcVolume"]));
+            }
+            set {
+                this["CalcVolume"] = value;
+            }
+        }
     }
 }

@@ -90,13 +90,14 @@
             this.rechnerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.volumenstromFließgeschwindigkeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.äquivalenteRohrlängeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.poolvolumenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.überToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.poolvolumenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.umwälzleistungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -644,7 +645,8 @@
             this.rechnerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.volumenstromFließgeschwindigkeitToolStripMenuItem,
             this.äquivalenteRohrlängeToolStripMenuItem,
-            this.poolvolumenToolStripMenuItem});
+            this.poolvolumenToolStripMenuItem,
+            this.umwälzleistungToolStripMenuItem});
             this.rechnerToolStripMenuItem.Name = "rechnerToolStripMenuItem";
             this.rechnerToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.rechnerToolStripMenuItem.Text = "Rechner";
@@ -666,6 +668,13 @@
             this.äquivalenteRohrlängeToolStripMenuItem.ToolTipText = "Berechnung der äquivalente Rohrlänge in Abhängigkeit der verbauten Fittings und A" +
     "rmaturen";
             this.äquivalenteRohrlängeToolStripMenuItem.Click += new System.EventHandler(this.äquivalenteRohrlängeToolStripMenuItem_Click);
+            // 
+            // poolvolumenToolStripMenuItem
+            // 
+            this.poolvolumenToolStripMenuItem.Name = "poolvolumenToolStripMenuItem";
+            this.poolvolumenToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.poolvolumenToolStripMenuItem.Text = "Poolvolumen";
+            this.poolvolumenToolStripMenuItem.Click += new System.EventHandler(this.poolvolumenToolStripMenuItem_Click);
             // 
             // hilfeToolStripMenuItem
             // 
@@ -707,12 +716,12 @@
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // poolvolumenToolStripMenuItem
+            // umwälzleistungToolStripMenuItem
             // 
-            this.poolvolumenToolStripMenuItem.Name = "poolvolumenToolStripMenuItem";
-            this.poolvolumenToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.poolvolumenToolStripMenuItem.Text = "Poolvolumen";
-            this.poolvolumenToolStripMenuItem.Click += new System.EventHandler(this.poolvolumenToolStripMenuItem_Click);
+            this.umwälzleistungToolStripMenuItem.Name = "umwälzleistungToolStripMenuItem";
+            this.umwälzleistungToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.umwälzleistungToolStripMenuItem.Text = "Umwälzleistung";
+            this.umwälzleistungToolStripMenuItem.Click += new System.EventHandler(this.umwälzleistungToolStripMenuItem_Click);
             // 
             // MainView
             // 
@@ -816,6 +825,7 @@
         private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem poolvolumenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem umwälzleistungToolStripMenuItem;
     }
 }
 

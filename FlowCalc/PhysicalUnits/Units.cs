@@ -55,6 +55,14 @@ namespace FlowCalc.PhysicalUnits
         [PhysicalDimension(Dimensions.Ratio)]
         [PhysicalUnit("%", true)]
         Percent,
-
+        [PhysicalDimension(Dimensions.Time)]
+        [PhysicalUnit("min", 60)]
+        Min,
+        [PhysicalDimension(Dimensions.Time)]
+        [PhysicalUnit("s", true)]
+        S,
+        [PhysicalDimension(Dimensions.Time)]
+        [PhysicalUnit("h", 60 * 60)]
+        H
     }
 }

@@ -68,7 +68,9 @@ namespace FlowCalc
             {
                 //TODO: TryParse in Pipe bereitstellen
                 var a = double.Parse(txt_DimA.Text); //m
-                var b = double.Parse(txt_DimB.Text); //m
+                var b = double.NaN;
+                if (!string.IsNullOrWhiteSpace(txt_DimB.Text))
+                    b = double.Parse(txt_DimB.Text); //m
                 var d = double.Parse(txt_DimDepth.Text); //m
 
                 var l = double.Parse(txt_Level.Text);
@@ -93,7 +95,10 @@ namespace FlowCalc
                 return;
             }
 
-            txt_Volume.Text = Pool.Volumen.ToString("F2");
+            Properties.Settings.Default.CalcVolume = Pool.Volumen;
+            Properties.Settings.Default.Save();
+
+            txt_Volume.Text = UnitConverter.ToUnit(Pool.Volumen, Units.M3, CurrentVolumenUnit).ToString("F2");
         }
 
         private void cmb_FillLevelUnit_SelectedIndexChanged(object sender, EventArgs e)
