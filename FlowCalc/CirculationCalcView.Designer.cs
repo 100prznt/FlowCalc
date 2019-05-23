@@ -41,10 +41,13 @@
             this.txt_RunTime = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_ResultInfo = new System.Windows.Forms.Label();
+            this.nud_Count = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Count)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -92,7 +95,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Location = new System.Drawing.Point(12, 86);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(329, 79);
+            this.groupBox2.Size = new System.Drawing.Size(329, 68);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filteranlage";
@@ -101,7 +104,7 @@
             // 
             this.cmb_FlowRateUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_FlowRateUnit.FormattingEnabled = true;
-            this.cmb_FlowRateUnit.Location = new System.Drawing.Point(254, 35);
+            this.cmb_FlowRateUnit.Location = new System.Drawing.Point(254, 27);
             this.cmb_FlowRateUnit.Name = "cmb_FlowRateUnit";
             this.cmb_FlowRateUnit.Size = new System.Drawing.Size(54, 21);
             this.cmb_FlowRateUnit.TabIndex = 20;
@@ -109,7 +112,7 @@
             // 
             // txt_FlowRate
             // 
-            this.txt_FlowRate.Location = new System.Drawing.Point(163, 36);
+            this.txt_FlowRate.Location = new System.Drawing.Point(163, 28);
             this.txt_FlowRate.Name = "txt_FlowRate";
             this.txt_FlowRate.Size = new System.Drawing.Size(85, 20);
             this.txt_FlowRate.TabIndex = 10;
@@ -117,7 +120,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(19, 39);
+            this.label8.Location = new System.Drawing.Point(19, 31);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 13);
             this.label8.TabIndex = 9;
@@ -125,7 +128,7 @@
             // 
             // btn_Clac
             // 
-            this.btn_Clac.Location = new System.Drawing.Point(34, 208);
+            this.btn_Clac.Location = new System.Drawing.Point(34, 229);
             this.btn_Clac.Name = "btn_Clac";
             this.btn_Clac.Size = new System.Drawing.Size(286, 33);
             this.btn_Clac.TabIndex = 0;
@@ -161,30 +164,63 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.lbl_ResultInfo);
             this.groupBox3.Controls.Add(this.cmb_RunTimeUnit);
             this.groupBox3.Controls.Add(this.txt_RunTime);
             this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Location = new System.Drawing.Point(12, 270);
+            this.groupBox3.Location = new System.Drawing.Point(12, 278);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(329, 117);
+            this.groupBox3.Size = new System.Drawing.Size(329, 109);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ergebnis";
             // 
-            // label2
+            // lbl_ResultInfo
             // 
-            this.label2.Location = new System.Drawing.Point(19, 64);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(289, 50);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Pumpenlaufzeit um den angegebenen Wasserinhalt einmal umzuwälzen.";
+            this.lbl_ResultInfo.Location = new System.Drawing.Point(19, 64);
+            this.lbl_ResultInfo.Name = "lbl_ResultInfo";
+            this.lbl_ResultInfo.Size = new System.Drawing.Size(289, 32);
+            this.lbl_ResultInfo.TabIndex = 25;
+            this.lbl_ResultInfo.Text = "Pumpenlaufzeit um den angegebenen Wasserinhalt einmal umzuwälzen.";
+            // 
+            // nud_Count
+            // 
+            this.nud_Count.Location = new System.Drawing.Point(175, 180);
+            this.nud_Count.Maximum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.nud_Count.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nud_Count.Name = "nud_Count";
+            this.nud_Count.Size = new System.Drawing.Size(145, 20);
+            this.nud_Count.TabIndex = 3;
+            this.nud_Count.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(31, 182);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(127, 13);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Anzahl der Umwälzungen";
             // 
             // CirculationCalcView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(353, 411);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.nud_Count);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btn_Clac);
             this.Controls.Add(this.groupBox2);
@@ -200,7 +236,9 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Count)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -219,6 +257,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cmb_VolumeUnit;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_ResultInfo;
+        private System.Windows.Forms.NumericUpDown nud_Count;
+        private System.Windows.Forms.Label label3;
     }
 }

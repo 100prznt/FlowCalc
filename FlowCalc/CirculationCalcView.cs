@@ -109,9 +109,14 @@ namespace FlowCalc
             var v = UnitConverter.ToUnit(vUser, CurrentVolumeUnit, Units.M3);
             var q = UnitConverter.ToUnit(qUser, CurrentFlowRateUnit, Units.M3_Per_H);
 
-            var t = v / q;
+            var t = (v / q) * (int)nud_Count.Value;
 
             txt_RunTime.Text = UnitConverter.ToUnit(t, Units.H, CurrentTimeUnit).ToString("f1");
+
+            if (nud_Count.Value == 1)
+                lbl_ResultInfo.Text = "Pumpenlaufzeit um den angegebenen Wasserinhalt einmal umzuwälzen.";
+            else
+                lbl_ResultInfo.Text = "Pumpenlaufzeit um den angegebenen Wasserinhalt " + nud_Count.Value + "-mal umzuwälzen.";
         }
 
         private void cmb_FlowRateUnit_SelectedIndexChanged(object sender, EventArgs e)
