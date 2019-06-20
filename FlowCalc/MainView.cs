@@ -432,5 +432,10 @@ namespace FlowCalc
 
             circulationCalcView.Show();
         }
+
+        private void dokumentationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/100prznt/FlowCalc/");
+        }
     }
 }

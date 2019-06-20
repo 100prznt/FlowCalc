@@ -91,13 +91,15 @@
             this.volumenstromFließgeschwindigkeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.äquivalenteRohrlängeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.poolvolumenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.umwälzleistungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.überToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.umwälzleistungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dokumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -676,9 +678,18 @@
             this.poolvolumenToolStripMenuItem.Text = "Poolvolumen";
             this.poolvolumenToolStripMenuItem.Click += new System.EventHandler(this.poolvolumenToolStripMenuItem_Click);
             // 
+            // umwälzleistungToolStripMenuItem
+            // 
+            this.umwälzleistungToolStripMenuItem.Name = "umwälzleistungToolStripMenuItem";
+            this.umwälzleistungToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.umwälzleistungToolStripMenuItem.Text = "Umwälzleistung";
+            this.umwälzleistungToolStripMenuItem.Click += new System.EventHandler(this.umwälzleistungToolStripMenuItem_Click);
+            // 
             // hilfeToolStripMenuItem
             // 
             this.hilfeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dokumentationToolStripMenuItem,
+            this.toolStripSeparator4,
             this.überToolStripMenuItem1});
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
             this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -687,7 +698,7 @@
             // überToolStripMenuItem1
             // 
             this.überToolStripMenuItem1.Name = "überToolStripMenuItem1";
-            this.überToolStripMenuItem1.Size = new System.Drawing.Size(99, 22);
+            this.überToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.überToolStripMenuItem1.Text = "Über";
             this.überToolStripMenuItem1.Click += new System.EventHandler(this.überToolStripMenuItem1_Click);
             // 
@@ -716,12 +727,18 @@
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // umwälzleistungToolStripMenuItem
+            // dokumentationToolStripMenuItem
             // 
-            this.umwälzleistungToolStripMenuItem.Name = "umwälzleistungToolStripMenuItem";
-            this.umwälzleistungToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.umwälzleistungToolStripMenuItem.Text = "Umwälzleistung";
-            this.umwälzleistungToolStripMenuItem.Click += new System.EventHandler(this.umwälzleistungToolStripMenuItem_Click);
+            this.dokumentationToolStripMenuItem.Name = "dokumentationToolStripMenuItem";
+            this.dokumentationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dokumentationToolStripMenuItem.Text = "Dokumentation";
+            this.dokumentationToolStripMenuItem.ToolTipText = "https://github.com/100prznt/FlowCalc/";
+            this.dokumentationToolStripMenuItem.Click += new System.EventHandler(this.dokumentationToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // MainView
             // 
@@ -826,6 +843,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem poolvolumenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem umwälzleistungToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dokumentationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 
