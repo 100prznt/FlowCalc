@@ -21,6 +21,14 @@ Siehe auch Abschnitt [Pumpendefinition](#pumpendefinition) hier im Readme.
 ### Anzeige - Arbeitspunkt auf Pumpenkennlinie
 ![Anzeige - Arbeitspunkt auf Pumpenkennlinie](docs/FlowCalc_PowerPoint_Screen.png)
 
+### Umwälzleistung/ -zeit
+Der Menupunkt ´Rechner´ -> ´Umwälzleistung´ bietet die Möglichkeit die erforderliche Pumpenlaufzeit zu berechnen. Zur Berechnung sind folgenden Angaben erforderlich:
+* Wasserinhalt (Wert wird automatisch aus dem ´Poolvolumen´ Rechner übernommen)
+* Volumenstrom (Wert wird aus dem Hauptfenster übernommen)
+* Gewünschte Anzahl der Umwälzungen
+
+![Umwälzleistung - Rechner](docs/FlowCalc_CirculationTime_Full_Screen.png)
+
 ### p-v-Q Rechner
 ![Anzeige - p-v-Q Rechner](docs/FlowCalc_Pvq_Screen.png)
 

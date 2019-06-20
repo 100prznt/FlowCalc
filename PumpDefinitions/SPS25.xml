@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>SPS-25</Modell>
+  <Manufacturer>OKU Obermaier GmbH</Manufacturer>
+  <PowerOutput>0.2</PowerOutput>
+  <NominalQ>4.5</NominalQ>
+  <NominalH>4</NominalH>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <PerformanceCurve>
+    <Ipp>
+      <H>7</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>6</H>
+      <Q>0.84</Q>
+    </Ipp>
+    <Ipp>
+      <H>5</H>
+      <Q>1.8</Q>
+    </Ipp>
+    <Ipp>
+      <H>3.8</H>
+      <Q>2.76</Q>
+    </Ipp>
+    <Ipp>
+      <H>2.9</H>
+      <Q>3.42</Q>
+    </Ipp>
+    <Ipp>
+      <H>2</H>
+      <Q>4.08</Q>
+    </Ipp>
+    <Ipp>
+      <H>1</H>
+      <Q>4.74</Q>
+    </Ipp>
+    <Ipp>
+      <H>0.5</H>
+      <Q>5.04</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>
