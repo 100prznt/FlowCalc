@@ -56,9 +56,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txt_SystemHead = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txt_PumpHeight = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btn_CalcLength = new System.Windows.Forms.Button();
             this.txt_PipeSuctionPressureDrop = new System.Windows.Forms.TextBox();
@@ -93,13 +90,13 @@
             this.poolvolumenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.umwälzleistungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dokumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.überToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.dokumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -129,9 +126,10 @@
             // 
             // txt_SystemPressure
             // 
-            this.txt_SystemPressure.Location = new System.Drawing.Point(144, 242);
+            this.txt_SystemPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_SystemPressure.Location = new System.Drawing.Point(144, 223);
             this.txt_SystemPressure.Name = "txt_SystemPressure";
-            this.txt_SystemPressure.Size = new System.Drawing.Size(62, 20);
+            this.txt_SystemPressure.Size = new System.Drawing.Size(62, 24);
             this.txt_SystemPressure.TabIndex = 1;
             // 
             // openFileDialog1
@@ -301,7 +299,7 @@
             // 
             // btn_CalcFlowRate
             // 
-            this.btn_CalcFlowRate.Location = new System.Drawing.Point(25, 271);
+            this.btn_CalcFlowRate.Location = new System.Drawing.Point(25, 267);
             this.btn_CalcFlowRate.Name = "btn_CalcFlowRate";
             this.btn_CalcFlowRate.Size = new System.Drawing.Size(219, 39);
             this.btn_CalcFlowRate.TabIndex = 5;
@@ -312,9 +310,10 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 245);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(22, 226);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.Size = new System.Drawing.Size(95, 18);
             this.label6.TabIndex = 12;
             this.label6.Text = "Systemdruck";
             this.toolTip1.SetToolTip(this.label6, "Druck direkt nach der Pumpe");
@@ -323,7 +322,7 @@
             // 
             this.txt_SystemFlowRate.Enabled = false;
             this.txt_SystemFlowRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SystemFlowRate.Location = new System.Drawing.Point(144, 349);
+            this.txt_SystemFlowRate.Location = new System.Drawing.Point(144, 346);
             this.txt_SystemFlowRate.Name = "txt_SystemFlowRate";
             this.txt_SystemFlowRate.Size = new System.Drawing.Size(100, 20);
             this.txt_SystemFlowRate.TabIndex = 13;
@@ -331,7 +330,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 352);
+            this.label7.Location = new System.Drawing.Point(22, 349);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 14;
@@ -340,7 +339,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 326);
+            this.label8.Location = new System.Drawing.Point(22, 323);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(98, 13);
             this.label8.TabIndex = 16;
@@ -349,16 +348,13 @@
             // txt_SystemHead
             // 
             this.txt_SystemHead.Enabled = false;
-            this.txt_SystemHead.Location = new System.Drawing.Point(144, 323);
+            this.txt_SystemHead.Location = new System.Drawing.Point(144, 320);
             this.txt_SystemHead.Name = "txt_SystemHead";
             this.txt_SystemHead.Size = new System.Drawing.Size(100, 20);
             this.txt_SystemHead.TabIndex = 15;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.txt_PumpHeight);
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.btn_ShowPowerPoint);
             this.groupBox2.Controls.Add(this.label11);
@@ -375,33 +371,6 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(208, 219);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(15, 13);
-            this.label16.TabIndex = 25;
-            this.label16.Text = "m";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(22, 219);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(67, 13);
-            this.label17.TabIndex = 24;
-            this.label17.Text = "Ansaughöhe";
-            this.toolTip1.SetToolTip(this.label17, "Höhe in welcher die Pumpe über dem Wasserspiegel steht");
-            // 
-            // txt_PumpHeight
-            // 
-            this.txt_PumpHeight.Location = new System.Drawing.Point(144, 216);
-            this.txt_PumpHeight.Name = "txt_PumpHeight";
-            this.txt_PumpHeight.Size = new System.Drawing.Size(62, 20);
-            this.txt_PumpHeight.TabIndex = 23;
-            this.txt_PumpHeight.Text = "0,0";
             // 
             // groupBox4
             // 
@@ -526,9 +495,10 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(208, 245);
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(208, 226);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(22, 13);
+            this.label11.Size = new System.Drawing.Size(29, 18);
             this.label11.TabIndex = 17;
             this.label11.Text = "bar";
             // 
@@ -695,10 +665,23 @@
             this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.hilfeToolStripMenuItem.Text = "Hilfe";
             // 
+            // dokumentationToolStripMenuItem
+            // 
+            this.dokumentationToolStripMenuItem.Name = "dokumentationToolStripMenuItem";
+            this.dokumentationToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.dokumentationToolStripMenuItem.Text = "Dokumentation";
+            this.dokumentationToolStripMenuItem.ToolTipText = "https://github.com/100prznt/FlowCalc/";
+            this.dokumentationToolStripMenuItem.Click += new System.EventHandler(this.dokumentationToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(154, 6);
+            // 
             // überToolStripMenuItem1
             // 
             this.überToolStripMenuItem1.Name = "überToolStripMenuItem1";
-            this.überToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.überToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.überToolStripMenuItem1.Text = "Über";
             this.überToolStripMenuItem1.Click += new System.EventHandler(this.überToolStripMenuItem1_Click);
             // 
@@ -726,19 +709,6 @@
             this.stl_Info.Spring = true;
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // dokumentationToolStripMenuItem
-            // 
-            this.dokumentationToolStripMenuItem.Name = "dokumentationToolStripMenuItem";
-            this.dokumentationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.dokumentationToolStripMenuItem.Text = "Dokumentation";
-            this.dokumentationToolStripMenuItem.ToolTipText = "https://github.com/100prznt/FlowCalc/";
-            this.dokumentationToolStripMenuItem.Click += new System.EventHandler(this.dokumentationToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // MainView
             // 
@@ -836,9 +806,6 @@
         private System.Windows.Forms.ToolStripMenuItem fittingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suchverzeichnisToolStripMenuItem1;
         private System.Windows.Forms.Button btn_CalcLength;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txt_PumpHeight;
         private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem poolvolumenToolStripMenuItem;

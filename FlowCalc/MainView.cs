@@ -138,14 +138,7 @@ namespace FlowCalc
             }
             else
                 m_Controller.SuctionPipe = null;
-
-            double pumpHeigth = 0;
-            if (double.TryParse(txt_PumpHeight.Text, out pumpHeigth))
-            {
-                Properties.Settings.Default.PumpHeight = pumpHeigth;
-                Properties.Settings.Default.Save();
-            }
-
+            
 
             double pressure = 0;
 
