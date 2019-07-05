@@ -99,6 +99,12 @@
     <Compile Include="CirculationCalcView.Designer.cs">
       <DependentUpon>CirculationCalcView.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilterSpeedCalcView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterSpeedCalcView.Designer.cs">
+      <DependentUpon>FilterSpeedCalcView.cs</DependentUpon>
+    </Compile>
     <Compile Include="VolumeCalcView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CirculationCalcView.resx">
       <DependentUpon>CirculationCalcView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterSpeedCalcView.resx">
+      <DependentUpon>FilterSpeedCalcView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VolumeCalcView.resx">
       <DependentUpon>VolumeCalcView.cs</DependentUpon>

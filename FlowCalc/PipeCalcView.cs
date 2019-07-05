@@ -26,8 +26,12 @@ namespace FlowCalc
         {
             get
             {
+#if DEBUG
+                return typeof(MainView).Assembly.GetName().Name;
+#else
                 var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
                 return string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
+#endif
             }
         }
 
@@ -35,7 +39,7 @@ namespace FlowCalc
         {
             InitializeComponent();
 
-            this.Text = WindowTitle; //Title
+            this.Text = WindowTitle + " - p-v-Q"; //Title
             this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
 
             cmb_FlowRateUnit.ValueMember = nameof(DisplayUnit.DisplayName);

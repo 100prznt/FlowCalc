@@ -36,8 +36,12 @@ namespace FlowCalc
         {
             get
             {
+#if DEBUG
+                return typeof(MainView).Assembly.GetName().Name + " [DEBUG]";
+#else
                 var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-                return string.Concat(typeof(MainView).Assembly.GetName().Name, " ",versionInfo.ProductVersion);
+                return string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
+#endif
             }
         }
 
@@ -429,6 +433,16 @@ namespace FlowCalc
         private void dokumentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/100prznt/FlowCalc/");
+        }
+
+        private void filtergeschwindigkeitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var filterSpeedCalcView = new FilterSpeedCalcView()
+            {
+                FlowRate = m_Controller.SystemFlowRate
+            };
+
+            filterSpeedCalcView.Show();
         }
     }
 }

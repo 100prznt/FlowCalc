@@ -28,6 +28,12 @@ namespace FlowCalc.PhysicalUnits
         [PhysicalDimension(Dimensions.Velocity)]
         [PhysicalUnit("cm/s", 0.01)]
         Cm_Per_S,
+        [PhysicalDimension(Dimensions.Velocity)]
+        [PhysicalUnit("m/h", 0.00027777)]
+        M_Per_H,
+        [PhysicalDimension(Dimensions.Velocity)]
+        [PhysicalUnit("km/h", 0.27777777)]
+        Km_Per_H,
         [PhysicalDimension(Dimensions.Pressure)]
         [PhysicalUnit("Bar", true)]
         Bar,

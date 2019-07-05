@@ -97,6 +97,7 @@
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.filtergeschwindigkeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -618,7 +619,8 @@
             this.volumenstromFließgeschwindigkeitToolStripMenuItem,
             this.äquivalenteRohrlängeToolStripMenuItem,
             this.poolvolumenToolStripMenuItem,
-            this.umwälzleistungToolStripMenuItem});
+            this.umwälzleistungToolStripMenuItem,
+            this.filtergeschwindigkeitToolStripMenuItem});
             this.rechnerToolStripMenuItem.Name = "rechnerToolStripMenuItem";
             this.rechnerToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.rechnerToolStripMenuItem.Text = "Rechner";
@@ -709,6 +711,13 @@
             this.stl_Info.Spring = true;
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // filtergeschwindigkeitToolStripMenuItem
+            // 
+            this.filtergeschwindigkeitToolStripMenuItem.Name = "filtergeschwindigkeitToolStripMenuItem";
+            this.filtergeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.filtergeschwindigkeitToolStripMenuItem.Text = "Filtergeschwindigkeit";
+            this.filtergeschwindigkeitToolStripMenuItem.Click += new System.EventHandler(this.filtergeschwindigkeitToolStripMenuItem_Click);
             // 
             // MainView
             // 
@@ -812,6 +821,7 @@
         private System.Windows.Forms.ToolStripMenuItem umwälzleistungToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dokumentationToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem filtergeschwindigkeitToolStripMenuItem;
     }
 }
 

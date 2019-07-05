@@ -154,5 +154,17 @@ namespace FlowCalc.Properties {
                 this["CalcVolume"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double FilterDiameter {
+            get {
+                return ((double)(this["FilterDiameter"]));
+            }
+            set {
+                this["FilterDiameter"] = value;
+            }
+        }
     }
 }

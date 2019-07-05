@@ -35,8 +35,12 @@ namespace FlowCalc
         {
             get
             {
+#if DEBUG
+                return typeof(MainView).Assembly.GetName().Name + " [DEBUG]";
+#else
                 var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
                 return string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
+#endif
             }
         }
 
