@@ -75,8 +75,8 @@ namespace FlowCalc
                 txt_FilterDiameter.Text = Properties.Settings.Default.FilterDiameter.ToString();
 
             txt_FilterSpeedInfo.Text = "Im privaten Poolbereich sollte die Filtergeschwindigkeit nicht über 50 m/h betragen." +
-                "\r\nMit einer langsameren Filtergeschwindigkeit von rund 30 m/h würde das Ergebnis der Filtration zwar verbessert, " +
-                "jedoch sind für Rückspülung (Reinigung des Filters) Spülgeschwindigkeiten von 50-60 m/h erforderlich. Da die Filterpumpe in privaten " +
+                "\r\nMit einer langsameren Filtergeschwindigkeit von rund 30 m/h würde das Ergebnis der Filtration zwar verbessert werden. " +
+                "Jedoch sind für Rückspülung (Reinigung des Filters) Spülgeschwindigkeiten von 50-60 m/h erforderlich. Da die Filterpumpe in privaten " +
                 "Pool für Filtration und Rückspülung ausgelegt wird, wählt man als Kompromiss eine Filtergeschwindigkeit um 50 m/h.";
         }
 

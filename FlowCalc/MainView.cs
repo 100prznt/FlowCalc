@@ -119,6 +119,7 @@ namespace FlowCalc
         private void btn_CalcFlowRate_Click(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(lbl_PipeSuctionPressureDrop, string.Empty);
+            toolTip1.SetToolTip(txt_PipeSuctionPressureDrop, string.Empty);
             txt_SystemHead.ForeColor = Color.Black;
 
             if (cbx_CalcSuctionPipe.Checked)
@@ -156,6 +157,7 @@ namespace FlowCalc
                 {
                     txt_PipeSuctionPressureDrop.Text = m_Controller.SuctionPressureDrop.ToString("f3") + " bar";
                     toolTip1.SetToolTip(lbl_PipeSuctionPressureDrop, "Wert in " + m_Controller.SuctionPressureDropCalcIterations + " Iterationen ermittelt");
+                    toolTip1.SetToolTip(txt_PipeSuctionPressureDrop, "Wert in " + m_Controller.SuctionPressureDropCalcIterations + " Iterationen ermittelt");
                 }
 
                 if (m_Controller.SystemFlowRate <= 0)
