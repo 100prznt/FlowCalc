@@ -307,6 +307,11 @@ namespace FlowCalc
             return PerformanceCurve.Select(x => x.FlowRate).ToArray();
         }
 
+        public override string ToString()
+        {
+            return ModellName;
+        }
+
         #endregion Services
 
         #region Internal services

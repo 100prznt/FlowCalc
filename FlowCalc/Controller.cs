@@ -28,7 +28,6 @@ namespace FlowCalc
 
         #region Member
 
-
         #endregion Member
 
         #region Properties
@@ -82,6 +81,19 @@ namespace FlowCalc
         public double SuctionPressureDrop { get; set; }
 
         public int SuctionPressureDropCalcIterations { get; set; }
+
+        public string WindowTitle
+        {
+            get
+            {
+#if DEBUG
+                return typeof(MainView).Assembly.GetName().Name + " [DEBUG]";
+#else
+                var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
+                return string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
+#endif
+            }
+        }
 
         #endregion Properties
 
@@ -164,6 +176,27 @@ namespace FlowCalc
                 if (pumps.Count > 0)
                     Pumps = pumps;
             }
+        }
+
+        public void ShowPumpPerformanceCurve(ref ChartView chartView)
+        {
+            if (chartView == null || !chartView.Visible)
+                chartView = new ChartView("Anzeige Pumpenkennlinie");
+
+            chartView.AddCurve(Pump.ModellName, Pump.GetPerformanceFlowValues(), Pump.GetPerformanceHeadValues());
+
+            chartView.Show();
+        }
+
+        public void ShowPowerPoint(ref ChartView chartView)
+        {
+            if (chartView == null || !chartView.Visible)
+                chartView = new ChartView("Anzeige Arbeitspunkt auf Pumpenkennlinie");
+
+            chartView.AddCurve(Pump.ModellName, Pump.GetPerformanceFlowValues(), Pump.GetPerformanceHeadValues());
+            chartView.PowerPoint = new Tuple<double, double>(SystemFlowRate, SystemHead);
+
+            chartView.Show();
         }
 
         public void LoadFittings(string searchPath)
