@@ -18,7 +18,7 @@ namespace FlowCalc
         public static readonly DoubleLimits RoughnessLimits = new DoubleLimits()
         {
             LowerLimit = 0,
-            UpperLimit = 1
+            UpperLimit = 2
         };
 
         public static readonly DoubleLimits MetresAboveSeaLevelLimits = new DoubleLimits()
