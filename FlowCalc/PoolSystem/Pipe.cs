@@ -136,7 +136,7 @@ namespace FlowCalc.PoolSystem
 
             // Druckverlust durch Rohrreibung
             // https://www.schweizer-fn.de/stroemung/druckverlust/druckverlust.php#druckverlustrohr
-            double deltaP = (lambda * Length * medium.Density * Math.Pow(v, 2)) / (di * 2); // [Pa]
+            double deltaP = lambda * Length * medium.Density * Math.Pow(v, 2) / (di * 2); // [Pa]
 
             double deltaP_Bar = deltaP / 1E5;
 
