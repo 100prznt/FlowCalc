@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>Pro-Pump 7</Modell>
+  <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
+  <PowerOutput>0.45</PowerOutput>
+  <NominalQ>7</NominalQ>
+  <NominalH>6</NominalH>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <PerformanceCurve>
+    <Ipp>
+      <H>12</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>11.75</H>
+      <Q>1</Q>
+    </Ipp>
+    <Ipp>
+      <H>11.4</H>
+      <Q>2</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.8</H>
+      <Q>3</Q>
+    </Ipp>
+    <Ipp>
+      <H>10.2</H>
+      <Q>4</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.3</H>
+      <Q>5</Q>
+    </Ipp>
+    <Ipp>
+      <H>8</H>
+      <Q>6</Q>
+    </Ipp>
+    <Ipp>
+      <H>6.25</H>
+      <Q>7</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.5</H>
+      <Q>8</Q>
+    </Ipp>
+    <Ipp>
+      <H>2.5</H>
+      <Q>9</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>

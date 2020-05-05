@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>AquaPlus 4</Modell>
+  <Manufacturer>Aqua TechniX GmbH</Manufacturer>
+  <NominalQ>4</NominalQ>
+  <NominalH>8</NominalH>
+  <PowerOutput>0.18</PowerOutput>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <PerformanceCurve>
+    <Ipp>
+      <H>9.8</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.4</H>
+      <Q>1</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.8</H>
+      <Q>2</Q>
+    </Ipp>
+    <Ipp>
+      <H>8.2</H>
+      <Q>3</Q>
+    </Ipp>
+    <Ipp>
+      <H>7.5</H>
+      <Q>4</Q>
+    </Ipp>
+    <Ipp>
+      <H>6.7</H>
+      <Q>5</Q>
+    </Ipp>
+    <Ipp>
+      <H>5.9</H>
+      <Q>6</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.9</H>
+      <Q>7</Q>
+    </Ipp>
+    <Ipp>
+      <H>3.9</H>
+      <Q>8</Q>
+    </Ipp>
+    <Ipp>
+      <H>3</H>
+      <Q>9</Q>
+    </Ipp>
+    <Ipp>
+      <H>2.2</H>
+      <Q>10</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>
