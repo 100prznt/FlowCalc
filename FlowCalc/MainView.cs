@@ -149,6 +149,7 @@ namespace FlowCalc
 
             if (double.TryParse(txt_SystemPressure.Text, out pressure))
             {
+                m_Controller.FilterPressure = pressure;
                 m_Controller.CalcFlowRate(pressure);
                 txt_SystemFlowRate.Text = m_Controller.SystemFlowRate.ToString("f2") + " m³/h";
                 txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " m WS";
@@ -170,6 +171,7 @@ namespace FlowCalc
                     Properties.Settings.Default.Save();
 
                     btn_ShowPowerPoint.Enabled = true;
+                    btn_GenerateReport.Enabled = true;
                 }
             }
         }
@@ -445,6 +447,34 @@ namespace FlowCalc
             };
 
             filterSpeedCalcView.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var pipeSelectView = new PipeSelectView();
+
+            pipeSelectView.Show();
+        }
+
+        private void btn_GenerateReport_Click(object sender, EventArgs e)
+        {
+            var reportSetupDlg = new EnterReportDataView();
+            saveFileDialog1.FileName = "Report_" + GetFriendlyName(m_Controller.Pump.ModellName + "_at_" + m_Controller.SystemHead.ToString("f2") + "mWS.pdf");
+
+            if (reportSetupDlg.ShowDialog() == DialogResult.OK && saveFileDialog1.ShowDialog() == DialogResult.OK)
+                m_Controller.GeneratePdfReport(saveFileDialog1.FileName, reportSetupDlg.PoolVolume, reportSetupDlg.FilterDiameter);
+        }
+
+        private string GetFriendlyName(string name)
+        {
+            name = name.Replace(' ', '_');
+            name = name.Replace(',', '_');
+            name = name.Replace('-', '_');
+
+            foreach (char c in Path.GetInvalidFileNameChars())
+                name = name.Replace(c.ToString(), "");
+
+            return name;
         }
     }
 }

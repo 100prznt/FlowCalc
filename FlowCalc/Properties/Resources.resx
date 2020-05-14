@@ -118,6 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Barlow_Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Dependencies\Barlow-Bold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Barlow_Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Dependencies\Barlow-Italic.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Barlow_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Dependencies\Barlow-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Barlow_SemiBold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Dependencies\Barlow-SemiBold.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="iconfinder_100_Pressure_Reading_183415" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Media\iconfinder_100_Pressure_Reading_183415.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

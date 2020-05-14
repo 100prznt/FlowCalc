@@ -143,6 +143,11 @@ namespace FlowCalc.PoolSystem
             return deltaP_Bar;
         }
 
+        public override string ToString()
+        {
+            return $"{Length} m (d = {Diameter} mm, k = {Roughness} mm)";
+        }
+
         #endregion Services
 
         #region Internal services

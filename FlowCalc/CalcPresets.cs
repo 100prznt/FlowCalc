@@ -94,6 +94,10 @@ namespace FlowCalc
             }
         }
 
+        public string UserName { get; set; }
+
+        public bool DisableUserName { get; set; }
+
         /// <summary>
         /// Standard-Voreinstellungen erzeugen
         /// </summary>
@@ -106,7 +110,9 @@ namespace FlowCalc
                 {
                     Medium = Medium.Water20,
                     MetresAboveSeaLevel = 0,
-                    Roughness = 0.1
+                    Roughness = 0.1,
+                    UserName = GetCurrentUserName(),
+                    DisableUserName = false
                 };
 
                 return defalut;
@@ -162,6 +168,12 @@ namespace FlowCalc
         #endregion Services
 
         #region Internal services
+
+        private static string GetCurrentUserName()
+        {
+            var fullUserName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            return fullUserName.Substring(fullUserName.IndexOf('\\') + 1);
+        }
 
         #endregion Internal services
 

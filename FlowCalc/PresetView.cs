@@ -57,6 +57,9 @@ namespace FlowCalc
             txt_MetresAboveSeaLevel.Text = Settings.MetresAboveSeaLevel.ToString("F0");
             txt_Roughness.Text = Settings.Roughness.ToString("F4");
 
+            txt_UserName.Text = Settings.UserName;
+            cbx_EnableUserName.Checked = !Settings.DisableUserName;
+
             return base.ShowDialog();
         }
 
@@ -87,8 +90,16 @@ namespace FlowCalc
             Settings.MetresAboveSeaLevel = double.Parse(txt_MetresAboveSeaLevel.Text);
             Settings.Roughness = double.Parse(txt_Roughness.Text);
 
+            Settings.UserName = txt_UserName.Text;
+            Settings.DisableUserName = !cbx_EnableUserName.Checked;
+
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void cbx_EnableUserName_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_UserName.Enabled = cbx_EnableUserName.Checked;
         }
     }
 }

@@ -2,6 +2,11 @@
 
 Berechnung der Fördermenge von Pool-Pumpen in Abhängigkeit des Systemdrucks und des saugseitigem Druckverlustes.
 
+## Neue Funktion ab Version 1.1.48 :rocket:
+Nach der Berechnung des Volumenstroms im Hauptfenster, kann mit einem Klick ein vollumfänglicher Report im PDF-Format erzeugt werden. Dieser Report enthält alle relevanten Daten zum System und die Berechnungsergebnisse, einschließlich grafischer Pumpenkennlinie mit Arbeitspunkt und einer Auswertung der Umwälzzeiten sowie der Filtergeschwindigkeit.
+
+![FlowCalc PDF-Report](docs/FlowCalc_PdfReport.png)
+
 ## Dokumentation
 Eine vollumfängliche Dokuemntation kann ich noch nicht bereit stellen. Auf meiner Internetseite habe ich einen kleinen Artikel, zum näheren Funktionsumfang verfasst.   
 [100prznt.de/FlowCalc](https://100prznt.de/pool/flowcalc/)
@@ -43,6 +48,7 @@ Der Menupunkt ´Rechner´ -> ´Umwälzleistung´ bietet die Möglichkeit die erf
 Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form einer Pumpendefinitionsdatei angegeben werden. 
 
 ### Vorhandene Pumpendefinitionsdateien
+* Aqua TechniX - AquaPlus 4
 * Aqua TechniX - AquaPlus 6
 * Aqua TechniX - AquaPlus 8
 * Aqua TechniX - AquaPlus 11
@@ -51,7 +57,11 @@ Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form e
 * Speck - Badu Magic II/11
 * Speck - Badu Picco II
 * Speck - Badu Top II/8
-* _Unbekannt_ - SPS-75
+* Speck - ProPump 7
+* Steinbach - SPS-25
+* Steinbach - SPS-50
+* Steinbach - SPS-75
+* Steinbach - SPS-100
 
 ### Pumpendefinitionsdatei erstellen
 siehe [/PumpDefinitionEditor](/PumpDefinitionEditor)

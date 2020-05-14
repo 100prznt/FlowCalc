@@ -87,6 +87,7 @@ namespace FlowCalc
         private void CreateChart(ZedGraphControl zgc)
         {
             var pane = zgc.GraphPane;
+            var pink = Color.FromArgb(0xff, 0x2e, 0x64);
 
             //Needed for redrawing the chart, to remove old curves
             pane.CurveList.Clear();
@@ -97,7 +98,7 @@ namespace FlowCalc
             {
 
                 LineItem wp = pane.AddCurve("Arbeitspunkt", new double[1] { PowerPoint.Item1 },
-                    new double[1] { PowerPoint.Item2 }, Color.DarkOrange);
+                    new double[1] { PowerPoint.Item2 }, pink);
 
                 wp.Line.IsOptimizedDraw = true;
                 wp.Line.IsVisible = false;
@@ -107,7 +108,7 @@ namespace FlowCalc
                 wp.Symbol.IsAntiAlias = true;
 
                 wp = pane.AddCurve("Arbeitspunkt Q", new double[2] { PowerPoint.Item1, PowerPoint.Item1 },
-                    new double[2] { 0, PowerPoint.Item2 }, Color.DarkOrange);
+                    new double[2] { 0, PowerPoint.Item2 }, pink);
 
                 wp.Label.IsVisible = false;
                 wp.Line.IsOptimizedDraw = true;
@@ -116,7 +117,7 @@ namespace FlowCalc
                 wp.Symbol.IsVisible = false;
 
                 wp = pane.AddCurve("Arbeitspunkt H", new double[2] { 0, PowerPoint.Item1 },
-                    new double[2] { PowerPoint.Item2, PowerPoint.Item2 }, Color.DarkOrange);
+                    new double[2] { PowerPoint.Item2, PowerPoint.Item2 }, pink);
 
                 wp.Label.IsVisible = false;
                 wp.Line.IsOptimizedDraw = true;
@@ -144,6 +145,11 @@ namespace FlowCalc
             zgc.Refresh();
         }
 
+        public Image GetChartImage()
+        {
+            return zedGraphControl1.GetImage();
+        }
+
         private Color GetColorByIndex(int i)
         {
             switch (i)
@@ -151,7 +157,7 @@ namespace FlowCalc
                 case 0:
                     return Color.DodgerBlue;
                 case 1:
-                    return Color.DeepPink;
+                    return Color.DarkOrange;
                 case 2:
                     return Color.SpringGreen;
                 case 3:

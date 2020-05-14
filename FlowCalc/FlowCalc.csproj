@@ -42,6 +42,12 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -73,6 +79,12 @@
       <DependentUpon>ChartView.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller.cs" />
+    <Compile Include="EnterReportDataView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterReportDataView.Designer.cs">
+      <DependentUpon>EnterReportDataView.cs</DependentUpon>
+    </Compile>
     <Compile Include="IppCollectionEditor.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
@@ -105,6 +117,13 @@
     <Compile Include="FilterSpeedCalcView.Designer.cs">
       <DependentUpon>FilterSpeedCalcView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PipeSelectView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PipeSelectView.Designer.cs">
+      <DependentUpon>PipeSelectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\BarlowFontResolver.cs" />
     <Compile Include="VolumeCalcView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +164,9 @@
     <EmbeddedResource Include="ChartView.resx">
       <DependentUpon>ChartView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EnterReportDataView.resx">
+      <DependentUpon>EnterReportDataView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FilterSpeedCalcView.resx">
       <DependentUpon>FilterSpeedCalcView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipeSelectView.resx">
+      <DependentUpon>PipeSelectView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VolumeCalcView.resx">
       <DependentUpon>VolumeCalcView.cs</DependentUpon>
@@ -176,6 +201,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Dependencies\Barlow-Bold.ttf" />
+    <None Include="Dependencies\Barlow-Italic.ttf" />
+    <None Include="Dependencies\Barlow-Regular.ttf" />
+    <None Include="Dependencies\Barlow-SemiBold.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
