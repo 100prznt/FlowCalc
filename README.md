@@ -5,7 +5,9 @@ Berechnung der Fördermenge von Pool-Pumpen in Abhängigkeit des Systemdrucks un
 ## Neue Funktion ab Version 1.1.48 :rocket:
 Nach der Berechnung des Volumenstroms im Hauptfenster, kann mit einem Klick ein vollumfänglicher Report im PDF-Format erzeugt werden. Dieser Report enthält alle relevanten Daten zum System und die Berechnungsergebnisse, einschließlich grafischer Pumpenkennlinie mit Arbeitspunkt und einer Auswertung der Umwälzzeiten sowie der Filtergeschwindigkeit.
 
+### Beispiel Report
 ![FlowCalc PDF-Report](docs/FlowCalc_PdfReport.png)
+
 
 ## Dokumentation
 Eine vollumfängliche Dokuemntation kann ich noch nicht bereit stellen. Auf meiner Internetseite habe ich einen kleinen Artikel, zum näheren Funktionsumfang verfasst.   
@@ -149,6 +151,7 @@ Unter [Contributors](https://github.com/100prznt/FlowCalc/contributors) können 
 * [csmatio](https://sourceforge.net/projects/csmatio/) .NET Library for Matlab MAT-files 
 * [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) Json.NET is a popular high-performance JSON framework for .NET
 * [ZedGraph](https://www.nuget.org/packages/ZedGraph/) ZedGraph is a class library, user control, and web control for .net, written in C#, for drawing 2D Line, Bar, and Pie Charts.
+* [PDFsharp](https://www.nuget.org/packages/PDFsharp/) PDFsharp is the Open Source .NET library that easily creates and processes PDF documents on the fly from any .NET language.
 
 ## Lizenz
 
