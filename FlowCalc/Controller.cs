@@ -300,7 +300,6 @@ namespace FlowCalc
 
 
 
-            #region Frame
             // Create a new PDF document
             PdfDocument document = new PdfDocument();
             document.Info.CreationDate = DateTime.Now;
@@ -322,13 +321,15 @@ namespace FlowCalc
             // Create an empty page
             PdfPage page = document.AddPage(pageA4);
 
+
             // Get an XGraphics object for drawing
             XGraphics gfx = XGraphics.FromPdfPage(page);
 
             // Create a font
-            XFont font = new XFont("Barlow", 12, XFontStyle.Regular);
+            XFont font = new XFont("Barlow", 11, XFontStyle.Regular);
 
 
+            #region Frame
 
             XPen framePen = new XPen(XColors.Black, 0.7);
 
@@ -380,27 +381,55 @@ namespace FlowCalc
                 new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
                 new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)));
             gfx.DrawLine(framePen,
-                new XPoint(new XUnit(60, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(60, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
+                new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
+                new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
             gfx.DrawLine(framePen,
-                new XPoint(new XUnit(210 - 60, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(210 - 60, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
+                new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
+                new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
             XBrush footerTextBrush = new XSolidBrush(XColor.FromArgb(0x18, 0x19, 0x37));
+
+
+
+            var footerArea1 = new XRect(
+                  new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(278, XGraphicsUnit.Millimeter)),
+                  new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)));
+
+
+            page.AddWebLink(new PdfRectangle(footerArea1), @"http://www.100prznt.de/");
+
             gfx.DrawString("www.100prznt.de", font, footerTextBrush,
-              new XRect(
-                  new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(60, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter))),
+              footerArea1,
               XStringFormats.Center);
+            gfx.DrawString("Elias Ruemmler", font, footerTextBrush,
+              new XRect(
+                  new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
+                  new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(290, XGraphicsUnit.Millimeter))),
+              XStringFormats.Center);
+
+
+
+
+
             gfx.DrawString(GetTitle(), new XFont("Barlow", 16, XFontStyle.Bold), footerTextBrush,
               new XRect(
-                  new XPoint(new XUnit(60, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(210 - 60, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter))),
+                  new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(277, XGraphicsUnit.Millimeter)),
+                  new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter))),
               XStringFormats.Center);
+
+            var footerArea4 = new XRect(
+                  new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
+                  new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(291, XGraphicsUnit.Millimeter)));
+
+            page.AddWebLink(new PdfRectangle(footerArea4), @"http://www.github.com/100prznt/Flowcalc");
+            gfx.DrawString("www.github.com/100prznt/FlowCalc", font, footerTextBrush,
+              footerArea4,
+              XStringFormats.Center);
+
             if (CurrentPresets.DisableUserName)
             {
                 gfx.DrawString(DateTime.Now.ToString(), font, footerTextBrush,
                   new XRect(
-                      new XPoint(new XUnit(210 - 60, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
+                      new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
                       new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter))),
                   XStringFormats.Center);
             }
@@ -408,21 +437,21 @@ namespace FlowCalc
             {
                 gfx.DrawString(DateTime.Now.ToString(), font, footerTextBrush,
                   new XRect(
-                      new XPoint(new XUnit(210 - 60, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
+                      new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(278, XGraphicsUnit.Millimeter)),
                       new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter))),
                   XStringFormats.Center);
                 gfx.DrawString(CurrentPresets.UserName, font, footerTextBrush,
                   new XRect(
-                      new XPoint(new XUnit(210 - 60, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
-                      new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter))),
+                      new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
+                      new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(290, XGraphicsUnit.Millimeter))),
                   XStringFormats.Center);
             }
             #endregion Frame
 
 
-            XFont p = new XFont("Barlow", 10, XFontStyle.Regular);
+            XFont p = new XFont("Barlow", 10.5, XFontStyle.Regular);
 
-            XFont h2 = new XFont("Barlow", 16, XFontStyle.Bold | XFontStyle.Underline);
+            XFont h2 = new XFont("Barlow", 17, XFontStyle.Bold);
             XFont h3 = new XFont("Barlow", 13, XFontStyle.Bold);
             XFont p3 = new XFont("Barlow", 13, XFontStyle.Regular);
             XFont h4 = new XFont("Barlow", 11, XFontStyle.Regular);
@@ -453,6 +482,8 @@ namespace FlowCalc
             gfx.DrawString(poolVolume.ToString("f1") + " m³", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 3, XGraphicsUnit.Millimeter)));
             if (SuctionPipe != null)
                 gfx.DrawString(SuctionPipe.ToString(), h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 4, XGraphicsUnit.Millimeter)));
+            else
+                gfx.DrawString("nicht angegeben", p3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 4, XGraphicsUnit.Millimeter)));
             gfx.DrawString(FilterPressure.ToString("f2") + " bar", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 5, XGraphicsUnit.Millimeter)));
 
 
@@ -467,6 +498,8 @@ namespace FlowCalc
 
             if (SuctionPipe != null)
                 gfx.DrawString(SuctionPressureDrop.ToString("f3") + " bar", h3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3, XGraphicsUnit.Millimeter)));
+            else
+                gfx.DrawString("0 bar (nicht berechnet)", p3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3, XGraphicsUnit.Millimeter)));
             gfx.DrawString($"{SystemHead.ToString("f2")} mWS ({SystemPressure.ToString("f3")} bar)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3 * 2, XGraphicsUnit.Millimeter)));
             gfx.DrawString(SystemFlowRate.ToString("f2") + " m³/h", h3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3 * 3, XGraphicsUnit.Millimeter)));
 
