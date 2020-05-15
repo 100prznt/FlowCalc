@@ -298,10 +298,8 @@ namespace FlowCalc
 
 
 
-
-
             // Create a new PDF document
-            PdfDocument document = new PdfDocument();
+            var document = new PdfDocument();
             document.Info.CreationDate = DateTime.Now;
             document.Info.Creator = GetTitle();
             if (!CurrentPresets.DisableUserName)
@@ -313,41 +311,40 @@ namespace FlowCalc
             document.PageLayout = PdfPageLayout.SinglePage;
 
             
-            PdfPage pageA4 = new PdfPage();
+            var pageA4 = new PdfPage();
             pageA4.Width = new XUnit(210, XGraphicsUnit.Millimeter);
             pageA4.Height = new XUnit(297, XGraphicsUnit.Millimeter);
             pageA4.Orientation = PdfSharp.PageOrientation.Portrait;
 
             // Create an empty page
-            PdfPage page = document.AddPage(pageA4);
+            var page = document.AddPage(pageA4);
 
 
             // Get an XGraphics object for drawing
-            XGraphics gfx = XGraphics.FromPdfPage(page);
+            var gfx = XGraphics.FromPdfPage(page);
 
-            // Create a font
-            XFont font = new XFont("Barlow", 11, XFontStyle.Regular);
+            var font = new XFont("Barlow", 11, XFontStyle.Regular);
 
 
             #region Frame
 
-            XPen framePen = new XPen(XColors.Black, 0.7);
+            var framePen = new XPen(XColors.Black, 0.7);
 
-            XPoint s = new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter));
+            var s = new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter));
 
             //background
-            XRect headerLeft = new XRect(s, new XPoint(new XUnit(210 / 2, XGraphicsUnit.Millimeter), new XUnit(30, XGraphicsUnit.Millimeter)));
-            XLinearGradientBrush headerBrushLeft = new XLinearGradientBrush(
+            var headerLeft = new XRect(s, new XPoint(new XUnit(210 / 2, XGraphicsUnit.Millimeter), new XUnit(30, XGraphicsUnit.Millimeter)));
+            var headerBrushLeft = new XLinearGradientBrush(
                 new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
                 new XPoint(new XUnit(210 / 2, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
                 XColor.FromArgb(0xff, 0x2e, 0x64),
                 XColor.FromArgb(0xe1, 0x00, 0x72)
                 );
-            XRect headerRight = new XRect(
+            var headerRight = new XRect(
                 new XPoint(new XUnit(210 / 2, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
                 new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(30, XGraphicsUnit.Millimeter))
                 );
-            XLinearGradientBrush headerBrushRight = new XLinearGradientBrush(
+            var headerBrushRight = new XLinearGradientBrush(
                 new XPoint(new XUnit(210 / 2, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
                 new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
                 XColor.FromArgb(0xe1, 0x00, 0x72),
@@ -357,14 +354,14 @@ namespace FlowCalc
             gfx.DrawRectangle(headerBrushRight, headerRight);
 
 
-            XRect footer = new XRect(
+            var footer = new XRect(
                 new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
                 new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter))
                 );
-            XBrush footerBrush = new XSolidBrush(XColor.FromArgb(0xf7, 0xf8, 0xf9));
+            var footerBrush = new XSolidBrush(XColor.FromArgb(0xf7, 0xf8, 0xf9));
             gfx.DrawRectangle(footerBrush, footer);
 
-            XRect outerFrame = new XRect(s, new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
+            var outerFrame = new XRect(s, new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
             gfx.DrawRectangle(framePen, outerFrame);
 
 
@@ -376,24 +373,23 @@ namespace FlowCalc
               new XRect(s, new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(30, XGraphicsUnit.Millimeter))),
               XStringFormats.Center);
 
+            int footerCol = 62;
 
             gfx.DrawLine(framePen,
                 new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
                 new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)));
             gfx.DrawLine(framePen,
-                new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
+                new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
+                new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
             gfx.DrawLine(framePen,
-                new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
-            XBrush footerTextBrush = new XSolidBrush(XColor.FromArgb(0x18, 0x19, 0x37));
-
-
+                new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
+                new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
+            
+            var footerTextBrush = new XSolidBrush(XColor.FromArgb(0x18, 0x19, 0x37));
 
             var footerArea1 = new XRect(
                   new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(278, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)));
-
+                  new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)));
 
             page.AddWebLink(new PdfRectangle(footerArea1), @"http://www.100prznt.de/");
 
@@ -403,7 +399,7 @@ namespace FlowCalc
             gfx.DrawString("Elias Ruemmler", font, footerTextBrush,
               new XRect(
                   new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(290, XGraphicsUnit.Millimeter))),
+                  new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(290, XGraphicsUnit.Millimeter))),
               XStringFormats.Center);
 
 
@@ -412,13 +408,13 @@ namespace FlowCalc
 
             gfx.DrawString(GetTitle(), new XFont("Barlow", 16, XFontStyle.Bold), footerTextBrush,
               new XRect(
-                  new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(277, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter))),
+                  new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(277, XGraphicsUnit.Millimeter)),
+                  new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter))),
               XStringFormats.Center);
 
             var footerArea4 = new XRect(
-                  new XPoint(new XUnit(62, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(291, XGraphicsUnit.Millimeter)));
+                  new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
+                  new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(291, XGraphicsUnit.Millimeter)));
 
             page.AddWebLink(new PdfRectangle(footerArea4), @"http://www.github.com/100prznt/Flowcalc");
             gfx.DrawString("www.github.com/100prznt/FlowCalc", font, footerTextBrush,
@@ -429,7 +425,7 @@ namespace FlowCalc
             {
                 gfx.DrawString(DateTime.Now.ToString(), font, footerTextBrush,
                   new XRect(
-                      new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
+                      new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
                       new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter))),
                   XStringFormats.Center);
             }
@@ -437,32 +433,26 @@ namespace FlowCalc
             {
                 gfx.DrawString(DateTime.Now.ToString(), font, footerTextBrush,
                   new XRect(
-                      new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(278, XGraphicsUnit.Millimeter)),
+                      new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(278, XGraphicsUnit.Millimeter)),
                       new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter))),
                   XStringFormats.Center);
                 gfx.DrawString(CurrentPresets.UserName, font, footerTextBrush,
                   new XRect(
-                      new XPoint(new XUnit(210 - 62, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
+                      new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
                       new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(290, XGraphicsUnit.Millimeter))),
                   XStringFormats.Center);
             }
             #endregion Frame
 
 
-            XFont p = new XFont("Barlow", 10.5, XFontStyle.Regular);
-
-            XFont h2 = new XFont("Barlow", 17, XFontStyle.Bold);
-            XFont h3 = new XFont("Barlow", 13, XFontStyle.Bold);
-            XFont p3 = new XFont("Barlow", 13, XFontStyle.Regular);
-            XFont h4 = new XFont("Barlow", 11, XFontStyle.Regular);
+            var p = new XFont("Barlow", 10.5, XFontStyle.Regular);
+            var h2 = new XFont("Barlow", 17, XFontStyle.Bold);
+            var h3 = new XFont("Barlow", 13, XFontStyle.Bold);
+            var p3 = new XFont("Barlow", 13, XFontStyle.Regular);
 
             var t1 = new XUnit(10, XGraphicsUnit.Millimeter);
             var t2 = new XUnit(13, XGraphicsUnit.Millimeter);
             var t3 = new XUnit(20, XGraphicsUnit.Millimeter);
-            var t4 = new XUnit(40, XGraphicsUnit.Millimeter);
-            var t6 = new XUnit(60, XGraphicsUnit.Millimeter);
-            var t7 = new XUnit(70, XGraphicsUnit.Millimeter);
-            var t8 = new XUnit(86, XGraphicsUnit.Millimeter);
             var t10 = new XUnit(100, XGraphicsUnit.Millimeter);
 
             int yLineH3 = 7;
@@ -509,9 +499,9 @@ namespace FlowCalc
             pklImage.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
             stream.Position = 0;
 
-            XImage pkl = XImage.FromStream(stream);
+            var pkl = XImage.FromStream(stream);
 
-            XRect imageFrame = new XRect(
+            var imageFrame = new XRect(
                 new XPoint(t3, new XUnit(yCalc + 32, XGraphicsUnit.Millimeter)),
                 new XPoint(new XUnit(180, XGraphicsUnit.Millimeter), new XUnit(yCalc + 127, XGraphicsUnit.Millimeter)));
             gfx.DrawImage(pkl, imageFrame);
@@ -542,7 +532,7 @@ namespace FlowCalc
             gfx.DrawString(filterSpeed.ToString("f2") + " m/h", h3, filterSpeedBrush, new XPoint(t10, new XUnit(yRes + yLineH3 * 3, XGraphicsUnit.Millimeter)));
 
 
-            XTextFormatter tf = new XTextFormatter(gfx);
+            var tf = new XTextFormatter(gfx);
 
             tf.DrawString("Im privaten Poolbereich sollte die Filtergeschwindigkeit nicht über 50 m/h betragen.\r\n" + 
                 "Mit einer langsameren Filtergeschwindigkeit von rund 30 m/h würde das Ergebnis der Filtration zwar verbessert werden. " +
@@ -557,6 +547,7 @@ namespace FlowCalc
 
             // Save the document
             document.Save(path);
+
             // Start a viewer.
             Process.Start(path);
         }
