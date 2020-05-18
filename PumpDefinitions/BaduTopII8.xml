@@ -4,9 +4,11 @@
   <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
   <NominalQ>8</NominalQ>
   <NominalH>8</NominalH>
+  <PowerInput>0.5</PowerInput>
   <PowerOutput>0.3</PowerOutput>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>https://www.speck-pumps.com/media/pdf/03/f2/a0/BA_Bettar.pdf</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>14.497252747252746</H>

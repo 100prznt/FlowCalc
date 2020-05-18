@@ -4,9 +4,11 @@
   <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
   <NominalQ>6</NominalQ>
   <NominalH>8</NominalH>
+  <PowerInput>0.45</PowerInput>
   <PowerOutput>0.25</PowerOutput>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>https://www.speck-pumps.com/media/pdf/f3/04/b8/BA_Magic.pdf</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>11.965034965034967</H>

@@ -46,7 +46,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txt_PumpMaxHead = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txt_PumpPowerOut = new System.Windows.Forms.TextBox();
+            this.txt_PumpPowerIn = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_PumpManufracturer = new System.Windows.Forms.TextBox();
             this.btn_CalcFlowRate = new System.Windows.Forms.Button();
@@ -56,6 +56,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txt_SystemHead = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_GenerateReport = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btn_SelectPipe = new System.Windows.Forms.Button();
             this.btn_CalcLength = new System.Windows.Forms.Button();
@@ -99,8 +100,11 @@
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.btn_GenerateReport = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txt_PumpPowerOut = new System.Windows.Forms.TextBox();
+            this.lbl_PumpDataSourceUrl = new System.Windows.Forms.LinkLabel();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -157,6 +161,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lbl_PumpDataSourceUrl);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.txt_PumpPowerOut);
             this.groupBox1.Controls.Add(this.btn_ShowPumpCurve);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.lbl_PumpFileAuthor);
@@ -164,7 +172,7 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txt_PumpMaxHead);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txt_PumpPowerOut);
+            this.groupBox1.Controls.Add(this.txt_PumpPowerIn);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txt_PumpManufracturer);
             this.groupBox1.Controls.Add(this.btn_LoadPump);
@@ -197,7 +205,7 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.txt_PumpNominalFlowRate);
             this.groupBox3.Controls.Add(this.txt_PumpNominalHead);
-            this.groupBox3.Location = new System.Drawing.Point(33, 229);
+            this.groupBox3.Location = new System.Drawing.Point(33, 286);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -246,10 +254,10 @@
             // 
             // lbl_PumpFileAuthor
             // 
-            this.lbl_PumpFileAuthor.Location = new System.Drawing.Point(246, 412);
+            this.lbl_PumpFileAuthor.Location = new System.Drawing.Point(246, 469);
             this.lbl_PumpFileAuthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PumpFileAuthor.Name = "lbl_PumpFileAuthor";
-            this.lbl_PumpFileAuthor.Size = new System.Drawing.Size(364, 35);
+            this.lbl_PumpFileAuthor.Size = new System.Drawing.Size(364, 22);
             this.lbl_PumpFileAuthor.TabIndex = 17;
             this.lbl_PumpFileAuthor.TabStop = true;
             this.lbl_PumpFileAuthor.Text = "PumpFileAuthor";
@@ -258,7 +266,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(28, 412);
+            this.label10.Location = new System.Drawing.Point(28, 469);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(52, 20);
@@ -290,18 +298,18 @@
             this.label3.Location = new System.Drawing.Point(28, 177);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(165, 20);
+            this.label3.Size = new System.Drawing.Size(183, 20);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Abgabeleistung Motor";
+            this.label3.Text = "Leistungsaufnahme (P1)";
             // 
-            // txt_PumpPowerOut
+            // txt_PumpPowerIn
             // 
-            this.txt_PumpPowerOut.Enabled = false;
-            this.txt_PumpPowerOut.Location = new System.Drawing.Point(250, 172);
-            this.txt_PumpPowerOut.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_PumpPowerOut.Name = "txt_PumpPowerOut";
-            this.txt_PumpPowerOut.Size = new System.Drawing.Size(412, 26);
-            this.txt_PumpPowerOut.TabIndex = 6;
+            this.txt_PumpPowerIn.Enabled = false;
+            this.txt_PumpPowerIn.Location = new System.Drawing.Point(250, 172);
+            this.txt_PumpPowerIn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpPowerIn.Name = "txt_PumpPowerIn";
+            this.txt_PumpPowerIn.Size = new System.Drawing.Size(412, 26);
+            this.txt_PumpPowerIn.TabIndex = 6;
             // 
             // label2
             // 
@@ -405,6 +413,18 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
+            // 
+            // btn_GenerateReport
+            // 
+            this.btn_GenerateReport.Enabled = false;
+            this.btn_GenerateReport.Location = new System.Drawing.Point(216, 618);
+            this.btn_GenerateReport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_GenerateReport.Name = "btn_GenerateReport";
+            this.btn_GenerateReport.Size = new System.Drawing.Size(150, 60);
+            this.btn_GenerateReport.TabIndex = 23;
+            this.btn_GenerateReport.Text = "Report erstellen (pdf)";
+            this.btn_GenerateReport.UseVisualStyleBackColor = true;
+            this.btn_GenerateReport.Click += new System.EventHandler(this.btn_GenerateReport_Click);
             // 
             // groupBox4
             // 
@@ -781,22 +801,49 @@
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btn_GenerateReport
-            // 
-            this.btn_GenerateReport.Enabled = false;
-            this.btn_GenerateReport.Location = new System.Drawing.Point(216, 618);
-            this.btn_GenerateReport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_GenerateReport.Name = "btn_GenerateReport";
-            this.btn_GenerateReport.Size = new System.Drawing.Size(150, 60);
-            this.btn_GenerateReport.TabIndex = 23;
-            this.btn_GenerateReport.Text = "Report erstellen (pdf)";
-            this.btn_GenerateReport.UseVisualStyleBackColor = true;
-            this.btn_GenerateReport.Click += new System.EventHandler(this.btn_GenerateReport_Click);
-            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.Filter = "PDF|*.pdf";
             this.saveFileDialog1.Title = "Report speichern";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(28, 213);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(198, 20);
+            this.label16.TabIndex = 103;
+            this.label16.Text = "Abgabeleistung Motor (P2)";
+            // 
+            // txt_PumpPowerOut
+            // 
+            this.txt_PumpPowerOut.Enabled = false;
+            this.txt_PumpPowerOut.Location = new System.Drawing.Point(250, 208);
+            this.txt_PumpPowerOut.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpPowerOut.Name = "txt_PumpPowerOut";
+            this.txt_PumpPowerOut.Size = new System.Drawing.Size(412, 26);
+            this.txt_PumpPowerOut.TabIndex = 102;
+            // 
+            // lbl_PumpDataSourceUrl
+            // 
+            this.lbl_PumpDataSourceUrl.Location = new System.Drawing.Point(246, 495);
+            this.lbl_PumpDataSourceUrl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_PumpDataSourceUrl.Name = "lbl_PumpDataSourceUrl";
+            this.lbl_PumpDataSourceUrl.Size = new System.Drawing.Size(433, 20);
+            this.lbl_PumpDataSourceUrl.TabIndex = 104;
+            this.lbl_PumpDataSourceUrl.TabStop = true;
+            this.lbl_PumpDataSourceUrl.Text = "PumpDataSourceUrl";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(28, 495);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(99, 20);
+            this.label17.TabIndex = 105;
+            this.label17.Text = "Datenquelle:";
             // 
             // MainView
             // 
@@ -844,7 +891,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_PumpNominalFlowRate;
-        private System.Windows.Forms.TextBox txt_PumpPowerOut;
+        private System.Windows.Forms.TextBox txt_PumpPowerIn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_PumpManufracturer;
         private System.Windows.Forms.Button btn_CalcFlowRate;
@@ -905,6 +952,10 @@
         private System.Windows.Forms.Button btn_SelectPipe;
         private System.Windows.Forms.Button btn_GenerateReport;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txt_PumpPowerOut;
+        private System.Windows.Forms.LinkLabel lbl_PumpDataSourceUrl;
+        private System.Windows.Forms.Label label17;
     }
 }
 

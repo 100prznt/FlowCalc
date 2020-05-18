@@ -2,11 +2,13 @@
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Modell>Pro-Pump 7</Modell>
   <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
-  <PowerOutput>0.45</PowerOutput>
-  <NominalQ>7</NominalQ>
-  <NominalH>6</NominalH>
+  <PowerInput>0.45</PowerInput>
+  <PowerOutput>0.25</PowerOutput>
+  <NominalQ>6</NominalQ>
+  <NominalH>8</NominalH>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>Datasheets/Speck_ProPump7.pdf</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>12</H>

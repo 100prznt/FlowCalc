@@ -70,11 +70,20 @@ namespace FlowCalc
         public double NominalDynamicHead { get; set; }
 
         /// <summary>
+        /// Leistungsaufname Motor P_1
+        /// in [kW]
+        /// </summary>
+        [Category("Leistungsdaten")]
+        [DisplayName("Leistungsaufnahme in kW (P1)")]
+        [Description("Leistungaufnahme")]
+        public double PowerInput { get; set; }
+
+        /// <summary>
         /// Leistung an der Motorwelle P_2
         /// in [kW]
         /// </summary>
         [Category("Leistungsdaten")]
-        [DisplayName("Motorleistung in kW")]
+        [DisplayName("Motorleistung in kW (P2)")]
         [Description("Leistung an der Motorwelle.")]
         public double PowerOutput { get; set; }
 
@@ -96,6 +105,14 @@ namespace FlowCalc
         [Description("Email Adresse des Erstellers der Pumpendefinition.")]
         [XmlElement("AuthorEmail")]
         public string AuthorEmailPumpFile { get; set; }
+
+        /// <summary>
+        /// Quelle der Pumpendaten
+        /// </summary>
+        [Category("Metadaten")]
+        [DisplayName("Datenquelle (URL)")]
+        [Description("Quelle der Pumpendaten, zum Beispiel Hersteller-Website.")]
+        public string DataSourceUrl { get; set; }
 
         /// <summary>
         /// Leistungskurve

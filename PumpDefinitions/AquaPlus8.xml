@@ -2,11 +2,13 @@
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Modell>AquaPlus 8</Modell>
   <Manufacturer>Aqua TechniX GmbH</Manufacturer>
+  <PowerInput>0.6</PowerInput>
   <PowerOutput>0.40</PowerOutput>
   <NominalQ>8</NominalQ>
   <NominalH>9</NominalH>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>https://aquatechnix.de/aquatechnix-poolpumpen/plus/</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>12</H>

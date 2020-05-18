@@ -4,9 +4,11 @@
   <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
   <NominalQ>4</NominalQ>
   <NominalH>8</NominalH>
+  <PowerInput>0.39</PowerInput>
   <PowerOutput>0.2</PowerOutput>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>https://www.speck-pumps.com/media/pdf/ed/66/65/BA_Picco.pdf</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>11.002552664435664</H>

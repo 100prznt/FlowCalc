@@ -4,9 +4,11 @@
   <Manufacturer>Aqua TechniX GmbH</Manufacturer>
   <NominalQ>4</NominalQ>
   <NominalH>8</NominalH>
+  <PowerInput>0.36</PowerInput>
   <PowerOutput>0.18</PowerOutput>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>https://aquatechnix.de/aquatechnix-poolpumpen/plus/</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>9.8</H>

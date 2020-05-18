@@ -2,7 +2,7 @@
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Modell>SPS-50</Modell>
   <Manufacturer>Steinbach VertriebsgmbH</Manufacturer>
-  <PowerOutput>0.2</PowerOutput>
+  <PowerOutput>0.25</PowerOutput>
   <NominalQ>4.5</NominalQ>
   <NominalH>4</NominalH>
   <Author>Elias Ruemmler</Author>

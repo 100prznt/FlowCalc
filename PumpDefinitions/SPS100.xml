@@ -4,10 +4,10 @@
   <Manufacturer>Steinbach VertriebsgmbH</Manufacturer>
   <NominalQ>6.2</NominalQ>
   <NominalH>6</NominalH>
-  <PowerOutput>0.55</PowerOutput>
-  <!--https://www.steinbach-group.com/de/040917-filterpumpe-sps-100-1t-10795de/-->
+  <PowerInput>0.55</PowerInput>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>https://www.steinbach-group.com/de/040917-filterpumpe-sps-100-1t-10795de/</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>9.8109890109890152</H>
