@@ -453,8 +453,8 @@ namespace FlowCalc
             var t1 = new XUnit(10, XGraphicsUnit.Millimeter);
             var t2 = new XUnit(13, XGraphicsUnit.Millimeter);
             var t3 = new XUnit(20, XGraphicsUnit.Millimeter);
-            var t10 = new XUnit(100, XGraphicsUnit.Millimeter);
-            var t16 = new XUnit(160, XGraphicsUnit.Millimeter);
+            var t10 = new XUnit(83, XGraphicsUnit.Millimeter);
+            var t16 = new XUnit(140, XGraphicsUnit.Millimeter);
 
             int yLineH3 = 7;
             int yOffsH3 = -1;
@@ -534,7 +534,7 @@ namespace FlowCalc
             {
                 gfx.DrawString($"{tCycle1.Hours} Stunden {tCycle1.Minutes} Minuten", h3, XBrushes.Black, new XPoint(t10, new XUnit(yRes + yLineH3, XGraphicsUnit.Millimeter)));
                 if (Pump.PowerInput > 0)
-                    gfx.DrawString($"{(tCycle1.TotalHours * Pump.PowerInput).ToString("f1")} kWh", h3, XBrushes.Black, new XPoint(t16, new XUnit(yRes + yLineH3, XGraphicsUnit.Millimeter)));
+                    gfx.DrawString($"({(tCycle1.TotalHours * Pump.PowerInput).ToString("f1")} kWh)", h3, XBrushes.Black, new XPoint(t16, new XUnit(yRes + yLineH3, XGraphicsUnit.Millimeter)));
             }
 
             if (tCycle3.TotalHours > 24)
@@ -543,7 +543,7 @@ namespace FlowCalc
             {
                 gfx.DrawString($"{tCycle3.Hours} Stunden {tCycle3.Minutes} Minuten", h3, XBrushes.Black, new XPoint(t10, new XUnit(yRes + yLineH3 * 2, XGraphicsUnit.Millimeter)));
                 if (Pump.PowerInput > 0)
-                    gfx.DrawString($"{(tCycle3.TotalHours * Pump.PowerInput).ToString("f1")} kWh", h3, XBrushes.Black, new XPoint(t16, new XUnit(yRes + yLineH3 * 2, XGraphicsUnit.Millimeter)));
+                    gfx.DrawString($"({(tCycle3.TotalHours * Pump.PowerInput).ToString("f1")} kWh)", h3, XBrushes.Black, new XPoint(t16, new XUnit(yRes + yLineH3 * 2, XGraphicsUnit.Millimeter)));
             }
 
             gfx.DrawString(filterSpeed.ToString("f2") + " m/h", h3, filterSpeedBrush, new XPoint(t10, new XUnit(yRes + yLineH3 * 3, XGraphicsUnit.Millimeter)));
