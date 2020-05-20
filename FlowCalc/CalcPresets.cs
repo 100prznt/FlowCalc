@@ -51,6 +51,8 @@ namespace FlowCalc
         [DisplayName("Medium")]
         public Medium Medium { get; set; }
 
+
+
         /// <summary>
         /// Höhe über dem Meeresspiegel (N.N.) in m
         /// </summary>
@@ -95,6 +97,8 @@ namespace FlowCalc
         }
 
         public string UserName { get; set; }
+
+        public string DefaultReportPath { get; set; }
 
         public bool DisableUserName { get; set; }
 

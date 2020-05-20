@@ -467,6 +467,10 @@ namespace FlowCalc
         private void btn_GenerateReport_Click(object sender, EventArgs e)
         {
             var reportSetupDlg = new EnterReportDataView();
+
+            if (Directory.Exists(Controller.CurrentPresets.DefaultReportPath))
+                saveFileDialog1.InitialDirectory = Controller.CurrentPresets.DefaultReportPath;
+
             saveFileDialog1.FileName = "Report_" + GetFriendlyName(m_Controller.Pump.ModellName + "_at_" + m_Controller.SystemHead.ToString("f2") + "mWS.pdf");
 
             if (reportSetupDlg.ShowDialog() == DialogResult.OK && saveFileDialog1.ShowDialog() == DialogResult.OK)

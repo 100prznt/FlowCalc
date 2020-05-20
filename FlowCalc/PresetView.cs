@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -60,6 +61,9 @@ namespace FlowCalc
             txt_UserName.Text = Settings.UserName;
             cbx_EnableUserName.Checked = !Settings.DisableUserName;
 
+            if (Directory.Exists(Settings.DefaultReportPath))
+                txt_ReportPath.Text = Settings.DefaultReportPath;
+
             return base.ShowDialog();
         }
 
@@ -93,6 +97,9 @@ namespace FlowCalc
             Settings.UserName = txt_UserName.Text;
             Settings.DisableUserName = !cbx_EnableUserName.Checked;
 
+            if (Directory.Exists(txt_ReportPath.Text))
+                Settings.DefaultReportPath = txt_ReportPath.Text;
+
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -100,6 +107,16 @@ namespace FlowCalc
         private void cbx_EnableUserName_CheckedChanged(object sender, EventArgs e)
         {
             txt_UserName.Enabled = cbx_EnableUserName.Checked;
+        }
+
+        private void btn_SelectReportPath_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(Settings.DefaultReportPath))
+                folderBrowserDialog1.SelectedPath = Settings.DefaultReportPath;
+                
+
+            if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK)
+                txt_ReportPath.Text = folderBrowserDialog1.SelectedPath;
         }
     }
 }

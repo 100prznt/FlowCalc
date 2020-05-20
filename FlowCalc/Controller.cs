@@ -453,7 +453,7 @@ namespace FlowCalc
             var t1 = new XUnit(10, XGraphicsUnit.Millimeter);
             var t2 = new XUnit(13, XGraphicsUnit.Millimeter);
             var t3 = new XUnit(20, XGraphicsUnit.Millimeter);
-            var t10 = new XUnit(83, XGraphicsUnit.Millimeter);
+            var t10 = new XUnit(84, XGraphicsUnit.Millimeter);
             var t16 = new XUnit(140, XGraphicsUnit.Millimeter);
 
             int yLineH3 = 7;
@@ -468,7 +468,10 @@ namespace FlowCalc
             gfx.DrawString("Saugseitige Rohrleitung:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * 4, XGraphicsUnit.Millimeter)));
             gfx.DrawString("Systemdruck (Filterkessel):", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * 5, XGraphicsUnit.Millimeter)));
 
-            gfx.DrawString($"{Pump.ModellName} ({Pump.Manufacturer})", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3, XGraphicsUnit.Millimeter)));
+            if (string.IsNullOrEmpty(Pump.Manufacturer))
+                gfx.DrawString($"{Pump.ModellName}", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3, XGraphicsUnit.Millimeter)));
+            else
+                gfx.DrawString($"{Pump.ModellName} ({Pump.Manufacturer})", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3, XGraphicsUnit.Millimeter)));
             gfx.DrawString(filterDiameter.ToString("f0") + " mm", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 2, XGraphicsUnit.Millimeter)));
             gfx.DrawString(poolVolume.ToString("f1") + " m³", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 3, XGraphicsUnit.Millimeter)));
             if (SuctionPipe != null)
