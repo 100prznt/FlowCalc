@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Modell>SPS-75</Modell>
-  <Manufacturer></Manufacturer>
+  <Manufacturer>Steinbach International GmbH</Manufacturer>
+  <PowerInput>0.45</PowerInput>
   <PowerOutput>0.2</PowerOutput>
   <NominalQ>4.8</NominalQ>
   <NominalH>6</NominalH>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>https://www.steinbach-group.com/de/040920-filterpumpe-sps-75-1-10794de/</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>6</H>
