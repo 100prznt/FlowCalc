@@ -453,7 +453,7 @@ namespace FlowCalc
             var t1 = new XUnit(10, XGraphicsUnit.Millimeter);
             var t2 = new XUnit(13, XGraphicsUnit.Millimeter);
             var t3 = new XUnit(20, XGraphicsUnit.Millimeter);
-            var t10 = new XUnit(84, XGraphicsUnit.Millimeter);
+            var t10 = new XUnit(72, XGraphicsUnit.Millimeter);
             var t16 = new XUnit(140, XGraphicsUnit.Millimeter);
 
             int yLineH3 = 7;
