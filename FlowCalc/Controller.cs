@@ -583,7 +583,6 @@ namespace FlowCalc
                 var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
                 return string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
 #endif
-            
         }
 
         #endregion Internal services
