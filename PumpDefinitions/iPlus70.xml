@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Modell>Pro-Pump 7</Modell>
-  <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
-  <PowerInput>0.45</PowerInput>
+  <Modell>INFINITY i-Plus 70</Modell>
+  <Manufacturer>Speck Pumpen</Manufacturer>
+  <NominalQ>6</NominalQ>
+  <NominalH>8</NominalH>
+  <PowerInput>0.5</PowerInput>
   <PowerOutput>0.25</PowerOutput>
-  <NominalQ>7</NominalQ>
-  <NominalH>7</NominalH>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
-  <DataSourceUrl>Datasheets/Speck_ProPump7.pdf</DataSourceUrl>
+  <DataSourceUrl>Datasheets/infinity-i-plus-datenblatt.pdf</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>12</H>
       <Q>0</Q>
     </Ipp>
     <Ipp>
-      <H>11.75</H>
+      <H>11.8</H>
       <Q>1</Q>
     </Ipp>
     <Ipp>
-      <H>11.4</H>
+      <H>11.45</H>
       <Q>2</Q>
     </Ipp>
     <Ipp>
@@ -27,11 +27,11 @@
       <Q>3</Q>
     </Ipp>
     <Ipp>
-      <H>10.2</H>
+      <H>10.1</H>
       <Q>4</Q>
     </Ipp>
     <Ipp>
-      <H>9.3</H>
+      <H>9.25</H>
       <Q>5</Q>
     </Ipp>
     <Ipp>
@@ -39,7 +39,7 @@
       <Q>6</Q>
     </Ipp>
     <Ipp>
-      <H>6.25</H>
+      <H>6.3</H>
       <Q>7</Q>
     </Ipp>
     <Ipp>
@@ -47,7 +47,7 @@
       <Q>8</Q>
     </Ipp>
     <Ipp>
-      <H>2.5</H>
+      <H>2.6</H>
       <Q>9</Q>
     </Ipp>
   </PerformanceCurve>

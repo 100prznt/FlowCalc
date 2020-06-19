@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>Krystal Clear SF80220-2</Modell>
+  <Manufacturer>Intex</Manufacturer>
+  <NominalQ>4.7</NominalQ>
+  <NominalH>4.895</NominalH>
+  <PowerInput>0.25</PowerInput>
+  <PowerOutput>0</PowerOutput>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>/Datasheets/sf80220rc-2.jpg</DataSourceUrl>
+  <PerformanceCurve>
+    <Ipp>
+      <H>3</H>
+      <Q>7.66389351081</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.895</H>
+      <Q>4.7</Q>
+    </Ipp>
+    <Ipp>
+      <H>7.9</H>
+      <Q>0</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>
