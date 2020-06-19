@@ -295,7 +295,7 @@ namespace FlowCalc
             chartView.PowerPoint = new Tuple<double, double>(SystemFlowRate, SystemHead);
 
             var pklImage = chartView.GetChartImage();
-
+            var filterArea = Math.PI * Math.Pow(filterDiameter, 2) / 400;
 
 
             // Create a new PDF document
@@ -472,7 +472,7 @@ namespace FlowCalc
                 gfx.DrawString($"{Pump.ModellName}", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3, XGraphicsUnit.Millimeter)));
             else
                 gfx.DrawString($"{Pump.ModellName} ({Pump.Manufacturer})", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3, XGraphicsUnit.Millimeter)));
-            gfx.DrawString(filterDiameter.ToString("f0") + " mm", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 2, XGraphicsUnit.Millimeter)));
+            gfx.DrawString(filterDiameter.ToString("f0") + " mm (A = " + filterArea.ToString("f1") + " cm²)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 2, XGraphicsUnit.Millimeter)));
             gfx.DrawString(poolVolume.ToString("f1") + " m³", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 3, XGraphicsUnit.Millimeter)));
             if (SuctionPipe != null)
                 gfx.DrawString(SuctionPipe.ToString(), h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 4, XGraphicsUnit.Millimeter)));
