@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PoolCalc"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="PoolCalc" Height="450" Width="800">
     <Grid>
-        
+        <TabControl HorizontalAlignment="Left" Height="421" VerticalAlignment="Top" Width="793" Margin="0,0,0,0">
+            <TabItem Header="Übersicht">
+                <Grid Background="#FFE5E5E5">
+                    <GroupBox Header="System" HorizontalAlignment="Left" Height="262" Margin="61,62,0,0" VerticalAlignment="Top" Width="263">
+                        <StackPanel HorizontalAlignment="Left" Height="220" Margin="31,27,0,-8.333" VerticalAlignment="Top" Width="202">
+                            <Grid Height="100">
+                                <Label Content="Label" HorizontalAlignment="Left" Margin="22,49,0,0" VerticalAlignment="Top"/>
+                                <TextBox HorizontalAlignment="Left" Height="23" Margin="72,49,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Auslegung" HorizontalAlignment="Left" Height="262" Margin="407,62,0,0" VerticalAlignment="Top" Width="263"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Rechner">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Einstellungen">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
