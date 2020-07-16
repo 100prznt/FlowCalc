@@ -219,7 +219,10 @@ namespace FlowCalc
             lbl_PumpFileAuthor.LinkVisited = true;
 
             // Navigate to a URL.
-            Process.Start("mailto:" + m_Controller.Pump.AuthorEmailPumpFile);
+            if (m_Controller.Pump.AuthorEmailPumpFile.Contains("@"))
+                Process.Start("mailto:" + m_Controller.Pump.AuthorEmailPumpFile);
+            else
+                Process.Start(m_Controller.Pump.AuthorEmailPumpFile);
         }
 
         private void btn_ShowPumpCurve_Click(object sender, EventArgs e)
@@ -487,6 +490,11 @@ namespace FlowCalc
                 name = name.Replace(c.ToString(), "");
 
             return name;
+        }
+
+        private void lbl_PumpDataSourceUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(m_Controller.Pump.DataSourceUrl);
         }
     }
 }

@@ -35,6 +35,10 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbl_PumpDataSourceUrl = new System.Windows.Forms.LinkLabel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txt_PumpPowerOut = new System.Windows.Forms.TextBox();
             this.btn_ShowPumpCurve = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -101,10 +105,6 @@
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txt_PumpPowerOut = new System.Windows.Forms.TextBox();
-            this.lbl_PumpDataSourceUrl = new System.Windows.Forms.LinkLabel();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -186,6 +186,46 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pumpe";
+            // 
+            // lbl_PumpDataSourceUrl
+            // 
+            this.lbl_PumpDataSourceUrl.Location = new System.Drawing.Point(246, 495);
+            this.lbl_PumpDataSourceUrl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_PumpDataSourceUrl.Name = "lbl_PumpDataSourceUrl";
+            this.lbl_PumpDataSourceUrl.Size = new System.Drawing.Size(433, 20);
+            this.lbl_PumpDataSourceUrl.TabIndex = 104;
+            this.lbl_PumpDataSourceUrl.TabStop = true;
+            this.lbl_PumpDataSourceUrl.Text = "PumpDataSourceUrl";
+            this.lbl_PumpDataSourceUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbl_PumpDataSourceUrl_LinkClicked);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(28, 495);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(99, 20);
+            this.label17.TabIndex = 105;
+            this.label17.Text = "Datenquelle:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(28, 213);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(198, 20);
+            this.label16.TabIndex = 103;
+            this.label16.Text = "Abgabeleistung Motor (P2)";
+            // 
+            // txt_PumpPowerOut
+            // 
+            this.txt_PumpPowerOut.Enabled = false;
+            this.txt_PumpPowerOut.Location = new System.Drawing.Point(250, 208);
+            this.txt_PumpPowerOut.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpPowerOut.Name = "txt_PumpPowerOut";
+            this.txt_PumpPowerOut.Size = new System.Drawing.Size(412, 26);
+            this.txt_PumpPowerOut.TabIndex = 102;
             // 
             // btn_ShowPumpCurve
             // 
@@ -584,6 +624,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stToolStripMenuItem,
@@ -805,45 +846,6 @@
             // 
             this.saveFileDialog1.Filter = "PDF|*.pdf";
             this.saveFileDialog1.Title = "Report speichern";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(28, 213);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(198, 20);
-            this.label16.TabIndex = 103;
-            this.label16.Text = "Abgabeleistung Motor (P2)";
-            // 
-            // txt_PumpPowerOut
-            // 
-            this.txt_PumpPowerOut.Enabled = false;
-            this.txt_PumpPowerOut.Location = new System.Drawing.Point(250, 208);
-            this.txt_PumpPowerOut.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txt_PumpPowerOut.Name = "txt_PumpPowerOut";
-            this.txt_PumpPowerOut.Size = new System.Drawing.Size(412, 26);
-            this.txt_PumpPowerOut.TabIndex = 102;
-            // 
-            // lbl_PumpDataSourceUrl
-            // 
-            this.lbl_PumpDataSourceUrl.Location = new System.Drawing.Point(246, 495);
-            this.lbl_PumpDataSourceUrl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_PumpDataSourceUrl.Name = "lbl_PumpDataSourceUrl";
-            this.lbl_PumpDataSourceUrl.Size = new System.Drawing.Size(433, 20);
-            this.lbl_PumpDataSourceUrl.TabIndex = 104;
-            this.lbl_PumpDataSourceUrl.TabStop = true;
-            this.lbl_PumpDataSourceUrl.Text = "PumpDataSourceUrl";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(28, 495);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(99, 20);
-            this.label17.TabIndex = 105;
-            this.label17.Text = "Datenquelle:";
             // 
             // MainView
             // 
