@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>IRIS 500M</Modell>
+  <Manufacturer>ESPA Deutschland GmbH</Manufacturer>
+  <NominalQ>10.5</NominalQ>
+  <NominalH>10.5</NominalH>
+  <PowerInput>0.45</PowerInput>
+  <PowerOutput>0.25</PowerOutput>
+  <Author>Jimbob_McCoi</Author>
+  <AuthorEmail>https://www.poolpowershop-forum.de/member/64243-jimbob_mccoi</AuthorEmail>
+  <DataSourceUrl>https://www.espa-deutschland.de/wp-content/uploads/2020/05/ESPApool_-Katalog-2020.pdf</DataSourceUrl>
+  <PerformanceCurve>
+    <Ipp>
+      <H>10.5</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>10</H>
+      <Q>2.4</Q>
+    </Ipp>
+    <Ipp>
+      <H>9</H>
+      <Q>4.2</Q>
+    </Ipp>
+    <Ipp>
+      <H>8</H>
+      <Q>5.4</Q>
+    </Ipp>
+    <Ipp>
+      <H>7</H>
+      <Q>6.48</Q>
+    </Ipp>
+    <Ipp>
+      <H>6</H>
+      <Q>7.2</Q>
+    </Ipp>
+    <Ipp>
+      <H>5</H>
+      <Q>7.8</Q>
+    </Ipp>
+    <Ipp>
+      <H>4</H>
+      <Q>8.52</Q>
+    </Ipp>
+    <Ipp>
+      <H>3</H>
+      <Q>9.18</Q>
+    </Ipp>
+    <Ipp>
+      <H>2</H>
+      <Q>9.8</Q>
+    </Ipp>
+    <Ipp>
+      <H>1</H>
+      <Q>10.5</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>
