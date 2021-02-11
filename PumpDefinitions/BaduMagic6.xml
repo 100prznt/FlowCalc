@@ -8,7 +8,7 @@
   <PowerOutput>0.25</PowerOutput>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
-  <DataSourceUrl>BaduMagic_DB.pdf</DataSourceUrl>
+  <DataSourceUrl>/Datasheets/BaduMagic_DB.pdf</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>11.965034965034967</H>

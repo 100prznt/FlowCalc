@@ -8,7 +8,7 @@
   <PowerOutput>0.25</PowerOutput>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
-  <DataSourceUrl>KL_BADU_Magic-II-1.pdf</DataSourceUrl>
+  <DataSourceUrl>/Datasheets/KL_BADU_Magic-II-1.pdf</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>10.647268907563021</H>
