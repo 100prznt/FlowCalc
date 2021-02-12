@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Modell>BADU Magic II/11</Modell>
+  <Modell>BADU Magic 11</Modell>
   <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
   <NominalQ>11</NominalQ>
   <NominalH>8</NominalH>
@@ -8,7 +8,7 @@
   <PowerOutput>0.45</PowerOutput>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
-  <DataSourceUrl>https://www.speck-pumps.com/media/pdf/f3/04/b8/BA_Magic.pdf</DataSourceUrl>
+  <DataSourceUrl>/Datasheets/BaduMagic_DB.pdf</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
       <H>14.012371001031998</H>
