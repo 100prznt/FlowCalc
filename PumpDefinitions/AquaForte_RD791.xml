@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>Vario-22000 (RD791)</Modell>
+  <Manufacturer>Aqua Forte</Manufacturer>
+  <PowerInput>0.2</PowerInput>
+  <PowerOutput>0</PowerOutput>
+  <NominalQ>2.5</NominalQ>
+  <NominalH>6</NominalH>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>https://www.aqua-forte.com/de/productgroups/teichpumpen/</DataSourceUrl>
+  <PerformanceCurve>
+    <Ipp>
+      <H>7.5</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>5.9</H>
+      <Q>2.5</Q>
+    </Ipp>
+    <Ipp>
+      <H>4.65</H>
+      <Q>5</Q>
+    </Ipp>
+    <Ipp>
+      <H>3.7</H>
+      <Q>7.5</Q>
+    </Ipp>
+    <Ipp>
+      <H>2.8</H>
+      <Q>10</Q>
+    </Ipp>
+    <Ipp>
+      <H>2.15</H>
+      <Q>12.5</Q>
+    </Ipp>
+    <Ipp>
+      <H>1.5</H>
+      <Q>15</Q>
+    </Ipp>
+    <Ipp>
+      <H>0.9</H>
+      <Q>17.5</Q>
+    </Ipp>
+    <Ipp>
+      <H>0.4</H>
+      <Q>20</Q>
+    </Ipp>
+    <Ipp>
+      <H>0</H>
+      <Q>22</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>
