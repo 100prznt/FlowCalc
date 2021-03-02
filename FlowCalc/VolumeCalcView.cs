@@ -17,6 +17,8 @@ namespace FlowCalc
 {
     public partial class VolumeCalcView : Form
     {
+        private bool m_AsDialog = false;
+
         public Pool Pool { get; set; }
 
         public Units CurrentFillLevelUnit { get; set; }
@@ -103,6 +105,12 @@ namespace FlowCalc
             Properties.Settings.Default.Save();
 
             txt_Volume.Text = UnitConverter.ToUnit(Pool.Volumen, Units.M3, CurrentVolumenUnit).ToString("F2");
+
+            if (m_AsDialog && MessageBox.Show($"Berechnetes Volumen übernehmen?\n\n{UnitConverter.ToUnit(Pool.Volumen, Units.M3, CurrentVolumenUnit).ToString("F2")} m³", "Poolvolumen", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                base.DialogResult = DialogResult.OK;
+                base.Close();
+            }
         }
 
         private void cmb_FillLevelUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -192,6 +200,14 @@ namespace FlowCalc
                 txt_DimB.Visible = true;
                 lbl_DimBUnit.Visible = true;
             }
+        }
+
+        public new DialogResult ShowDialog()
+        {
+            m_AsDialog = true;
+
+            base.ShowDialog();
+            return base.DialogResult;
         }
     }
 }

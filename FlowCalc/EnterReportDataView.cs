@@ -116,5 +116,18 @@ namespace FlowCalc
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void btn_OpenCalculator_Click(object sender, EventArgs e)
+        {
+            var volumeCalcView = new VolumeCalcView();
+
+            if (volumeCalcView.ShowDialog() == DialogResult.OK)
+            {
+                var volumeBaseUnit = new DisplayUnit(Dimensions.Volume.GetBaseUnit());
+                cmb_VolumeUnit.SelectedItem = volumeBaseUnit;
+                CurrentVolumeUnit = volumeBaseUnit.Unit;
+                txt_Volume.Text = volumeCalcView.Pool.Volumen.ToString("F2");
+            }
+        }
     }
 }
