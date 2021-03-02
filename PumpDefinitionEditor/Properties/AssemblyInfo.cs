@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("100prznt.de")]
 [assembly: AssemblyProduct("PumpDefinitionEditor")]
-[assembly: AssemblyCopyright("Copyright © RC-Art Solutions 2019")]
+[assembly: AssemblyCopyright("Copyright © RC-Art Solutions 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
