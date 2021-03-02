@@ -63,7 +63,7 @@ namespace FlowCalc
             CurrentVolumenUnit = volumeBaseUnit.Unit;
 
             rb_Square.Checked = true;
-            txt_Level.Text = "100";
+            txt_Level.Text = "93";
         }
 
         private void btn_Clac_Click(object sender, EventArgs e)
