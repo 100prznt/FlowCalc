@@ -123,6 +123,7 @@
     <Compile Include="PipeSelectView.Designer.cs">
       <DependentUpon>PipeSelectView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PumpDynamicPerformanceCurve.cs" />
     <Compile Include="Report\BarlowFontResolver.cs" />
     <Compile Include="VolumeCalcView.cs">
       <SubType>Form</SubType>

@@ -125,6 +125,15 @@ namespace FlowCalc
         public PumpPerformancePoint[] PerformanceCurve { get; set; }
 
         /// <summary>
+        /// Drehzahlabhängige Leistungskurven
+        /// </summary>
+        [Category("Leistungsdaten")]
+        [DisplayName("Drehzahlabhängige Pumpenkennlinien")]
+        [Description("Im Datenblatt angegebene Pumpenkennlinien für bestimmte Motor Drehzahlen")]
+        [XmlArrayItem("DynamicPerformanceCurve")]
+        public PumpDynamicPerformanceCurve[] DynamicPerformanceCurves { get; set; }
+
+        /// <summary>
         /// Maximale Meter Wassersäule (Förderhöhe)
         /// in [m WS]
         /// </summary>
@@ -140,6 +149,21 @@ namespace FlowCalc
                     return 0;
                 else
                     return PerformanceCurve.Max(x => x.TotalDynamicHead);
+            }
+        }
+
+        /// <summary>
+        /// Pumpe mit variabler Drehzahl
+        /// </summary>
+        [Category("Leistungsdaten")]
+        [DisplayName("Pumpe mit variabler Drehzahl")]
+        [Description("Die Pumpe ist eine Vario-Pumpe mit regelbarer Drehzahl.")]
+        [XmlIgnore]
+        public bool IsVarioPump
+        {
+            get
+            {
+                return (PerformanceCurve == null || PerformanceCurve.Length <= 0) && DynamicPerformanceCurves != null && DynamicPerformanceCurves.Length > 0;
             }
         }
 
@@ -267,16 +291,34 @@ namespace FlowCalc
                 pump = (Pump)xs.Deserialize(sr);
             }
 
-            pump.PerformanceCurve = pump.PerformanceCurve.OrderBy(x => x.TotalDynamicHead).ToArray();
+            if (pump.IsVarioPump)
+            {
+                if (pump.DynamicPerformanceCurves.Select(x => x.Rpm).Distinct().Count() != pump.DynamicPerformanceCurves.Length)
+                    throw new InvalidDataException("Leistungskurven für identische Drehzahl mehrfach definiert.");
 
-            if (pump.PerformanceCurve == null || pump.PerformanceCurve.Length <= 0)
+                foreach (var pc in pump.DynamicPerformanceCurves)
+                {
+                    pc.PerformanceCurve = pc.PerformanceCurve.OrderBy(x => x.TotalDynamicHead).ToArray();
+
+                    if (CheckRoutines.GetDirection(pc.GetPerformanceFlowValues()) == Direction.NotUnique)
+                        throw new InvalidDataException($"Leistungskurve für {pc.Rpm} rpm ist unplausibel.");
+
+                    if (CheckRoutines.GetDirection(pc.GetPerformanceFlowValues()) == Direction.Ascending)
+                        throw new InvalidDataException($"Leistungskurve für {pc.Rpm} rpm ist unplausibel. Fördermenge steigt mit Förderhöhe.");
+                }
+            }
+            else if (pump.PerformanceCurve == null || pump.PerformanceCurve.Length <= 0)
                 throw new InvalidDataException("Leistungskurve konnte nicht geladen werden.");
+            else
+            {
+                pump.PerformanceCurve = pump.PerformanceCurve.OrderBy(x => x.TotalDynamicHead).ToArray();
 
-            if (CheckRoutines.GetDirection(pump.GetPerformanceFlowValues()) == Direction.NotUnique)
-                throw new InvalidDataException("Leistungskurve ist unplausibel.");
+                if (CheckRoutines.GetDirection(pump.GetPerformanceFlowValues()) == Direction.NotUnique)
+                    throw new InvalidDataException("Leistungskurve ist unplausibel.");
 
-            if (CheckRoutines.GetDirection(pump.GetPerformanceFlowValues()) == Direction.Ascending)
-                throw new InvalidDataException("Leistungskurve ist unplausibel. Fördermenge steigt mit Förderhöhe.");
+                if (CheckRoutines.GetDirection(pump.GetPerformanceFlowValues()) == Direction.Ascending)
+                    throw new InvalidDataException("Leistungskurve ist unplausibel. Fördermenge steigt mit Förderhöhe.");
+            }
 
             return pump;
         }
