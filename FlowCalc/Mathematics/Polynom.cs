@@ -49,8 +49,17 @@ namespace FlowCalc.Mathematics
             if (x.Length != y.Length)
                 throw new ArgumentOutOfRangeException("Polyfit nicht möglich, da der X- und Y-Vektor verschiedene Längen haben!");
 
-            if (degree >= x.Length)
+            if (degree > x.Length)
                 throw new ArgumentOutOfRangeException("Polyfit nicht möglich, da der angegeben Fit-Grad mit der Länge der Eingangsdaten nicht erreicht werden kann!");
+
+
+            //extend samples
+            if (x.Length == 2)
+            {
+                x = new double[3] { x[0], x.Average(), x[1] };
+                y = new double[3] { y[0], y.Average(), y[1] };
+            }
+
 
 
             var design = Matrix<double>.Build.Dense(x.Length, degree + 1, (i, j) => Math.Pow(x[i], j));
