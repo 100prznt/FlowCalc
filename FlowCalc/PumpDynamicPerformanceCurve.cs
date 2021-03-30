@@ -23,6 +23,15 @@ namespace FlowCalc
         public int Rpm { get; set; }
 
         /// <summary>
+        /// Leistungsaufname Motor P_1
+        /// in [kW]
+        /// </summary>
+        [Category("Leistungsdaten")]
+        [DisplayName("Leistungsaufnahme in kW (P1)")]
+        [Description("Leistungaufnahme")]
+        public double PowerInput { get; set; }
+
+        /// <summary>
         /// Leistungskurve
         /// </summary>
         [Category("Leistungsdaten")]

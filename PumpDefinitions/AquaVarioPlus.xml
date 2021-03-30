@@ -12,6 +12,7 @@
   <DynamicPerformanceCurves>
     <DynamicPerformanceCurve>
       <Rpm>1000</Rpm>
+      <PowerInput>99</PowerInput>
       <PerformanceCurve>
         <Ipp>
           <H>1.52</H>
@@ -159,6 +160,7 @@
     </DynamicPerformanceCurve>
     <DynamicPerformanceCurve>
       <Rpm>2850</Rpm>
+      <PowerInput>99</PowerInput>
       <PerformanceCurve>
         <Ipp>
           <H>12</H>
