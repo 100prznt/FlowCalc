@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlowCalc.Mathematics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -48,6 +49,11 @@ namespace FlowCalc
                 else
                     return PerformanceCurve.Max(x => x.TotalDynamicHead);
             }
+        }
+
+        public Polynom GetPerformancePolynom()
+        {
+            return Polynom.Polyfit(GetPerformanceFlowValues(), GetPerformanceHeadValues(), 3);
         }
 
         public double[] GetPerformanceHeadValues()

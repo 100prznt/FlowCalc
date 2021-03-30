@@ -39,6 +39,9 @@
     <Reference Include="csmatio, Version=1.0.20.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\csmatio.1.0.20\lib\netstandard2.0\csmatio.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.15.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -51,6 +54,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,6 +100,7 @@
     <Compile Include="Mathematics\CheckLimits.cs" />
     <Compile Include="Mathematics\CheckRoutines.cs" />
     <Compile Include="Mathematics\LinInterp.cs" />
+    <Compile Include="Mathematics\Polynom.cs" />
     <Compile Include="PhysicalUnits\DimensionExtensions.cs" />
     <Compile Include="PhysicalUnits\DisplayUnit.cs" />
     <Compile Include="PhysicalUnits\UnitConverter.cs" />

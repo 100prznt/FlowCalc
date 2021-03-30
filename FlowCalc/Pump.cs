@@ -167,6 +167,24 @@ namespace FlowCalc
             }
         }
 
+        [XmlIgnore]
+        public Polynom UpperPerformanceCurveLimit
+        {
+            get
+            {
+                if (IsVarioPump)
+                {
+                    var minRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Min(y => y.Rpm)).PerformanceCurve;
+                    var maxRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve;
+
+                    return Polynom.Polyfit(new double[2] { minRpmCurve.Last().FlowRate, maxRpmCurve.Last().FlowRate},
+                        new double[2] { minRpmCurve.Last().TotalDynamicHead, maxRpmCurve.Last().TotalDynamicHead }, 2);
+                }
+                else
+                    return null;
+            }
+        }
+
         [Browsable(false)]
         [XmlIgnore]
         public string FilePath { get; set; }
@@ -264,14 +282,21 @@ namespace FlowCalc
         /// <param name="path">Pfad unter welchem die Datei angelegt wird</param>
         public void ToMatFile(string path)
         {
-            var h = new MLDouble("H", GetPerformanceHeadValues(), 1);
-            var q = new MLDouble("Q", GetPerformanceFlowValues(), 1);
+            var mlList = new List<MLArray>();
 
-            var mlList = new List<MLArray>
+            if (IsVarioPump)
             {
-                h,
-                q
-            };
+                foreach (var rpm in GetDefaultRpms())
+                {
+                    mlList.Add(new MLDouble("H_" + rpm, GetPerformanceHeadValues(rpm), 1));
+                    mlList.Add(new MLDouble("Q_" + rpm, GetPerformanceFlowValues(rpm), 1));
+                }
+            }
+            else
+            {
+                mlList.Add(new MLDouble("H", GetPerformanceHeadValues(), 1));
+                mlList.Add(new MLDouble("Q", GetPerformanceFlowValues(), 1));
+            }
 
             MatFileWriter mfw = new MatFileWriter(path, mlList, false);
         }
@@ -356,19 +381,75 @@ namespace FlowCalc
             PerformanceCurve = curve.ToArray();
         }
 
-        public double[] GetPerformanceHeadValues()
+        public double[] GetPerformanceHeadValues(int? rpm = null)
         {
-            return PerformanceCurve.Select(x => x.TotalDynamicHead).ToArray();
+            if (rpm == null)
+                return PerformanceCurve.Select(x => x.TotalDynamicHead).ToArray();
+            else if (DynamicPerformanceCurves.Any(x => x.Rpm == rpm))
+                return DynamicPerformanceCurves.First(x => x.Rpm == rpm).GetPerformanceHeadValues();
+            else
+            {
+                var p = GetPerformancePolynom((int)rpm);
+                var result = new List<double>();
+                foreach (var q in GetPerformanceFlowValues(rpm))
+                    result.Add(p.Polyval(q));
+                return result.ToArray();
+            }
         }
 
-        public double[] GetPerformanceFlowValues()
+        public double[] GetPerformanceFlowValues(int? rpm = null)
         {
-            return PerformanceCurve.Select(x => x.FlowRate).ToArray();
+            if (rpm == null)
+                return PerformanceCurve.Select(x => x.FlowRate).ToArray();
+            else if (DynamicPerformanceCurves.Any(x => x.Rpm == rpm))
+                return DynamicPerformanceCurves.First(x => x.Rpm == rpm).GetPerformanceFlowValues();
+            else
+            {
+                var maxRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve;
+                return maxRpmCurve.Select(x => x.FlowRate).ToArray();
+            }
+        }
+
+        public int[] GetDefaultRpms()
+        {
+            if (IsVarioPump)
+                return DynamicPerformanceCurves.Select(x => x.Rpm).ToArray();
+            else
+                return null;
         }
 
         #endregion Services
 
         #region Internal services
+
+        private Polynom GetPerformancePolynom(int rpm)
+        {
+            if (!IsVarioPump)
+                return null;
+
+            if (DynamicPerformanceCurves.Any(x => x.Rpm == rpm))
+            {
+                return DynamicPerformanceCurves.First(x => x.Rpm == rpm).GetPerformancePolynom();
+            }
+
+            var upperCurve = DynamicPerformanceCurves.First(x => x.Rpm > rpm);
+            var lowerCurve = DynamicPerformanceCurves.Last(x => x.Rpm < rpm);
+
+            var rpmDelta = upperCurve.Rpm - lowerCurve.Rpm;
+            var rpmGap = rpm - lowerCurve.Rpm;
+
+            var result = new Polynom(0, 0, 0, 0);
+
+            for (int i = 0; i < 4; i++)
+            {
+                var coefficientDelta = upperCurve.GetPerformancePolynom().Coefficients[i] - lowerCurve.GetPerformancePolynom().Coefficients[i];
+
+                result.Coefficients[i] = lowerCurve.GetPerformancePolynom().Coefficients[i] + coefficientDelta * rpmGap / rpmDelta;
+            }
+
+            return result;
+        }
+
         private string GenerateCsvLine(params object[] items)
         {
             return GenerateCsvLine(0, items);

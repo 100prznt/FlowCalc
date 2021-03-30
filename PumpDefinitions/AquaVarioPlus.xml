@@ -2,141 +2,231 @@
 <Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Modell>Aqua Vario Plus</Modell>
   <Manufacturer>Aqua TechniX GmbH</Manufacturer>
-  <PowerInput>99</PowerInput>
-  <PowerOutput>99</PowerOutput>
-  <NominalQ>99</NominalQ>
-  <NominalH>99</NominalH>
+  <PowerInput>0.65</PowerInput>
+  <PowerOutput>0.45</PowerOutput>
+  <NominalQ>14</NominalQ>
+  <NominalH>12</NominalH>
   <Author>Elias Ruemmler</Author>
   <AuthorEmail>pool@100prznt.de</AuthorEmail>
   <DataSourceUrl>https://aquatechnix.de/aquatechnix-poolpumpen/vario-plus/</DataSourceUrl>
   <DynamicPerformanceCurves>
     <DynamicPerformanceCurve>
-      <Rpm>999</Rpm>
+      <Rpm>1000</Rpm>
       <PerformanceCurve>
         <Ipp>
-          <H>12</H>
+          <H>1.52</H>
           <Q>0</Q>
         </Ipp>
         <Ipp>
-          <H>11.8</H>
+          <H>1.5</H>
           <Q>1</Q>
         </Ipp>
         <Ipp>
-          <H>11.6</H>
+          <H>1.45</H>
           <Q>2</Q>
         </Ipp>
         <Ipp>
-          <H>11.3</H>
+          <H>1.35</H>
           <Q>3</Q>
         </Ipp>
         <Ipp>
-          <H>10.9</H>
+          <H>1.15</H>
           <Q>4</Q>
         </Ipp>
         <Ipp>
-          <H>10.3</H>
+          <H>0.8</H>
           <Q>5</Q>
         </Ipp>
         <Ipp>
-          <H>9.8</H>
+          <H>0.4</H>
           <Q>6</Q>
-        </Ipp>
-        <Ipp>
-          <H>9.1</H>
-          <Q>7</Q>
-        </Ipp>
-        <Ipp>
-          <H>8.4</H>
-          <Q>8</Q>
-        </Ipp>
-        <Ipp>
-          <H>7.75</H>
-          <Q>9</Q>
-        </Ipp>
-        <Ipp>
-          <H>6.9</H>
-          <Q>10</Q>
-        </Ipp>
-        <Ipp>
-          <H>6</H>
-          <Q>11</Q>
-        </Ipp>
-        <Ipp>
-          <H>5</H>
-          <Q>12</Q>
-        </Ipp>
-        <Ipp>
-          <H>4.1</H>
-          <Q>13</Q>
-        </Ipp>
-        <Ipp>
-          <H>3</H>
-          <Q>14</Q>
         </Ipp>
       </PerformanceCurve>
     </DynamicPerformanceCurve>
     <DynamicPerformanceCurve>
-      <Rpm>99</Rpm>
+      <Rpm>2000</Rpm>
+      <PerformanceCurve>
+        <Ipp>
+          <H>6</H>
+          <Q>0</Q>
+        </Ipp>
+        <Ipp>
+          <H>5.9</H>
+          <Q>1</Q>
+        </Ipp>
+        <Ipp>
+          <H>5.8</H>
+          <Q>2</Q>
+        </Ipp>
+        <Ipp>
+          <H>5.6</H>
+          <Q>3</Q>
+        </Ipp>
+        <Ipp>
+          <H>5.45</H>
+          <Q>4</Q>
+        </Ipp>
+        <Ipp>
+          <H>5.2</H>
+          <Q>5</Q>
+        </Ipp>
+        <Ipp>
+          <H>4.85</H>
+          <Q>6</Q>
+        </Ipp>
+        <Ipp>
+          <H>4.45</H>
+          <Q>7</Q>
+        </Ipp>
+        <Ipp>
+          <H>4</H>
+          <Q>8</Q>
+        </Ipp>
+        <Ipp>
+          <H>3.45</H>
+          <Q>9</Q>
+        </Ipp>
+        <Ipp>
+          <H>2.85</H>
+          <Q>10</Q>
+        </Ipp>
+        <Ipp>
+          <H>2.2</H>
+          <Q>11</Q>
+        </Ipp>
+      </PerformanceCurve>
+    </DynamicPerformanceCurve>
+    <DynamicPerformanceCurve>
+      <Rpm>2400</Rpm>
+      <PerformanceCurve>
+        <Ipp>
+          <H>8.5</H>
+          <Q>0</Q>
+        </Ipp>
+        <Ipp>
+          <H>8.4</H>
+          <Q>1</Q>
+        </Ipp>
+        <Ipp>
+          <H>8.3</H>
+          <Q>2</Q>
+        </Ipp>
+        <Ipp>
+          <H>8.2</H>
+          <Q>3</Q>
+        </Ipp>
+        <Ipp>
+          <H>8</H>
+          <Q>4</Q>
+        </Ipp>
+        <Ipp>
+          <H>7.8</H>
+          <Q>5</Q>
+        </Ipp>
+        <Ipp>
+          <H>7.55</H>
+          <Q>6</Q>
+        </Ipp>
+        <Ipp>
+          <H>7.2</H>
+          <Q>7</Q>
+        </Ipp>
+        <Ipp>
+          <H>6.75</H>
+          <Q>8</Q>
+        </Ipp>
+        <Ipp>
+          <H>6.15</H>
+          <Q>9</Q>
+        </Ipp>
+        <Ipp>
+          <H>5.5</H>
+          <Q>10</Q>
+        </Ipp>
+        <Ipp>
+          <H>4.7</H>
+          <Q>11</Q>
+        </Ipp>
+        <Ipp>
+          <H>3.85</H>
+          <Q>12</Q>
+        </Ipp>
+        <Ipp>
+          <H>2.95</H>
+          <Q>13</Q>
+        </Ipp>
+      </PerformanceCurve>
+    </DynamicPerformanceCurve>
+    <DynamicPerformanceCurve>
+      <Rpm>2850</Rpm>
       <PerformanceCurve>
         <Ipp>
           <H>12</H>
           <Q>0</Q>
         </Ipp>
         <Ipp>
-          <H>11.8</H>
+          <H>11.85</H>
           <Q>1</Q>
         </Ipp>
         <Ipp>
-          <H>11.6</H>
+          <H>11.7</H>
           <Q>2</Q>
         </Ipp>
         <Ipp>
-          <H>11.3</H>
+          <H>11.55</H>
           <Q>3</Q>
         </Ipp>
         <Ipp>
-          <H>10.9</H>
+          <H>11.35</H>
           <Q>4</Q>
         </Ipp>
         <Ipp>
-          <H>10.3</H>
+          <H>11.05</H>
           <Q>5</Q>
         </Ipp>
         <Ipp>
-          <H>9.8</H>
+          <H>10.75</H>
           <Q>6</Q>
         </Ipp>
         <Ipp>
-          <H>9.1</H>
+          <H>10.4</H>
           <Q>7</Q>
         </Ipp>
         <Ipp>
-          <H>8.4</H>
+          <H>9.9</H>
           <Q>8</Q>
         </Ipp>
         <Ipp>
-          <H>7.75</H>
+          <H>9.4</H>
           <Q>9</Q>
         </Ipp>
         <Ipp>
-          <H>6.9</H>
+          <H>8.85</H>
           <Q>10</Q>
         </Ipp>
         <Ipp>
-          <H>6</H>
+          <H>8.25</H>
           <Q>11</Q>
         </Ipp>
         <Ipp>
-          <H>5</H>
+          <H>7.65</H>
           <Q>12</Q>
         </Ipp>
         <Ipp>
-          <H>4.1</H>
+          <H>6.85</H>
           <Q>13</Q>
         </Ipp>
         <Ipp>
-          <H>3</H>
+          <H>6.05</H>
           <Q>14</Q>
+        </Ipp>
+        <Ipp>
+          <H>5.1</H>
+          <Q>15</Q>
+        </Ipp>
+        <Ipp>
+          <H>3.9</H>
+          <Q>16</Q>
         </Ipp>
       </PerformanceCurve>
     </DynamicPerformanceCurve>

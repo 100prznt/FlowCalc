@@ -225,7 +225,13 @@ namespace PumpDefinitionEditor
             if (m_ChartView == null || !m_ChartView.Visible)
                 m_ChartView = new ChartView("Anzeige Pumpenkennlinie");
 
-            m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());
+            if (m_Controller.Pump.IsVarioPump)
+            {
+                foreach (var rpm in m_Controller.Pump.GetDefaultRpms())
+                    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
+            }
+            else
+                m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());
 
             m_ChartView.Show();
         }
