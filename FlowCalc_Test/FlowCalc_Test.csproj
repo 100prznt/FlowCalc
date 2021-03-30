@@ -52,6 +52,7 @@
     <Compile Include="PhysicalUnits_Tests.cs" />
     <Compile Include="Pipe_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Polynom_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
