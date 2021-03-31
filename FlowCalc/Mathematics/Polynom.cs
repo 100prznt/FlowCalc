@@ -54,11 +54,11 @@ namespace FlowCalc.Mathematics
 
 
             //extend samples
-            if (x.Length == 2)
-            {
-                x = new double[3] { x[0], x.Average(), x[1] };
-                y = new double[3] { y[0], y.Average(), y[1] };
-            }
+            //if (x.Length == 2)
+            //{
+            //    x = new double[3] { x[0], x.Average(), x[1] };
+            //    y = new double[3] { y[0], y.Average(), y[1] };
+            //}
 
 
 

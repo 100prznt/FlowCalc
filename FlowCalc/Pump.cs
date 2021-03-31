@@ -29,7 +29,6 @@ namespace FlowCalc
 
         #region Member
 
-
         #endregion Member
 
         #region Properties
@@ -177,8 +176,11 @@ namespace FlowCalc
                     var minRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Min(y => y.Rpm)).PerformanceCurve;
                     var maxRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve;
 
-                    return Polynom.Polyfit(new double[2] { minRpmCurve.Last().FlowRate, maxRpmCurve.Last().FlowRate},
-                        new double[2] { minRpmCurve.Last().TotalDynamicHead, maxRpmCurve.Last().TotalDynamicHead }, 2);
+                    
+
+
+                    return Polynom.Polyfit(new double[2] { minRpmCurve.First().FlowRate, maxRpmCurve.First().FlowRate},
+                        new double[2] { minRpmCurve.First().TotalDynamicHead, maxRpmCurve.First().TotalDynamicHead }, 1);
                 }
                 else
                     return null;
@@ -389,10 +391,16 @@ namespace FlowCalc
                 return DynamicPerformanceCurves.First(x => x.Rpm == rpm).GetPerformanceHeadValues();
             else
             {
+                var maxPerformanceFlowValues = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve.Select(x => x.FlowRate).ToArray();
                 var p = GetPerformancePolynom((int)rpm);
+                var pLim = UpperPerformanceCurveLimit;
                 var result = new List<double>();
-                foreach (var q in GetPerformanceFlowValues(rpm))
-                    result.Add(p.Polyval(q));
+                foreach (var q in maxPerformanceFlowValues)
+                {
+                    var h = (p.Polyval(q));
+                    if (h >= pLim.Polyval(q))
+                        result.Add(h);
+                }
                 return result.ToArray();
             }
         }
@@ -405,8 +413,21 @@ namespace FlowCalc
                 return DynamicPerformanceCurves.First(x => x.Rpm == rpm).GetPerformanceFlowValues();
             else
             {
-                var maxRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve;
-                return maxRpmCurve.Select(x => x.FlowRate).ToArray();
+                var maxPerformanceFlowValues = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve.Select(x => x.FlowRate).ToArray();
+                var p = GetPerformancePolynom((int)rpm);
+                var pLim = UpperPerformanceCurveLimit;
+                var result = new List<double>();
+                foreach (var q in maxPerformanceFlowValues)
+                {
+                    var h = (p.Polyval(q));
+                    if (h >= pLim.Polyval(q))
+                        result.Add(q);
+                }
+                return result.ToArray();
+
+
+                //var maxRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve;
+                //return maxRpmCurve.Select(x => x.FlowRate).ToArray();
             }
         }
 

@@ -227,17 +227,17 @@ namespace PumpDefinitionEditor
 
             if (m_Controller.Pump.IsVarioPump)
             {
-                foreach (var rpm in m_Controller.Pump.GetDefaultRpms())
-                    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
+                //foreach (var rpm in m_Controller.Pump.GetDefaultRpms())
+                //    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
 
                 //TEST
-                //for (int rpm = 1000; rpm <= 2850; rpm += 150)
-                //    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
+                for (int rpm = 1000; rpm <= 2850; rpm += 100)
+                    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
             }
             else
                 m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());
 
-            m_ChartView.Show();
+            m_ChartView.Show(); 
         }
     }
 }
