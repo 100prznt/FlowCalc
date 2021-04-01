@@ -32,5 +32,43 @@ namespace FlowCalc_Test
 
             Assert.AreEqual(1.24875, h, 1E-10);
         }
+
+        [TestMethod]
+        public void RealRoots1()
+        {
+            var p = new Polynom(-2, 0.5);
+
+            var roots = p.GetRealRoots();
+
+
+            Assert.IsTrue(roots.Length == 1);
+            Assert.AreEqual(4, roots[0]);
+        }
+
+        [TestMethod]
+        public void RealRoots2()
+        {
+            var p = new Polynom(1.515, 0.009761904761905, -0.012857142857143, -0.003333333333333);
+
+            var roots = p.GetRealRoots();
+
+
+            Assert.IsTrue(roots.Length == 1);
+            Assert.AreEqual(6.701151704879464, roots[0], 1E-10); //Calculated with Matlab
+        }
+
+        [TestMethod]
+        public void OperatorMinus1()
+        {
+            var a = new Polynom(1.5, 0.5, -0.1, -0.02);
+            var b = new Polynom(-1, 0.1);
+
+            var result = a - b;
+
+            Assert.AreEqual(2.5, result.Coefficients[0]);
+            Assert.AreEqual(0.4, result.Coefficients[1]);
+            Assert.AreEqual(-0.1, result.Coefficients[2]);
+            Assert.AreEqual(-0.02, result.Coefficients[3]);
+        }
     }
 }

@@ -56,14 +56,19 @@ namespace FlowCalc
             SetupChart(zedGraphControl1);
         }
 
-        public void AddCurve(string name, double[] xQ, double[] yH)
+        public void AddCurve(string name, double[] xQ, double[] yH, bool enableDataPoints = true)
         {
             if (Data.ContainsKey(name))
                 Data.Remove(name);
 
             Data.Add(name, new PointPairList(xQ, yH));
 
-            CreateChart(zedGraphControl1);
+            CreateChart(zedGraphControl1, enableDataPoints);
+        }
+
+        public void AddRange()
+        {
+
         }
 
         private void SetupChart(ZedGraphControl zgc)
@@ -84,7 +89,7 @@ namespace FlowCalc
             pane.Legend.Border.IsVisible = false;
         }
 
-        private void CreateChart(ZedGraphControl zgc)
+        private void CreateChart(ZedGraphControl zgc, bool enableDataPoints = true)
         {
             var pane = zgc.GraphPane;
             var pink = Color.FromArgb(0xff, 0x2e, 0x64);
@@ -134,10 +139,19 @@ namespace FlowCalc
                 //curve.Line.IsOptimizedDraw = true;
                 curve.Line.Width = 1.7f;
                 curve.Line.IsAntiAlias = true;
-                curve.Symbol.Type = SymbolType.Circle;
-                curve.Symbol.Size = 3.2f;
-                curve.Symbol.Fill.Type = FillType.Solid;
-                curve.Symbol.IsAntiAlias = true;
+                if (enableDataPoints)
+                {
+                    curve.Symbol.Type = SymbolType.Circle;
+                    curve.Symbol.Size = 3.2f;
+                    curve.Symbol.Fill.Type = FillType.Solid;
+                    curve.Symbol.IsAntiAlias = true;
+                }
+                else
+                {
+                    curve.Symbol.Type = SymbolType.None;
+                    curve.Line.IsSmooth = true;
+                    curve.Line.SmoothTension = 0.5F;
+                }
             }
 
             //Refresh the graph in order to show the new data
@@ -152,7 +166,7 @@ namespace FlowCalc
 
         private Color GetColorByIndex(int i)
         {
-            switch (i)
+            switch (i % 7)
             {
                 case 0:
                     return Color.DodgerBlue;

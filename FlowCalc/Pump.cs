@@ -167,6 +167,30 @@ namespace FlowCalc
         }
 
         [XmlIgnore]
+        public int MinRpm
+        {
+            get
+            {
+                if (IsVarioPump)
+                    return DynamicPerformanceCurves.Min(x => x.Rpm);
+                else
+                    return 0;
+            }
+        }
+
+        [XmlIgnore]
+        public int MaxRpm
+        {
+            get
+            {
+                if (IsVarioPump)
+                    return DynamicPerformanceCurves.Max(x => x.Rpm);
+                else
+                    return 0;
+            }
+        }
+
+        [XmlIgnore]
         public Polynom UpperPerformanceCurveLimit
         {
             get
@@ -395,11 +419,19 @@ namespace FlowCalc
                 var p = GetPerformancePolynom((int)rpm);
                 var pLim = UpperPerformanceCurveLimit;
                 var result = new List<double>();
+                var isLastPoint = true;
                 foreach (var q in maxPerformanceFlowValues)
                 {
                     var h = (p.Polyval(q));
                     if (h >= pLim.Polyval(q))
                         result.Add(h);
+                    else if (isLastPoint)
+                    {
+                        isLastPoint = false;
+                        var roots = (p - pLim).GetRealRoots();
+                        if (roots.Length == 1)
+                            result.Add(p.Polyval(roots[0]));
+                    }
                 }
                 return result.ToArray();
             }
@@ -417,11 +449,19 @@ namespace FlowCalc
                 var p = GetPerformancePolynom((int)rpm);
                 var pLim = UpperPerformanceCurveLimit;
                 var result = new List<double>();
+                var isLastPoint = true;
                 foreach (var q in maxPerformanceFlowValues)
                 {
                     var h = (p.Polyval(q));
                     if (h >= pLim.Polyval(q))
                         result.Add(q);
+                    else if (isLastPoint)
+                    {
+                        isLastPoint = false;
+                        var roots = (p - pLim).GetRealRoots();
+                        if (roots.Length == 1)
+                            result.Add(roots[0]);
+                    }
                 }
                 return result.ToArray();
 

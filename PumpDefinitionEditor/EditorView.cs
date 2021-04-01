@@ -230,9 +230,12 @@ namespace PumpDefinitionEditor
                 //foreach (var rpm in m_Controller.Pump.GetDefaultRpms())
                 //    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
 
-                //TEST
-                for (int rpm = 1000; rpm <= 2850; rpm += 100)
-                    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
+                //Interpolierte Kennlinien ploten
+                var stepwidth = (m_Controller.Pump.MaxRpm - m_Controller.Pump.MinRpm) / 17.0;
+
+                for (double rpm = m_Controller.Pump.MinRpm; rpm < m_Controller.Pump.MaxRpm + 1; rpm += stepwidth)
+                    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({(int)rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues((int)rpm), m_Controller.Pump.GetPerformanceHeadValues((int)rpm), false);
+                
             }
             else
                 m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());
