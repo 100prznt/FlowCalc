@@ -132,24 +132,24 @@ namespace FlowCalc
         [XmlArrayItem("DynamicPerformanceCurve")]
         public PumpDynamicPerformanceCurve[] DynamicPerformanceCurves { get; set; }
 
-        /// <summary>
-        /// Maximale Meter Wassersäule (Förderhöhe)
-        /// in [m WS]
-        /// </summary>
-        [Category("Leistungsdaten")]
-        [DisplayName("Maximale Förderhöhe in m WS")]
-        [Description("Maximale Förderhöhe, Angabe wird anhand der Pumpenkennlinie automatisch generiert.")]
-        [XmlIgnore]
-        public double MaxTotalHead
-        {
-            get
-            {
-                if (PerformanceCurve == null || PerformanceCurve.Length <= 0)
-                    return 0;
-                else
-                    return PerformanceCurve.Max(x => x.TotalDynamicHead);
-            }
-        }
+        ///// <summary>
+        ///// Maximale Meter Wassersäule (Förderhöhe)
+        ///// in [m WS]
+        ///// </summary>
+        //[Category("Leistungsdaten")]
+        //[DisplayName("Maximale Förderhöhe in m WS")]
+        //[Description("Maximale Förderhöhe, Angabe wird anhand der Pumpenkennlinie automatisch generiert.")]
+        //[XmlIgnore]
+        //public double MaxTotalHead
+        //{
+        //    get
+        //    {
+        //        if (PerformanceCurve == null || PerformanceCurve.Length <= 0)
+        //            return 0;
+        //        else
+        //            return PerformanceCurve.Max(x => x.TotalDynamicHead);
+        //    }
+        //}
 
         /// <summary>
         /// Pumpe mit variabler Drehzahl
@@ -477,6 +477,11 @@ namespace FlowCalc
                 return DynamicPerformanceCurves.Select(x => x.Rpm).ToArray();
             else
                 return null;
+        }
+
+        public double GetMaxTotalHead(int? rpm = null)
+        {
+            return GetPerformanceHeadValues(rpm).Max();
         }
 
         #endregion Services

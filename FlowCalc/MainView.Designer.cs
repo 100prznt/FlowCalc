@@ -35,6 +35,9 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gb_VarioPump = new System.Windows.Forms.GroupBox();
+            this.lbl_Rpm = new System.Windows.Forms.Label();
+            this.tb_Rpm = new System.Windows.Forms.TrackBar();
             this.lbl_PumpDataSourceUrl = new System.Windows.Forms.LinkLabel();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -105,7 +108,11 @@
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txt_PumpRpmHead = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
+            this.gb_VarioPump.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_Rpm)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -115,7 +122,7 @@
             // 
             // btn_LoadPump
             // 
-            this.btn_LoadPump.Location = new System.Drawing.Point(39, 618);
+            this.btn_LoadPump.Location = new System.Drawing.Point(39, 702);
             this.btn_LoadPump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_LoadPump.Name = "btn_LoadPump";
             this.btn_LoadPump.Size = new System.Drawing.Size(288, 60);
@@ -137,7 +144,7 @@
             // txt_SystemPressure
             // 
             this.txt_SystemPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SystemPressure.Location = new System.Drawing.Point(216, 391);
+            this.txt_SystemPressure.Location = new System.Drawing.Point(216, 436);
             this.txt_SystemPressure.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_SystemPressure.Name = "txt_SystemPressure";
             this.txt_SystemPressure.Size = new System.Drawing.Size(91, 33);
@@ -161,6 +168,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.gb_VarioPump);
             this.groupBox1.Controls.Add(this.lbl_PumpDataSourceUrl);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
@@ -182,14 +190,52 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(704, 700);
+            this.groupBox1.Size = new System.Drawing.Size(704, 797);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pumpe";
             // 
+            // gb_VarioPump
+            // 
+            this.gb_VarioPump.Controls.Add(this.txt_PumpRpmHead);
+            this.gb_VarioPump.Controls.Add(this.label18);
+            this.gb_VarioPump.Controls.Add(this.lbl_Rpm);
+            this.gb_VarioPump.Controls.Add(this.tb_Rpm);
+            this.gb_VarioPump.Location = new System.Drawing.Point(32, 427);
+            this.gb_VarioPump.Name = "gb_VarioPump";
+            this.gb_VarioPump.Size = new System.Drawing.Size(633, 155);
+            this.gb_VarioPump.TabIndex = 106;
+            this.gb_VarioPump.TabStop = false;
+            this.gb_VarioPump.Text = "VARIO Pumpe";
+            // 
+            // lbl_Rpm
+            // 
+            this.lbl_Rpm.AutoSize = true;
+            this.lbl_Rpm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Rpm.Location = new System.Drawing.Point(36, 43);
+            this.lbl_Rpm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Rpm.Name = "lbl_Rpm";
+            this.lbl_Rpm.Size = new System.Drawing.Size(118, 22);
+            this.lbl_Rpm.TabIndex = 12;
+            this.lbl_Rpm.Text = "0000 min^-1";
+            // 
+            // tb_Rpm
+            // 
+            this.tb_Rpm.LargeChange = 100;
+            this.tb_Rpm.Location = new System.Drawing.Point(218, 26);
+            this.tb_Rpm.Maximum = 2850;
+            this.tb_Rpm.Minimum = 1000;
+            this.tb_Rpm.Name = "tb_Rpm";
+            this.tb_Rpm.Size = new System.Drawing.Size(383, 69);
+            this.tb_Rpm.SmallChange = 10;
+            this.tb_Rpm.TabIndex = 0;
+            this.tb_Rpm.TickFrequency = 100;
+            this.tb_Rpm.Value = 2000;
+            this.tb_Rpm.ValueChanged += new System.EventHandler(this.tb_Rpm_ValueChanged);
+            // 
             // lbl_PumpDataSourceUrl
             // 
-            this.lbl_PumpDataSourceUrl.Location = new System.Drawing.Point(246, 495);
+            this.lbl_PumpDataSourceUrl.Location = new System.Drawing.Point(246, 651);
             this.lbl_PumpDataSourceUrl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PumpDataSourceUrl.Name = "lbl_PumpDataSourceUrl";
             this.lbl_PumpDataSourceUrl.Size = new System.Drawing.Size(433, 20);
@@ -201,7 +247,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(28, 495);
+            this.label17.Location = new System.Drawing.Point(28, 651);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(99, 20);
@@ -230,7 +276,7 @@
             // btn_ShowPumpCurve
             // 
             this.btn_ShowPumpCurve.Enabled = false;
-            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(358, 618);
+            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(358, 702);
             this.btn_ShowPumpCurve.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ShowPumpCurve.Name = "btn_ShowPumpCurve";
             this.btn_ShowPumpCurve.Size = new System.Drawing.Size(306, 60);
@@ -245,7 +291,7 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.txt_PumpNominalFlowRate);
             this.groupBox3.Controls.Add(this.txt_PumpNominalHead);
-            this.groupBox3.Location = new System.Drawing.Point(33, 286);
+            this.groupBox3.Location = new System.Drawing.Point(33, 260);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -294,7 +340,7 @@
             // 
             // lbl_PumpFileAuthor
             // 
-            this.lbl_PumpFileAuthor.Location = new System.Drawing.Point(246, 469);
+            this.lbl_PumpFileAuthor.Location = new System.Drawing.Point(246, 625);
             this.lbl_PumpFileAuthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PumpFileAuthor.Name = "lbl_PumpFileAuthor";
             this.lbl_PumpFileAuthor.Size = new System.Drawing.Size(364, 22);
@@ -306,7 +352,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(28, 469);
+            this.label10.Location = new System.Drawing.Point(28, 625);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(52, 20);
@@ -372,7 +418,7 @@
             // 
             // btn_CalcFlowRate
             // 
-            this.btn_CalcFlowRate.Location = new System.Drawing.Point(38, 451);
+            this.btn_CalcFlowRate.Location = new System.Drawing.Point(38, 522);
             this.btn_CalcFlowRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_CalcFlowRate.Name = "btn_CalcFlowRate";
             this.btn_CalcFlowRate.Size = new System.Drawing.Size(328, 60);
@@ -385,7 +431,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(33, 395);
+            this.label6.Location = new System.Drawing.Point(33, 440);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(151, 29);
@@ -397,7 +443,7 @@
             // 
             this.txt_SystemFlowRate.Enabled = false;
             this.txt_SystemFlowRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SystemFlowRate.Location = new System.Drawing.Point(216, 572);
+            this.txt_SystemFlowRate.Location = new System.Drawing.Point(216, 658);
             this.txt_SystemFlowRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_SystemFlowRate.Name = "txt_SystemFlowRate";
             this.txt_SystemFlowRate.Size = new System.Drawing.Size(148, 26);
@@ -406,7 +452,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(33, 577);
+            this.label7.Location = new System.Drawing.Point(33, 663);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(112, 20);
@@ -416,7 +462,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(33, 537);
+            this.label8.Location = new System.Drawing.Point(33, 623);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(146, 20);
@@ -426,7 +472,7 @@
             // txt_SystemHead
             // 
             this.txt_SystemHead.Enabled = false;
-            this.txt_SystemHead.Location = new System.Drawing.Point(216, 532);
+            this.txt_SystemHead.Location = new System.Drawing.Point(216, 618);
             this.txt_SystemHead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txt_SystemHead.Name = "txt_SystemHead";
             this.txt_SystemHead.Size = new System.Drawing.Size(148, 26);
@@ -449,7 +495,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(406, 700);
+            this.groupBox2.Size = new System.Drawing.Size(406, 797);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
@@ -457,7 +503,7 @@
             // btn_GenerateReport
             // 
             this.btn_GenerateReport.Enabled = false;
-            this.btn_GenerateReport.Location = new System.Drawing.Point(216, 618);
+            this.btn_GenerateReport.Location = new System.Drawing.Point(216, 704);
             this.btn_GenerateReport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_GenerateReport.Name = "btn_GenerateReport";
             this.btn_GenerateReport.Size = new System.Drawing.Size(150, 60);
@@ -602,7 +648,7 @@
             // btn_ShowPowerPoint
             // 
             this.btn_ShowPowerPoint.Enabled = false;
-            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(38, 618);
+            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(38, 704);
             this.btn_ShowPowerPoint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ShowPowerPoint.Name = "btn_ShowPowerPoint";
             this.btn_ShowPowerPoint.Size = new System.Drawing.Size(150, 60);
@@ -615,7 +661,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(312, 395);
+            this.label11.Location = new System.Drawing.Point(312, 440);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 29);
@@ -821,7 +867,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stl_PumpSearchDirectory,
             this.stl_Info});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 759);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 872);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1162, 32);
@@ -847,24 +893,46 @@
             this.saveFileDialog1.Filter = "PDF|*.pdf";
             this.saveFileDialog1.Title = "Report speichern";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(23, 99);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(146, 20);
+            this.label18.TabIndex = 12;
+            this.label18.Text = "Meter Wassersäule";
+            // 
+            // txt_PumpRpmHead
+            // 
+            this.txt_PumpRpmHead.Enabled = false;
+            this.txt_PumpRpmHead.Location = new System.Drawing.Point(219, 94);
+            this.txt_PumpRpmHead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpRpmHead.Name = "txt_PumpRpmHead";
+            this.txt_PumpRpmHead.Size = new System.Drawing.Size(382, 26);
+            this.txt_PumpRpmHead.TabIndex = 12;
+            // 
             // MainView
             // 
             this.AcceptButton = this.btn_CalcFlowRate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1162, 791);
+            this.ClientSize = new System.Drawing.Size(1162, 904);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1184, 847);
-            this.MinimumSize = new System.Drawing.Size(1184, 847);
+            this.MaximumSize = new System.Drawing.Size(1184, 960);
+            this.MinimumSize = new System.Drawing.Size(1184, 960);
             this.Name = "MainView";
             this.Text = "FlowCalc";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gb_VarioPump.ResumeLayout(false);
+            this.gb_VarioPump.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_Rpm)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -958,6 +1026,11 @@
         private System.Windows.Forms.TextBox txt_PumpPowerOut;
         private System.Windows.Forms.LinkLabel lbl_PumpDataSourceUrl;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox gb_VarioPump;
+        private System.Windows.Forms.TrackBar tb_Rpm;
+        private System.Windows.Forms.Label lbl_Rpm;
+        private System.Windows.Forms.TextBox txt_PumpRpmHead;
+        private System.Windows.Forms.Label label18;
     }
 }
 

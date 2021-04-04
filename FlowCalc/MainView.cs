@@ -150,7 +150,10 @@ namespace FlowCalc
             if (double.TryParse(txt_SystemPressure.Text, out pressure))
             {
                 m_Controller.FilterPressure = pressure;
-                m_Controller.CalcFlowRate(pressure);
+                if (m_Controller.Pump.IsVarioPump)
+                    m_Controller.CalcFlowRate(pressure, tb_Rpm.Value);
+                else
+                    m_Controller.CalcFlowRate(pressure);
                 txt_SystemFlowRate.Text = m_Controller.SystemFlowRate.ToString("f2") + " m³/h";
                 txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " m WS";
 
@@ -190,7 +193,20 @@ namespace FlowCalc
                 txt_PumpPowerOut.Text = m_Controller.Pump.PowerOutput + " kW";
             txt_PumpNominalFlowRate.Text = m_Controller.Pump.NominalFlowRate + " m³/h";
             txt_PumpNominalHead.Text = m_Controller.Pump.NominalDynamicHead + " m WS";
-            txt_PumpMaxHead.Text = m_Controller.Pump.MaxTotalHead.ToString("f2") + " m WS";
+            int? rpm = null;
+            if (m_Controller.Pump.IsVarioPump)
+            {
+                gb_VarioPump.Enabled = true;
+                tb_Rpm.Minimum = m_Controller.Pump.MinRpm;
+                rpm = m_Controller.Pump.MaxRpm;
+                tb_Rpm.Maximum = (int)rpm;
+                tb_Rpm.Value = (int)rpm;
+            }
+            else
+            {
+                gb_VarioPump.Enabled = false;
+            }
+            txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHead(rpm).ToString("f2") + " m WS";
 
             lbl_PumpFileAuthor.Text = m_Controller.Pump.AuthorPumpFile;
             lbl_PumpDataSourceUrl.Text = m_Controller.Pump.DataSourceUrl;
@@ -240,7 +256,14 @@ namespace FlowCalc
             if (m_ChartView == null || !m_ChartView.Visible)
                 m_ChartView = new ChartView("Anzeige Arbeitspunkt auf Pumpenkennlinie");
 
-            m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());
+            int? rpm = null;
+            string pumpName = m_Controller.Pump.ModellName;
+            if (m_Controller.Pump.IsVarioPump)
+            {
+                rpm = tb_Rpm.Value;
+                pumpName = pumpName + $" @ {rpm} min^-1";
+            }
+            m_ChartView.AddCurve(pumpName, m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
             m_ChartView.PowerPoint = new Tuple<double, double>(m_Controller.SystemFlowRate, m_Controller.SystemHead);
 
             m_ChartView.Show();
@@ -476,8 +499,12 @@ namespace FlowCalc
 
             saveFileDialog1.FileName = "Report_" + GetFriendlyName(m_Controller.Pump.ModellName + "_at_" + m_Controller.SystemHead.ToString("f2") + "mWS.pdf");
 
+            int? rpm = null;
+            if (m_Controller.Pump.IsVarioPump)
+                rpm = tb_Rpm.Value;
+
             if (reportSetupDlg.ShowDialog() == DialogResult.OK && saveFileDialog1.ShowDialog() == DialogResult.OK)
-                m_Controller.GeneratePdfReport(saveFileDialog1.FileName, reportSetupDlg.PoolVolume, reportSetupDlg.FilterDiameter);
+                m_Controller.GeneratePdfReport(saveFileDialog1.FileName, reportSetupDlg.PoolVolume, reportSetupDlg.FilterDiameter, rpm);
         }
 
         private string GetFriendlyName(string name)
@@ -495,6 +522,13 @@ namespace FlowCalc
         private void lbl_PumpDataSourceUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(m_Controller.Pump.DataSourceUrl);
+        }
+
+        private void tb_Rpm_ValueChanged(object sender, EventArgs e)
+        {
+            lbl_Rpm.Text = tb_Rpm.Value + " min^-1";
+
+            txt_PumpRpmHead.Text = m_Controller.Pump.GetMaxTotalHead(tb_Rpm.Value).ToString("f2") + " m WS";
         }
     }
 }

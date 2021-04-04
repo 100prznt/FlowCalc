@@ -216,17 +216,17 @@ namespace FlowCalc
             }
         }
 
-        public void CalcFlowRate(double pressure)
+        public void CalcFlowRate(double pressure, int? rpm = null)
         {
             SystemPressure = pressure;
 
-            if (SystemHead > Pump.MaxTotalHead)
+            if (SystemHead > Pump.GetMaxTotalHead(rpm))
             {
                 ResetSystem();
                 return;
             }
 
-            var systemFlowRate = LinInterp.LinearInterpolation(Pump.GetPerformanceHeadValues(), Pump.GetPerformanceFlowValues(), SystemHead);
+            var systemFlowRate = LinInterp.LinearInterpolation(Pump.GetPerformanceHeadValues(rpm), Pump.GetPerformanceFlowValues(rpm), SystemHead);
 
             if (SuctionPipe == null)
             {
@@ -247,8 +247,8 @@ namespace FlowCalc
                     systemFlowRate += s;
                     pressureDrop = SuctionPipe.CalcPressureDrop(CurrentPresets.Medium, systemFlowRate);
 
-                    var performanceFlowValues = Pump.GetPerformanceFlowValues();
-                    var performanceHeadValues = Pump.GetPerformanceHeadValues();
+                    var performanceFlowValues = Pump.GetPerformanceFlowValues(rpm);
+                    var performanceHeadValues = Pump.GetPerformanceHeadValues(rpm);
                     Array.Reverse(performanceFlowValues);
                     Array.Reverse(performanceHeadValues);
 
@@ -266,8 +266,8 @@ namespace FlowCalc
                 }
 
 
-
-                if (SystemHead > Pump.MaxTotalHead || double.IsInfinity(systemPressure) || double.IsInfinity(systemFlowRate) || double.IsInfinity(pressureDrop))
+                //TODO: Pump.MaxTotalHead für VARIO Pumpe
+                if (SystemHead > Pump.GetMaxTotalHead(rpm) || double.IsInfinity(systemPressure) || double.IsInfinity(systemFlowRate) || double.IsInfinity(pressureDrop))
                     ResetSystem();
                 else
                 {
@@ -287,11 +287,15 @@ namespace FlowCalc
             SuctionPressureDropCalcIterations = 0;
         }
 
-        public void GeneratePdfReport(string path, double poolVolume, double filterDiameter)
+        public void GeneratePdfReport(string path, double poolVolume, double filterDiameter, int? rpm = null)
         {
             var chartView = new ChartView("");
 
-            chartView.AddCurve(Pump.ModellName, Pump.GetPerformanceFlowValues(), Pump.GetPerformanceHeadValues());
+            string pumpName = Pump.ModellName;
+            if (rpm != null)
+                pumpName = pumpName + $" @ {rpm} min^-1";
+
+            chartView.AddCurve(pumpName, Pump.GetPerformanceFlowValues(rpm), Pump.GetPerformanceHeadValues(rpm));
             chartView.PowerPoint = new Tuple<double, double>(SystemFlowRate, SystemHead);
 
             var pklImage = chartView.GetChartImage();
