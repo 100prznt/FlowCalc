@@ -409,7 +409,7 @@ namespace FlowCalc
 
         public double[] GetPerformanceHeadValues(int? rpm = null)
         {
-            if (rpm == null)
+            if (rpm == 0 || rpm == null)
                 return PerformanceCurve.Select(x => x.TotalDynamicHead).ToArray();
             else if (DynamicPerformanceCurves.Any(x => x.Rpm == rpm))
                 return DynamicPerformanceCurves.First(x => x.Rpm == rpm).GetPerformanceHeadValues();

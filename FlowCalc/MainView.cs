@@ -80,7 +80,7 @@ namespace FlowCalc
                 {
                     m_Controller.LoadPump(Properties.Settings.Default.PumpDefinitionPath);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     // Fehler beim automatischen Laden ignorieren
                 }
@@ -165,8 +165,18 @@ namespace FlowCalc
                 }
 
                 if (m_Controller.SystemFlowRate <= 0)
-                    MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt.\n\n" +
-                        "Es kann keine Fördermenge berechnet werden.", "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {
+                    if (m_Controller.Pump.IsVarioPump && tb_Rpm.Value < m_Controller.Pump.MaxRpm)
+                    {
+                        MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt. Es kann keine Fördermenge berechnet werden.\n\n" +
+                            $"Gegebenfalls muss die Drehzahl (akt. {tb_Rpm.Value} min^-1) der Vario-Pumpe erhöht werden.", "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt.\n\n" +
+                            "Es kann keine Fördermenge berechnet werden.", "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
                 else
                 {
                     Properties.Settings.Default.EnableSuctionPressureDrop = cbx_CalcSuctionPipe.Checked;
@@ -205,6 +215,10 @@ namespace FlowCalc
             else
             {
                 gb_VarioPump.Enabled = false;
+                tb_Rpm.Maximum = 1000;
+                tb_Rpm.Minimum = 0;
+                tb_Rpm.Value = 0;
+                lbl_Rpm.Text = "0 min^-1";
             }
             txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHead(rpm).ToString("f2") + " m WS";
 
@@ -246,7 +260,17 @@ namespace FlowCalc
             if (m_ChartView == null || !m_ChartView.Visible)
                 m_ChartView = new ChartView("Anzeige Pumpenkennlinie");
 
-            m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());
+            int? rpm = null;
+            var pumpName = m_Controller.Pump.ModellName;
+
+            if (m_Controller.Pump.IsVarioPump)
+            {
+                rpm = tb_Rpm.Value;
+                pumpName = pumpName + $" ({rpm} min^-1)";
+            }
+                
+            m_ChartView.AddCurve(pumpName, m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
+            
 
             m_ChartView.Show();
         }
