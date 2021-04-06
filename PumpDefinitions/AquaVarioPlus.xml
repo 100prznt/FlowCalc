@@ -12,7 +12,7 @@
   <DynamicPerformanceCurves>
     <DynamicPerformanceCurve>
       <Rpm>1000</Rpm>
-      <PowerInput>99</PowerInput>
+      <PowerInput>70</PowerInput>
       <PerformanceCurve>
         <Ipp>
           <H>1.52</H>
@@ -46,6 +46,7 @@
     </DynamicPerformanceCurve>
     <DynamicPerformanceCurve>
       <Rpm>2000</Rpm>
+      <PowerInput>215</PowerInput>
       <PerformanceCurve>
         <Ipp>
           <H>6</H>
@@ -99,6 +100,7 @@
     </DynamicPerformanceCurve>
     <DynamicPerformanceCurve>
       <Rpm>2400</Rpm>
+      <PowerInput>350</PowerInput>
       <PerformanceCurve>
         <Ipp>
           <H>8.5</H>
@@ -160,7 +162,7 @@
     </DynamicPerformanceCurve>
     <DynamicPerformanceCurve>
       <Rpm>2850</Rpm>
-      <PowerInput>99</PowerInput>
+      <PowerInput>650</PowerInput>
       <PerformanceCurve>
         <Ipp>
           <H>12</H>
