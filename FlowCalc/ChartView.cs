@@ -13,8 +13,11 @@ using ZedGraph;
 
 namespace FlowCalc
 {
+
     public partial class ChartView : Form
     {
+        private const string VARIO_RANGE = "VARIO_RANGE";
+
         public Dictionary<string, PointPairList> Data { get; set; }
 
         public Tuple<double, double> PowerPoint
@@ -59,16 +62,42 @@ namespace FlowCalc
         public void AddCurve(string name, double[] xQ, double[] yH, bool enableDataPoints = true)
         {
             if (Data.ContainsKey(name))
-                Data.Remove(name);
+            {
+                //Data.Remove(name);
+                return;
+            }
 
             Data.Add(name, new PointPairList(xQ, yH));
 
             CreateChart(zedGraphControl1, enableDataPoints);
         }
 
-        public void AddRange()
+        public void AddRange(string name, double[] x, double[] y)
         {
+            if (Data.ContainsKey(name))
+                return;
 
+            Data.Add(name, new PointPairList(x, y));
+
+
+
+            var pane = zedGraphControl1.GraphPane;
+
+            //Add the data
+            LineItem curve = pane.AddCurve(name, x, y, Color.FromArgb(0x20, 0xff, 0x2e, 0x64));
+
+            //curve.Line.IsOptimizedDraw = true;
+            curve.Line.Width = 2F;
+            curve.Line.IsAntiAlias = true;
+            curve.Symbol.Type = SymbolType.None;
+
+            curve.Line.Fill = new Fill(Color.FromArgb(0x10, 0xff, 0x2e, 0x64));
+
+            curve.Tag = VARIO_RANGE;
+
+            //Refresh the graph in order to show the new data
+            zedGraphControl1.AxisChange();
+            zedGraphControl1.Refresh();
         }
 
         private void SetupChart(ZedGraphControl zgc)
@@ -95,9 +124,9 @@ namespace FlowCalc
             var pink = Color.FromArgb(0xff, 0x2e, 0x64);
 
             //Needed for redrawing the chart, to remove old curves
-            pane.CurveList.Clear();
+            //pane.CurveList.Clear();
 
-            int i = 0;
+            //int i = 0;
 
             if (PowerPoint != null)
             {
@@ -134,23 +163,27 @@ namespace FlowCalc
             foreach (var curveData in Data)
             {
                 //Add the data
-                LineItem curve = pane.AddCurve(curveData.Key, curveData.Value, GetColorByIndex(i++));
-
-                //curve.Line.IsOptimizedDraw = true;
-                curve.Line.Width = 1.7f;
-                curve.Line.IsAntiAlias = true;
-                if (enableDataPoints)
-                {
-                    curve.Symbol.Type = SymbolType.Circle;
-                    curve.Symbol.Size = 3.2f;
-                    curve.Symbol.Fill.Type = FillType.Solid;
-                    curve.Symbol.IsAntiAlias = true;
-                }
+                if (pane.CurveList.Any(x => x.Label.Text == curveData.Key))
+                    continue;
                 else
                 {
-                    curve.Symbol.Type = SymbolType.None;
-                    curve.Line.IsSmooth = true;
-                    curve.Line.SmoothTension = 0.5F;
+                    LineItem curve = pane.AddCurve(curveData.Key, curveData.Value, GetColorByIndex(pane.CurveList.Count(x => (string)x.Tag != VARIO_RANGE)));
+                    //curve.Line.IsOptimizedDraw = true;
+                    curve.Line.Width = 1.7f;
+                    curve.Line.IsAntiAlias = true;
+                    if (enableDataPoints)
+                    {
+                        curve.Symbol.Type = SymbolType.Circle;
+                        curve.Symbol.Size = 3.2f;
+                        curve.Symbol.Fill.Type = FillType.Solid;
+                        curve.Symbol.IsAntiAlias = true;
+                    }
+                    else
+                    {
+                        curve.Symbol.Type = SymbolType.None;
+                        curve.Line.IsSmooth = true;
+                        curve.Line.SmoothTension = 0.5F;
+                    }
                 }
             }
 

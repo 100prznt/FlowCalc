@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -218,6 +219,9 @@ namespace FlowCalc
 
         public void CalcFlowRate(double pressure, int? rpm = null)
         {
+            //for debugging only
+            var sw = new Stopwatch();
+
             SystemPressure = pressure;
 
             if (SystemHead > Pump.GetMaxTotalHead(rpm))
@@ -241,6 +245,8 @@ namespace FlowCalc
                 int i = 7; // Anzahl der Richtungswechsel
                 double error = double.MaxValue;
                 double lastError;
+
+                sw.Start();
                 while (i > 0)
                 {
                     lastError = error;
@@ -264,7 +270,8 @@ namespace FlowCalc
 
                     SuctionPressureDropCalcIterations++;
                 }
-
+                sw.Stop();
+                Debug.WriteLine($"SuctionPressureDropCalc Iterations: {SuctionPressureDropCalcIterations} Time: {sw.ElapsedMilliseconds} ms");
 
                 //TODO: Pump.MaxTotalHead für VARIO Pumpe
                 if (SystemHead > Pump.GetMaxTotalHead(rpm) || double.IsInfinity(systemPressure) || double.IsInfinity(systemFlowRate) || double.IsInfinity(pressureDrop))
@@ -291,9 +298,17 @@ namespace FlowCalc
         {
             var chartView = new ChartView("");
 
+            chartView.Width = 1692;
+            chartView.Height = 1005;
+
             string pumpName = Pump.ModellName;
             if (rpm != null)
+            {
                 pumpName = pumpName + $" @ {rpm} min^-1";
+
+                var performanceRange = Pump.GetPerformanceRange();
+                chartView.AddRange(Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
+            }
 
             chartView.AddCurve(pumpName, Pump.GetPerformanceFlowValues(rpm), Pump.GetPerformanceHeadValues(rpm));
             chartView.PowerPoint = new Tuple<double, double>(SystemFlowRate, SystemHead);
@@ -504,7 +519,14 @@ namespace FlowCalc
 
 
             var stream = new System.IO.MemoryStream();
-            pklImage.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+
+            ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Png);
+            System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+            EncoderParameters myEncoderParameters = new EncoderParameters(1);
+            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
+            myEncoderParameters.Param[0] = myEncoderParameter;
+
+            pklImage.Save(stream, jpgEncoder, myEncoderParameters);
             stream.Position = 0;
 
             var pkl = XImage.FromStream(stream);
@@ -587,6 +609,19 @@ namespace FlowCalc
                 var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
                 return string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
 #endif
+        }
+
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
         }
 
         #endregion Internal services

@@ -225,17 +225,21 @@ namespace PumpDefinitionEditor
             if (m_ChartView == null || !m_ChartView.Visible)
                 m_ChartView = new ChartView("Anzeige Pumpenkennlinie");
 
+
             if (m_Controller.Pump.IsVarioPump)
             {
-                //foreach (var rpm in m_Controller.Pump.GetDefaultRpms())
-                //    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
+                //var performanceRange = m_Controller.Pump.GetPerformanceRange();
+                //m_ChartView.AddRange(m_Controller.Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
+
+                foreach (var rpm in m_Controller.Pump.GetDefaultRpms())
+                    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
 
                 //Interpolierte Kennlinien ploten
-                var stepwidth = (m_Controller.Pump.MaxRpm - m_Controller.Pump.MinRpm) / 17.0;
+                //var stepwidth = (m_Controller.Pump.MaxRpm - m_Controller.Pump.MinRpm) / 17.0;
 
-                for (double rpm = m_Controller.Pump.MinRpm; rpm < m_Controller.Pump.MaxRpm + 1; rpm += stepwidth)
-                    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({(int)rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues((int)rpm), m_Controller.Pump.GetPerformanceHeadValues((int)rpm), false);
-                
+                //for (double rpm = m_Controller.Pump.MinRpm; rpm < m_Controller.Pump.MaxRpm + 1; rpm += stepwidth)
+                //    m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({(int)rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues((int)rpm), m_Controller.Pump.GetPerformanceHeadValues((int)rpm), false);
+
             }
             else
                 m_ChartView.AddCurve(m_Controller.Pump.ModellName, m_Controller.Pump.GetPerformanceFlowValues(), m_Controller.Pump.GetPerformanceHeadValues());

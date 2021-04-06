@@ -428,9 +428,9 @@ namespace FlowCalc
                     else if (isLastPoint)
                     {
                         isLastPoint = false;
-                        var roots = (p - pLim).GetRealRoots();
-                        if (roots.Length == 1)
-                            result.Add(p.Polyval(roots[0]));
+                        var crossPoints =  p.GetCrossPoints(pLim);
+                        if (crossPoints.Length == 1)
+                            result.Add(p.Polyval(crossPoints[0]));
                     }
                 }
                 return result.ToArray();
@@ -458,9 +458,9 @@ namespace FlowCalc
                     else if (isLastPoint)
                     {
                         isLastPoint = false;
-                        var roots = (p - pLim).GetRealRoots();
-                        if (roots.Length == 1)
-                            result.Add(roots[0]);
+                        var crossPoints = p.GetCrossPoints(pLim);
+                        if (crossPoints.Length == 1)
+                            result.Add(crossPoints[0]);
                     }
                 }
                 return result.ToArray();
@@ -469,6 +469,55 @@ namespace FlowCalc
                 //var maxRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve;
                 //return maxRpmCurve.Select(x => x.FlowRate).ToArray();
             }
+        }
+
+        public Tuple<double[], double[]> GetPerformanceRange()
+        {
+            var minRpm = MinRpm;
+            var maxRpm = MaxRpm;
+
+            var pLower = GetPerformancePolynom(minRpm);
+            var pUpper = GetPerformancePolynom(maxRpm);
+            var pQCut = UpperPerformanceCurveLimit;
+
+            var lowerCrossPoint = pLower.GetCrossPoints(pQCut);
+            var upperCrossPoint = pUpper.GetCrossPoints(pQCut);
+
+            if (lowerCrossPoint.Length != 1 || upperCrossPoint.Length != 1)
+                throw new ArithmeticException("Mathematikfehler bei der Berechnung des Arbeitsbereiches.");
+
+            var x = new List<double>();
+            var y = new List<double>();
+
+            //Kennlinie für kleinste Drehzahl
+            for (double i = 0; i < lowerCrossPoint[0]; i += 0.25)
+            {
+                x.Add(i);
+                y.Add(pLower.Polyval(i));
+            }
+            //Schnittpunkt KL kleinste Drehzahl mit oberem Q-Limit
+            x.Add(lowerCrossPoint[0]);
+            y.Add(pQCut.Polyval(lowerCrossPoint[0]));
+            //Schnittpunkt KL maximale Drehzahl mit oberem Q-Limit
+            x.Add(upperCrossPoint[0]);
+            y.Add(pQCut.Polyval(upperCrossPoint[0]));
+
+            //Kennlinie für maximale Drehzahl
+            var xTemp = new List<double>();
+            var yTemp = new List<double>();
+            for (double i = 0; i < upperCrossPoint[0]; i += 0.25)
+            {
+                xTemp.Add(i);
+                yTemp.Add(pUpper.Polyval(i));
+            }
+            xTemp.Reverse();
+            yTemp.Reverse();
+            x.AddRange(xTemp);
+            y.AddRange(yTemp);
+            x.Add(x.First());
+            y.Add(y.First());
+
+            return new Tuple<double[], double[]>(x.ToArray(), y.ToArray());
         }
 
         public int[] GetDefaultRpms()

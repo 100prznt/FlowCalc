@@ -267,10 +267,12 @@ namespace FlowCalc
             {
                 rpm = tb_Rpm.Value;
                 pumpName = pumpName + $" ({rpm} min^-1)";
+
+                var performanceRange = m_Controller.Pump.GetPerformanceRange();
+                m_ChartView.AddRange(m_Controller.Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
             }
-                
+
             m_ChartView.AddCurve(pumpName, m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
-            
 
             m_ChartView.Show();
         }
@@ -286,6 +288,9 @@ namespace FlowCalc
             {
                 rpm = tb_Rpm.Value;
                 pumpName = pumpName + $" @ {rpm} min^-1";
+
+                var performanceRange = m_Controller.Pump.GetPerformanceRange();
+                m_ChartView.AddRange(m_Controller.Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
             }
             m_ChartView.AddCurve(pumpName, m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
             m_ChartView.PowerPoint = new Tuple<double, double>(m_Controller.SystemFlowRate, m_Controller.SystemHead);

@@ -57,6 +57,11 @@ namespace FlowCalc.Mathematics
             return realRoots.ToArray(); ;
         }
 
+        public double[] GetCrossPoints(Polynom crossingPolynom)
+        {
+            return (this - crossingPolynom).GetRealRoots();
+        }
+
         public override string ToString()
         {
             var format = "+0.000;-0.000";
