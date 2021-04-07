@@ -348,7 +348,6 @@ namespace FlowCalc
 
             var font = new XFont("Barlow", 11, XFontStyle.Regular);
 
-
             #region Frame
 
             var framePen = new XPen(XColors.Black, 0.7);

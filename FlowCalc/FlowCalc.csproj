@@ -90,6 +90,7 @@
     <Compile Include="EnterReportDataView.Designer.cs">
       <DependentUpon>EnterReportDataView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Filter.cs" />
     <Compile Include="IppCollectionEditor.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
