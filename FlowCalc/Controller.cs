@@ -506,7 +506,7 @@ namespace FlowCalc
                 gfx.DrawString(SuctionPipe.ToString(), h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
             else
                 gfx.DrawString("nicht angegeben", p3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
-            gfx.DrawString($"{FilterPressure:f2)} bar", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            gfx.DrawString($"{FilterPressure:f2} bar", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
 
 
             int yCalc = 89;
