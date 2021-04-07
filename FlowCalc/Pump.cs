@@ -533,6 +533,19 @@ namespace FlowCalc
             return GetPerformanceHeadValues(rpm).Max();
         }
 
+        public double GetInputPower(int rpm)
+        {
+            var x_n = DynamicPerformanceCurves.Select(x => (double)x.Rpm).ToArray();
+            var y_P = DynamicPerformanceCurves.Select(x => x.PowerInput).ToArray();
+
+            if (x_n.Count() != y_P.Count())
+                throw new ArgumentException("Angegebene drehzahlabhängige Leistungsdaten unplausibel.");
+
+            var p = Polynom.Polyfit(x_n, y_P, 2);
+
+            return p.Polyval(rpm);
+        }
+
         #endregion Services
 
         #region Internal services
@@ -564,6 +577,8 @@ namespace FlowCalc
 
             return result;
         }
+
+        
 
         private string GenerateCsvLine(params object[] items)
         {

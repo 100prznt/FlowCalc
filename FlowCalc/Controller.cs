@@ -294,23 +294,26 @@ namespace FlowCalc
             SuctionPressureDropCalcIterations = 0;
         }
 
-        public void GeneratePdfReport(string path, double poolVolume, double filterDiameter, int? rpm = null)
+        public void GeneratePdfReport(string path, double poolVolume, double filterDiameter, int? _rpm = null)
         {
             var chartView = new ChartView("");
 
             chartView.Width = 1692;
             chartView.Height = 1005;
 
+
+            var powerInput = Pump.PowerInput;                
             string pumpName = Pump.ModellName;
-            if (rpm != null)
+            if (_rpm is int rpm)
             {
                 pumpName = pumpName + $" @ {rpm} min^-1";
+                powerInput = Pump.GetInputPower((int)rpm);
 
                 var performanceRange = Pump.GetPerformanceRange();
                 chartView.AddRange(Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
             }
 
-            chartView.AddCurve(pumpName, Pump.GetPerformanceFlowValues(rpm), Pump.GetPerformanceHeadValues(rpm));
+            chartView.AddCurve(pumpName, Pump.GetPerformanceFlowValues(_rpm), Pump.GetPerformanceHeadValues(_rpm));
             chartView.PowerPoint = new Tuple<double, double>(SystemFlowRate, SystemHead);
 
             var pklImage = chartView.GetChartImage();
@@ -325,14 +328,15 @@ namespace FlowCalc
                 document.Info.Author = CurrentPresets.UserName;
             document.Info.Title = "FlowCalc Report";
             document.Info.Keywords = "FlowCalc Pumpenkennlinie Volumenstrom Filtergeschwindigkeit";
-            document.Info.Subject = $"{Pump.ModellName} @ {SystemHead.ToString("f2")} mWS";
+            document.Info.Subject = $"{Pump.ModellName} @ {SystemHead:f2} mWS";
             
             document.PageLayout = PdfPageLayout.SinglePage;
 
             
             var pageA4 = new PdfPage();
-            pageA4.Width = new XUnit(210, XGraphicsUnit.Millimeter);
-            pageA4.Height = new XUnit(297, XGraphicsUnit.Millimeter);
+            var unit = XGraphicsUnit.Millimeter;
+            pageA4.Width = new XUnit(210, unit);
+            pageA4.Height = new XUnit(297, unit);
             pageA4.Orientation = PdfSharp.PageOrientation.Portrait;
 
             // Create an empty page
@@ -349,23 +353,23 @@ namespace FlowCalc
 
             var framePen = new XPen(XColors.Black, 0.7);
 
-            var s = new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter));
+            var s = new XPoint(new XUnit(5, unit), new XUnit(5, unit));
 
             //background
-            var headerLeft = new XRect(s, new XPoint(new XUnit(210 / 2, XGraphicsUnit.Millimeter), new XUnit(30, XGraphicsUnit.Millimeter)));
+            var headerLeft = new XRect(s, new XPoint(new XUnit(210 / 2, unit), new XUnit(30, unit)));
             var headerBrushLeft = new XLinearGradientBrush(
-                new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(210 / 2, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
+                new XPoint(new XUnit(5, unit), new XUnit(5, unit)),
+                new XPoint(new XUnit(210 / 2, unit), new XUnit(5, unit)),
                 XColor.FromArgb(0xff, 0x2e, 0x64),
                 XColor.FromArgb(0xe1, 0x00, 0x72)
                 );
             var headerRight = new XRect(
-                new XPoint(new XUnit(210 / 2, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(30, XGraphicsUnit.Millimeter))
+                new XPoint(new XUnit(210 / 2, unit), new XUnit(5, unit)),
+                new XPoint(new XUnit(205, unit), new XUnit(30, unit))
                 );
             var headerBrushRight = new XLinearGradientBrush(
-                new XPoint(new XUnit(210 / 2, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(5, XGraphicsUnit.Millimeter)),
+                new XPoint(new XUnit(210 / 2, unit), new XUnit(5, unit)),
+                new XPoint(new XUnit(205, unit), new XUnit(5, unit)),
                 XColor.FromArgb(0xe1, 0x00, 0x72),
                 XColor.FromArgb(0xfa, 0x00, 0x41)
                 );
@@ -374,41 +378,41 @@ namespace FlowCalc
 
 
             var footer = new XRect(
-                new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter))
+                new XPoint(new XUnit(5, unit), new XUnit(276, unit)),
+                new XPoint(new XUnit(205, unit), new XUnit(292, unit))
                 );
             var footerBrush = new XSolidBrush(XColor.FromArgb(0xf7, 0xf8, 0xf9));
             gfx.DrawRectangle(footerBrush, footer);
 
-            var outerFrame = new XRect(s, new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
+            var outerFrame = new XRect(s, new XPoint(new XUnit(205, unit), new XUnit(292, unit)));
             gfx.DrawRectangle(framePen, outerFrame);
 
 
             gfx.DrawLine(framePen,
-                new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(30, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(30, XGraphicsUnit.Millimeter)));
+                new XPoint(new XUnit(5, unit), new XUnit(30, unit)),
+                new XPoint(new XUnit(205, unit), new XUnit(30, unit)));
 
             gfx.DrawString("FlowCalc Report", new XFont("Barlow", 32, XFontStyle.Bold), XBrushes.White,
-              new XRect(s, new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(30, XGraphicsUnit.Millimeter))),
+              new XRect(s, new XPoint(new XUnit(205, unit), new XUnit(30, unit))),
               XStringFormats.Center);
 
             int footerCol = 62;
 
             gfx.DrawLine(framePen,
-                new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)));
+                new XPoint(new XUnit(5, unit), new XUnit(276, unit)),
+                new XPoint(new XUnit(205, unit), new XUnit(276, unit)));
             gfx.DrawLine(framePen,
-                new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
+                new XPoint(new XUnit(footerCol, unit), new XUnit(276, unit)),
+                new XPoint(new XUnit(footerCol, unit), new XUnit(292, unit)));
             gfx.DrawLine(framePen,
-                new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter)));
+                new XPoint(new XUnit(210 - footerCol, unit), new XUnit(276, unit)),
+                new XPoint(new XUnit(210 - footerCol, unit), new XUnit(292, unit)));
             
             var footerTextBrush = new XSolidBrush(XColor.FromArgb(0x18, 0x19, 0x37));
 
             var footerArea1 = new XRect(
-                  new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(278, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)));
+                  new XPoint(new XUnit(5, unit), new XUnit(278, unit)),
+                  new XPoint(new XUnit(footerCol, unit), new XUnit(284, unit)));
 
             page.AddWebLink(new PdfRectangle(footerArea1), @"http://www.100prznt.de/");
 
@@ -417,8 +421,8 @@ namespace FlowCalc
               XStringFormats.Center);
             gfx.DrawString("Elias Ruemmler", font, footerTextBrush,
               new XRect(
-                  new XPoint(new XUnit(5, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(290, XGraphicsUnit.Millimeter))),
+                  new XPoint(new XUnit(5, unit), new XUnit(284, unit)),
+                  new XPoint(new XUnit(footerCol, unit), new XUnit(290, unit))),
               XStringFormats.Center);
 
 
@@ -427,13 +431,13 @@ namespace FlowCalc
 
             gfx.DrawString(GetTitle(), new XFont("Barlow", 16, XFontStyle.Bold), footerTextBrush,
               new XRect(
-                  new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(277, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter))),
+                  new XPoint(new XUnit(footerCol, unit), new XUnit(277, unit)),
+                  new XPoint(new XUnit(210 - footerCol, unit), new XUnit(284, unit))),
               XStringFormats.Center);
 
             var footerArea4 = new XRect(
-                  new XPoint(new XUnit(footerCol, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(291, XGraphicsUnit.Millimeter)));
+                  new XPoint(new XUnit(footerCol, unit), new XUnit(284, unit)),
+                  new XPoint(new XUnit(210 - footerCol, unit), new XUnit(291, unit)));
 
             page.AddWebLink(new PdfRectangle(footerArea4), @"http://www.github.com/100prznt/Flowcalc");
             gfx.DrawString("www.github.com/100prznt/FlowCalc", font, footerTextBrush,
@@ -444,21 +448,21 @@ namespace FlowCalc
             {
                 gfx.DrawString(DateTime.Now.ToString(), font, footerTextBrush,
                   new XRect(
-                      new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter)),
-                      new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(292, XGraphicsUnit.Millimeter))),
+                      new XPoint(new XUnit(210 - footerCol, unit), new XUnit(276, unit)),
+                      new XPoint(new XUnit(205, unit), new XUnit(292, unit))),
                   XStringFormats.Center);
             }
             else
             {
                 gfx.DrawString(DateTime.Now.ToString(), font, footerTextBrush,
                   new XRect(
-                      new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(278, XGraphicsUnit.Millimeter)),
-                      new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter))),
+                      new XPoint(new XUnit(210 - footerCol, unit), new XUnit(278, unit)),
+                      new XPoint(new XUnit(205, unit), new XUnit(284, unit))),
                   XStringFormats.Center);
                 gfx.DrawString(CurrentPresets.UserName, font, footerTextBrush,
                   new XRect(
-                      new XPoint(new XUnit(210 - footerCol, XGraphicsUnit.Millimeter), new XUnit(284, XGraphicsUnit.Millimeter)),
-                      new XPoint(new XUnit(205, XGraphicsUnit.Millimeter), new XUnit(290, XGraphicsUnit.Millimeter))),
+                      new XPoint(new XUnit(210 - footerCol, unit), new XUnit(284, unit)),
+                      new XPoint(new XUnit(205, unit), new XUnit(290, unit))),
                   XStringFormats.Center);
             }
             #endregion Frame
@@ -469,52 +473,59 @@ namespace FlowCalc
             var h3 = new XFont("Barlow", 13, XFontStyle.Bold);
             var p3 = new XFont("Barlow", 13, XFontStyle.Regular);
 
-            var t1 = new XUnit(10, XGraphicsUnit.Millimeter);
-            var t2 = new XUnit(13, XGraphicsUnit.Millimeter);
-            var t3 = new XUnit(20, XGraphicsUnit.Millimeter);
-            var t10 = new XUnit(72, XGraphicsUnit.Millimeter);
-            var t16 = new XUnit(140, XGraphicsUnit.Millimeter);
+            var t1 = new XUnit(10, unit);
+            var t2 = new XUnit(13, unit);
+            var t3 = new XUnit(20, unit);
+            var t10 = new XUnit(72, unit);
+            var t16 = new XUnit(140, unit);
 
             int yLineH3 = 7;
             int yOffsH3 = -1;
             int yBd = 40;
 
-            gfx.DrawString("System", h2, XBrushes.Black, new XPoint(t1, new XUnit(yBd + yOffsH3, XGraphicsUnit.Millimeter)));
+            gfx.DrawString("System", h2, XBrushes.Black, new XPoint(t1, new XUnit(yBd + yOffsH3, unit)));
+            var lineIdx = 1;
+            gfx.DrawString("Pumpe:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            if (Pump.IsVarioPump)
+                gfx.DrawString("Drehzahl:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            gfx.DrawString("Filterkessel Durchmesser:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            gfx.DrawString("Poolvolumen:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            gfx.DrawString("Saugseitige Rohrleitung:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            gfx.DrawString("Systemdruck (Filterkessel):", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
 
-            gfx.DrawString("Pumpe:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("Filterkessel Durchmesser:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * 2, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("Poolvolumen:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * 3, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("Saugseitige Rohrleitung:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * 4, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("Systemdruck (Filterkessel):", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * 5, XGraphicsUnit.Millimeter)));
-
+            lineIdx = 1;
             if (string.IsNullOrEmpty(Pump.Manufacturer))
-                gfx.DrawString($"{Pump.ModellName}", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3, XGraphicsUnit.Millimeter)));
+                gfx.DrawString($"{Pump.ModellName}", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
             else
-                gfx.DrawString($"{Pump.ModellName} ({Pump.Manufacturer})", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3, XGraphicsUnit.Millimeter)));
-            gfx.DrawString(filterDiameter.ToString("f0") + " mm (A = " + filterArea.ToString("f1") + " cm²)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 2, XGraphicsUnit.Millimeter)));
-            gfx.DrawString(poolVolume.ToString("f1") + " m³", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 3, XGraphicsUnit.Millimeter)));
+                gfx.DrawString($"{Pump.ModellName} ({Pump.Manufacturer})", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            if (Pump.IsVarioPump)
+                gfx.DrawString($"{_rpm} min^-1 (P1 = {powerInput:f3} kW)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            gfx.DrawString($"{filterDiameter:f0} mm (A = {filterArea:f1} cm²)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            gfx.DrawString($"{poolVolume:f1} m³", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
             if (SuctionPipe != null)
-                gfx.DrawString(SuctionPipe.ToString(), h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 4, XGraphicsUnit.Millimeter)));
+                gfx.DrawString(SuctionPipe.ToString(), h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
             else
-                gfx.DrawString("nicht angegeben", p3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 4, XGraphicsUnit.Millimeter)));
-            gfx.DrawString(FilterPressure.ToString("f2") + " bar", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * 5, XGraphicsUnit.Millimeter)));
+                gfx.DrawString("nicht angegeben", p3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            gfx.DrawString($"{FilterPressure:f2)} bar", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
 
 
             int yCalc = 89;
+            if (Pump.IsVarioPump)
+                yCalc = 92;
 
-            gfx.DrawString("Berechnung", h2, XBrushes.Black, new XPoint(t1, new XUnit(yCalc + yOffsH3, XGraphicsUnit.Millimeter)));
+            gfx.DrawString("Berechnung", h2, XBrushes.Black, new XPoint(t1, new XUnit(yCalc + yOffsH3, unit)));
 
-            gfx.DrawString("Pumpenvordruck:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yCalc + yLineH3, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("Förderhöhe:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yCalc + yLineH3 * 2, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("Volumenstrom:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yCalc + yLineH3 * 3, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("Arbeitspunkt auf Pumpenkennlinie", p3, XBrushes.Black, new XPoint(t2, new XUnit(yCalc + yLineH3 * 4, XGraphicsUnit.Millimeter)));
+            gfx.DrawString("Pumpenvordruck:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yCalc + yLineH3, unit)));
+            gfx.DrawString("Förderhöhe:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yCalc + yLineH3 * 2, unit)));
+            gfx.DrawString("Volumenstrom:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yCalc + yLineH3 * 3, unit)));
+            gfx.DrawString("Arbeitspunkt auf Pumpenkennlinie", p3, XBrushes.Black, new XPoint(t2, new XUnit(yCalc + yLineH3 * 4, unit)));
 
             if (SuctionPipe != null)
-                gfx.DrawString(SuctionPressureDrop.ToString("f3") + " bar", h3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3, XGraphicsUnit.Millimeter)));
+                gfx.DrawString($"{SuctionPressureDrop:f3} bar", h3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3, unit)));
             else
-                gfx.DrawString("0 bar (nicht berechnet)", p3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3, XGraphicsUnit.Millimeter)));
-            gfx.DrawString($"{SystemHead.ToString("f2")} mWS ({SystemPressure.ToString("f3")} bar)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3 * 2, XGraphicsUnit.Millimeter)));
-            gfx.DrawString(SystemFlowRate.ToString("f2") + " m³/h", h3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3 * 3, XGraphicsUnit.Millimeter)));
+                gfx.DrawString("0 bar (nicht berechnet)", p3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3, unit)));
+            gfx.DrawString($"{SystemHead:f2} mWS ({SystemPressure:f3} bar)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3 * 2, unit)));
+            gfx.DrawString($"{SystemFlowRate:f2} m³/h", h3, XBrushes.Black, new XPoint(t10, new XUnit(yCalc + yLineH3 * 3, unit)));
 
 
 
@@ -532,15 +543,17 @@ namespace FlowCalc
             var pkl = XImage.FromStream(stream);
 
             var imageFrame = new XRect(
-                new XPoint(t3, new XUnit(yCalc + 32, XGraphicsUnit.Millimeter)),
-                new XPoint(new XUnit(180, XGraphicsUnit.Millimeter), new XUnit(yCalc + 127, XGraphicsUnit.Millimeter)));
+                new XPoint(t3, new XUnit(yCalc + 32, unit)),
+                new XPoint(new XUnit(180, unit), new XUnit(yCalc + 127, unit)));
             gfx.DrawImage(pkl, imageFrame);
 
 
             var filter = new Pipe(1, filterDiameter, 0.01);
             var filterSpeed = filter.CalcFlowVelocity(SystemFlowRate) * 3600;
             var filterSpeedBrush = XBrushes.Green;
-            if (filterSpeed > 60 || filterSpeed < 40)
+            if (Pump.IsVarioPump)
+                filterSpeedBrush = XBrushes.DarkGray;
+            else if (filterSpeed > 60 || filterSpeed < 40)
                 filterSpeedBrush = XBrushes.Red;
             else if (filterSpeed > 55 || filterSpeed < 45)
                 filterSpeedBrush = XBrushes.Orange;
@@ -550,32 +563,33 @@ namespace FlowCalc
 
             int yRes = 225;
 
-            gfx.DrawString("Auswertung", h2, XBrushes.Black, new XPoint(t1, new XUnit(yRes + yOffsH3, XGraphicsUnit.Millimeter)));
+            gfx.DrawString("Auswertung", h2, XBrushes.Black, new XPoint(t1, new XUnit(yRes + yOffsH3, unit)));
 
-            gfx.DrawString("Umwälzzeiten", p3, XBrushes.Black, new XPoint(t2, new XUnit(yRes + yLineH3, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("1-fach:", p3, XBrushes.Black, new XPoint(t10 - 50, new XUnit(yRes + yLineH3, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("3-fach:", p3, XBrushes.Black, new XPoint(t10 - 50, new XUnit(yRes + yLineH3 * 2, XGraphicsUnit.Millimeter)));
-            gfx.DrawString("Filtergeschwindigkeit:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yRes + yLineH3 * 3, XGraphicsUnit.Millimeter)));
+            gfx.DrawString("Umwälzzeiten", p3, XBrushes.Black, new XPoint(t2, new XUnit(yRes + yLineH3, unit)));
+            gfx.DrawString("1-fach:", p3, XBrushes.Black, new XPoint(t10 - 50, new XUnit(yRes + yLineH3, unit)));
+            gfx.DrawString("3-fach:", p3, XBrushes.Black, new XPoint(t10 - 50, new XUnit(yRes + yLineH3 * 2, unit)));
+            gfx.DrawString("Filtergeschwindigkeit:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yRes + yLineH3 * 3, unit)));
+
 
             if (tCycle1.TotalHours > 24)
-                gfx.DrawString($"> 24 Stunden", h3, XBrushes.Red, new XPoint(t10, new XUnit(yRes + yLineH3, XGraphicsUnit.Millimeter)));
+                gfx.DrawString($"> 24 Stunden", h3, XBrushes.Red, new XPoint(t10, new XUnit(yRes + yLineH3, unit)));
             else
             {
-                gfx.DrawString($"{tCycle1.Hours} Stunden {tCycle1.Minutes} Minuten", h3, XBrushes.Black, new XPoint(t10, new XUnit(yRes + yLineH3, XGraphicsUnit.Millimeter)));
-                if (Pump.PowerInput > 0)
-                    gfx.DrawString($"({(tCycle1.TotalHours * Pump.PowerInput).ToString("f1")} kWh)", h3, XBrushes.Black, new XPoint(t16, new XUnit(yRes + yLineH3, XGraphicsUnit.Millimeter)));
+                gfx.DrawString($"{tCycle1.Hours} Stunden {tCycle1.Minutes} Minuten", h3, XBrushes.Black, new XPoint(t10, new XUnit(yRes + yLineH3, unit)));
+                if (powerInput > 0)
+                    gfx.DrawString($"({tCycle1.TotalHours * powerInput:f1} kWh)", h3, XBrushes.Black, new XPoint(t16, new XUnit(yRes + yLineH3, unit)));
             }
 
             if (tCycle3.TotalHours > 24)
-                gfx.DrawString($"> 24 Stunden", h3, XBrushes.Red, new XPoint(t10, new XUnit(yRes + yLineH3 * 2, XGraphicsUnit.Millimeter)));
+                gfx.DrawString($"> 24 Stunden", h3, XBrushes.Red, new XPoint(t10, new XUnit(yRes + yLineH3 * 2, unit)));
             else
             {
-                gfx.DrawString($"{tCycle3.Hours} Stunden {tCycle3.Minutes} Minuten", h3, XBrushes.Black, new XPoint(t10, new XUnit(yRes + yLineH3 * 2, XGraphicsUnit.Millimeter)));
-                if (Pump.PowerInput > 0)
-                    gfx.DrawString($"({(tCycle3.TotalHours * Pump.PowerInput).ToString("f1")} kWh)", h3, XBrushes.Black, new XPoint(t16, new XUnit(yRes + yLineH3 * 2, XGraphicsUnit.Millimeter)));
+                gfx.DrawString($"{tCycle3.Hours} Stunden {tCycle3.Minutes} Minuten", h3, XBrushes.Black, new XPoint(t10, new XUnit(yRes + yLineH3 * 2, unit)));
+                if (powerInput > 0)
+                    gfx.DrawString($"({tCycle3.TotalHours * powerInput:f1} kWh)", h3, XBrushes.Black, new XPoint(t16, new XUnit(yRes + yLineH3 * 2, unit)));
             }
 
-            gfx.DrawString(filterSpeed.ToString("f2") + " m/h", h3, filterSpeedBrush, new XPoint(t10, new XUnit(yRes + yLineH3 * 3, XGraphicsUnit.Millimeter)));
+            gfx.DrawString($"{filterSpeed:f2} m/h", h3, filterSpeedBrush, new XPoint(t10, new XUnit(yRes + yLineH3 * 3, unit)));
 
 
             var tf = new XTextFormatter(gfx);
@@ -586,8 +600,8 @@ namespace FlowCalc
                 "in privaten Pool für Filtration und Rückspülung ausgelegt wird, wählt man als Kompromiss eine Filtergeschwindigkeit um 50 m/h.",
                 p, XBrushes.Black,
               new XRect(
-                  new XPoint(t2, new XUnit(yRes + yLineH3 * 4 - 4, XGraphicsUnit.Millimeter)),
-                  new XPoint(new XUnit(200, XGraphicsUnit.Millimeter), new XUnit(276, XGraphicsUnit.Millimeter))),
+                  new XPoint(t2, new XUnit(yRes + yLineH3 * 4 - 4, unit)),
+                  new XPoint(new XUnit(200, unit), new XUnit(276, unit))),
               XStringFormats.TopLeft);
 
 
