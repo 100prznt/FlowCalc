@@ -99,6 +99,7 @@ namespace FlowCalc
                 txt_SuctionPiepLength.Text = Properties.Settings.Default.SuctionPipeLength.ToString("f2");
             if (Properties.Settings.Default.SystemPressure > 0)
                 txt_SystemPressure.Text = Properties.Settings.Default.SystemPressure.ToString("f2");
+
         }
 
         private void btn_LoadPump_Click(object sender, EventArgs e)

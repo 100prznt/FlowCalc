@@ -196,9 +196,9 @@
             this.gb_VarioPump.Controls.Add(this.lbl_Rpm);
             this.gb_VarioPump.Controls.Add(this.tb_Rpm);
             this.gb_VarioPump.Location = new System.Drawing.Point(21, 278);
-            this.gb_VarioPump.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gb_VarioPump.Margin = new System.Windows.Forms.Padding(2);
             this.gb_VarioPump.Name = "gb_VarioPump";
-            this.gb_VarioPump.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gb_VarioPump.Padding = new System.Windows.Forms.Padding(2);
             this.gb_VarioPump.Size = new System.Drawing.Size(422, 101);
             this.gb_VarioPump.TabIndex = 106;
             this.gb_VarioPump.TabStop = false;
@@ -233,9 +233,10 @@
             // 
             // tb_Rpm
             // 
+            this.tb_Rpm.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
             this.tb_Rpm.LargeChange = 100;
             this.tb_Rpm.Location = new System.Drawing.Point(145, 17);
-            this.tb_Rpm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tb_Rpm.Margin = new System.Windows.Forms.Padding(2);
             this.tb_Rpm.Maximum = 2850;
             this.tb_Rpm.Minimum = 1000;
             this.tb_Rpm.Name = "tb_Rpm";
@@ -519,7 +520,7 @@
             // btn_SelectPipe
             // 
             this.btn_SelectPipe.Location = new System.Drawing.Point(18, 53);
-            this.btn_SelectPipe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_SelectPipe.Margin = new System.Windows.Forms.Padding(2);
             this.btn_SelectPipe.Name = "btn_SelectPipe";
             this.btn_SelectPipe.Size = new System.Drawing.Size(186, 23);
             this.btn_SelectPipe.TabIndex = 30;
