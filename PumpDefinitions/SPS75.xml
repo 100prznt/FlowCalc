@@ -11,11 +11,11 @@
   <DataSourceUrl>https://www.steinbach-group.com/de/040920-filterpumpe-sps-75-1-10794de/</DataSourceUrl>
   <PerformanceCurve>
     <Ipp>
-      <H>6</H>
+      <H>6.05</H>
       <Q>4.8</Q>
     </Ipp>
     <Ipp>
-      <H>4</H>
+      <H>4.05</H>
       <Q>6.6</Q>
     </Ipp>
     <Ipp>
@@ -39,7 +39,7 @@
       <Q>3.75</Q>
     </Ipp>
     <Ipp>
-      <H>6.3</H>
+      <H>6.35</H>
       <Q>4.5</Q>
     </Ipp>
     <Ipp>
@@ -47,11 +47,11 @@
       <Q>5.25</Q>
     </Ipp>
     <Ipp>
-      <H>4.8</H>
+      <H>4.77</H>
       <Q>6</Q>
     </Ipp>
     <Ipp>
-      <H>3.75</H>
+      <H>3.83</H>
       <Q>6.75</Q>
     </Ipp>
     <Ipp>
