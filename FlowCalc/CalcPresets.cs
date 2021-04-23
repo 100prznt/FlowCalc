@@ -146,9 +146,7 @@ namespace FlowCalc
             var xs = new XmlSerializer(typeof(CalcPresets));
 
             using (var sw = new StreamWriter(path))
-            {
                 xs.Serialize(sw, this);
-            }
         }
 
         /// <summary>
@@ -162,9 +160,7 @@ namespace FlowCalc
             var xs = new XmlSerializer(typeof(CalcPresets));
 
             using (var sr = new StreamReader(path))
-            {
                 presets = (CalcPresets)xs.Deserialize(sr);
-            }
 
             return presets;
         }
