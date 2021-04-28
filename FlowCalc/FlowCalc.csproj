@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Mathematics\CheckLimits.cs" />
     <Compile Include="Mathematics\CheckRoutines.cs" />
+    <Compile Include="Mathematics\HelpFunctions.cs" />
     <Compile Include="Mathematics\LinInterp.cs" />
     <Compile Include="Mathematics\Polynom.cs" />
     <Compile Include="PhysicalUnits\DimensionExtensions.cs" />

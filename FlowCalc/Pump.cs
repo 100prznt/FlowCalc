@@ -201,8 +201,6 @@ namespace FlowCalc
                     var maxRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve;
 
                     
-
-
                     return Polynom.Polyfit(new double[2] { minRpmCurve.First().FlowRate, maxRpmCurve.First().FlowRate},
                         new double[2] { minRpmCurve.First().TotalDynamicHead, maxRpmCurve.First().TotalDynamicHead }, 1);
                 }
@@ -480,8 +478,15 @@ namespace FlowCalc
             var pUpper = GetPerformancePolynom(maxRpm);
             var pQCut = UpperPerformanceCurveLimit;
 
-            var lowerCrossPoint = pLower.GetCrossPoints(pQCut);
-            var upperCrossPoint = pUpper.GetCrossPoints(pQCut);
+            //Nur Schnittpunkte im gültigen Bereich heranzihene
+            var upperLimitQ = GetPerformanceFlowValues(maxRpm).Max();
+
+            var lowerCrossPoint = HelpFunctions.CutOutRange(pLower.GetCrossPoints(pQCut), 0, upperLimitQ);
+            var upperCrossPoint = HelpFunctions.CutOutRange(pUpper.GetCrossPoints(pQCut), 0, upperLimitQ);
+
+
+            HelpFunctions.CutOutRange(pLower.GetCrossPoints(pQCut), 0, upperLimitQ);
+
 
             if (lowerCrossPoint.Length != 1 || upperCrossPoint.Length != 1)
                 throw new ArithmeticException("Mathematikfehler bei der Berechnung des Arbeitsbereiches.");
