@@ -38,10 +38,10 @@
             this.btn_SaveCsv = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btn_NewPump = new System.Windows.Forms.Button();
             this.btn_SaveMat = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_LoadMat = new System.Windows.Forms.Button();
+            this.btn_NewPump = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_ShowPerformanceCurve = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -116,16 +116,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Speichern als";
             // 
-            // btn_NewPump
-            // 
-            this.btn_NewPump.Location = new System.Drawing.Point(12, 359);
-            this.btn_NewPump.Name = "btn_NewPump";
-            this.btn_NewPump.Size = new System.Drawing.Size(143, 38);
-            this.btn_NewPump.TabIndex = 6;
-            this.btn_NewPump.Text = "Neue Pumpendefinition";
-            this.btn_NewPump.UseVisualStyleBackColor = true;
-            this.btn_NewPump.Click += new System.EventHandler(this.btn_NewPump_Click);
-            // 
             // btn_SaveMat
             // 
             this.btn_SaveMat.Enabled = false;
@@ -138,17 +128,6 @@
             this.btn_SaveMat.UseVisualStyleBackColor = true;
             this.btn_SaveMat.Click += new System.EventHandler(this.btn_SaveMat_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btn_LoadMat);
-            this.groupBox2.Controls.Add(this.btn_SaveMat);
-            this.groupBox2.Location = new System.Drawing.Point(281, 407);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(182, 77);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Pumpenkennlinie";
-            // 
             // btn_LoadMat
             // 
             this.btn_LoadMat.Enabled = false;
@@ -160,6 +139,27 @@
             this.toolTip1.SetToolTip(this.btn_LoadMat, "Importieren der Pumpenkennlinie aus MAT File (Matlab)");
             this.btn_LoadMat.UseVisualStyleBackColor = true;
             this.btn_LoadMat.Click += new System.EventHandler(this.btn_LoadMat_Click);
+            // 
+            // btn_NewPump
+            // 
+            this.btn_NewPump.Location = new System.Drawing.Point(12, 359);
+            this.btn_NewPump.Name = "btn_NewPump";
+            this.btn_NewPump.Size = new System.Drawing.Size(143, 38);
+            this.btn_NewPump.TabIndex = 6;
+            this.btn_NewPump.Text = "Neue Pumpendefinition";
+            this.btn_NewPump.UseVisualStyleBackColor = true;
+            this.btn_NewPump.Click += new System.EventHandler(this.btn_NewPump_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btn_LoadMat);
+            this.groupBox2.Controls.Add(this.btn_SaveMat);
+            this.groupBox2.Location = new System.Drawing.Point(281, 407);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(182, 77);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Pumpenkennlinie";
             // 
             // btn_ShowPerformanceCurve
             // 
@@ -183,6 +183,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.btn_LoadPump);
+            this.MaximumSize = new System.Drawing.Size(491, 534);
+            this.MinimumSize = new System.Drawing.Size(491, 534);
             this.Name = "EditorView";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
