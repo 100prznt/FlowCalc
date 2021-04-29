@@ -481,8 +481,8 @@ namespace FlowCalc
             //Nur Schnittpunkte im gültigen Bereich heranzihene
             var upperLimitQ = GetPerformanceFlowValues(maxRpm).Max();
 
-            var lowerCrossPoint = HelpFunctions.CutOutRange(pLower.GetCrossPoints(pQCut), 0, upperLimitQ);
-            var upperCrossPoint = HelpFunctions.CutOutRange(pUpper.GetCrossPoints(pQCut), 0, upperLimitQ);
+            var lowerCrossPoint = HelpFunctions.CutOutRange(pLower.GetCrossPoints(pQCut), 0, upperLimitQ+1);
+            var upperCrossPoint = HelpFunctions.CutOutRange(pUpper.GetCrossPoints(pQCut), 0, upperLimitQ+1);
 
 
             HelpFunctions.CutOutRange(pLower.GetCrossPoints(pQCut), 0, upperLimitQ);
