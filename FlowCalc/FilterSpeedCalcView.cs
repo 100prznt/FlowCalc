@@ -16,7 +16,7 @@ namespace FlowCalc
 {
     public partial class FilterSpeedCalcView : Form
     {
-        public Pipe Filter { get; set; }
+        public PipeBase Filter { get; set; }
 
         public Units CurrentFlowRateUnit { get; set; }
         public Units CurrentFlowVelocityUnit { get; set; }
