@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>DM-10000</Modell>
+  <Manufacturer>Aqua Forte</Manufacturer>
+  <PowerInput>0.085</PowerInput>
+  <PowerOutput>0.05</PowerOutput>
+  <NominalQ>2</NominalQ>
+  <NominalH>5</NominalH>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <PerformanceCurve>
+    <Ipp>
+      <H>5.15</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>3.65</H>
+      <Q>2</Q>
+    </Ipp>
+    <Ipp>
+      <H>2.55</H>
+      <Q>4</Q>
+    </Ipp>
+    <Ipp>
+      <H>1.6</H>
+      <Q>6</Q>
+    </Ipp>
+    <Ipp>
+      <H>0.8</H>
+      <Q>8</Q>
+    </Ipp>
+    <Ipp>
+      <H>0</H>
+      <Q>10</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>
