@@ -230,6 +230,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dependencies\Logo_100prznt_BG.png" />
     <Content Include="Media\iconfinder_100_Pressure_Reading_183415.ico" />
     <None Include="Media\logo100prznt.png" />
   </ItemGroup>

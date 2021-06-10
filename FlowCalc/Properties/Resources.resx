@@ -136,4 +136,7 @@
   <data name="logo100prznt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Media\logo100prznt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Logo_100prznt_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Dependencies\Logo_100prznt_BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

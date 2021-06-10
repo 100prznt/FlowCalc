@@ -301,7 +301,6 @@ namespace FlowCalc
             chartView.Width = 1692;
             chartView.Height = 1005;
 
-
             var powerInput = Pump.PowerInput;                
             string pumpName = Pump.ModellName;
             if (_rpm is int rpm)
@@ -467,6 +466,7 @@ namespace FlowCalc
             #endregion Frame
 
 
+            var p0 = new XFont("Barlow", 9, XFontStyle.Regular);
             var p = new XFont("Barlow", 10.5, XFontStyle.Regular);
             var h2 = new XFont("Barlow", 17, XFontStyle.Bold);
             var h3 = new XFont("Barlow", 13, XFontStyle.Bold);
@@ -481,6 +481,7 @@ namespace FlowCalc
             int yLineH3 = 7;
             int yOffsH3 = -1;
             int yBd = 40;
+
 
             gfx.DrawString("System", h2, XBrushes.Black, new XPoint(t1, new XUnit(yBd + yOffsH3, unit)));
             var lineIdx = 1;
@@ -528,15 +529,15 @@ namespace FlowCalc
 
 
 
-            var stream = new System.IO.MemoryStream();
+            var stream = new MemoryStream();
 
-            ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Png);
+            ImageCodecInfo pngEncoder = GetEncoder(ImageFormat.Png);
             System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
             EncoderParameters myEncoderParameters = new EncoderParameters(1);
             EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
             myEncoderParameters.Param[0] = myEncoderParameter;
 
-            pklImage.Save(stream, jpgEncoder, myEncoderParameters);
+            pklImage.Save(stream, pngEncoder, myEncoderParameters);
             stream.Position = 0;
 
             var pkl = XImage.FromStream(stream);
@@ -560,7 +561,7 @@ namespace FlowCalc
             var tCycle1 = TimeSpan.FromHours(poolVolume / SystemFlowRate);
             var tCycle3 = TimeSpan.FromHours(poolVolume / SystemFlowRate *3);
 
-            int yRes = 225;
+            int yRes = 220;
 
             gfx.DrawString("Auswertung", h2, XBrushes.Black, new XPoint(t1, new XUnit(yRes + yOffsH3, unit)));
 
@@ -595,11 +596,13 @@ namespace FlowCalc
 
             tf.DrawString("Im privaten Poolbereich sollte die Filtergeschwindigkeit nicht über 50 m/h betragen.\r\n" + 
                 "Mit einer langsameren Filtergeschwindigkeit von rund 30 m/h würde das Ergebnis der Filtration zwar verbessert werden. " +
-                "Jedoch sind für Rückspülung (Reinigung des Filters) Spülgeschwindigkeiten von 50-60 m/h erforderlich. Da die Filterpumpe " + 
-                "in privaten Pool für Filtration und Rückspülung ausgelegt wird, wählt man als Kompromiss eine Filtergeschwindigkeit um 50 m/h.",
-                p, XBrushes.Black,
+                "Jedoch sind für Rückspülung (Reinigung des Filters) Spülgeschwindigkeiten von 50-60 m/h erforderlich. Da die Filterpumpe " +
+                "in privaten Pool für Filtration und Rückspülung ausgelegt wird, wählt man als Kompromiss eine Filtergeschwindigkeit um 50 m/h.\r\n" +
+                "Bei der tatsächlichen Laufzeit der Pumpe gilt es zu beachten, dass das Poolwasser am Tag eine gewisse Zeit bewegt werden sollte. Ein "+
+                "guter Richtwert für eine Untergrenze wären 8 Stunden, unabhängig von der berechneten Umwälzzeit.",
+                p0, XBrushes.Black,
               new XRect(
-                  new XPoint(t2, new XUnit(yRes + yLineH3 * 4 - 4, unit)),
+                  new XPoint(t2, new XUnit(yRes + yLineH3 * 4, unit)),
                   new XPoint(new XUnit(200, unit), new XUnit(276, unit))),
               XStringFormats.TopLeft);
 

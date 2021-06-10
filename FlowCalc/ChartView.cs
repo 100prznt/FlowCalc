@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -194,6 +195,19 @@ namespace FlowCalc
 
         public Image GetChartImage()
         {
+            Image image = Properties.Resources.Logo_100prznt_BG;
+            TextureBrush texBrush = new TextureBrush(image);
+
+            texBrush.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
+            texBrush.TranslateTransform(-550, -547);
+
+
+            var myFill = new Fill(texBrush, false);
+            myFill.AlignH = AlignH.Center;
+            myFill.AlignV = AlignV.Center;
+
+            zedGraphControl1.GraphPane.Chart.Fill = myFill;
+
             return zedGraphControl1.GetImage();
         }
 
