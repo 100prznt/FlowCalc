@@ -19,6 +19,8 @@ namespace FlowCalc
     {
         private const string VARIO_RANGE = "VARIO_RANGE";
 
+        private Image m_BackgroundLogo;
+
         public Dictionary<string, PointPairList> Data { get; set; }
 
         public Tuple<double, double> PowerPoint
@@ -51,6 +53,13 @@ namespace FlowCalc
         public ChartView(string title)
         {
             InitializeComponent();
+
+            m_BackgroundLogo = Properties.Resources.Logo_100prznt_BG;
+
+
+            var px = ((Bitmap)m_BackgroundLogo).GetPixel(400, 400);
+            if (px.R != 246 || px.B != 246)
+                throw new AccessViolationException("Failed to load chart background image.");
 
             this.Text = string.Concat(WindowTitle, " - ", title);
             this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
@@ -117,6 +126,19 @@ namespace FlowCalc
             pane.YAxis.Title.Text = "Meter Wassersäule H in mWS";
 
             pane.Legend.Border.IsVisible = false;
+
+
+            var texBrush = new TextureBrush(m_BackgroundLogo, System.Drawing.Drawing2D.WrapMode.Clamp);
+            texBrush.TranslateTransform(-247.5F, -246.15F);
+            texBrush.ScaleTransform(0.45F, 0.45F);
+
+            var bgFill = new Fill(texBrush, false)
+            {
+                AlignH = AlignH.Center,
+                AlignV = AlignV.Center
+            };
+
+            pane.Chart.Fill = bgFill;
         }
 
         private void CreateChart(ZedGraphControl zgc, bool enableDataPoints = true)
@@ -195,18 +217,17 @@ namespace FlowCalc
 
         public Image GetChartImage()
         {
-            Image image = Properties.Resources.Logo_100prznt_BG;
-            TextureBrush texBrush = new TextureBrush(image);
-
-            texBrush.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
+            var texBrush = new TextureBrush(m_BackgroundLogo, System.Drawing.Drawing2D.WrapMode.Clamp);
             texBrush.TranslateTransform(-550, -547);
 
+            var bgFill = new Fill(texBrush, false)
+            {
+                AlignH = AlignH.Center,
+                AlignV = AlignV.Center
+            };
 
-            var myFill = new Fill(texBrush, false);
-            myFill.AlignH = AlignH.Center;
-            myFill.AlignV = AlignV.Center;
+            zedGraphControl1.GraphPane.Chart.Fill = bgFill;
 
-            zedGraphControl1.GraphPane.Chart.Fill = myFill;
 
             return zedGraphControl1.GetImage();
         }
