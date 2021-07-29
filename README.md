@@ -51,8 +51,8 @@ Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form e
 
 ### Vorhandene Pumpendefinitionsdateien
 
-* Hayward - K-FLO VSTD  :signal_strength: VARIO
-* Aqua TechniX - AquaVarioPlus  :signal_strength: VARIO
+* Hayward - K-FLO VSTD  :signal_strength:
+* Aqua TechniX - AquaVarioPlus  :signal_strength:
 * Aqua TechniX - AquaPlus 4
 * Aqua TechniX - AquaPlus 6
 * Aqua TechniX - AquaPlus 8
@@ -72,6 +72,8 @@ Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form e
 * Steinbach - SPS-100
 * Steinbach - CPS-40
 * Aqua Forte - DM-10000
+
+:signal_strength: = Vario Pumpe, Berechnung für komplettes Drehzahlband möglich
 
 ### Pumpendefinitionsdatei erstellen
 siehe [/PumpDefinitionEditor](/PumpDefinitionEditor)
