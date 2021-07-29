@@ -50,20 +50,28 @@ Der Menupunkt ´Rechner´ -> ´Umwälzleistung´ bietet die Möglichkeit die erf
 Das Programm benötigt zur Berechnung eine Pumpenkennlinie. Diese muss in Form einer Pumpendefinitionsdatei angegeben werden. 
 
 ### Vorhandene Pumpendefinitionsdateien
+
+* Hayward - K-FLO VSTD  :signal_strength: VARIO
+* Aqua TechniX - AquaVarioPlus  :signal_strength: VARIO
 * Aqua TechniX - AquaPlus 4
 * Aqua TechniX - AquaPlus 6
 * Aqua TechniX - AquaPlus 8
 * Aqua TechniX - AquaPlus 11
+* Speck - Badu Bettar 12
 * Speck - Badu Magic II/6
 * Speck - Badu Magic II/8
 * Speck - Badu Magic II/11
 * Speck - Badu Picco II
 * Speck - Badu Top II/8
+* Speck - Badu Top II/14
 * Speck - ProPump 7
+* Speck - ProPump 9
 * Steinbach - SPS-25
 * Steinbach - SPS-50
 * Steinbach - SPS-75
 * Steinbach - SPS-100
+* Steinbach - CPS-40
+* Aqua Forte - DM-10000
 
 ### Pumpendefinitionsdatei erstellen
 siehe [/PumpDefinitionEditor](/PumpDefinitionEditor)
