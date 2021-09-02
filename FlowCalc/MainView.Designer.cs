@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gb_VarioPump = new System.Windows.Forms.GroupBox();
+            this.txt_PumpRpmPowerIn = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.txt_PumpRpmHead = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.lbl_Rpm = new System.Windows.Forms.Label();
@@ -122,7 +124,7 @@
             // 
             // btn_LoadPump
             // 
-            this.btn_LoadPump.Location = new System.Drawing.Point(26, 456);
+            this.btn_LoadPump.Location = new System.Drawing.Point(26, 464);
             this.btn_LoadPump.Name = "btn_LoadPump";
             this.btn_LoadPump.Size = new System.Drawing.Size(192, 39);
             this.btn_LoadPump.TabIndex = 98;
@@ -184,13 +186,15 @@
             this.groupBox1.Controls.Add(this.txt_PumpModel);
             this.groupBox1.Location = new System.Drawing.Point(12, 35);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(469, 518);
+            this.groupBox1.Size = new System.Drawing.Size(469, 526);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pumpe";
             // 
             // gb_VarioPump
             // 
+            this.gb_VarioPump.Controls.Add(this.txt_PumpRpmPowerIn);
+            this.gb_VarioPump.Controls.Add(this.label19);
             this.gb_VarioPump.Controls.Add(this.txt_PumpRpmHead);
             this.gb_VarioPump.Controls.Add(this.label18);
             this.gb_VarioPump.Controls.Add(this.lbl_Rpm);
@@ -199,10 +203,30 @@
             this.gb_VarioPump.Margin = new System.Windows.Forms.Padding(2);
             this.gb_VarioPump.Name = "gb_VarioPump";
             this.gb_VarioPump.Padding = new System.Windows.Forms.Padding(2);
-            this.gb_VarioPump.Size = new System.Drawing.Size(422, 101);
+            this.gb_VarioPump.Size = new System.Drawing.Size(422, 123);
             this.gb_VarioPump.TabIndex = 106;
             this.gb_VarioPump.TabStop = false;
             this.gb_VarioPump.Text = "VARIO Pumpe";
+            // 
+            // txt_PumpRpmPowerIn
+            // 
+            this.txt_PumpRpmPowerIn.Enabled = false;
+            this.txt_PumpRpmPowerIn.Location = new System.Drawing.Point(146, 87);
+            this.txt_PumpRpmPowerIn.Name = "txt_PumpRpmPowerIn";
+            this.txt_PumpRpmPowerIn.Size = new System.Drawing.Size(256, 20);
+            this.txt_PumpRpmPowerIn.TabIndex = 13;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(15, 90);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(99, 13);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "Leistungsaufnahme";
+            this.toolTip1.SetToolTip(this.label19, "Durch die Inperpolation der Pumpenkennlinie und\nder zugehörigen Leisteungsaufnahm" +
+        "e kann es bei\nder Berechnung der drehzahlabhängigen Leistungs-\naufnahme zu einen" +
+        " gewissen Fehler kommen.");
             // 
             // txt_PumpRpmHead
             // 
@@ -248,7 +272,7 @@
             // 
             // lbl_PumpDataSourceUrl
             // 
-            this.lbl_PumpDataSourceUrl.Location = new System.Drawing.Point(164, 423);
+            this.lbl_PumpDataSourceUrl.Location = new System.Drawing.Point(164, 431);
             this.lbl_PumpDataSourceUrl.Name = "lbl_PumpDataSourceUrl";
             this.lbl_PumpDataSourceUrl.Size = new System.Drawing.Size(289, 13);
             this.lbl_PumpDataSourceUrl.TabIndex = 104;
@@ -259,7 +283,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(19, 423);
+            this.label17.Location = new System.Drawing.Point(19, 431);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(67, 13);
             this.label17.TabIndex = 105;
@@ -285,7 +309,7 @@
             // btn_ShowPumpCurve
             // 
             this.btn_ShowPumpCurve.Enabled = false;
-            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(239, 456);
+            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(239, 464);
             this.btn_ShowPumpCurve.Name = "btn_ShowPumpCurve";
             this.btn_ShowPumpCurve.Size = new System.Drawing.Size(204, 39);
             this.btn_ShowPumpCurve.TabIndex = 18;
@@ -342,7 +366,7 @@
             // 
             // lbl_PumpFileAuthor
             // 
-            this.lbl_PumpFileAuthor.Location = new System.Drawing.Point(164, 406);
+            this.lbl_PumpFileAuthor.Location = new System.Drawing.Point(164, 414);
             this.lbl_PumpFileAuthor.Name = "lbl_PumpFileAuthor";
             this.lbl_PumpFileAuthor.Size = new System.Drawing.Size(243, 14);
             this.lbl_PumpFileAuthor.TabIndex = 17;
@@ -353,7 +377,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(19, 406);
+            this.label10.Location = new System.Drawing.Point(19, 414);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(35, 13);
             this.label10.TabIndex = 100;
@@ -412,7 +436,7 @@
             // 
             // btn_CalcFlowRate
             // 
-            this.btn_CalcFlowRate.Location = new System.Drawing.Point(25, 339);
+            this.btn_CalcFlowRate.Location = new System.Drawing.Point(25, 344);
             this.btn_CalcFlowRate.Name = "btn_CalcFlowRate";
             this.btn_CalcFlowRate.Size = new System.Drawing.Size(219, 39);
             this.btn_CalcFlowRate.TabIndex = 5;
@@ -435,7 +459,7 @@
             // 
             this.txt_SystemFlowRate.Enabled = false;
             this.txt_SystemFlowRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SystemFlowRate.Location = new System.Drawing.Point(144, 428);
+            this.txt_SystemFlowRate.Location = new System.Drawing.Point(144, 433);
             this.txt_SystemFlowRate.Name = "txt_SystemFlowRate";
             this.txt_SystemFlowRate.Size = new System.Drawing.Size(100, 20);
             this.txt_SystemFlowRate.TabIndex = 13;
@@ -443,7 +467,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 431);
+            this.label7.Location = new System.Drawing.Point(22, 436);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 14;
@@ -452,7 +476,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 405);
+            this.label8.Location = new System.Drawing.Point(22, 410);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(98, 13);
             this.label8.TabIndex = 16;
@@ -461,7 +485,7 @@
             // txt_SystemHead
             // 
             this.txt_SystemHead.Enabled = false;
-            this.txt_SystemHead.Location = new System.Drawing.Point(144, 402);
+            this.txt_SystemHead.Location = new System.Drawing.Point(144, 407);
             this.txt_SystemHead.Name = "txt_SystemHead";
             this.txt_SystemHead.Size = new System.Drawing.Size(100, 20);
             this.txt_SystemHead.TabIndex = 15;
@@ -481,7 +505,7 @@
             this.groupBox2.Controls.Add(this.txt_SystemFlowRate);
             this.groupBox2.Location = new System.Drawing.Point(498, 35);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(271, 518);
+            this.groupBox2.Size = new System.Drawing.Size(271, 526);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
@@ -489,7 +513,7 @@
             // btn_GenerateReport
             // 
             this.btn_GenerateReport.Enabled = false;
-            this.btn_GenerateReport.Location = new System.Drawing.Point(144, 458);
+            this.btn_GenerateReport.Location = new System.Drawing.Point(144, 463);
             this.btn_GenerateReport.Name = "btn_GenerateReport";
             this.btn_GenerateReport.Size = new System.Drawing.Size(100, 39);
             this.btn_GenerateReport.TabIndex = 23;
@@ -622,7 +646,7 @@
             // btn_ShowPowerPoint
             // 
             this.btn_ShowPowerPoint.Enabled = false;
-            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(25, 458);
+            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(25, 463);
             this.btn_ShowPowerPoint.Name = "btn_ShowPowerPoint";
             this.btn_ShowPowerPoint.Size = new System.Drawing.Size(100, 39);
             this.btn_ShowPowerPoint.TabIndex = 19;
@@ -639,6 +663,15 @@
             this.label11.Size = new System.Drawing.Size(29, 18);
             this.label11.TabIndex = 17;
             this.label11.Text = "bar";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 250;
+            this.toolTip1.AutoPopDelay = 7500;
+            this.toolTip1.InitialDelay = 250;
+            this.toolTip1.ReshowDelay = 50;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "Hinweis";
             // 
             // menuStrip1
             // 
@@ -982,6 +1015,8 @@
         private System.Windows.Forms.Label lbl_Rpm;
         private System.Windows.Forms.TextBox txt_PumpRpmHead;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txt_PumpRpmPowerIn;
+        private System.Windows.Forms.Label label19;
     }
 }
 

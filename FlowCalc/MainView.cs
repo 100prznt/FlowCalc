@@ -559,6 +559,8 @@ namespace FlowCalc
             lbl_Rpm.Text = tb_Rpm.Value + " min^-1";
 
             txt_PumpRpmHead.Text = m_Controller.Pump.GetMaxTotalHead(tb_Rpm.Value).ToString("f2") + " m WS";
+
+            txt_PumpRpmPowerIn.Text = m_Controller.Pump.GetInputPower(tb_Rpm.Value).ToString("f3") + " kW";
         }
     }
 }
