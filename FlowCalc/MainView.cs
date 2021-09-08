@@ -220,6 +220,8 @@ namespace FlowCalc
                 tb_Rpm.Minimum = 0;
                 tb_Rpm.Value = 0;
                 lbl_Rpm.Text = "0 min^-1";
+                txt_PumpRpmPowerIn.Clear();
+                txt_PumpRpmHead.Clear();
             }
             txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHead(rpm).ToString("f2") + " m WS";
 

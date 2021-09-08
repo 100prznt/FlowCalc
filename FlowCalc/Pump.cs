@@ -540,15 +540,20 @@ namespace FlowCalc
 
         public double GetInputPower(int rpm)
         {
-            var x_n = DynamicPerformanceCurves.Select(x => (double)x.Rpm).ToArray();
-            var y_P = DynamicPerformanceCurves.Select(x => x.PowerInput).ToArray();
+            if (IsVarioPump)
+            {
+                var x_n = DynamicPerformanceCurves.Select(x => (double)x.Rpm).ToArray();
+                var y_P = DynamicPerformanceCurves.Select(x => x.PowerInput).ToArray();
 
-            if (x_n.Count() != y_P.Count())
-                throw new ArgumentException("Angegebene drehzahlabhängige Leistungsdaten unplausibel.");
+                if (x_n.Count() != y_P.Count())
+                    throw new ArgumentException("Angegebene drehzahlabhängige Leistungsdaten unplausibel.");
 
-            var p = Polynom.Polyfit(x_n, y_P, 2);
+                var p = Polynom.Polyfit(x_n, y_P, 2);
 
-            return p.Polyval(rpm);
+                return p.Polyval(rpm);
+            }
+            else
+                return PowerInput;
         }
 
         #endregion Services
