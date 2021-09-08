@@ -120,7 +120,7 @@ namespace FlowCalc
         [DisplayName("Pumpenkennlinie")]
         [Description("Stützpunkte der Pumpenkennlinie.")]
         [Editor(typeof(IppCollectionEditor), typeof(UITypeEditor))]
-        [XmlArrayItem("Ipp")]
+        [XmlArrayItem("Ipp")] //interpolationpoint
         public PumpPerformancePoint[] PerformanceCurve { get; set; }
 
         /// <summary>
@@ -131,6 +131,15 @@ namespace FlowCalc
         [Description("Im Datenblatt angegebene Pumpenkennlinien für bestimmte Motor Drehzahlen")]
         [XmlArrayItem("DynamicPerformanceCurve")]
         public PumpDynamicPerformanceCurve[] DynamicPerformanceCurves { get; set; }
+
+        /// <summary>
+        /// Leistungsaufnahme in Abhängigkeit des Arbeitspunktes (Volumenstrom)
+        /// </summary>
+        [Category("Leistungsdaten")]
+        [DisplayName("Dynamische Leistungsaufnahme")]
+        [Description("Leistungsaufnahme in Abhängigkeit des Arbeitspunktes definiert durch den Volumenstrom")]
+        [XmlArrayItem("Ipp")] //interpolationpoint
+        public PumpPowerPoint[] PowerInputCurve { get; set; }
 
         ///// <summary>
         ///// Maximale Meter Wassersäule (Förderhöhe)
