@@ -136,7 +136,7 @@ namespace FlowCalc
         /// Leistungsaufnahme in Abhängigkeit des Arbeitspunktes (Volumenstrom)
         /// </summary>
         [Category("Leistungsdaten")]
-        [DisplayName("Dynamische Leistungsaufnahme")]
+        [DisplayName("Lastabhängige Leistungsaufnahme")]
         [Description("Leistungsaufnahme in Abhängigkeit des Arbeitspunktes definiert durch den Volumenstrom")]
         [XmlArrayItem("Ipp")] //interpolationpoint
         public PumpPowerPoint[] PowerInputCurve { get; set; }
@@ -547,9 +547,9 @@ namespace FlowCalc
             return GetPerformanceHeadValues(rpm).Max();
         }
 
-        public double GetInputPower(int rpm)
+        public double GetInputPower(int? _rpm, double flowrate)
         {
-            if (IsVarioPump)
+            if (_rpm is int rpm && IsVarioPump)
             {
                 var x_n = DynamicPerformanceCurves.Select(x => (double)x.Rpm).ToArray();
                 var y_P = DynamicPerformanceCurves.Select(x => x.PowerInput).ToArray();
@@ -560,6 +560,27 @@ namespace FlowCalc
                 var p = Polynom.Polyfit(x_n, y_P, 2);
 
                 return p.Polyval(rpm);
+            }
+            else if (PowerInputCurve != null && PowerInputCurve.Length > 0)
+            {
+                if (double.IsNaN(flowrate))
+                    return PowerInputCurve.Max(x => x.PowerInput);
+
+                if (PowerInputCurve.Length == 1)
+                    return PowerInputCurve[0].PowerInput;
+                else
+                {
+                    var x_Q = PowerInputCurve.Select(x => x.FlowRate).ToArray();
+                    var y_P = PowerInputCurve.Select(x => x.PowerInput).ToArray();
+
+                    if (x_Q.Count() != y_P.Count())
+                        throw new ArgumentException("Angegebene lastabhängige Leistungskurve unplausibel.");
+
+                    var fitDegeree = PowerInputCurve.Length > 2 ? 2 : 1;
+                    var p = Polynom.Polyfit(x_Q, y_P, fitDegeree);
+
+                    return p.Polyval(flowrate);
+                }
             }
             else
                 return PowerInput;

@@ -191,6 +191,7 @@
             this.txt_FlowVelocity.Name = "txt_FlowVelocity";
             this.txt_FlowVelocity.Size = new System.Drawing.Size(85, 20);
             this.txt_FlowVelocity.TabIndex = 16;
+            this.txt_FlowVelocity.TextChanged += new System.EventHandler(this.txt_FlowVelocity_TextChanged);
             // 
             // label12
             // 
@@ -217,6 +218,7 @@
             this.txt_FlowRate.Name = "txt_FlowRate";
             this.txt_FlowRate.Size = new System.Drawing.Size(85, 20);
             this.txt_FlowRate.TabIndex = 10;
+            this.txt_FlowRate.TextChanged += new System.EventHandler(this.txt_FlowRate_TextChanged);
             // 
             // label8
             // 

@@ -32,6 +32,15 @@ namespace FlowCalc
         public double PowerInput { get; set; }
 
         /// <summary>
+        /// Leistungsaufnahme in Abhängigkeit des Arbeitspunktes (Volumenstrom)
+        /// </summary>
+        [Category("Leistungsdaten")]
+        [DisplayName("Lastabhängige Leistungsaufnahme")]
+        [Description("Leistungsaufnahme in Abhängigkeit des Arbeitspunktes definiert durch den Volumenstrom")]
+        [XmlArrayItem("Ipp")] //interpolationpoint
+        public PumpPowerPoint[] PowerInputCurve { get; set; }
+
+        /// <summary>
         /// Leistungskurve
         /// </summary>
         [Category("Leistungsdaten")]

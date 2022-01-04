@@ -301,12 +301,12 @@ namespace FlowCalc
             chartView.Width = 1692;
             chartView.Height = 1005;
 
-            var powerInput = Pump.PowerInput;                
+            var powerInput = Pump.GetInputPower(_rpm, SystemFlowRate);
             string pumpName = Pump.ModellName;
             if (_rpm is int rpm)
             {
                 pumpName = pumpName + $" @ {rpm} min^-1";
-                powerInput = Pump.GetInputPower((int)rpm);
+                //powerInput = Pump.GetInputPower((int)rpm, SystemFlowRate);
 
                 var performanceRange = Pump.GetPerformanceRange();
                 chartView.AddRange(Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
