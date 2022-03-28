@@ -29,7 +29,7 @@ build:
   project: FlowCalc.sln
   verbosity: minimal
 after_build:
-- cmd: 7z a FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\FlowCalc\bin\%CONFIGURATION%\*.exe %APPVEYOR_BUILD_FOLDER%\FlowCalc\bin\%CONFIGURATION%\*.dll %APPVEYOR_BUILD_FOLDER%\PumpDefinitions %APPVEYOR_BUILD_FOLDER%\FittingDefinitions .\%APPVEYOR_BUILD_FOLDER%\PumpDefinitionEditor\bin\%CONFIGURATION%\PumpDefinitionEditor.exe
+- cmd: 7z a FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip %APPVEYOR_BUILD_FOLDER%\FlowCalc\bin\%CONFIGURATION%\*.exe %APPVEYOR_BUILD_FOLDER%\FlowCalc\bin\%CONFIGURATION%\*.dll %APPVEYOR_BUILD_FOLDER%\PumpDefinitions %APPVEYOR_BUILD_FOLDER%\FittingDefinitions %APPVEYOR_BUILD_FOLDER%\PumpDefinitionEditor\bin\%CONFIGURATION%\PumpDefinitionEditor.exe*
 artifacts:
 - path: FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip
 deploy:
