@@ -86,7 +86,7 @@ namespace FlowCalc
                 }
             }
 
-            if (File.Exists("PumpDefinitionEditor.exe"))
+            if (m_Controller.IsPumpEditorAvailable)
                 editorStartenToolStripMenuItem.Enabled = true;
 
             loadPumps();

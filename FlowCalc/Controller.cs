@@ -101,6 +101,8 @@ namespace FlowCalc
 
         public int SuctionPressureDropCalcIterations { get; set; }
 
+        public bool IsPumpEditorAvailable => File.Exists("PumpDefinitionEditor.exe");
+        
         #endregion Properties
 
         #region Constructor
