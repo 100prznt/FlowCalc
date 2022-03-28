@@ -41,7 +41,7 @@ namespace FlowCalc
         {
             InitializeComponent();
 
-            this.Text = WindowTitle + " - p-v-Q"; //Title
+            this.Text = WindowTitle + " - Druckabfall"; //Title
             this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
 
             cmb_FlowRateUnit.ValueMember = nameof(DisplayUnit.DisplayName);
@@ -193,14 +193,22 @@ namespace FlowCalc
 
         private void txt_FlowVelocity_TextChanged(object sender, EventArgs e)
         {
-                //if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowRate.Text))
-                //    txt_FlowRate.Clear();
+            //if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowRate.Text))
+            if (sender == ActiveControl && !string.IsNullOrWhiteSpace(txt_FlowRate.Text))
+            {
+                txt_FlowRate.Clear();
+                txt_DeltaP.Clear();
+            }
         }
 
         private void txt_FlowRate_TextChanged(object sender, EventArgs e)
         {
-                //if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
-                //   txt_FlowVelocity.Clear();
+            //if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
+            if (sender == ActiveControl && !string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
+            {
+                txt_FlowVelocity.Clear();
+                txt_DeltaP.Clear();
+            }
         }
     }
 }
