@@ -130,7 +130,7 @@ namespace FlowCalc
                     txt_FlowRate.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F, FontStyle.Bold);
                 }
 
-                double deltaP = Pipe.CalcPressureDrop(Controller.CurrentPresets.Medium, flowRate);
+                double deltaP = Pipe.CalcPressureDrop(Controller.CurrentPresets.Medium, UnitConverter.ToBase(flowRate, ((DisplayUnit)cmb_FlowRateUnit.SelectedItem).Unit));
                 txt_DeltaP.Text = UnitConverter.ToUnit(deltaP, Dimensions.Pressure.GetBaseUnit(), ((DisplayUnit)cmb_DeltaPUnit.SelectedItem).Unit).ToString("f3");
                 txt_DeltaP.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F, FontStyle.Bold);
             }
