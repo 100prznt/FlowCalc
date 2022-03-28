@@ -801,7 +801,7 @@
             // 
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.Name = "volumenstromFließgeschwindigkeitToolStripMenuItem";
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Text = "p-v-Q";
+            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Text = "Druckabfall";
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.ToolTipText = "Berechnung von Strömungsgeschwindigkeit, Volumenstrom und Druckverlust in Rohrlei" +
     "tungen";
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.Click += new System.EventHandler(this.volumenstromFließgeschwindigkeitToolStripMenuItem_Click);
