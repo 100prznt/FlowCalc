@@ -10,6 +10,13 @@ namespace FlowCalc_Test
     {
         [TestCategory("FlowRate")]
         [TestMethod]
+        public void L_Per_H_ToBase2_Test()
+        {
+            Assert.AreEqual(6, UnitConverter.ToBase(6000, Units.L_Per_H), 1E-9);
+        }
+
+        [TestCategory("FlowRate")]
+        [TestMethod]
         public void L_Per_Min_ToBase_Test()
         {
             Assert.AreEqual(10.05, UnitConverter.ToBase(167.5, Units.L_Per_Min), 1E-9);

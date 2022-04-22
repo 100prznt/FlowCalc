@@ -120,7 +120,7 @@ namespace FlowCalc
         [DisplayName("Pumpenkennlinie")]
         [Description("Stützpunkte der Pumpenkennlinie.")]
         [Editor(typeof(IppCollectionEditor), typeof(UITypeEditor))]
-        [XmlArrayItem("Ipp")]
+        [XmlArrayItem("Ipp")] //interpolationpoint
         public PumpPerformancePoint[] PerformanceCurve { get; set; }
 
         /// <summary>
@@ -131,6 +131,15 @@ namespace FlowCalc
         [Description("Im Datenblatt angegebene Pumpenkennlinien für bestimmte Motor Drehzahlen")]
         [XmlArrayItem("DynamicPerformanceCurve")]
         public PumpDynamicPerformanceCurve[] DynamicPerformanceCurves { get; set; }
+
+        /// <summary>
+        /// Leistungsaufnahme in Abhängigkeit des Arbeitspunktes (Volumenstrom)
+        /// </summary>
+        [Category("Leistungsdaten")]
+        [DisplayName("Lastabhängige Leistungsaufnahme")]
+        [Description("Leistungsaufnahme in Abhängigkeit des Arbeitspunktes definiert durch den Volumenstrom")]
+        [XmlArrayItem("Ipp")] //interpolationpoint
+        public PumpPowerPoint[] PowerInputCurve { get; set; }
 
         ///// <summary>
         ///// Maximale Meter Wassersäule (Förderhöhe)
@@ -538,17 +547,43 @@ namespace FlowCalc
             return GetPerformanceHeadValues(rpm).Max();
         }
 
-        public double GetInputPower(int rpm)
+        public double GetInputPower(int? _rpm, double flowrate)
         {
-            var x_n = DynamicPerformanceCurves.Select(x => (double)x.Rpm).ToArray();
-            var y_P = DynamicPerformanceCurves.Select(x => x.PowerInput).ToArray();
+            if (_rpm is int rpm && IsVarioPump)
+            {
+                var x_n = DynamicPerformanceCurves.Select(x => (double)x.Rpm).ToArray();
+                var y_P = DynamicPerformanceCurves.Select(x => x.PowerInput).ToArray();
 
-            if (x_n.Count() != y_P.Count())
-                throw new ArgumentException("Angegebene drehzahlabhängige Leistungsdaten unplausibel.");
+                if (x_n.Count() != y_P.Count())
+                    throw new ArgumentException("Angegebene drehzahlabhängige Leistungsdaten unplausibel.");
 
-            var p = Polynom.Polyfit(x_n, y_P, 2);
+                var p = Polynom.Polyfit(x_n, y_P, 2);
 
-            return p.Polyval(rpm);
+                return p.Polyval(rpm);
+            }
+            else if (PowerInputCurve != null && PowerInputCurve.Length > 0)
+            {
+                if (double.IsNaN(flowrate))
+                    return PowerInputCurve.Max(x => x.PowerInput);
+
+                if (PowerInputCurve.Length == 1)
+                    return PowerInputCurve[0].PowerInput;
+                else
+                {
+                    var x_Q = PowerInputCurve.Select(x => x.FlowRate).ToArray();
+                    var y_P = PowerInputCurve.Select(x => x.PowerInput).ToArray();
+
+                    if (x_Q.Count() != y_P.Count())
+                        throw new ArgumentException("Angegebene lastabhängige Leistungskurve unplausibel.");
+
+                    var fitDegeree = PowerInputCurve.Length > 2 ? 2 : 1;
+                    var p = Polynom.Polyfit(x_Q, y_P, fitDegeree);
+
+                    return p.Polyval(flowrate);
+                }
+            }
+            else
+                return PowerInput;
         }
 
         #endregion Services

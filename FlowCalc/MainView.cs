@@ -86,7 +86,7 @@ namespace FlowCalc
                 }
             }
 
-            if (File.Exists("PumpDefinitionEditor.exe"))
+            if (m_Controller.IsPumpEditorAvailable)
                 editorStartenToolStripMenuItem.Enabled = true;
 
             loadPumps();
@@ -220,6 +220,8 @@ namespace FlowCalc
                 tb_Rpm.Minimum = 0;
                 tb_Rpm.Value = 0;
                 lbl_Rpm.Text = "0 min^-1";
+                txt_PumpRpmPowerIn.Clear();
+                txt_PumpRpmHead.Clear();
             }
             txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHead(rpm).ToString("f2") + " m WS";
 
@@ -560,7 +562,7 @@ namespace FlowCalc
 
             txt_PumpRpmHead.Text = m_Controller.Pump.GetMaxTotalHead(tb_Rpm.Value).ToString("f2") + " m WS";
 
-            txt_PumpRpmPowerIn.Text = m_Controller.Pump.GetInputPower(tb_Rpm.Value).ToString("f3") + " kW";
+            txt_PumpRpmPowerIn.Text = m_Controller.Pump.GetInputPower(tb_Rpm.Value, double.NaN).ToString("f3") + " kW";
         }
     }
 }

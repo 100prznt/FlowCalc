@@ -16,6 +16,8 @@ namespace FlowCalc
 {
     public partial class PipeCalcView : Form
     {
+        bool m_CalculationActive = false;
+
         public Pipe Pipe { get; set; }
 
         public Units CurrentFlowRateUnit { get; set; }
@@ -39,7 +41,7 @@ namespace FlowCalc
         {
             InitializeComponent();
 
-            this.Text = WindowTitle + " - p-v-Q"; //Title
+            this.Text = WindowTitle + " - Druckabfall"; //Title
             this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
 
             cmb_FlowRateUnit.ValueMember = nameof(DisplayUnit.DisplayName);
@@ -84,6 +86,7 @@ namespace FlowCalc
 
         private void btn_Clac_Click(object sender, EventArgs e)
         {
+            m_CalculationActive = true;
             txt_FlowVelocity.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
             txt_FlowRate.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
             txt_DeltaP.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
@@ -127,7 +130,7 @@ namespace FlowCalc
                     txt_FlowRate.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F, FontStyle.Bold);
                 }
 
-                double deltaP = Pipe.CalcPressureDrop(Controller.CurrentPresets.Medium, flowRate);
+                double deltaP = Pipe.CalcPressureDrop(Controller.CurrentPresets.Medium, UnitConverter.ToBase(flowRate, ((DisplayUnit)cmb_FlowRateUnit.SelectedItem).Unit));
                 txt_DeltaP.Text = UnitConverter.ToUnit(deltaP, Dimensions.Pressure.GetBaseUnit(), ((DisplayUnit)cmb_DeltaPUnit.SelectedItem).Unit).ToString("f3");
                 txt_DeltaP.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F, FontStyle.Bold);
             }
@@ -136,10 +139,12 @@ namespace FlowCalc
                 MessageBox.Show("Zur Berechnung des Volumenstromes oder der Strömungsgeschwindigkeit muss einer der beiden Werte angegeben werden.\n\n" +
                     "Werden beide oder kein Wert angegeben erfolgt keine Berechnung.", "Hinweis zur Berechnung", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            m_CalculationActive = false;
         }
 
         private void cmb_FlowRateUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            m_CalculationActive = true;
             var newUnit = (DisplayUnit)cmb_FlowRateUnit.SelectedItem;
 
             if (double.TryParse(txt_FlowRate.Text, out double flowRate))
@@ -151,10 +156,12 @@ namespace FlowCalc
             }
 
             CurrentFlowRateUnit = newUnit.Unit;
+            m_CalculationActive = false;
         }
 
         private void cmb_FlowVelocityUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            m_CalculationActive = true;
             var newUnit = (DisplayUnit)cmb_FlowVelocityUnit.SelectedItem;
 
             if (double.TryParse(txt_FlowVelocity.Text, out double flowVelocity))
@@ -166,6 +173,7 @@ namespace FlowCalc
             }
 
             CurrentFlowVelocityUnit = newUnit.Unit;
+            m_CalculationActive = false;
         }
 
         private void cmb_DeltaPUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -181,6 +189,26 @@ namespace FlowCalc
             }
 
             CurrentPressureUnit = newUnit.Unit;
+        }
+
+        private void txt_FlowVelocity_TextChanged(object sender, EventArgs e)
+        {
+            //if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowRate.Text))
+            if (sender == ActiveControl && !string.IsNullOrWhiteSpace(txt_FlowRate.Text))
+            {
+                txt_FlowRate.Clear();
+                txt_DeltaP.Clear();
+            }
+        }
+
+        private void txt_FlowRate_TextChanged(object sender, EventArgs e)
+        {
+            //if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
+            if (sender == ActiveControl && !string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
+            {
+                txt_FlowVelocity.Clear();
+                txt_DeltaP.Clear();
+            }
         }
     }
 }
