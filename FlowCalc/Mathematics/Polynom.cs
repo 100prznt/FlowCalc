@@ -12,8 +12,8 @@ namespace FlowCalc.Mathematics
     public class Polynom
     {
         /// <summary>
-        /// Coefficients
-        /// Start with the offsetvalue of the polynom
+        /// Koeffizienten
+        /// Beginnen Sie mit dem Offsetwert des Polynoms
         /// </summary>
         public double[] Coefficients { get; set; }
 
@@ -31,10 +31,10 @@ namespace FlowCalc.Mathematics
         }
 
         /// <summary>
-        /// Polynomial evaluation
+        /// Berechnung y-Wert
         /// </summary>
-        /// <param name="x">x value</param>
-        /// <returns>Calculated y value</returns>
+        /// <param name="x">x-Wert</param>
+        /// <returns>Berechneter y-Wert</returns>
         public double Polyval(double x)
         {
             double result = 0;
@@ -81,13 +81,13 @@ namespace FlowCalc.Mathematics
         }
 
         /// <summary>
-        /// Polynomial curve fitting
+        /// Polynom Fitting
         /// </summary>
-        /// <param name="x">x values</param>
-        /// <param name="y">y values</param>
-        /// <param name="degree">fit degree</param>
-        /// <returns>Polynom with coefficients for a polynomial p(x) of degree n that is a best fit for the data in y.
-        /// The coefficients in p are in acscending powers (offset first), and the length of p is n+1</returns>
+        /// <param name="x">x-Werte</param>
+        /// <param name="y">y-Werte</param>
+        /// <param name="degree">Grad des Fits</param>
+        /// <returns>Polynom mit Koeffizienten für ein Polynom p(x) vom Grad n, das sich am besten an die Daten in y anpasst.
+        /// Die Koeffizienten in p sind in aufsteigenden Potenzen (Offset zuerst), und die Länge von p ist n+1</returns>
         public static Polynom Polyfit(double[] x, double[] y, int degree)
         {
             if (x.Length != y.Length)
