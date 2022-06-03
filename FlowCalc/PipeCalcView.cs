@@ -86,6 +86,8 @@ namespace FlowCalc
 
         private void btn_Clac_Click(object sender, EventArgs e)
         {
+            clear_CalcValues(sender, e);
+
             m_CalculationActive = true;
             txt_FlowVelocity.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
             txt_FlowRate.Font = new Font(new FontFamily("Microsoft Sans Serif"), 8.25F);
@@ -193,22 +195,57 @@ namespace FlowCalc
 
         private void txt_FlowVelocity_TextChanged(object sender, EventArgs e)
         {
-            //if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowRate.Text))
-            if (sender == ActiveControl && !string.IsNullOrWhiteSpace(txt_FlowRate.Text))
-            {
-                txt_FlowRate.Clear();
-                txt_DeltaP.Clear();
-            }
+            ////if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowRate.Text))
+            //if (sender == ActiveControl && !string.IsNullOrWhiteSpace(txt_FlowRate.Text))
+            //{
+            //    txt_FlowRate.Clear();
+            //    txt_DeltaP.Clear();
+            //}
         }
 
         private void txt_FlowRate_TextChanged(object sender, EventArgs e)
         {
-            //if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
-            if (sender == ActiveControl && !string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
-            {
+            ////if (!m_CalculationActive && !string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
+            //if (sender == ActiveControl && !string.IsNullOrWhiteSpace(txt_FlowVelocity.Text))
+            //{
+            //    txt_FlowVelocity.Clear();
+            //    txt_DeltaP.Clear();
+            //}
+        }
+
+        private void txt_FlowRate_Enter(object sender, EventArgs e)
+        {
+            //MessageBox.Show("txt_FlowRate_Enter");
+            txt_FlowVelocity.ReadOnly = true;
+
+            //clear_CalcValues(sender, e);
+        }
+
+        private void txt_FlowVelocity_Enter(object sender, EventArgs e)
+        {
+            //MessageBox.Show("txt_FlowVelocity_Enter");
+            txt_FlowRate.ReadOnly = true;
+
+            //clear_CalcValues(sender, e);
+        }
+
+        private void txt_FlowVelocity_Click(object sender, EventArgs e)
+        {
+            txt_FlowVelocity.ReadOnly = false;
+        }
+
+        private void txt_FlowRate_Click(object sender, EventArgs e)
+        {
+            txt_FlowRate.ReadOnly = false;
+        }
+
+        private void clear_CalcValues(object sender, EventArgs e)
+        {
+            if (txt_FlowRate.ReadOnly)
+                txt_FlowRate.Clear();
+
+            if (txt_FlowVelocity.ReadOnly)
                 txt_FlowVelocity.Clear();
-                txt_DeltaP.Clear();
-            }
         }
     }
 }

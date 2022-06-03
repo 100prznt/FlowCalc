@@ -139,6 +139,7 @@
             this.txt_PipeDiameter.Name = "txt_PipeDiameter";
             this.txt_PipeDiameter.Size = new System.Drawing.Size(85, 20);
             this.txt_PipeDiameter.TabIndex = 1;
+            this.txt_PipeDiameter.TextChanged += new System.EventHandler(this.clear_CalcValues);
             // 
             // label1
             // 
@@ -191,7 +192,9 @@
             this.txt_FlowVelocity.Name = "txt_FlowVelocity";
             this.txt_FlowVelocity.Size = new System.Drawing.Size(85, 20);
             this.txt_FlowVelocity.TabIndex = 16;
+            this.txt_FlowVelocity.Click += new System.EventHandler(this.txt_FlowVelocity_Click);
             this.txt_FlowVelocity.TextChanged += new System.EventHandler(this.txt_FlowVelocity_TextChanged);
+            this.txt_FlowVelocity.Enter += new System.EventHandler(this.txt_FlowVelocity_Enter);
             // 
             // label12
             // 
@@ -218,7 +221,9 @@
             this.txt_FlowRate.Name = "txt_FlowRate";
             this.txt_FlowRate.Size = new System.Drawing.Size(85, 20);
             this.txt_FlowRate.TabIndex = 10;
+            this.txt_FlowRate.Click += new System.EventHandler(this.txt_FlowRate_Click);
             this.txt_FlowRate.TextChanged += new System.EventHandler(this.txt_FlowRate_TextChanged);
+            this.txt_FlowRate.Enter += new System.EventHandler(this.txt_FlowRate_Enter);
             // 
             // label8
             // 
