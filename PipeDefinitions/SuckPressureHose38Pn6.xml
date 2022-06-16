@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipeDimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Category>SuckPressureHose</Category>
+  <DisplayName>Saugdruckschlauch 38 mm</DisplayName>
+  <NominalDiameter>44.4</NominalDiameter>
+  <InnerDiameter>38</InnerDiameter>
+  <Roughness>0.1</Roughness>
+  <NominalPressure>6</NominalPressure>
+</PipeDimension>

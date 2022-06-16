@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipeDimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Category>PvcTube</Category>
+  <DisplayName>PVC Rohr 40 mm PN6</DisplayName>
+  <NominalDiameter>40</NominalDiameter>
+  <InnerDiameter>37</InnerDiameter>
+  <Roughness>0.03</Roughness>
+  <NominalPressure>6</NominalPressure>
+</PipeDimension>

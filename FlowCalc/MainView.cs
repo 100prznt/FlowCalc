@@ -27,6 +27,11 @@ namespace FlowCalc
         /// </summary>
         const string DEFAULT_FITTINGDEF_PATH = @"FittingDefinitions";
 
+        /// <summary>
+        /// Standard Suchpfad für Rohrleitungsdefinitionen
+        /// </summary>
+        const string DEFAULT_PIPEDEF_PATH = @"PipeDefinitions";
+
         #endregion Constats
 
         Controller m_Controller;
@@ -45,19 +50,27 @@ namespace FlowCalc
             }
         }
 
-        public MainView()
+        public MainView(string[] args)
         {
             InitializeComponent();
+
+            m_Controller = new Controller();
+
+            if (args.Any(x => string.Equals(x, "devmode", StringComparison.OrdinalIgnoreCase)))
+                m_Controller.DevModeEnabled = true;
+            else
+                entwicklungToolStripMenuItem.Visible = false;
 
             this.Text = WindowTitle; //Title
             this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
             lbl_PumpFileAuthor.Text = "";
 
-            m_Controller = new Controller();
 
             //Events anhängen
 
             m_Controller.NewPumpLoaded += applyPumpDefinition;
+
+            m_Controller.PropertyChanged += M_Controller_PropertyChanged;
 
             var sdf = Properties.Settings.Default.PumpSearchPath;
 
@@ -70,6 +83,12 @@ namespace FlowCalc
             if (string.IsNullOrWhiteSpace(Properties.Settings.Default.FittingsSearchPath) && Directory.Exists(DEFAULT_FITTINGDEF_PATH))
             {
                 Properties.Settings.Default.FittingsSearchPath = DEFAULT_FITTINGDEF_PATH;
+                Properties.Settings.Default.Save();
+            }
+
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.PipeSearchPath) && Directory.Exists(DEFAULT_PIPEDEF_PATH))
+            {
+                Properties.Settings.Default.PipeSearchPath = DEFAULT_PIPEDEF_PATH;
                 Properties.Settings.Default.Save();
             }
 
@@ -91,15 +110,32 @@ namespace FlowCalc
 
             loadPumps();
             loadFittings();
+            loadPipes();
+
+            //Letzte Leitungs-Definition laden
+            if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.LastPipeDimensionUniqueName))
+            {
+                var pipe = m_Controller.DefaultPipeDimensions.FirstOrDefault(x => string.Equals(x.UniqueName, Properties.Settings.Default.LastPipeDimensionUniqueName, StringComparison.OrdinalIgnoreCase));
+                m_Controller.SelectedPipe = pipe;
+            }
 
             cbx_CalcSuctionPipe.Checked = Properties.Settings.Default.EnableSuctionPressureDrop;
-            if (Properties.Settings.Default.SuctionPipeDiameter > 0)
-                txt_SuctionPipeDiameter.Text = Properties.Settings.Default.SuctionPipeDiameter.ToString("f2");
-            if (Properties.Settings.Default.SuctionPipeLength > 0)
-                txt_SuctionPiepLength.Text = Properties.Settings.Default.SuctionPipeLength.ToString("f2");
-            if (Properties.Settings.Default.SystemPressure > 0)
-                txt_SystemPressure.Text = Properties.Settings.Default.SystemPressure.ToString("f2");
 
+            if (Properties.Settings.Default.SuctionPipeLength > 0)
+                txt_SuctionPiepLength.Text = Properties.Settings.Default.SuctionPipeLength.ToString("F2");
+            if (Properties.Settings.Default.SystemPressure > 0)
+                txt_SystemPressure.Text = Properties.Settings.Default.SystemPressure.ToString("F2");
+
+        }
+
+        private void M_Controller_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(Controller.SelectedPipe))
+            {
+                txt_PipeName.Text = m_Controller.SelectedPipe.DisplayName;
+                txt_SuctionPipeDiameter.Text = m_Controller.SelectedPipe.InnerDiameter.ToString("F2") + " mm";
+                txt_SuctionPiepRoughness.Text = m_Controller.SelectedPipe.Roughness.ToString("F3") + " mm";
+            }
         }
 
         private void btn_LoadPump_Click(object sender, EventArgs e)
@@ -128,12 +164,13 @@ namespace FlowCalc
                 try
                 {
                     var l = double.Parse(txt_SuctionPiepLength.Text);
-                    var di = double.Parse(txt_SuctionPipeDiameter.Text);
-
-                    m_Controller.SuctionPipe = new Pipe(l, di, Controller.CurrentPresets.Roughness);
+                    //var di = double.Parse(txt_SuctionPipeDiameter.Text);
+                    //var k = double.Parse(txt_SuctionPiepRoughness.Text);
+                    
+                    m_Controller.SuctionPipe = new Pipe(l, m_Controller.SelectedPipe);
 
                     Properties.Settings.Default.SuctionPipeLength = l;
-                    Properties.Settings.Default.SuctionPipeDiameter = di;
+                    //Properties.Settings.Default.SuctionPipeDiameter = di;
                 }
                 catch (Exception)
                 {
@@ -304,7 +341,7 @@ namespace FlowCalc
         private void cbx_CalcSuctionPipe_CheckedChanged(object sender, EventArgs e)
         {
             txt_SuctionPiepLength.Enabled = cbx_CalcSuctionPipe.Checked;
-            txt_SuctionPipeDiameter.Enabled = cbx_CalcSuctionPipe.Checked;
+            //txt_SuctionPipeDiameter.Enabled = cbx_CalcSuctionPipe.Checked;
         }
 
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -344,7 +381,40 @@ namespace FlowCalc
                 Cursor.Current = Cursors.Default;
             }
         }
-        
+
+        private void loadPipes()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.PipeSearchPath) &&
+                    Directory.Exists(Properties.Settings.Default.PipeSearchPath))
+                {
+                    try
+                    {
+                        m_Controller.LoadPipes(Properties.Settings.Default.PipeSearchPath);
+                    }
+                    catch (Exception)
+                    {
+                        // Fehler beim automatischen Laden ignorieren
+                    }
+                    finally
+                    {
+                        Cursor.Current = Cursors.Default;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Fehler beim automatischen Laden ignorieren
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
 
         private void loadPumps()
         {
@@ -515,11 +585,15 @@ namespace FlowCalc
             filterSpeedCalcView.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_SelectPipe_Click(object sender, EventArgs e)
         {
-            var pipeSelectView = new PipeSelectView();
+            var pipeSelectView = new PipeSelectView(m_Controller.DefaultPipeDimensions, "");
+            pipeSelectView.SetSelectedPipe(m_Controller.SelectedPipe);
 
-            pipeSelectView.Show();
+            if (pipeSelectView.ShowDialog() == DialogResult.OK)
+            {
+                m_Controller.SelectedPipe = pipeSelectView.SelectedPipe;
+            }
         }
 
         private void btn_GenerateReport_Click(object sender, EventArgs e)
@@ -564,5 +638,58 @@ namespace FlowCalc
 
             txt_PumpRpmPowerIn.Text = m_Controller.Pump.GetInputPower(tb_Rpm.Value, double.NaN).ToString("f3") + " kW";
         }
+
+        private void searchPathPipesToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.PipeSearchPath = folderBrowserDialog1.SelectedPath;
+                Properties.Settings.Default.Save();
+
+                loadFittings();
+            }
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Title = "Export PipeDimensions";
+            saveFileDialog1.Filter = "CSV|*.csv";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                m_Controller.SavePipeDefinitionsToCsv(saveFileDialog1.FileName);
+        }
+
+        private void importCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Title = "Import PipeDimensions";
+            openFileDialog1.Filter = "CSV|*.csv";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (!m_Controller.LoadPipeDefinitionsFromCsv(openFileDialog1.FileName))
+                    MessageBox.Show("Import Rohrabmessungen", "Der Import ist fehlgeschlagen, CSV-Datei entspricht nicht den Vorgaben.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("Import Rohrabmessungen", "Der Import war erfolgreich.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+        }
+
+        private void entwicklungToolStripMenuItem_DropDownClosed(object sender, EventArgs e)
+        {
+            entwicklungToolStripMenuItem.ForeColor = Color.White;
+        }
+
+        private void entwicklungToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
+        {
+            entwicklungToolStripMenuItem.ForeColor = Color.Black;
+        }
+
+        private void exportRohrleitungsdefinitionenXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                m_Controller.SavePipeDimensionsToXmls(folderBrowserDialog1.SelectedPath);
+            }
+            }
     }
 }

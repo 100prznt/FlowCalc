@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipeDimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Category>PvcFlex</Category>
+  <DisplayName>PVC Flexschlauch 20 mm PN8</DisplayName>
+  <NominalDiameter>20</NominalDiameter>
+  <InnerDiameter>16</InnerDiameter>
+  <Roughness>0.1</Roughness>
+  <NominalPressure>8</NominalPressure>
+</PipeDimension>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipeDimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Category>SuckPressureHose</Category>
+  <DisplayName>Saugdruckschlauch 32 mm</DisplayName>
+  <NominalDiameter>37.6</NominalDiameter>
+  <InnerDiameter>32</InnerDiameter>
+  <Roughness>0.1</Roughness>
+  <NominalPressure>6</NominalPressure>
+</PipeDimension>

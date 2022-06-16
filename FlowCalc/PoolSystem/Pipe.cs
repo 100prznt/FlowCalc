@@ -35,6 +35,16 @@ namespace FlowCalc.PoolSystem
         /// Konstruktor
         /// </summary>
         /// <param name="l">Rohrlängein [m]</param>
+        /// <param name="pipeDimension">Rohrdefinition</param>
+        public Pipe(double l, PipeDimension pipeDimension) : this(l, pipeDimension.InnerDiameter, pipeDimension.Roughness)
+        {
+
+        }
+
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="l">Rohrlängein [m]</param>
         /// <param name="di">Innerer Rohrdurchmesser in [mm]</param>
         /// <param name="k">Rohrrauheit in [mm]</param>
         public Pipe(double l, double di, double k)

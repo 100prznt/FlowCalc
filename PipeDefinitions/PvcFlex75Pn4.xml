@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipeDimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Category>PvcFlex</Category>
+  <DisplayName>PVC Flexschlauch 75 mm PN4</DisplayName>
+  <NominalDiameter>75</NominalDiameter>
+  <InnerDiameter>67</InnerDiameter>
+  <Roughness>0.1</Roughness>
+  <NominalPressure>4</NominalPressure>
+</PipeDimension>

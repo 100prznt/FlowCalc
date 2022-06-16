@@ -56,7 +56,6 @@ namespace FlowCalc
             else
                 cbx_Medium.SelectedItem = Medium.Water20;
             txt_MetresAboveSeaLevel.Text = Settings.MetresAboveSeaLevel.ToString("F0");
-            txt_Roughness.Text = Settings.Roughness.ToString("F4");
 
             txt_UserName.Text = Settings.UserName;
             cbx_EnableUserName.Checked = !Settings.DisableUserName;
@@ -92,7 +91,6 @@ namespace FlowCalc
         {
             Settings.Medium = (Medium)cbx_Medium.SelectedItem;
             Settings.MetresAboveSeaLevel = double.Parse(txt_MetresAboveSeaLevel.Text);
-            Settings.Roughness = double.Parse(txt_Roughness.Text);
 
             Settings.UserName = txt_UserName.Text;
             Settings.DisableUserName = !cbx_EnableUserName.Checked;

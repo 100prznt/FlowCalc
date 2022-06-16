@@ -33,7 +33,7 @@ namespace FlowCalc
         public static CalcPresets CurrentPresets;
 
         #region Member
-
+        PipeDimension m_SelectedPipe;
 
         #endregion Member
 
@@ -58,6 +58,33 @@ namespace FlowCalc
         /// Verfügbare Fittings
         /// </summary>
         public List<Fitting> Fittings { get; set; }
+
+        /// <summary>
+        /// Verfügbare Standard-Rohrleitungen
+        /// </summary>
+        public List<PipeDimension> DefaultPipeDimensions { get; set; }
+
+        /// <summary>
+        /// Aktuell ausgewählter Rohrtyp
+        /// </summary>
+        public PipeDimension SelectedPipe
+        {
+            get
+            {
+                return m_SelectedPipe;
+            }
+            set
+            {
+                if (m_SelectedPipe?.UniqueName != value.UniqueName)
+                {
+                    Properties.Settings.Default.LastPipeDimensionUniqueName = value.UniqueName;
+                    Properties.Settings.Default.Save();
+                }
+
+                m_SelectedPipe = value;
+                PropChanged();
+            }
+        }
 
         /// <summary>
         /// Pfad zur aktuell verwendeten Pumpendefinition
@@ -102,7 +129,9 @@ namespace FlowCalc
         public int SuctionPressureDropCalcIterations { get; set; }
 
         public bool IsPumpEditorAvailable => File.Exists("PumpDefinitionEditor.exe");
-        
+
+        public bool DevModeEnabled { get; set; }
+
         #endregion Properties
 
         #region Constructor
@@ -216,6 +245,37 @@ namespace FlowCalc
 
                 if (fittings.Count > 0)
                     Fittings = fittings;
+            }
+        }
+
+        public void LoadPipes(string searchPath)
+        {
+            var pipes = new List<PipeDimension>();
+
+            if (Directory.Exists(searchPath))
+            {
+                var fileNames = Directory.GetFiles(searchPath);
+
+                foreach (var fileName in fileNames)
+                {
+                    if (fileName.EndsWith(".xml") & !fileName.EndsWith("Blanko.xml"))
+                    {
+                        Debug.WriteLine("Deserialize " + fileName);
+                        try
+                        {
+                            var pipeDim = PipeDimension.FromFile(fileName);
+                            pipeDim.FilePath = fileName;
+                            pipes.Add(pipeDim);
+                        }
+                        catch (Exception)
+                        {
+                            //Überspringen TODO: dirty
+                        }
+                    }
+                }
+
+                if (pipes.Count > 0)
+                    DefaultPipeDimensions = pipes;
             }
         }
 
@@ -616,17 +676,58 @@ namespace FlowCalc
             Process.Start(path);
         }
 
+        public void SavePipeDimensionsToXmls(string selectedPath)
+        {
+            foreach (var pipe in DefaultPipeDimensions)
+                pipe.ToXmlFile(selectedPath);
+        }
+
+        public bool LoadPipeDefinitionsFromCsv(string fileName)
+        {
+            using (var sr = new StreamReader(fileName))
+            {
+                var header = sr.ReadLine();
+                var fu = PipeDimension.GetCsvHeader();
+                if (header != PipeDimension.GetCsvHeader())
+                    return false;
+
+                DefaultPipeDimensions = new List<PipeDimension>();
+
+                while (!sr.EndOfStream)
+                {
+                    DefaultPipeDimensions.Add(PipeDimension.FromCsvLine(sr.ReadLine()));
+                }
+
+                return true;
+            }
+        }
+
+        public void SavePipeDefinitionsToCsv(string fileName)
+        {
+            using (var sw = new StreamWriter(fileName))
+            {
+                sw.WriteLine(PipeDimension.GetCsvHeader());
+                foreach (var pipe in DefaultPipeDimensions)
+                    sw.WriteLine(pipe.ToCsvLine());
+            }
+        }
+
         #endregion Services
 
         #region Internal services
         public string GetTitle()
         {
 #if DEBUG
-                return typeof(MainView).Assembly.GetName().Name + " [DEBUG]";
+            var title = typeof(MainView).Assembly.GetName().Name + " [DEBUG]";
 #else
-                var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-                return string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
+            var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
+            var title =  string.Concat(typeof(MainView).Assembly.GetName().Name, " ", versionInfo.ProductVersion);
 #endif
+
+            if (DevModeEnabled)
+                return title + "-dev";
+            else
+                return title;
         }
 
         private ImageCodecInfo GetEncoder(ImageFormat format)

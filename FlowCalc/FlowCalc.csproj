@@ -98,6 +98,8 @@
     <Compile Include="EnterReportDataView.Designer.cs">
       <DependentUpon>EnterReportDataView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PipeCategories.cs" />
+    <Compile Include="PipeDimension.cs" />
     <Compile Include="PoolSystem\Filter.cs" />
     <Compile Include="IppCollectionEditor.cs" />
     <Compile Include="MainView.cs">

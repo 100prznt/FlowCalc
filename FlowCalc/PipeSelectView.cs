@@ -16,13 +16,11 @@ namespace FlowCalc
 {
     public partial class PipeSelectView : Form
     {
-        public Pipe Pipe { get; set; }
+        public PipeDimension SelectedPipe { get; set; }
 
-        public Units CurrentFlowRateUnit { get; set; }
-        public Units CurrentFlowVelocityUnit { get; set; }
-        public Units CurrentPressureUnit { get; set; }
+        public string PipeDefinitionsPath { get; set; }
 
-        PipeType m_PipeType = PipeType.Undefined;
+        public BindingList<PipeDimension> PipeList { get; set; }
 
         public string WindowTitle
         {
@@ -37,50 +35,21 @@ namespace FlowCalc
             }
         }
 
-        public PipeSelectView()
+        public PipeSelectView(List<PipeDimension> loadedPipes, string pipeDefinitionsPath)
         {
             InitializeComponent();
 
             this.Text = WindowTitle + " - Rohrauswahl"; //Title
             this.Icon = Properties.Resources.iconfinder_100_Pressure_Reading_183415;
 
-            
+            PipeList = new BindingList<PipeDimension>(loadedPipes);
+            PipeDefinitionsPath = pipeDefinitionsPath;
+
+            cbx_SelectedPipe.ValueMember = nameof(PipeDimension.DisplayName);
+            //cbx_SelectedPipe.Items.AddRange(PipeList.ToArray());
+            cbx_SelectedPipe.DataSource = PipeList;
         }
 
-        private void PipeType_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rb_PoolPipe.Checked)
-            {
-                cbx_NominalDiameter.Items.Clear();
-                cbx_NominalDiameter.Items.Add("32 mm");
-                cbx_NominalDiameter.Items.Add("38 mm");
-
-                cbx_NominalPressure.Items.Clear();
-                cbx_NominalPressure.Enabled = false;
-            }
-            else if (rb_PvcPipe.Checked)
-            {
-                cbx_NominalDiameter.Items.Clear();
-                cbx_NominalDiameter.Items.Add("50 mm");
-                cbx_NominalDiameter.Items.Add("63 mm");
-
-                cbx_NominalPressure.Items.Clear();
-                cbx_NominalPressure.Enabled = true;
-                cbx_NominalPressure.Items.Add("PN6");
-                cbx_NominalPressure.Items.Add("PN10");
-                cbx_NominalPressure.Items.Add("PN16");
-            }
-            else if (rb_PvcFlex.Checked)
-            {
-                cbx_NominalDiameter.Items.Clear();
-                cbx_NominalDiameter.Items.Add("50 mm");
-                cbx_NominalDiameter.Items.Add("63 mm");
-
-                cbx_NominalPressure.Items.Clear();
-                cbx_NominalPressure.Enabled = true;
-                cbx_NominalPressure.Items.Add("PN6");
-            }
-        }
 
         //Controller.CurrentPresets.Roughness
 
@@ -90,6 +59,23 @@ namespace FlowCalc
             PvcPipe,
             PvcFlex,
             PoolPipe
+        }
+
+        private void cbx_SelectedPipe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedPipe = (PipeDimension)cbx_SelectedPipe.SelectedItem;
+            pg_Pipe.SelectedObject = SelectedPipe;
+        }
+
+        private void btn_Apply_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        public void SetSelectedPipe(PipeDimension selectedPipe)
+        {
+            cbx_SelectedPipe.SelectedItem = selectedPipe;
         }
     }
 }

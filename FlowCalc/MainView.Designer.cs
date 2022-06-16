@@ -69,14 +69,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_GenerateReport = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txt_PipeName = new System.Windows.Forms.TextBox();
             this.btn_SelectPipe = new System.Windows.Forms.Button();
             this.btn_CalcLength = new System.Windows.Forms.Button();
             this.txt_PipeSuctionPressureDrop = new System.Windows.Forms.TextBox();
             this.lbl_PipeSuctionPressureDrop = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txt_SuctionPiepLength = new System.Windows.Forms.TextBox();
+            this.txt_SuctionPiepRoughness = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.txt_SuctionPipeDiameter = new System.Windows.Forms.TextBox();
             this.cbx_CalcSuctionPipe = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -95,6 +94,11 @@
             this.ladePumpendefinitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.editorStartenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pipesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchPathPipesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fittingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suchverzeichnisToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.rechnerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,11 +111,16 @@
             this.dokumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.überToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.entwicklungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.txt_SuctionPiepLength = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_VarioPump.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tb_Rpm)).BeginInit();
@@ -143,10 +152,10 @@
             // 
             // txt_SystemPressure
             // 
-            this.txt_SystemPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_SystemPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_SystemPressure.Location = new System.Drawing.Point(144, 283);
             this.txt_SystemPressure.Name = "txt_SystemPressure";
-            this.txt_SystemPressure.Size = new System.Drawing.Size(62, 24);
+            this.txt_SystemPressure.Size = new System.Drawing.Size(62, 29);
             this.txt_SystemPressure.TabIndex = 1;
             // 
             // openFileDialog1
@@ -448,7 +457,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(22, 286);
+            this.label6.Location = new System.Drawing.Point(22, 289);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 18);
             this.label6.TabIndex = 12;
@@ -523,23 +532,34 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.txt_SuctionPiepLength);
+            this.groupBox4.Controls.Add(this.txt_PipeName);
             this.groupBox4.Controls.Add(this.btn_SelectPipe);
             this.groupBox4.Controls.Add(this.btn_CalcLength);
             this.groupBox4.Controls.Add(this.txt_PipeSuctionPressureDrop);
             this.groupBox4.Controls.Add(this.lbl_PipeSuctionPressureDrop);
-            this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.txt_SuctionPiepLength);
+            this.groupBox4.Controls.Add(this.txt_SuctionPiepRoughness);
             this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Controls.Add(this.txt_SuctionPipeDiameter);
             this.groupBox4.Controls.Add(this.cbx_CalcSuctionPipe);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Location = new System.Drawing.Point(25, 19);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(219, 223);
+            this.groupBox4.Size = new System.Drawing.Size(219, 243);
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Saugseitige Rohrleitung";
+            // 
+            // txt_PipeName
+            // 
+            this.txt_PipeName.Enabled = false;
+            this.txt_PipeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_PipeName.Location = new System.Drawing.Point(18, 84);
+            this.txt_PipeName.Name = "txt_PipeName";
+            this.txt_PipeName.Size = new System.Drawing.Size(186, 20);
+            this.txt_PipeName.TabIndex = 31;
             // 
             // btn_SelectPipe
             // 
@@ -548,14 +568,13 @@
             this.btn_SelectPipe.Name = "btn_SelectPipe";
             this.btn_SelectPipe.Size = new System.Drawing.Size(186, 23);
             this.btn_SelectPipe.TabIndex = 30;
-            this.btn_SelectPipe.Text = "Auswahl Rohr";
+            this.btn_SelectPipe.Text = "Auswahl Leitung";
             this.btn_SelectPipe.UseVisualStyleBackColor = true;
-            this.btn_SelectPipe.Visible = false;
-            this.btn_SelectPipe.Click += new System.EventHandler(this.button1_Click);
+            this.btn_SelectPipe.Click += new System.EventHandler(this.btn_SelectPipe_Click);
             // 
             // btn_CalcLength
             // 
-            this.btn_CalcLength.Location = new System.Drawing.Point(18, 149);
+            this.btn_CalcLength.Location = new System.Drawing.Point(18, 169);
             this.btn_CalcLength.Name = "btn_CalcLength";
             this.btn_CalcLength.Size = new System.Drawing.Size(186, 23);
             this.btn_CalcLength.TabIndex = 29;
@@ -566,7 +585,7 @@
             // txt_PipeSuctionPressureDrop
             // 
             this.txt_PipeSuctionPressureDrop.Enabled = false;
-            this.txt_PipeSuctionPressureDrop.Location = new System.Drawing.Point(119, 187);
+            this.txt_PipeSuctionPressureDrop.Location = new System.Drawing.Point(119, 207);
             this.txt_PipeSuctionPressureDrop.Name = "txt_PipeSuctionPressureDrop";
             this.txt_PipeSuctionPressureDrop.Size = new System.Drawing.Size(85, 20);
             this.txt_PipeSuctionPressureDrop.TabIndex = 28;
@@ -574,53 +593,37 @@
             // lbl_PipeSuctionPressureDrop
             // 
             this.lbl_PipeSuctionPressureDrop.AutoSize = true;
-            this.lbl_PipeSuctionPressureDrop.Location = new System.Drawing.Point(15, 190);
+            this.lbl_PipeSuctionPressureDrop.Location = new System.Drawing.Point(15, 210);
             this.lbl_PipeSuctionPressureDrop.Name = "lbl_PipeSuctionPressureDrop";
             this.lbl_PipeSuctionPressureDrop.Size = new System.Drawing.Size(88, 13);
             this.lbl_PipeSuctionPressureDrop.TabIndex = 27;
             this.lbl_PipeSuctionPressureDrop.Text = "Pumpenvordruck";
             // 
-            // label15
+            // txt_SuctionPiepRoughness
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(183, 120);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(15, 13);
-            this.label15.TabIndex = 26;
-            this.label15.Text = "m";
-            // 
-            // txt_SuctionPiepLength
-            // 
-            this.txt_SuctionPiepLength.Enabled = false;
-            this.txt_SuctionPiepLength.Location = new System.Drawing.Point(119, 117);
-            this.txt_SuctionPiepLength.Name = "txt_SuctionPiepLength";
-            this.txt_SuctionPiepLength.Size = new System.Drawing.Size(62, 20);
-            this.txt_SuctionPiepLength.TabIndex = 25;
+            this.txt_SuctionPiepRoughness.Enabled = false;
+            this.txt_SuctionPiepRoughness.Location = new System.Drawing.Point(141, 110);
+            this.txt_SuctionPiepRoughness.Name = "txt_SuctionPiepRoughness";
+            this.txt_SuctionPiepRoughness.Size = new System.Drawing.Size(63, 20);
+            this.txt_SuctionPiepRoughness.TabIndex = 25;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(15, 120);
+            this.label14.Location = new System.Drawing.Point(122, 112);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.Size = new System.Drawing.Size(13, 13);
             this.label14.TabIndex = 24;
-            this.label14.Text = "Länge";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(183, 94);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(23, 13);
-            this.label13.TabIndex = 23;
-            this.label13.Text = "mm";
+            this.label14.Text = "k";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.toolTip1.SetToolTip(this.label14, "Rohrrauheit (k)");
             // 
             // txt_SuctionPipeDiameter
             // 
             this.txt_SuctionPipeDiameter.Enabled = false;
-            this.txt_SuctionPipeDiameter.Location = new System.Drawing.Point(119, 91);
+            this.txt_SuctionPipeDiameter.Location = new System.Drawing.Point(36, 110);
             this.txt_SuctionPipeDiameter.Name = "txt_SuctionPipeDiameter";
-            this.txt_SuctionPipeDiameter.Size = new System.Drawing.Size(62, 20);
+            this.txt_SuctionPipeDiameter.Size = new System.Drawing.Size(63, 20);
             this.txt_SuctionPipeDiameter.TabIndex = 21;
             // 
             // cbx_CalcSuctionPipe
@@ -637,11 +640,12 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(15, 94);
+            this.label12.Location = new System.Drawing.Point(17, 112);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(94, 13);
+            this.label12.Size = new System.Drawing.Size(13, 13);
             this.label12.TabIndex = 20;
-            this.label12.Text = "Innendurchmesser";
+            this.label12.Text = "d";
+            this.toolTip1.SetToolTip(this.label12, "Leitungsinnendurchmesser (d)");
             // 
             // btn_ShowPowerPoint
             // 
@@ -658,7 +662,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(208, 286);
+            this.label11.Location = new System.Drawing.Point(208, 289);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(29, 18);
             this.label11.TabIndex = 17;
@@ -679,9 +683,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stToolStripMenuItem,
             this.überToolStripMenuItem,
+            this.pipesToolStripMenuItem,
             this.fittingsToolStripMenuItem,
             this.rechnerToolStripMenuItem,
-            this.hilfeToolStripMenuItem});
+            this.hilfeToolStripMenuItem,
+            this.entwicklungToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
@@ -769,6 +775,43 @@
             this.editorStartenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.editorStartenToolStripMenuItem.Text = "Editor starten";
             this.editorStartenToolStripMenuItem.Click += new System.EventHandler(this.editorStartenToolStripMenuItem_Click);
+            // 
+            // pipesToolStripMenuItem
+            // 
+            this.pipesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchPathPipesToolStripMenuItem2,
+            this.toolStripSeparator5,
+            this.exportToolStripMenuItem,
+            this.importCSVToolStripMenuItem});
+            this.pipesToolStripMenuItem.Name = "pipesToolStripMenuItem";
+            this.pipesToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.pipesToolStripMenuItem.Text = "Rohrleitungen";
+            // 
+            // searchPathPipesToolStripMenuItem2
+            // 
+            this.searchPathPipesToolStripMenuItem2.Name = "searchPathPipesToolStripMenuItem2";
+            this.searchPathPipesToolStripMenuItem2.Size = new System.Drawing.Size(167, 22);
+            this.searchPathPipesToolStripMenuItem2.Text = "Suchverzeichnis...";
+            this.searchPathPipesToolStripMenuItem2.Click += new System.EventHandler(this.searchPathPipesToolStripMenuItem2_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(164, 6);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.exportToolStripMenuItem.Text = "Export CSV...";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
+            // 
+            // importCSVToolStripMenuItem
+            // 
+            this.importCSVToolStripMenuItem.Name = "importCSVToolStripMenuItem";
+            this.importCSVToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.importCSVToolStripMenuItem.Text = "Import CSV...";
+            this.importCSVToolStripMenuItem.Click += new System.EventHandler(this.importCSVToolStripMenuItem_Click);
             // 
             // fittingsToolStripMenuItem
             // 
@@ -866,6 +909,26 @@
             this.überToolStripMenuItem1.Text = "Über";
             this.überToolStripMenuItem1.Click += new System.EventHandler(this.überToolStripMenuItem1_Click);
             // 
+            // entwicklungToolStripMenuItem
+            // 
+            this.entwicklungToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(46)))), ((int)(((byte)(100)))));
+            this.entwicklungToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem});
+            this.entwicklungToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.entwicklungToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.entwicklungToolStripMenuItem.Name = "entwicklungToolStripMenuItem";
+            this.entwicklungToolStripMenuItem.Size = new System.Drawing.Size(84, 22);
+            this.entwicklungToolStripMenuItem.Text = "Entwicklung";
+            this.entwicklungToolStripMenuItem.DropDownClosed += new System.EventHandler(this.entwicklungToolStripMenuItem_DropDownClosed);
+            this.entwicklungToolStripMenuItem.DropDownOpened += new System.EventHandler(this.entwicklungToolStripMenuItem_DropDownOpened);
+            // 
+            // exportRohrleitungsdefinitionenXMLToolStripMenuItem
+            // 
+            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Name = "exportRohrleitungsdefinitionenXMLToolStripMenuItem";
+            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
+            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Text = "Export Rohrleitungsdefinitionen (XML)...";
+            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Click += new System.EventHandler(this.exportRohrleitungsdefinitionenXMLToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -896,6 +959,33 @@
             // 
             this.saveFileDialog1.Filter = "PDF|*.pdf";
             this.saveFileDialog1.Title = "Report speichern";
+            // 
+            // txt_SuctionPiepLength
+            // 
+            this.txt_SuctionPiepLength.Enabled = false;
+            this.txt_SuctionPiepLength.Location = new System.Drawing.Point(119, 136);
+            this.txt_SuctionPiepLength.Name = "txt_SuctionPiepLength";
+            this.txt_SuctionPiepLength.Size = new System.Drawing.Size(62, 20);
+            this.txt_SuctionPiepLength.TabIndex = 32;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(15, 139);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(37, 13);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "Länge";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(189, 139);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(15, 13);
+            this.label15.TabIndex = 34;
+            this.label15.Text = "m";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // MainView
             // 
@@ -968,10 +1058,8 @@
         private System.Windows.Forms.TextBox txt_SuctionPipeDiameter;
         private System.Windows.Forms.CheckBox cbx_CalcSuctionPipe;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txt_SuctionPiepLength;
+        private System.Windows.Forms.TextBox txt_SuctionPiepRoughness;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txt_PipeSuctionPressureDrop;
         private System.Windows.Forms.Label lbl_PipeSuctionPressureDrop;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -1017,6 +1105,17 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txt_PumpRpmPowerIn;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ToolStripMenuItem pipesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchPathPipesToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem importCSVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem entwicklungToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportRohrleitungsdefinitionenXMLToolStripMenuItem;
+        private System.Windows.Forms.TextBox txt_PipeName;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txt_SuctionPiepLength;
+        private System.Windows.Forms.Label label15;
     }
 }
 

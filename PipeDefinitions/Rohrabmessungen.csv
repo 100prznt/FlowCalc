@@ -1,0 +1,26 @@
+UniqueName;Category;NominalDiameter;InnerDiameter;Roughness;NominalPressure;DisplayName
+PvcTube50Pn10;PvcTube;50;45,2;0,03;10;PVC Rohr 50 mm PN10
+PvcTube50Pn6;PvcTube;50;46,8;0,03;6;PVC Rohr 50 mm PN6
+PvcTube50Pn16;PvcTube;50;42,6;0,03;16;PVC Rohr 50 mm PN16
+PvcTube63Pn6;PvcTube;63;59;0,03;6;PVC Rohr 63 mm PN6
+PvcTube63Pn10;PvcTube;63;57;0,03;10;PVC Rohr 63 mm PN10
+PvcTube63Pn16;PvcTube;63;53,6;0,03;16;PVC Rohr 63 mm PN16
+PvcTube75Pn6;PvcTube;75;70,4;0,03;6;PVC Rohr 75 mm PN6
+PvcTube75Pn10;PvcTube;75;67,8;0,03;10;PVC Rohr 75 mm PN10
+PvcTube75Pn16;PvcTube;75;63,8;0,03;16;PVC Rohr 75 mm PN16
+PvcTube40Pn6;PvcTube;40;37;0,03;6;PVC Rohr 40 mm PN6
+PvcTube40Pn10;PvcTube;40;36,2;0,03;10;PVC Rohr 40 mm PN10
+PvcTube40Pn16;PvcTube;40;34;0,03;16;PVC Rohr 40 mm PN16
+SuckPressureHose25Pn7;SuckPressureHose;30;25;0,1;7;Saugdruckschlauch 25 mm
+SuckPressureHose32Pn6;SuckPressureHose;37,6;32;0,1;6;Saugdruckschlauch 32 mm
+SuckPressureHose38Pn6;SuckPressureHose;44,4;38;0,1;6;Saugdruckschlauch 38 mm
+PoolHose32;PoolHose;NaN;32;2;NaN;Poolschlauch 32 mm
+PoolHose38;PoolHose;NaN;38;2;NaN;Poolschlauch 38 mm
+PvcFlex20Pn8;PvcFlex;20;16;0,1;8;PVC Flexschlauch 20 mm PN8
+PvcFlex25Pn8;PvcFlex;25;20;0,1;8;PVC Flexschlauch 25 mm PN8
+PvcFlex32Pn8;PvcFlex;32;26;0,1;8;PVC Flexschlauch 32 mm PN8
+PvcFlex40Pn8;PvcFlex;40;34;0,1;8;PVC Flexschlauch 40 mm PN8
+PvcFlex50Pn6;PvcFlex;50;43;0,1;6;PVC Flexschlauch 50 mm PN6
+PvcFlex63Pn5;PvcFlex;63;55;0,1;5;PVC Flexschlauch 63 mm PN5
+PvcFlex75Pn4;PvcFlex;75;67;0,1;4;PVC Flexschlauch 75 mm PN4
+PvcFlex90Pn3;PvcFlex;90;80;0,1;3;PVC Flexschlauch 90 mm PN3

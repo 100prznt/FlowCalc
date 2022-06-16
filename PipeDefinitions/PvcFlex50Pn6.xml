@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipeDimension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Category>PvcFlex</Category>
+  <DisplayName>PVC Flexschlauch 50 mm PN6</DisplayName>
+  <NominalDiameter>50</NominalDiameter>
+  <InnerDiameter>43</InnerDiameter>
+  <Roughness>0.1</Roughness>
+  <NominalPressure>6</NominalPressure>
+</PipeDimension>
