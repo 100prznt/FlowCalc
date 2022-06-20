@@ -200,6 +200,24 @@ namespace FlowCalc
                     txt_PipeSuctionPressureDrop.Text = m_Controller.SuctionPressureDrop.ToString("f3") + " bar";
                     toolTip1.SetToolTip(lbl_PipeSuctionPressureDrop, "Wert in " + m_Controller.SuctionPressureDropCalcIterations + " Iterationen ermittelt");
                     toolTip1.SetToolTip(txt_PipeSuctionPressureDrop, "Wert in " + m_Controller.SuctionPressureDropCalcIterations + " Iterationen ermittelt");
+
+
+                    var suctionPipeFlowSpeed = m_Controller.SuctionPipe.CalcFlowVelocity(m_Controller.SystemFlowRate);
+                    if (suctionPipeFlowSpeed > 1.5)
+                    {
+                        //toolTip_Warning.SetToolTip(lbl_PipeSuctionFlowSpeed, "Die Fließgeschwindigkeit in der Saugleitung liegt über dem vom BSW empfohlenen Wert (1,5 m/s).");
+                        
+
+                        txt_PipeSuctionFlowSpeed.BackColor = Color.LightPink;
+                    }
+                    else
+                    {
+                        //toolTip1.SetToolTip(lbl_PipeSuctionFlowSpeed, "Die Fließgeschwindigkeit in der Saugleitung liegt im vom BSW empfohlenem Bereich (< 1,5 m/s).");
+                        
+                        txt_PipeSuctionFlowSpeed.BackColor = Color.LightGreen;
+                    }
+                    txt_PipeSuctionFlowSpeed.Text = suctionPipeFlowSpeed.ToString("f3") + " m/s";
+
                 }
 
                 if (m_Controller.SystemFlowRate <= 0)
