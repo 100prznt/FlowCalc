@@ -71,8 +71,10 @@ namespace FlowCalc
             CurrentFlowRateUnit = flowRateBaseUnit.Unit;
             CurrentFlowVelocityUnit = velocityBaseUnit.Unit;
 
-            if (Properties.Settings.Default.CalcPipeDiameter > 0)
-                txt_FilterDiameter.Text = Properties.Settings.Default.FilterDiameter.ToString();
+            //Warum nur Settings laden, wenn CalcPipeDiameter > 0?
+            //Hinweis PPSF 04.07.22
+            //if (Properties.Settings.Default.CalcPipeDiameter > 0)
+            txt_FilterDiameter.Text = Properties.Settings.Default.FilterDiameter.ToString();
 
             txt_FilterSpeedInfo.Text = "Im privaten Poolbereich sollte die Filtergeschwindigkeit nicht über 50 m/h betragen." +
                 "\r\nMit einer langsameren Filtergeschwindigkeit von rund 30 m/h würde das Ergebnis der Filtration zwar verbessert werden. " +
