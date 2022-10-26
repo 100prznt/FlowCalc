@@ -108,6 +108,8 @@ namespace FlowCalc
             if (m_Controller.IsPumpEditorAvailable)
                 editorStartenToolStripMenuItem.Enabled = true;
 
+
+
             loadPumps();
             loadFittings();
             loadPipes();

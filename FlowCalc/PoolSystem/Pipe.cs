@@ -59,7 +59,7 @@ namespace FlowCalc.PoolSystem
         #region Services
         /// <summary>
         /// Druckverlust berechnen
-        /// (es wird von einer turbulenten Strömung ausgegangen)
+        /// (es wird von einer turbulenten Strömung im Übergangsbereich ausgegangen)
         /// </summary>
         /// <param name="medium">Stoffdaten</param>
         /// <param name="flowRate">Volumenstrom in [m^3/h]</param>
@@ -74,15 +74,14 @@ namespace FlowCalc.PoolSystem
 
             // Rohrreibungszahl (Lambda) nach Colebrook und White siehe: https://de.wikipedia.org/wiki/Rohrreibungszahl
             // Iterative Berechnung
-            double lambda = 0.005; // Startwert für Lambda
-            double s = 0.001; // Schrittweite für Antastung
-            int i = 7; // Anzahl der Richtungswechsel
+            double lambda = 0.005;  // Startwert für Lambda
+            double s = 0.001;       // Schrittweite für Antastung
+            int i = 7;              // Anzahl der Richtungswechsel (empirisch ermittelt)
 
             double error = double.MaxValue - 1;
-            double lastError = double.MaxValue;
             while (i > 0)
             {
-                lastError = error;
+                double lastError = error;
                 error = 1 / Math.Sqrt(lambda) - (-2 * Math.Log10((2.51 / (re * Math.Sqrt(lambda))) + (k / (3.71 * di))));
 
                 if (Math.Abs(error) >= Math.Abs(lastError))
@@ -92,7 +91,6 @@ namespace FlowCalc.PoolSystem
                 }
                 lambda += s;
             }
-
 
             // Druckverlust durch Rohrreibung
             // https://www.schweizer-fn.de/stroemung/druckverlust/druckverlust.php#druckverlustrohr
