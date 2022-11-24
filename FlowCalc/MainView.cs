@@ -685,9 +685,9 @@ namespace FlowCalc
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 if (!m_Controller.LoadPipeDefinitionsFromCsv(openFileDialog1.FileName))
-                    MessageBox.Show("Import Rohrabmessungen", "Der Import ist fehlgeschlagen, CSV-Datei entspricht nicht den Vorgaben.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Der Import ist fehlgeschlagen, CSV-Datei entspricht nicht den Vorgaben.", "Import Rohrabmessungen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show("Import Rohrabmessungen", "Der Import war erfolgreich.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Der Import war erfolgreich.", "Import Rohrabmessungen", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
         }
@@ -709,5 +709,34 @@ namespace FlowCalc
                 m_Controller.SavePipeDimensionsToXmls(folderBrowserDialog1.SelectedPath);
             }
             }
+
+        private void ladecsvToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Title = "Lade Datendatei für Stapelverarbeitung";
+            openFileDialog1.Filter = "CSV|*.csv";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (m_Controller.BatchProcessor == null)
+                    m_Controller.InitBatchProcessor();
+
+                if (!m_Controller.BatchProcessor.LoadCsv(openFileDialog1.FileName))
+                    MessageBox.Show("Das laden der Datendatei ist fehlgeschlagen, Datei entspricht nicht den Vorgaben.", "Stapelverarbeitung", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    MessageBox.Show("Das Laden der Datendatei war erfolgreich.", "Stapelverarbeitung", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    berechnenUndSpeichernToolStripMenuItem.Enabled = true;
+                }
+            }
+        }
+
+        private void berechnenUndSpeichernToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Title = "Daten verarbeiten und Erbenisse speichern";
+            saveFileDialog1.Filter = "CSV|*.csv";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                m_Controller.BatchProcessor.SaveCsv(saveFileDialog1.FileName);
+        }
     }
 }

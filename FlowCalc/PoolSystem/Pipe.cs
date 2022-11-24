@@ -62,6 +62,14 @@ namespace FlowCalc.PoolSystem
         /// (es wird von einer turbulenten Strömung ausgegangen)
         /// </summary>
         /// <param name="medium">Stoffdaten</param>
+        /// <returns>Druckverlust in [bar]</returns>
+        public double CalcPressureDrop(Medium medium) => CalcPressureDrop(medium, FlowRate);
+
+        /// <summary>
+        /// Druckverlust berechnen
+        /// (es wird von einer turbulenten Strömung ausgegangen)
+        /// </summary>
+        /// <param name="medium">Stoffdaten</param>
         /// <param name="flowRate">Volumenstrom in [m^3/h]</param>
         /// <returns>Druckverlust in [bar]</returns>
         public double CalcPressureDrop(Medium medium, double flowRate)
@@ -79,10 +87,9 @@ namespace FlowCalc.PoolSystem
             int i = 7; // Anzahl der Richtungswechsel
 
             double error = double.MaxValue - 1;
-            double lastError = double.MaxValue;
             while (i > 0)
             {
-                lastError = error;
+                double lastError = error;
                 error = 1 / Math.Sqrt(lambda) - (-2 * Math.Log10((2.51 / (re * Math.Sqrt(lambda))) + (k / (3.71 * di))));
 
                 if (Math.Abs(error) >= Math.Abs(lastError))

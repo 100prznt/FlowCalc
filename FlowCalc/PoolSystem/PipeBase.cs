@@ -33,6 +33,12 @@ namespace FlowCalc.PoolSystem
             }
         }
 
+        /// <summary>
+        /// EINGABE PARAMETER
+        /// Volumenstrom in [m^3/h]
+        /// </summary>
+        public double FlowRate { get; set; }
+
         #endregion Properties
 
         #region Constructor
@@ -58,6 +64,12 @@ namespace FlowCalc.PoolSystem
         #endregion Constructor
 
         #region Services
+        /// <summary>
+        /// Strömungsgeschwindigkeit berechnen
+        /// </summary>
+        /// <returns>Strömungsgeschwindigkeit in [m/s]</returns>
+        public double CalcFlowVelocity() => CalcFlowVelocity(FlowRate);
+
         /// <summary>
         /// Strömungsgeschwindigkeit berechnen
         /// </summary>

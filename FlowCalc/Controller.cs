@@ -1,4 +1,5 @@
-﻿using FlowCalc.Mathematics;
+﻿using FlowCalc.BatchProcessing;
+using FlowCalc.Mathematics;
 using FlowCalc.PoolSystem;
 using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
@@ -131,6 +132,8 @@ namespace FlowCalc
         public bool IsPumpEditorAvailable => File.Exists("PumpDefinitionEditor.exe");
 
         public bool DevModeEnabled { get; set; }
+
+        public BatchProcessor BatchProcessor { get; set;}
 
         #endregion Properties
 
@@ -710,6 +713,11 @@ namespace FlowCalc
                 foreach (var pipe in DefaultPipeDimensions)
                     sw.WriteLine(pipe.ToCsvLine());
             }
+        }
+
+        public void InitBatchProcessor()
+        {
+            BatchProcessor = new BatchProcessor();
         }
 
         #endregion Services
