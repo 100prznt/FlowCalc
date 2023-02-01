@@ -118,6 +118,7 @@
             this.überToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.entwicklungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportRohrleitungsdefinitionenXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uebersichtGeladeneRohrleitungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stl_PumpSearchDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.stl_Info = new System.Windows.Forms.ToolStripStatusLabel();
@@ -1020,7 +1021,8 @@
             // 
             this.entwicklungToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(46)))), ((int)(((byte)(100)))));
             this.entwicklungToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem});
+            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem,
+            this.uebersichtGeladeneRohrleitungenToolStripMenuItem});
             this.entwicklungToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entwicklungToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.entwicklungToolStripMenuItem.Name = "entwicklungToolStripMenuItem";
@@ -1035,6 +1037,13 @@
             this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Size = new System.Drawing.Size(425, 34);
             this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Text = "Export Rohrleitungsdefinitionen (XML)...";
             this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Click += new System.EventHandler(this.exportRohrleitungsdefinitionenXMLToolStripMenuItem_Click);
+            // 
+            // uebersichtGeladeneRohrleitungenToolStripMenuItem
+            // 
+            this.uebersichtGeladeneRohrleitungenToolStripMenuItem.Name = "uebersichtGeladeneRohrleitungenToolStripMenuItem";
+            this.uebersichtGeladeneRohrleitungenToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
+            this.uebersichtGeladeneRohrleitungenToolStripMenuItem.Text = "Übersicht geladene Rohrleitungen";
+            this.uebersichtGeladeneRohrleitungenToolStripMenuItem.Click += new System.EventHandler(this.uebersichtGeladeneRohrleitungenToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -1237,6 +1246,7 @@
         private System.Windows.Forms.ToolStripMenuItem stapelverarbeitungToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ladecsvToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem berechnenUndSpeichernToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uebersichtGeladeneRohrleitungenToolStripMenuItem;
     }
 }
 
