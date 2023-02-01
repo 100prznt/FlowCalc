@@ -55,15 +55,6 @@ namespace FlowCalc
         }
 
 
-        //Controller.CurrentPresets.Roughness
-
-        enum PipeType
-        {
-            Undefined,
-            PvcPipe,
-            PvcFlex,
-            PoolPipe
-        }
 
         private void cbx_SelectedPipe_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -80,6 +71,12 @@ namespace FlowCalc
         public void SetSelectedPipe(PipeDimension selectedPipe)
         {
             cbx_SelectedPipe.SelectedItem = selectedPipe;
+        }
+
+        private void dgv_Pipes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgv_Pipes.Columns[e.ColumnIndex].Name == "col_PipeType")
+                e.Value = ((PipeCategories)e.Value).GetDescription();
         }
     }
 }

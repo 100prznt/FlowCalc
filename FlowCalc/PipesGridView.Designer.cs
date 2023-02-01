@@ -38,7 +38,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cbx_SelectedPipe = new System.Windows.Forms.ComboBox();
             this.dgv_Pipes = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.col_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_PipeType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_OuterDiamenter = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +46,7 @@
             this.col_Roughness = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_NominalPressure = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_UniqueName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Pipes)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -94,24 +94,7 @@
             this.dgv_Pipes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_Pipes.Size = new System.Drawing.Size(1155, 647);
             this.dgv_Pipes.TabIndex = 4;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.btn_Apply, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.cbx_SelectedPipe, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dgv_Pipes, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1181, 748);
-            this.tableLayoutPanel1.TabIndex = 5;
+            this.dgv_Pipes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_Pipes_CellFormatting);
             // 
             // col_Name
             // 
@@ -189,6 +172,24 @@
             this.col_UniqueName.Name = "col_UniqueName";
             this.col_UniqueName.ReadOnly = true;
             this.col_UniqueName.Width = 155;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.btn_Apply, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cbx_SelectedPipe, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dgv_Pipes, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1181, 748);
+            this.tableLayoutPanel1.TabIndex = 5;
             // 
             // PipesGridView
             // 

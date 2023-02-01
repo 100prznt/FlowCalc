@@ -100,6 +100,7 @@
       <DependentUpon>EnterReportDataView.cs</DependentUpon>
     </Compile>
     <Compile Include="PipeCategories.cs" />
+    <Compile Include="PipeCategoryExtensions.cs" />
     <Compile Include="PipeDimension.cs" />
     <Compile Include="PipesGridView.cs">
       <SubType>Form</SubType>
