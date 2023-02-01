@@ -62,6 +62,14 @@ namespace FlowCalc.PoolSystem
         /// (es wird von einer turbulenten Strömung im Übergangsbereich ausgegangen)
         /// </summary>
         /// <param name="medium">Stoffdaten</param>
+        /// <returns>Druckverlust in [bar]</returns>
+        public double CalcPressureDrop(Medium medium) => CalcPressureDrop(medium, FlowRate);
+
+        /// <summary>
+        /// Druckverlust berechnen
+        /// (es wird von einer turbulenten Strömung ausgegangen)
+        /// </summary>
+        /// <param name="medium">Stoffdaten</param>
         /// <param name="flowRate">Volumenstrom in [m^3/h]</param>
         /// <returns>Druckverlust in [bar]</returns>
         public double CalcPressureDrop(Medium medium, double flowRate)
