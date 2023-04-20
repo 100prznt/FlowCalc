@@ -60,6 +60,8 @@ namespace FlowCalc.PoolSystem
         #endregion Properties
 
         #region Static services
+        //Siehe auch: https://srd.nist.gov/jpcrdreprint/1.555581.pdf
+
         /// <summary>
         /// <para>Wasser bei 5 °C</para>
         /// Stoffwerte übernommen von: http://www.uni-magdeburg.de/isut/LSS/Lehre/Arbeitsheft/IV.pdf

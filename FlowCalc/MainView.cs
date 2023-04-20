@@ -108,6 +108,8 @@ namespace FlowCalc
             if (m_Controller.IsPumpEditorAvailable)
                 editorStartenToolStripMenuItem.Enabled = true;
 
+
+
             loadPumps();
             loadFittings();
             loadPipes();
@@ -737,6 +739,17 @@ namespace FlowCalc
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 m_Controller.BatchProcessor.SaveCsv(saveFileDialog1.FileName);
+        }
+
+        private void uebersichtGeladeneRohrleitungenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var pipesGridView = new PipesGridView(m_Controller.DefaultPipeDimensions, "");
+            //pipeSelectView.SetSelectedPipe(m_Controller.SelectedPipe);
+
+            if (pipesGridView.ShowDialog() == DialogResult.OK)
+            {
+                //m_Controller.SelectedPipe = pipeSelectView.SelectedPipe;
+            }
         }
     }
 }

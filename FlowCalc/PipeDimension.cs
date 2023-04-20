@@ -81,6 +81,14 @@ namespace FlowCalc
         [DisplayName("Nenndruck in bar (PN)")]
         public double NominalPressure { get; set; }
 
+        /// <summary>
+        /// Wandstärke in mm
+        /// </summary>
+        [Category("Abmessungen")]
+        [DisplayName("Wandstärke in mm")]
+        [XmlIgnore]
+        public double Thickness => (NominalDiameter - InnerDiameter) / 2;
+
         [Browsable(false)]
         [XmlIgnore]
         public string FilePath { get; set; }
