@@ -351,9 +351,16 @@ namespace FlowCalc
 
             if (pump.IsVarioPump)
             {
-                if (pump.DynamicPerformanceCurves.Select(x => x.Rpm).Distinct().Count() != pump.DynamicPerformanceCurves.Length)
-                    throw new InvalidDataException("Leistungskurven für identische Drehzahl mehrfach definiert.");
-
+                if (pump.DynamicPerformanceCurves.First().ConstantPowerPoint > 0)
+                {
+                    if (pump.DynamicPerformanceCurves.Select(x => x.ConstantPowerPoint).Distinct().Count() != pump.DynamicPerformanceCurves.Length)
+                        throw new InvalidDataException("Leistungskurven für identische konstante Leistungen mehrfach definiert.");
+                }
+                else
+                {
+                    if (pump.DynamicPerformanceCurves.Select(x => x.Rpm).Distinct().Count() != pump.DynamicPerformanceCurves.Length)
+                        throw new InvalidDataException("Leistungskurven für identische Drehzahl mehrfach definiert.");
+                }
                 foreach (var pc in pump.DynamicPerformanceCurves)
                 {
                     pc.PerformanceCurve = pc.PerformanceCurve.OrderBy(x => x.TotalDynamicHead).ToArray();

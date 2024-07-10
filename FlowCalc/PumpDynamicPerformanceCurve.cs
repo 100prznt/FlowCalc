@@ -16,6 +16,15 @@ namespace FlowCalc
     public class PumpDynamicPerformanceCurve
     {
         /// <summary>
+        /// Einstellung Konstante Leistung
+        /// in [%]
+        /// </summary>
+        [Category("Leistungsdaten")]
+        [DisplayName("Konstante Leistung in %")]
+        [Description("Einstellung der konstanten Leistung")]
+        public double ConstantPowerPoint { get; set; }
+
+        /// <summary>
         /// Drehzahl
         /// </summary>
         [Category("Leistungsdaten")]
