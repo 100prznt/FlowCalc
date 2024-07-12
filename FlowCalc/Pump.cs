@@ -115,7 +115,7 @@ namespace FlowCalc
         public string DataSourceUrl { get; set; }
 
         /// <summary>
-        /// Leistungskurve
+        /// Pumpenkennlinie
         /// </summary>
         [Category("Leistungsdaten")]
         [DisplayName("Pumpenkennlinie")]
@@ -125,11 +125,11 @@ namespace FlowCalc
         public PumpPerformancePoint[] PerformanceCurve { get; set; }
 
         /// <summary>
-        /// Drehzahlabhängige Leistungskurven
+        /// Drehzahl- oder Leistungsabhängige Pumpenkennlinien
         /// </summary>
         [Category("Leistungsdaten")]
-        [DisplayName("Drehzahlabhängige Pumpenkennlinien")]
-        [Description("Im Datenblatt angegebene Pumpenkennlinien für bestimmte Motor Drehzahlen")]
+        [DisplayName("Drehzahl- oder Leistungsabhängige Pumpenkennlinien")]
+        [Description("Im Datenblatt angegebene Pumpenkennlinien für bestimmte Motor Drehzahlen bzw. Leistungen")]
         [XmlArrayItem("DynamicPerformanceCurve")]
         public PumpDynamicPerformanceCurve[] DynamicPerformanceCurves { get; set; }
 
@@ -300,6 +300,8 @@ namespace FlowCalc
         #endregion Constructor
 
         #region Services
+
+        #region Serialization
         /// <summary>
         /// Im Standard-Format (XML) speichern
         /// </summary>
@@ -483,6 +485,7 @@ namespace FlowCalc
             
             PerformanceCurve = curve.ToArray();
         }
+        #endregion Serialization
 
         public double[] GetPerformanceHeadValuesByRpm(int? rpm = null)
         {
