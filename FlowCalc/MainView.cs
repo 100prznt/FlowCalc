@@ -192,11 +192,13 @@ namespace FlowCalc
             if (double.TryParse(txt_SystemPressure.Text, out pressure))
             {
                 m_Controller.FilterPressure = pressure;
+
                 if (m_Controller.Pump.IsVarioPump)
                     m_Controller.CalcFlowRate(pressure, tb_PresetValue.Value);
                 else
                     m_Controller.CalcFlowRate(pressure);
                 txt_SystemFlowRate.Text = m_Controller.SystemFlowRate.ToString("f2") + " m^3/h";
+
                 txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " m WS";
 
                 if (cbx_CalcSuctionPipe.Checked)
@@ -269,6 +271,7 @@ namespace FlowCalc
                 txt_PumpPowerOut.Text = m_Controller.Pump.PowerOutput + " kW";
             txt_PumpNominalFlowRate.Text = m_Controller.Pump.NominalFlowRate + " m^3/h";
             txt_PumpNominalHead.Text = m_Controller.Pump.NominalDynamicHead + " m WS";
+
             int? presetValue = null;
             if (m_Controller.Pump.IsVarioPump)
             {
@@ -300,6 +303,7 @@ namespace FlowCalc
                 txt_PumpRpmHead.Clear();
             }
             txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHead(presetValue).ToString("f2") + " m WS";
+
 
             lbl_PumpFileAuthor.Text = m_Controller.Pump.AuthorPumpFile;
             lbl_PumpDataSourceUrl.Text = m_Controller.Pump.DataSourceUrl;
