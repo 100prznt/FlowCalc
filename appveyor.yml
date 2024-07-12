@@ -34,5 +34,7 @@ artifacts:
 - path: FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip
 deploy:
 - provider: GitHub
+  auth_token:
+    secure: CS8iZldTMAHjWvK8RNerBk+qZtooKfJgA3n3dARn9dd8lLXInoiGLJWvQvEAFaHY
   description: "`FlowCalc-%CONFIGURATION%-%APPVEYOR_BUILD_VERSION%.zip` enthält die Anwendung (FlowCalc.exe) sowie benötigte Programmbibliotheken (.dll). Ebenfalls enthalten sind die verfügbaren Pumpen- und Fittingdefinitionen, in Form von Xml-Dateien (.xml).\n\nDie Anwendung `FlowCalc.exe` kann direkt gestartet werden.\n\n#### Last commit message\n%APPVEYOR_REPO_COMMIT_MESSAGE%"
   prerelease: true
