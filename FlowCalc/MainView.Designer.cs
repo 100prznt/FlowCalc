@@ -40,8 +40,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txt_PumpRpmHead = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.lbl_Rpm = new System.Windows.Forms.Label();
-            this.tb_Rpm = new System.Windows.Forms.TrackBar();
+            this.lbl_PresetValue = new System.Windows.Forms.Label();
+            this.tb_PresetValue = new System.Windows.Forms.TrackBar();
             this.lbl_PumpDataSourceUrl = new System.Windows.Forms.LinkLabel();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -112,6 +112,9 @@
             this.poolvolumenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.umwälzleistungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filtergeschwindigkeitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stapelverarbeitungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ladecsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.berechnenUndSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dokumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -125,12 +128,9 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.toolTip_Warning = new System.Windows.Forms.ToolTip(this.components);
-            this.stapelverarbeitungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ladecsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.berechnenUndSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.gb_VarioPump.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_Rpm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_PresetValue)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -140,10 +140,10 @@
             // 
             // btn_LoadPump
             // 
-            this.btn_LoadPump.Location = new System.Drawing.Point(39, 714);
-            this.btn_LoadPump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_LoadPump.Location = new System.Drawing.Point(35, 571);
+            this.btn_LoadPump.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_LoadPump.Name = "btn_LoadPump";
-            this.btn_LoadPump.Size = new System.Drawing.Size(288, 60);
+            this.btn_LoadPump.Size = new System.Drawing.Size(256, 48);
             this.btn_LoadPump.TabIndex = 98;
             this.btn_LoadPump.Text = "Lade Pumpendefinition...";
             this.btn_LoadPump.UseVisualStyleBackColor = true;
@@ -153,19 +153,19 @@
             // 
             this.txt_PumpModel.Enabled = false;
             this.txt_PumpModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_PumpModel.Location = new System.Drawing.Point(250, 52);
-            this.txt_PumpModel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpModel.Location = new System.Drawing.Point(222, 42);
+            this.txt_PumpModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PumpModel.Name = "txt_PumpModel";
-            this.txt_PumpModel.Size = new System.Drawing.Size(412, 26);
+            this.txt_PumpModel.Size = new System.Drawing.Size(367, 24);
             this.txt_PumpModel.TabIndex = 99;
             // 
             // txt_SystemPressure
             // 
             this.txt_SystemPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SystemPressure.Location = new System.Drawing.Point(216, 435);
-            this.txt_SystemPressure.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_SystemPressure.Location = new System.Drawing.Point(192, 348);
+            this.txt_SystemPressure.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_SystemPressure.Name = "txt_SystemPressure";
-            this.txt_SystemPressure.Size = new System.Drawing.Size(91, 40);
+            this.txt_SystemPressure.Size = new System.Drawing.Size(81, 37);
             this.txt_SystemPressure.TabIndex = 1;
             // 
             // openFileDialog1
@@ -177,10 +177,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 57);
+            this.label1.Location = new System.Drawing.Point(25, 46);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 20);
+            this.label1.Size = new System.Drawing.Size(48, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Modell";
             // 
@@ -204,11 +204,11 @@
             this.groupBox1.Controls.Add(this.btn_LoadPump);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txt_PumpModel);
-            this.groupBox1.Location = new System.Drawing.Point(18, 54);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(16, 43);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(704, 809);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(626, 647);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pumpe";
@@ -219,31 +219,33 @@
             this.gb_VarioPump.Controls.Add(this.label19);
             this.gb_VarioPump.Controls.Add(this.txt_PumpRpmHead);
             this.gb_VarioPump.Controls.Add(this.label18);
-            this.gb_VarioPump.Controls.Add(this.lbl_Rpm);
-            this.gb_VarioPump.Controls.Add(this.tb_Rpm);
-            this.gb_VarioPump.Location = new System.Drawing.Point(32, 428);
+            this.gb_VarioPump.Controls.Add(this.lbl_PresetValue);
+            this.gb_VarioPump.Controls.Add(this.tb_PresetValue);
+            this.gb_VarioPump.Location = new System.Drawing.Point(28, 342);
+            this.gb_VarioPump.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gb_VarioPump.Name = "gb_VarioPump";
-            this.gb_VarioPump.Size = new System.Drawing.Size(633, 189);
+            this.gb_VarioPump.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gb_VarioPump.Size = new System.Drawing.Size(563, 151);
             this.gb_VarioPump.TabIndex = 106;
             this.gb_VarioPump.TabStop = false;
-            this.gb_VarioPump.Text = "VARIO Pumpe";
+            this.gb_VarioPump.Text = "Regelbare Pumpe";
             // 
             // txt_PumpRpmPowerIn
             // 
             this.txt_PumpRpmPowerIn.Enabled = false;
-            this.txt_PumpRpmPowerIn.Location = new System.Drawing.Point(219, 134);
-            this.txt_PumpRpmPowerIn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpRpmPowerIn.Location = new System.Drawing.Point(195, 107);
+            this.txt_PumpRpmPowerIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PumpRpmPowerIn.Name = "txt_PumpRpmPowerIn";
-            this.txt_PumpRpmPowerIn.Size = new System.Drawing.Size(382, 26);
+            this.txt_PumpRpmPowerIn.Size = new System.Drawing.Size(340, 22);
             this.txt_PumpRpmPowerIn.TabIndex = 13;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(22, 138);
+            this.label19.Location = new System.Drawing.Point(20, 110);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(150, 20);
+            this.label19.Size = new System.Drawing.Size(123, 16);
             this.label19.TabIndex = 14;
             this.label19.Text = "Leistungsaufnahme";
             this.toolTip1.SetToolTip(this.label19, "Durch die Inperpolation der Pumpenkennlinie und\nder zugehörigen Leisteungsaufnahm" +
@@ -253,53 +255,54 @@
             // txt_PumpRpmHead
             // 
             this.txt_PumpRpmHead.Enabled = false;
-            this.txt_PumpRpmHead.Location = new System.Drawing.Point(219, 94);
-            this.txt_PumpRpmHead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpRpmHead.Location = new System.Drawing.Point(195, 75);
+            this.txt_PumpRpmHead.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PumpRpmHead.Name = "txt_PumpRpmHead";
-            this.txt_PumpRpmHead.Size = new System.Drawing.Size(382, 26);
+            this.txt_PumpRpmHead.Size = new System.Drawing.Size(340, 22);
             this.txt_PumpRpmHead.TabIndex = 12;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(22, 98);
+            this.label18.Location = new System.Drawing.Point(20, 78);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(146, 20);
+            this.label18.Size = new System.Drawing.Size(124, 16);
             this.label18.TabIndex = 12;
             this.label18.Text = "Meter Wassersäule";
             // 
             // lbl_Rpm
             // 
-            this.lbl_Rpm.AutoSize = true;
-            this.lbl_Rpm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Rpm.Location = new System.Drawing.Point(36, 43);
-            this.lbl_Rpm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_Rpm.Name = "lbl_Rpm";
-            this.lbl_Rpm.Size = new System.Drawing.Size(118, 22);
-            this.lbl_Rpm.TabIndex = 12;
-            this.lbl_Rpm.Text = "0000 min^-1";
+            this.lbl_PresetValue.AutoSize = true;
+            this.lbl_PresetValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_PresetValue.Location = new System.Drawing.Point(32, 34);
+            this.lbl_PresetValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_PresetValue.Name = "lbl_Rpm";
+            this.lbl_PresetValue.Size = new System.Drawing.Size(110, 20);
+            this.lbl_PresetValue.TabIndex = 12;
+            this.lbl_PresetValue.Text = "0000 min^-1";
             // 
-            // tb_Rpm
+            // tb_PresetValue
             // 
-            this.tb_Rpm.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
-            this.tb_Rpm.LargeChange = 100;
-            this.tb_Rpm.Location = new System.Drawing.Point(218, 26);
-            this.tb_Rpm.Maximum = 2850;
-            this.tb_Rpm.Minimum = 1000;
-            this.tb_Rpm.Name = "tb_Rpm";
-            this.tb_Rpm.Size = new System.Drawing.Size(382, 69);
-            this.tb_Rpm.TabIndex = 0;
-            this.tb_Rpm.TickFrequency = 100;
-            this.tb_Rpm.Value = 2000;
-            this.tb_Rpm.ValueChanged += new System.EventHandler(this.tb_Rpm_ValueChanged);
+            this.tb_PresetValue.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
+            this.tb_PresetValue.LargeChange = 100;
+            this.tb_PresetValue.Location = new System.Drawing.Point(194, 21);
+            this.tb_PresetValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tb_PresetValue.Maximum = 2850;
+            this.tb_PresetValue.Minimum = 1000;
+            this.tb_PresetValue.Name = "tb_PresetValue";
+            this.tb_PresetValue.Size = new System.Drawing.Size(340, 61);
+            this.tb_PresetValue.TabIndex = 0;
+            this.tb_PresetValue.TickFrequency = 100;
+            this.tb_PresetValue.Value = 2000;
+            this.tb_PresetValue.ValueChanged += new System.EventHandler(this.tb_Rpm_ValueChanged);
             // 
             // lbl_PumpDataSourceUrl
             // 
-            this.lbl_PumpDataSourceUrl.Location = new System.Drawing.Point(246, 663);
+            this.lbl_PumpDataSourceUrl.Location = new System.Drawing.Point(219, 530);
             this.lbl_PumpDataSourceUrl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PumpDataSourceUrl.Name = "lbl_PumpDataSourceUrl";
-            this.lbl_PumpDataSourceUrl.Size = new System.Drawing.Size(434, 20);
+            this.lbl_PumpDataSourceUrl.Size = new System.Drawing.Size(386, 16);
             this.lbl_PumpDataSourceUrl.TabIndex = 104;
             this.lbl_PumpDataSourceUrl.TabStop = true;
             this.lbl_PumpDataSourceUrl.Text = "PumpDataSourceUrl";
@@ -308,39 +311,39 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(28, 663);
+            this.label17.Location = new System.Drawing.Point(25, 530);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(99, 20);
+            this.label17.Size = new System.Drawing.Size(83, 16);
             this.label17.TabIndex = 105;
             this.label17.Text = "Datenquelle:";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(28, 212);
+            this.label16.Location = new System.Drawing.Point(25, 170);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(198, 20);
+            this.label16.Size = new System.Drawing.Size(166, 16);
             this.label16.TabIndex = 103;
             this.label16.Text = "Abgabeleistung Motor (P2)";
             // 
             // txt_PumpPowerOut
             // 
             this.txt_PumpPowerOut.Enabled = false;
-            this.txt_PumpPowerOut.Location = new System.Drawing.Point(250, 208);
-            this.txt_PumpPowerOut.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpPowerOut.Location = new System.Drawing.Point(222, 166);
+            this.txt_PumpPowerOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PumpPowerOut.Name = "txt_PumpPowerOut";
-            this.txt_PumpPowerOut.Size = new System.Drawing.Size(412, 26);
+            this.txt_PumpPowerOut.Size = new System.Drawing.Size(367, 22);
             this.txt_PumpPowerOut.TabIndex = 102;
             // 
             // btn_ShowPumpCurve
             // 
             this.btn_ShowPumpCurve.Enabled = false;
-            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(358, 714);
-            this.btn_ShowPumpCurve.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_ShowPumpCurve.Location = new System.Drawing.Point(318, 571);
+            this.btn_ShowPumpCurve.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_ShowPumpCurve.Name = "btn_ShowPumpCurve";
-            this.btn_ShowPumpCurve.Size = new System.Drawing.Size(306, 60);
+            this.btn_ShowPumpCurve.Size = new System.Drawing.Size(272, 48);
             this.btn_ShowPumpCurve.TabIndex = 18;
             this.btn_ShowPumpCurve.Text = "Pumpenkennlinie anzeigen";
             this.btn_ShowPumpCurve.UseVisualStyleBackColor = true;
@@ -352,11 +355,11 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.txt_PumpNominalFlowRate);
             this.groupBox3.Controls.Add(this.txt_PumpNominalHead);
-            this.groupBox3.Location = new System.Drawing.Point(33, 260);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox3.Location = new System.Drawing.Point(29, 208);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(632, 143);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Size = new System.Drawing.Size(562, 114);
             this.groupBox3.TabIndex = 101;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nennleistung";
@@ -364,47 +367,47 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 52);
+            this.label4.Location = new System.Drawing.Point(20, 42);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 20);
+            this.label4.Size = new System.Drawing.Size(93, 16);
             this.label4.TabIndex = 9;
             this.label4.Text = "Volumenstrom";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 92);
+            this.label5.Location = new System.Drawing.Point(20, 74);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(146, 20);
+            this.label5.Size = new System.Drawing.Size(124, 16);
             this.label5.TabIndex = 11;
             this.label5.Text = "Meter Wassersäule";
             // 
             // txt_PumpNominalFlowRate
             // 
             this.txt_PumpNominalFlowRate.Enabled = false;
-            this.txt_PumpNominalFlowRate.Location = new System.Drawing.Point(218, 48);
-            this.txt_PumpNominalFlowRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpNominalFlowRate.Location = new System.Drawing.Point(194, 38);
+            this.txt_PumpNominalFlowRate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PumpNominalFlowRate.Name = "txt_PumpNominalFlowRate";
-            this.txt_PumpNominalFlowRate.Size = new System.Drawing.Size(382, 26);
+            this.txt_PumpNominalFlowRate.Size = new System.Drawing.Size(340, 22);
             this.txt_PumpNominalFlowRate.TabIndex = 8;
             // 
             // txt_PumpNominalHead
             // 
             this.txt_PumpNominalHead.Enabled = false;
-            this.txt_PumpNominalHead.Location = new System.Drawing.Point(218, 88);
-            this.txt_PumpNominalHead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpNominalHead.Location = new System.Drawing.Point(194, 70);
+            this.txt_PumpNominalHead.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PumpNominalHead.Name = "txt_PumpNominalHead";
-            this.txt_PumpNominalHead.Size = new System.Drawing.Size(382, 26);
+            this.txt_PumpNominalHead.Size = new System.Drawing.Size(340, 22);
             this.txt_PumpNominalHead.TabIndex = 10;
             // 
             // lbl_PumpFileAuthor
             // 
-            this.lbl_PumpFileAuthor.Location = new System.Drawing.Point(246, 637);
+            this.lbl_PumpFileAuthor.Location = new System.Drawing.Point(219, 510);
             this.lbl_PumpFileAuthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PumpFileAuthor.Name = "lbl_PumpFileAuthor";
-            this.lbl_PumpFileAuthor.Size = new System.Drawing.Size(364, 22);
+            this.lbl_PumpFileAuthor.Size = new System.Drawing.Size(324, 18);
             this.lbl_PumpFileAuthor.TabIndex = 17;
             this.lbl_PumpFileAuthor.TabStop = true;
             this.lbl_PumpFileAuthor.Text = "PumpFileAuthor";
@@ -413,76 +416,76 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(28, 637);
+            this.label10.Location = new System.Drawing.Point(25, 510);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(52, 20);
+            this.label10.Size = new System.Drawing.Size(41, 16);
             this.label10.TabIndex = 100;
             this.label10.Text = "Autor:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(28, 137);
+            this.label9.Location = new System.Drawing.Point(25, 110);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(217, 20);
+            this.label9.Size = new System.Drawing.Size(185, 16);
             this.label9.TabIndex = 13;
             this.label9.Text = "Meter Wassersäule (maximal)";
             // 
             // txt_PumpMaxHead
             // 
             this.txt_PumpMaxHead.Enabled = false;
-            this.txt_PumpMaxHead.Location = new System.Drawing.Point(250, 132);
-            this.txt_PumpMaxHead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpMaxHead.Location = new System.Drawing.Point(222, 106);
+            this.txt_PumpMaxHead.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PumpMaxHead.Name = "txt_PumpMaxHead";
-            this.txt_PumpMaxHead.Size = new System.Drawing.Size(412, 26);
+            this.txt_PumpMaxHead.Size = new System.Drawing.Size(367, 22);
             this.txt_PumpMaxHead.TabIndex = 12;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 177);
+            this.label3.Location = new System.Drawing.Point(25, 142);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(183, 20);
+            this.label3.Size = new System.Drawing.Size(150, 16);
             this.label3.TabIndex = 7;
             this.label3.Text = "Leistungsaufnahme (P1)";
             // 
             // txt_PumpPowerIn
             // 
             this.txt_PumpPowerIn.Enabled = false;
-            this.txt_PumpPowerIn.Location = new System.Drawing.Point(250, 172);
-            this.txt_PumpPowerIn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpPowerIn.Location = new System.Drawing.Point(222, 138);
+            this.txt_PumpPowerIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PumpPowerIn.Name = "txt_PumpPowerIn";
-            this.txt_PumpPowerIn.Size = new System.Drawing.Size(412, 26);
+            this.txt_PumpPowerIn.Size = new System.Drawing.Size(367, 22);
             this.txt_PumpPowerIn.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 97);
+            this.label2.Location = new System.Drawing.Point(25, 78);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 20);
+            this.label2.Size = new System.Drawing.Size(65, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "Hersteller";
             // 
             // txt_PumpManufracturer
             // 
             this.txt_PumpManufracturer.Enabled = false;
-            this.txt_PumpManufracturer.Location = new System.Drawing.Point(250, 92);
-            this.txt_PumpManufracturer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PumpManufracturer.Location = new System.Drawing.Point(222, 74);
+            this.txt_PumpManufracturer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PumpManufracturer.Name = "txt_PumpManufracturer";
-            this.txt_PumpManufracturer.Size = new System.Drawing.Size(412, 26);
+            this.txt_PumpManufracturer.Size = new System.Drawing.Size(367, 22);
             this.txt_PumpManufracturer.TabIndex = 4;
             // 
             // btn_CalcFlowRate
             // 
-            this.btn_CalcFlowRate.Location = new System.Drawing.Point(38, 529);
-            this.btn_CalcFlowRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_CalcFlowRate.Location = new System.Drawing.Point(34, 423);
+            this.btn_CalcFlowRate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_CalcFlowRate.Name = "btn_CalcFlowRate";
-            this.btn_CalcFlowRate.Size = new System.Drawing.Size(328, 60);
+            this.btn_CalcFlowRate.Size = new System.Drawing.Size(292, 48);
             this.btn_CalcFlowRate.TabIndex = 5;
             this.btn_CalcFlowRate.Text = "Berechne Fördermenge";
             this.btn_CalcFlowRate.UseVisualStyleBackColor = true;
@@ -492,10 +495,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(33, 445);
+            this.label6.Location = new System.Drawing.Point(29, 356);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 29);
+            this.label6.Size = new System.Drawing.Size(136, 25);
             this.label6.TabIndex = 12;
             this.label6.Text = "Systemdruck";
             this.toolTip1.SetToolTip(this.label6, "Druck direkt nach der Pumpe");
@@ -504,39 +507,39 @@
             // 
             this.txt_SystemFlowRate.Enabled = false;
             this.txt_SystemFlowRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_SystemFlowRate.Location = new System.Drawing.Point(225, 666);
-            this.txt_SystemFlowRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_SystemFlowRate.Location = new System.Drawing.Point(200, 533);
+            this.txt_SystemFlowRate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_SystemFlowRate.Name = "txt_SystemFlowRate";
-            this.txt_SystemFlowRate.Size = new System.Drawing.Size(139, 26);
+            this.txt_SystemFlowRate.Size = new System.Drawing.Size(124, 24);
             this.txt_SystemFlowRate.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(33, 671);
+            this.label7.Location = new System.Drawing.Point(29, 537);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 20);
+            this.label7.Size = new System.Drawing.Size(93, 16);
             this.label7.TabIndex = 14;
             this.label7.Text = "Volumenstrom";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(33, 631);
+            this.label8.Location = new System.Drawing.Point(29, 505);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(146, 20);
+            this.label8.Size = new System.Drawing.Size(124, 16);
             this.label8.TabIndex = 16;
             this.label8.Text = "Meter Wassersäule";
             // 
             // txt_SystemHead
             // 
             this.txt_SystemHead.Enabled = false;
-            this.txt_SystemHead.Location = new System.Drawing.Point(225, 626);
-            this.txt_SystemHead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_SystemHead.Location = new System.Drawing.Point(200, 501);
+            this.txt_SystemHead.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_SystemHead.Name = "txt_SystemHead";
-            this.txt_SystemHead.Size = new System.Drawing.Size(139, 26);
+            this.txt_SystemHead.Size = new System.Drawing.Size(124, 22);
             this.txt_SystemHead.TabIndex = 15;
             // 
             // groupBox2
@@ -552,11 +555,11 @@
             this.groupBox2.Controls.Add(this.btn_CalcFlowRate);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txt_SystemFlowRate);
-            this.groupBox2.Location = new System.Drawing.Point(747, 54);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Location = new System.Drawing.Point(664, 43);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(406, 809);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(361, 647);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "System";
@@ -564,10 +567,10 @@
             // btn_GenerateReport
             // 
             this.btn_GenerateReport.Enabled = false;
-            this.btn_GenerateReport.Location = new System.Drawing.Point(216, 712);
-            this.btn_GenerateReport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_GenerateReport.Location = new System.Drawing.Point(192, 570);
+            this.btn_GenerateReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_GenerateReport.Name = "btn_GenerateReport";
-            this.btn_GenerateReport.Size = new System.Drawing.Size(150, 60);
+            this.btn_GenerateReport.Size = new System.Drawing.Size(133, 48);
             this.btn_GenerateReport.TabIndex = 23;
             this.btn_GenerateReport.Text = "Report erstellen (pdf)";
             this.btn_GenerateReport.UseVisualStyleBackColor = true;
@@ -590,11 +593,11 @@
             this.groupBox4.Controls.Add(this.txt_SuctionPipeDiameter);
             this.groupBox4.Controls.Add(this.cbx_CalcSuctionPipe);
             this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Location = new System.Drawing.Point(38, 29);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox4.Location = new System.Drawing.Point(34, 23);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox4.Size = new System.Drawing.Size(328, 374);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Size = new System.Drawing.Size(292, 299);
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Saugseitige Rohrleitung";
@@ -602,29 +605,29 @@
             // lbl_PipeSuctionFlowSpeed
             // 
             this.lbl_PipeSuctionFlowSpeed.AutoSize = true;
-            this.lbl_PipeSuctionFlowSpeed.Location = new System.Drawing.Point(22, 283);
+            this.lbl_PipeSuctionFlowSpeed.Location = new System.Drawing.Point(20, 226);
             this.lbl_PipeSuctionFlowSpeed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PipeSuctionFlowSpeed.Name = "lbl_PipeSuctionFlowSpeed";
-            this.lbl_PipeSuctionFlowSpeed.Size = new System.Drawing.Size(156, 20);
+            this.lbl_PipeSuctionFlowSpeed.Size = new System.Drawing.Size(133, 16);
             this.lbl_PipeSuctionFlowSpeed.TabIndex = 36;
             this.lbl_PipeSuctionFlowSpeed.Text = "Fließgeschwindigkeit";
             // 
             // txt_PipeSuctionFlowSpeed
             // 
             this.txt_PipeSuctionFlowSpeed.Enabled = false;
-            this.txt_PipeSuctionFlowSpeed.Location = new System.Drawing.Point(188, 278);
-            this.txt_PipeSuctionFlowSpeed.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PipeSuctionFlowSpeed.Location = new System.Drawing.Point(167, 222);
+            this.txt_PipeSuctionFlowSpeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PipeSuctionFlowSpeed.Name = "txt_PipeSuctionFlowSpeed";
-            this.txt_PipeSuctionFlowSpeed.Size = new System.Drawing.Size(116, 26);
+            this.txt_PipeSuctionFlowSpeed.Size = new System.Drawing.Size(104, 22);
             this.txt_PipeSuctionFlowSpeed.TabIndex = 35;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(284, 174);
+            this.label15.Location = new System.Drawing.Point(252, 139);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(22, 20);
+            this.label15.Size = new System.Drawing.Size(18, 16);
             this.label15.TabIndex = 34;
             this.label15.Text = "m";
             this.label15.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -632,37 +635,38 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(22, 174);
+            this.label13.Location = new System.Drawing.Point(20, 139);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 20);
+            this.label13.Size = new System.Drawing.Size(45, 16);
             this.label13.TabIndex = 33;
             this.label13.Text = "Länge";
             // 
             // txt_SuctionPiepLength
             // 
             this.txt_SuctionPiepLength.Enabled = false;
-            this.txt_SuctionPiepLength.Location = new System.Drawing.Point(188, 169);
-            this.txt_SuctionPiepLength.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_SuctionPiepLength.Location = new System.Drawing.Point(167, 135);
+            this.txt_SuctionPiepLength.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_SuctionPiepLength.Name = "txt_SuctionPiepLength";
-            this.txt_SuctionPiepLength.Size = new System.Drawing.Size(82, 26);
+            this.txt_SuctionPiepLength.Size = new System.Drawing.Size(73, 22);
             this.txt_SuctionPiepLength.TabIndex = 32;
             // 
             // txt_PipeName
             // 
             this.txt_PipeName.Enabled = false;
             this.txt_PipeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_PipeName.Location = new System.Drawing.Point(27, 83);
-            this.txt_PipeName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PipeName.Location = new System.Drawing.Point(24, 66);
+            this.txt_PipeName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PipeName.Name = "txt_PipeName";
-            this.txt_PipeName.Size = new System.Drawing.Size(230, 28);
+            this.txt_PipeName.Size = new System.Drawing.Size(205, 26);
             this.txt_PipeName.TabIndex = 31;
             // 
             // btn_SelectPipe
             // 
-            this.btn_SelectPipe.Location = new System.Drawing.Point(267, 82);
+            this.btn_SelectPipe.Location = new System.Drawing.Point(237, 66);
+            this.btn_SelectPipe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_SelectPipe.Name = "btn_SelectPipe";
-            this.btn_SelectPipe.Size = new System.Drawing.Size(39, 35);
+            this.btn_SelectPipe.Size = new System.Drawing.Size(35, 28);
             this.btn_SelectPipe.TabIndex = 30;
             this.btn_SelectPipe.Text = "...";
             this.btn_SelectPipe.UseVisualStyleBackColor = true;
@@ -670,10 +674,10 @@
             // 
             // btn_CalcLength
             // 
-            this.btn_CalcLength.Location = new System.Drawing.Point(27, 220);
-            this.btn_CalcLength.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_CalcLength.Location = new System.Drawing.Point(24, 176);
+            this.btn_CalcLength.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_CalcLength.Name = "btn_CalcLength";
-            this.btn_CalcLength.Size = new System.Drawing.Size(279, 35);
+            this.btn_CalcLength.Size = new System.Drawing.Size(248, 28);
             this.btn_CalcLength.TabIndex = 29;
             this.btn_CalcLength.Text = "Äquivalente Länge ermitteln";
             this.btn_CalcLength.UseVisualStyleBackColor = true;
@@ -682,38 +686,38 @@
             // txt_PipeSuctionPressureDrop
             // 
             this.txt_PipeSuctionPressureDrop.Enabled = false;
-            this.txt_PipeSuctionPressureDrop.Location = new System.Drawing.Point(188, 318);
-            this.txt_PipeSuctionPressureDrop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_PipeSuctionPressureDrop.Location = new System.Drawing.Point(167, 254);
+            this.txt_PipeSuctionPressureDrop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_PipeSuctionPressureDrop.Name = "txt_PipeSuctionPressureDrop";
-            this.txt_PipeSuctionPressureDrop.Size = new System.Drawing.Size(116, 26);
+            this.txt_PipeSuctionPressureDrop.Size = new System.Drawing.Size(104, 22);
             this.txt_PipeSuctionPressureDrop.TabIndex = 28;
             // 
             // lbl_PipeSuctionPressureDrop
             // 
             this.lbl_PipeSuctionPressureDrop.AutoSize = true;
-            this.lbl_PipeSuctionPressureDrop.Location = new System.Drawing.Point(22, 323);
+            this.lbl_PipeSuctionPressureDrop.Location = new System.Drawing.Point(20, 258);
             this.lbl_PipeSuctionPressureDrop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PipeSuctionPressureDrop.Name = "lbl_PipeSuctionPressureDrop";
-            this.lbl_PipeSuctionPressureDrop.Size = new System.Drawing.Size(128, 20);
+            this.lbl_PipeSuctionPressureDrop.Size = new System.Drawing.Size(109, 16);
             this.lbl_PipeSuctionPressureDrop.TabIndex = 27;
             this.lbl_PipeSuctionPressureDrop.Text = "Pumpenvordruck";
             // 
             // txt_SuctionPiepRoughness
             // 
             this.txt_SuctionPiepRoughness.Enabled = false;
-            this.txt_SuctionPiepRoughness.Location = new System.Drawing.Point(212, 129);
-            this.txt_SuctionPiepRoughness.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_SuctionPiepRoughness.Location = new System.Drawing.Point(188, 103);
+            this.txt_SuctionPiepRoughness.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_SuctionPiepRoughness.Name = "txt_SuctionPiepRoughness";
-            this.txt_SuctionPiepRoughness.Size = new System.Drawing.Size(92, 26);
+            this.txt_SuctionPiepRoughness.Size = new System.Drawing.Size(82, 22);
             this.txt_SuctionPiepRoughness.TabIndex = 25;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(183, 132);
+            this.label14.Location = new System.Drawing.Point(163, 106);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(17, 20);
+            this.label14.Size = new System.Drawing.Size(14, 16);
             this.label14.TabIndex = 24;
             this.label14.Text = "k";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -722,19 +726,19 @@
             // txt_SuctionPipeDiameter
             // 
             this.txt_SuctionPipeDiameter.Enabled = false;
-            this.txt_SuctionPipeDiameter.Location = new System.Drawing.Point(54, 129);
-            this.txt_SuctionPipeDiameter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txt_SuctionPipeDiameter.Location = new System.Drawing.Point(48, 103);
+            this.txt_SuctionPipeDiameter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txt_SuctionPipeDiameter.Name = "txt_SuctionPipeDiameter";
-            this.txt_SuctionPipeDiameter.Size = new System.Drawing.Size(92, 26);
+            this.txt_SuctionPipeDiameter.Size = new System.Drawing.Size(82, 22);
             this.txt_SuctionPipeDiameter.TabIndex = 21;
             // 
             // cbx_CalcSuctionPipe
             // 
             this.cbx_CalcSuctionPipe.AutoSize = true;
-            this.cbx_CalcSuctionPipe.Location = new System.Drawing.Point(27, 40);
-            this.cbx_CalcSuctionPipe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbx_CalcSuctionPipe.Location = new System.Drawing.Point(24, 32);
+            this.cbx_CalcSuctionPipe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbx_CalcSuctionPipe.Name = "cbx_CalcSuctionPipe";
-            this.cbx_CalcSuctionPipe.Size = new System.Drawing.Size(292, 24);
+            this.cbx_CalcSuctionPipe.Size = new System.Drawing.Size(246, 20);
             this.cbx_CalcSuctionPipe.TabIndex = 5;
             this.cbx_CalcSuctionPipe.Text = "Saugseitigen Druckabfall berechnen";
             this.cbx_CalcSuctionPipe.UseVisualStyleBackColor = true;
@@ -743,10 +747,10 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(26, 132);
+            this.label12.Location = new System.Drawing.Point(23, 106);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(18, 20);
+            this.label12.Size = new System.Drawing.Size(15, 16);
             this.label12.TabIndex = 20;
             this.label12.Text = "d";
             this.toolTip1.SetToolTip(this.label12, "Leitungsinnendurchmesser (d)");
@@ -754,10 +758,10 @@
             // btn_ShowPowerPoint
             // 
             this.btn_ShowPowerPoint.Enabled = false;
-            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(38, 712);
-            this.btn_ShowPowerPoint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_ShowPowerPoint.Location = new System.Drawing.Point(34, 570);
+            this.btn_ShowPowerPoint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_ShowPowerPoint.Name = "btn_ShowPowerPoint";
-            this.btn_ShowPowerPoint.Size = new System.Drawing.Size(150, 60);
+            this.btn_ShowPowerPoint.Size = new System.Drawing.Size(133, 48);
             this.btn_ShowPowerPoint.TabIndex = 19;
             this.btn_ShowPowerPoint.Text = "Arbeitspunkt anzeigen";
             this.btn_ShowPowerPoint.UseVisualStyleBackColor = true;
@@ -767,10 +771,10 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(312, 445);
+            this.label11.Location = new System.Drawing.Point(277, 356);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 29);
+            this.label11.Size = new System.Drawing.Size(43, 25);
             this.label11.TabIndex = 17;
             this.label11.Text = "bar";
             // 
@@ -798,8 +802,8 @@
             this.entwicklungToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1160, 33);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1035, 31);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -810,25 +814,25 @@
             this.toolStripSeparator3,
             this.beendenToolStripMenuItem});
             this.stToolStripMenuItem.Name = "stToolStripMenuItem";
-            this.stToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
+            this.stToolStripMenuItem.Size = new System.Drawing.Size(60, 27);
             this.stToolStripMenuItem.Text = "Datei";
             // 
             // einstellungenToolStripMenuItem
             // 
             this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
-            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(245, 34);
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(218, 30);
             this.einstellungenToolStripMenuItem.Text = "Voreinstellungen";
             this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.einstellungenToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(242, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(215, 6);
             // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(245, 34);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(218, 30);
             this.beendenToolStripMenuItem.Text = "Beenden";
             this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
             // 
@@ -842,45 +846,45 @@
             this.toolStripSeparator2,
             this.editorStartenToolStripMenuItem});
             this.überToolStripMenuItem.Name = "überToolStripMenuItem";
-            this.überToolStripMenuItem.Size = new System.Drawing.Size(84, 29);
+            this.überToolStripMenuItem.Size = new System.Drawing.Size(73, 27);
             this.überToolStripMenuItem.Text = "Pumpe";
             // 
             // auswahlPumpeToolStripMenuItem
             // 
             this.auswahlPumpeToolStripMenuItem.Enabled = false;
             this.auswahlPumpeToolStripMenuItem.Name = "auswahlPumpeToolStripMenuItem";
-            this.auswahlPumpeToolStripMenuItem.Size = new System.Drawing.Size(309, 34);
+            this.auswahlPumpeToolStripMenuItem.Size = new System.Drawing.Size(271, 30);
             this.auswahlPumpeToolStripMenuItem.Text = "Auswahl Pumpe";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(306, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(268, 6);
             // 
             // suchverzeichnisToolStripMenuItem
             // 
             this.suchverzeichnisToolStripMenuItem.Name = "suchverzeichnisToolStripMenuItem";
-            this.suchverzeichnisToolStripMenuItem.Size = new System.Drawing.Size(309, 34);
+            this.suchverzeichnisToolStripMenuItem.Size = new System.Drawing.Size(271, 30);
             this.suchverzeichnisToolStripMenuItem.Text = "Suchverzeichnis...";
             this.suchverzeichnisToolStripMenuItem.Click += new System.EventHandler(this.searchPathPumpsToolStripMenuItem_Click);
             // 
             // ladePumpendefinitionToolStripMenuItem
             // 
             this.ladePumpendefinitionToolStripMenuItem.Name = "ladePumpendefinitionToolStripMenuItem";
-            this.ladePumpendefinitionToolStripMenuItem.Size = new System.Drawing.Size(309, 34);
+            this.ladePumpendefinitionToolStripMenuItem.Size = new System.Drawing.Size(271, 30);
             this.ladePumpendefinitionToolStripMenuItem.Text = "Lade Pumpendefinition...";
             this.ladePumpendefinitionToolStripMenuItem.Click += new System.EventHandler(this.btn_LoadPump_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(306, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(268, 6);
             // 
             // editorStartenToolStripMenuItem
             // 
             this.editorStartenToolStripMenuItem.Enabled = false;
             this.editorStartenToolStripMenuItem.Name = "editorStartenToolStripMenuItem";
-            this.editorStartenToolStripMenuItem.Size = new System.Drawing.Size(309, 34);
+            this.editorStartenToolStripMenuItem.Size = new System.Drawing.Size(271, 30);
             this.editorStartenToolStripMenuItem.Text = "Editor starten";
             this.editorStartenToolStripMenuItem.Click += new System.EventHandler(this.editorStartenToolStripMenuItem_Click);
             // 
@@ -892,32 +896,32 @@
             this.exportToolStripMenuItem,
             this.importCSVToolStripMenuItem});
             this.pipesToolStripMenuItem.Name = "pipesToolStripMenuItem";
-            this.pipesToolStripMenuItem.Size = new System.Drawing.Size(138, 29);
+            this.pipesToolStripMenuItem.Size = new System.Drawing.Size(123, 27);
             this.pipesToolStripMenuItem.Text = "Rohrleitungen";
             // 
             // searchPathPipesToolStripMenuItem2
             // 
             this.searchPathPipesToolStripMenuItem2.Name = "searchPathPipesToolStripMenuItem2";
-            this.searchPathPipesToolStripMenuItem2.Size = new System.Drawing.Size(249, 34);
+            this.searchPathPipesToolStripMenuItem2.Size = new System.Drawing.Size(221, 30);
             this.searchPathPipesToolStripMenuItem2.Text = "Suchverzeichnis...";
             this.searchPathPipesToolStripMenuItem2.Click += new System.EventHandler(this.searchPathPipesToolStripMenuItem2_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(246, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(218, 6);
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(249, 34);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(221, 30);
             this.exportToolStripMenuItem.Text = "Export CSV...";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // importCSVToolStripMenuItem
             // 
             this.importCSVToolStripMenuItem.Name = "importCSVToolStripMenuItem";
-            this.importCSVToolStripMenuItem.Size = new System.Drawing.Size(249, 34);
+            this.importCSVToolStripMenuItem.Size = new System.Drawing.Size(221, 30);
             this.importCSVToolStripMenuItem.Text = "Import CSV...";
             this.importCSVToolStripMenuItem.Click += new System.EventHandler(this.importCSVToolStripMenuItem_Click);
             // 
@@ -926,13 +930,13 @@
             this.fittingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.suchverzeichnisToolStripMenuItem1});
             this.fittingsToolStripMenuItem.Name = "fittingsToolStripMenuItem";
-            this.fittingsToolStripMenuItem.Size = new System.Drawing.Size(86, 29);
+            this.fittingsToolStripMenuItem.Size = new System.Drawing.Size(75, 27);
             this.fittingsToolStripMenuItem.Text = "Fittings";
             // 
             // suchverzeichnisToolStripMenuItem1
             // 
             this.suchverzeichnisToolStripMenuItem1.Name = "suchverzeichnisToolStripMenuItem1";
-            this.suchverzeichnisToolStripMenuItem1.Size = new System.Drawing.Size(249, 34);
+            this.suchverzeichnisToolStripMenuItem1.Size = new System.Drawing.Size(221, 30);
             this.suchverzeichnisToolStripMenuItem1.Text = "Suchverzeichnis...";
             this.suchverzeichnisToolStripMenuItem1.Click += new System.EventHandler(this.searchPathFittingsToolStripMenuItem_Click);
             // 
@@ -945,13 +949,13 @@
             this.umwälzleistungToolStripMenuItem,
             this.filtergeschwindigkeitToolStripMenuItem});
             this.rechnerToolStripMenuItem.Name = "rechnerToolStripMenuItem";
-            this.rechnerToolStripMenuItem.Size = new System.Drawing.Size(90, 29);
+            this.rechnerToolStripMenuItem.Size = new System.Drawing.Size(81, 27);
             this.rechnerToolStripMenuItem.Text = "Rechner";
             // 
             // volumenstromFließgeschwindigkeitToolStripMenuItem
             // 
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.Name = "volumenstromFließgeschwindigkeitToolStripMenuItem";
-            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            this.volumenstromFließgeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(259, 30);
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.Text = "Druckabfall";
             this.volumenstromFließgeschwindigkeitToolStripMenuItem.ToolTipText = "Berechnung von Strömungsgeschwindigkeit, Volumenstrom und Druckverlust in Rohrlei" +
     "tungen";
@@ -960,7 +964,7 @@
             // äquivalenteRohrlängeToolStripMenuItem
             // 
             this.äquivalenteRohrlängeToolStripMenuItem.Name = "äquivalenteRohrlängeToolStripMenuItem";
-            this.äquivalenteRohrlängeToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            this.äquivalenteRohrlängeToolStripMenuItem.Size = new System.Drawing.Size(259, 30);
             this.äquivalenteRohrlängeToolStripMenuItem.Text = "Äquivalente Rohrlänge";
             this.äquivalenteRohrlängeToolStripMenuItem.ToolTipText = "Berechnung der äquivalente Rohrlänge in Abhängigkeit der verbauten Fittings und A" +
     "rmaturen";
@@ -969,23 +973,47 @@
             // poolvolumenToolStripMenuItem
             // 
             this.poolvolumenToolStripMenuItem.Name = "poolvolumenToolStripMenuItem";
-            this.poolvolumenToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            this.poolvolumenToolStripMenuItem.Size = new System.Drawing.Size(259, 30);
             this.poolvolumenToolStripMenuItem.Text = "Poolvolumen";
             this.poolvolumenToolStripMenuItem.Click += new System.EventHandler(this.poolvolumenToolStripMenuItem_Click);
             // 
             // umwälzleistungToolStripMenuItem
             // 
             this.umwälzleistungToolStripMenuItem.Name = "umwälzleistungToolStripMenuItem";
-            this.umwälzleistungToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            this.umwälzleistungToolStripMenuItem.Size = new System.Drawing.Size(259, 30);
             this.umwälzleistungToolStripMenuItem.Text = "Umwälzleistung";
             this.umwälzleistungToolStripMenuItem.Click += new System.EventHandler(this.umwälzleistungToolStripMenuItem_Click);
             // 
             // filtergeschwindigkeitToolStripMenuItem
             // 
             this.filtergeschwindigkeitToolStripMenuItem.Name = "filtergeschwindigkeitToolStripMenuItem";
-            this.filtergeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            this.filtergeschwindigkeitToolStripMenuItem.Size = new System.Drawing.Size(259, 30);
             this.filtergeschwindigkeitToolStripMenuItem.Text = "Filtergeschwindigkeit";
             this.filtergeschwindigkeitToolStripMenuItem.Click += new System.EventHandler(this.filtergeschwindigkeitToolStripMenuItem_Click);
+            // 
+            // stapelverarbeitungToolStripMenuItem
+            // 
+            this.stapelverarbeitungToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ladecsvToolStripMenuItem,
+            this.berechnenUndSpeichernToolStripMenuItem});
+            this.stapelverarbeitungToolStripMenuItem.Name = "stapelverarbeitungToolStripMenuItem";
+            this.stapelverarbeitungToolStripMenuItem.Size = new System.Drawing.Size(155, 27);
+            this.stapelverarbeitungToolStripMenuItem.Text = "Stapelverarbeitung";
+            // 
+            // ladecsvToolStripMenuItem
+            // 
+            this.ladecsvToolStripMenuItem.Name = "ladecsvToolStripMenuItem";
+            this.ladecsvToolStripMenuItem.Size = new System.Drawing.Size(287, 30);
+            this.ladecsvToolStripMenuItem.Text = "Lade *.csv...";
+            this.ladecsvToolStripMenuItem.Click += new System.EventHandler(this.ladecsvToolStripMenuItem_Click);
+            // 
+            // berechnenUndSpeichernToolStripMenuItem
+            // 
+            this.berechnenUndSpeichernToolStripMenuItem.Enabled = false;
+            this.berechnenUndSpeichernToolStripMenuItem.Name = "berechnenUndSpeichernToolStripMenuItem";
+            this.berechnenUndSpeichernToolStripMenuItem.Size = new System.Drawing.Size(287, 30);
+            this.berechnenUndSpeichernToolStripMenuItem.Text = "Berechnen und Speichern...";
+            this.berechnenUndSpeichernToolStripMenuItem.Click += new System.EventHandler(this.berechnenUndSpeichernToolStripMenuItem_Click);
             // 
             // hilfeToolStripMenuItem
             // 
@@ -994,13 +1022,13 @@
             this.toolStripSeparator4,
             this.überToolStripMenuItem1});
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
-            this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(64, 29);
+            this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(56, 27);
             this.hilfeToolStripMenuItem.Text = "Hilfe";
             // 
             // dokumentationToolStripMenuItem
             // 
             this.dokumentationToolStripMenuItem.Name = "dokumentationToolStripMenuItem";
-            this.dokumentationToolStripMenuItem.Size = new System.Drawing.Size(238, 34);
+            this.dokumentationToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
             this.dokumentationToolStripMenuItem.Text = "Dokumentation";
             this.dokumentationToolStripMenuItem.ToolTipText = "https://github.com/100prznt/FlowCalc/";
             this.dokumentationToolStripMenuItem.Click += new System.EventHandler(this.dokumentationToolStripMenuItem_Click);
@@ -1008,12 +1036,12 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(235, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(206, 6);
             // 
             // überToolStripMenuItem1
             // 
             this.überToolStripMenuItem1.Name = "überToolStripMenuItem1";
-            this.überToolStripMenuItem1.Size = new System.Drawing.Size(238, 34);
+            this.überToolStripMenuItem1.Size = new System.Drawing.Size(209, 30);
             this.überToolStripMenuItem1.Text = "Über";
             this.überToolStripMenuItem1.Click += new System.EventHandler(this.überToolStripMenuItem1_Click);
             // 
@@ -1026,7 +1054,7 @@
             this.entwicklungToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entwicklungToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.entwicklungToolStripMenuItem.Name = "entwicklungToolStripMenuItem";
-            this.entwicklungToolStripMenuItem.Size = new System.Drawing.Size(122, 29);
+            this.entwicklungToolStripMenuItem.Size = new System.Drawing.Size(115, 27);
             this.entwicklungToolStripMenuItem.Text = "Entwicklung";
             this.entwicklungToolStripMenuItem.DropDownClosed += new System.EventHandler(this.entwicklungToolStripMenuItem_DropDownClosed);
             this.entwicklungToolStripMenuItem.DropDownOpened += new System.EventHandler(this.entwicklungToolStripMenuItem_DropDownOpened);
@@ -1034,14 +1062,14 @@
             // exportRohrleitungsdefinitionenXMLToolStripMenuItem
             // 
             this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Name = "exportRohrleitungsdefinitionenXMLToolStripMenuItem";
-            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Size = new System.Drawing.Size(425, 34);
+            this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Size = new System.Drawing.Size(402, 30);
             this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Text = "Export Rohrleitungsdefinitionen (XML)...";
             this.exportRohrleitungsdefinitionenXMLToolStripMenuItem.Click += new System.EventHandler(this.exportRohrleitungsdefinitionenXMLToolStripMenuItem_Click);
             // 
             // uebersichtGeladeneRohrleitungenToolStripMenuItem
             // 
             this.uebersichtGeladeneRohrleitungenToolStripMenuItem.Name = "uebersichtGeladeneRohrleitungenToolStripMenuItem";
-            this.uebersichtGeladeneRohrleitungenToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
+            this.uebersichtGeladeneRohrleitungenToolStripMenuItem.Size = new System.Drawing.Size(402, 30);
             this.uebersichtGeladeneRohrleitungenToolStripMenuItem.Text = "Übersicht geladene Rohrleitungen";
             this.uebersichtGeladeneRohrleitungenToolStripMenuItem.Click += new System.EventHandler(this.uebersichtGeladeneRohrleitungenToolStripMenuItem_Click);
             // 
@@ -1051,23 +1079,23 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stl_PumpSearchDirectory,
             this.stl_Info});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 863);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 694);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1160, 32);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1035, 28);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // stl_PumpSearchDirectory
             // 
             this.stl_PumpSearchDirectory.Name = "stl_PumpSearchDirectory";
-            this.stl_PumpSearchDirectory.Size = new System.Drawing.Size(249, 25);
+            this.stl_PumpSearchDirectory.Size = new System.Drawing.Size(220, 21);
             this.stl_PumpSearchDirectory.Text = "Bitte Suchverzeichnis angeben";
             // 
             // stl_Info
             // 
             this.stl_Info.Name = "stl_Info";
-            this.stl_Info.Size = new System.Drawing.Size(888, 25);
+            this.stl_Info.Size = new System.Drawing.Size(794, 21);
             this.stl_Info.Spring = true;
             this.stl_Info.Text = "Bereit";
             this.stl_Info.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1086,51 +1114,27 @@
             this.toolTip_Warning.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning;
             this.toolTip_Warning.ToolTipTitle = "Achtung";
             // 
-            // stapelverarbeitungToolStripMenuItem
-            // 
-            this.stapelverarbeitungToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ladecsvToolStripMenuItem,
-            this.berechnenUndSpeichernToolStripMenuItem});
-            this.stapelverarbeitungToolStripMenuItem.Name = "stapelverarbeitungToolStripMenuItem";
-            this.stapelverarbeitungToolStripMenuItem.Size = new System.Drawing.Size(176, 29);
-            this.stapelverarbeitungToolStripMenuItem.Text = "Stapelverarbeitung";
-            // 
-            // ladecsvToolStripMenuItem
-            // 
-            this.ladecsvToolStripMenuItem.Name = "ladecsvToolStripMenuItem";
-            this.ladecsvToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.ladecsvToolStripMenuItem.Text = "Lade *.csv...";
-            this.ladecsvToolStripMenuItem.Click += new System.EventHandler(this.ladecsvToolStripMenuItem_Click);
-            // 
-            // berechnenUndSpeichernToolStripMenuItem
-            // 
-            this.berechnenUndSpeichernToolStripMenuItem.Enabled = false;
-            this.berechnenUndSpeichernToolStripMenuItem.Name = "berechnenUndSpeichernToolStripMenuItem";
-            this.berechnenUndSpeichernToolStripMenuItem.Size = new System.Drawing.Size(325, 34);
-            this.berechnenUndSpeichernToolStripMenuItem.Text = "Berechnen und Speichern...";
-            this.berechnenUndSpeichernToolStripMenuItem.Click += new System.EventHandler(this.berechnenUndSpeichernToolStripMenuItem_Click);
-            // 
             // MainView
             // 
             this.AcceptButton = this.btn_CalcFlowRate;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1160, 895);
+            this.ClientSize = new System.Drawing.Size(1035, 722);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1182, 951);
-            this.MinimumSize = new System.Drawing.Size(1182, 951);
+            this.MaximumSize = new System.Drawing.Size(1053, 771);
+            this.MinimumSize = new System.Drawing.Size(1053, 771);
             this.Name = "MainView";
             this.Text = "FlowCalc";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gb_VarioPump.ResumeLayout(false);
             this.gb_VarioPump.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_Rpm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_PresetValue)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1223,8 +1227,8 @@
         private System.Windows.Forms.LinkLabel lbl_PumpDataSourceUrl;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox gb_VarioPump;
-        private System.Windows.Forms.TrackBar tb_Rpm;
-        private System.Windows.Forms.Label lbl_Rpm;
+        private System.Windows.Forms.TrackBar tb_PresetValue;
+        private System.Windows.Forms.Label lbl_PresetValue;
         private System.Windows.Forms.TextBox txt_PumpRpmHead;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txt_PumpRpmPowerIn;

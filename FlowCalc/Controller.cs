@@ -359,25 +359,29 @@ namespace FlowCalc
             SuctionPressureDropCalcIterations = 0;
         }
 
-        public void GeneratePdfReport(string path, double poolVolume, double filterDiameter, int? _rpm = null)
+        public void GeneratePdfReport(string path, double poolVolume, double filterDiameter, int? _presetValue = null)
         {
             var chartView = new ChartView("");
 
             chartView.Width = 1692;
             chartView.Height = 1005;
 
-            var powerInput = Pump.GetInputPower(_rpm, SystemFlowRate);
+            var powerInput = Pump.GetInputPower(_presetValue, SystemFlowRate);
             string pumpName = Pump.ModellName;
-            if (_rpm is int rpm)
+            if (_presetValue is int presetValue)
             {
-                pumpName = pumpName + $" @ {rpm} min^-1";
+                if (Pump.DynamicPerformanceCurves.First().PresetValueType == PresetValueTypes.Rpm)
+                    pumpName = pumpName + $" @ {presetValue} min^-1";
+                else
+                    pumpName = pumpName + $" @ {presetValue} %";
                 //powerInput = Pump.GetInputPower((int)rpm, SystemFlowRate);
 
                 var performanceRange = Pump.GetPerformanceRange();
                 chartView.AddRange(Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
             }
 
-            chartView.AddCurve(pumpName, Pump.GetPerformanceFlowValuesByRpm(_rpm), Pump.GetPerformanceHeadValuesByRpm(_rpm));
+
+            chartView.AddCurve(pumpName, Pump.GetPerformanceFlowValues(_presetValue), Pump.GetPerformanceHeadValues(_presetValue));
             chartView.PowerPoint = new Tuple<double, double>(SystemFlowRate, SystemHead);
 
             var pklImage = chartView.GetChartImage();
@@ -551,8 +555,14 @@ namespace FlowCalc
             gfx.DrawString("System", h2, XBrushes.Black, new XPoint(t1, new XUnit(yBd + yOffsH3, unit)));
             var lineIdx = 1;
             gfx.DrawString("Pumpe:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
-            if (Pump.MotorType == MotorControllerTypes.RpmControlled)
-                gfx.DrawString("Drehzahl:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            if (Pump.IsVarioPump)
+            {
+                if (Pump.DynamicPerformanceCurves.First().PresetValueType == PresetValueTypes.Rpm)
+                    gfx.DrawString("Drehzahl:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+                else
+                    gfx.DrawString("Leistung:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            }
+
             gfx.DrawString("Filterkessel Durchmesser:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
             gfx.DrawString("Poolvolumen:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
             gfx.DrawString("Saugseitige Rohrleitung:", p3, XBrushes.Black, new XPoint(t2, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
@@ -563,8 +573,15 @@ namespace FlowCalc
                 gfx.DrawString($"{Pump.ModellName}", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
             else
                 gfx.DrawString($"{Pump.ModellName} ({Pump.Manufacturer})", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
-            if (Pump.MotorType == MotorControllerTypes.RpmControlled)
-                gfx.DrawString($"{_rpm} min^-1 (P1 = {powerInput:f3} kW)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+
+            if (Pump.IsVarioPump)
+            {
+                if (Pump.DynamicPerformanceCurves.First().PresetValueType == PresetValueTypes.Rpm)
+                    gfx.DrawString($"{_presetValue} min^-1 (P1 = {powerInput:f3} kW)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+                else
+                    gfx.DrawString($"{_presetValue} % (P1 = {powerInput:f3} kW)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
+            }
+
             gfx.DrawString($"{filterDiameter:f0} mm (A = {filterArea:f1} cm²)", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
             gfx.DrawString($"{poolVolume:f1} m³", h3, XBrushes.Black, new XPoint(t10, new XUnit(yBd + yLineH3 * lineIdx++, unit)));
             if (SuctionPipe != null)

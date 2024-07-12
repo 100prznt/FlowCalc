@@ -185,62 +185,30 @@ namespace FlowCalc
         }
 
         [XmlIgnore]
-        public int? MinRpm
+
+        public int MinPresetValue
         {
             get
             {
-                switch (MotorType)
-                {
-                    case MotorControllerTypes.RpmControlled:
-                        return DynamicPerformanceCurves.Min(x => x.Rpm);
-                    default:
-                        return null;
-                }
+                if (IsVarioPump)
+                    return DynamicPerformanceCurves.Min(x => x.PresetValue);
+                else
+                    return 0;
+
             }
         }
 
         [XmlIgnore]
-        public int? MaxRpm
-        {
-            get
-            {
-                switch (MotorType)
-                {
-                    case MotorControllerTypes.RpmControlled:
-                        return DynamicPerformanceCurves.Max(x => x.Rpm);
-                    default:
-                        return null;
-                }
-            }
-        }
 
-        [XmlIgnore]
-        public int? MinPowerPreset
+        public int MaxPresetValue
         {
             get
             {
-                switch (MotorType)
-                {
-                    case MotorControllerTypes.PowerControlled:
-                        return DynamicPerformanceCurves.Min(x => x.ConstantPowerPoint);
-                    default:
-                        return null;
-                }
-            }
-        }
+                if (IsVarioPump)
+                    return DynamicPerformanceCurves.Max(x => x.PresetValue);
+                else
+                    return 0;
 
-        [XmlIgnore]
-        public int? MaxPowerPreset
-        {
-            get
-            {
-                switch (MotorType)
-                {
-                    case MotorControllerTypes.PowerControlled:
-                        return DynamicPerformanceCurves.Max(x => x.ConstantPowerPoint);
-                    default:
-                        return null;
-                }
             }
         }
 
@@ -251,9 +219,9 @@ namespace FlowCalc
             {
                 switch (MotorType)
                 {
-                    case MotorControllerTypes.RpmControlled:
-                        var minRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Min(y => y.Rpm)).PerformanceCurve;
-                        var maxRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve;
+
+                    var minRpmCurve = DynamicPerformanceCurves.First(x => x.PresetValue == DynamicPerformanceCurves.Min(y => y.PresetValue)).PerformanceCurve;
+                    var maxRpmCurve = DynamicPerformanceCurves.First(x => x.PresetValue == DynamicPerformanceCurves.Max(y => y.PresetValue)).PerformanceCurve;
 
                         return Polynom.Polyfit(new double[2] { minRpmCurve.First().FlowRate, maxRpmCurve.First().FlowRate },
                         new double[2] { minRpmCurve.First().TotalDynamicHead, maxRpmCurve.First().TotalDynamicHead }, 1);
@@ -300,7 +268,6 @@ namespace FlowCalc
         #endregion Constructor
 
         #region Services
-
         #region Serialization
         /// <summary>
         /// Im Standard-Format (XML) speichern
@@ -375,11 +342,12 @@ namespace FlowCalc
 
             switch (MotorType)
             {
-                case MotorControllerTypes.RpmControlled:
-                foreach (var rpm in GetDefaultRpms())
+
+                foreach (var presetValue in GetDefaultPresetValues())
                 {
-                    mlList.Add(new MLDouble("H_" + rpm, GetPerformanceHeadValuesByRpm(rpm), 1));
-                    mlList.Add(new MLDouble("Q_" + rpm, GetPerformanceFlowValuesByRpm(rpm), 1));
+                    mlList.Add(new MLDouble("H_" + presetValue, GetPerformanceHeadValues(presetValue), 1));
+                    mlList.Add(new MLDouble("Q_" + presetValue, GetPerformanceFlowValues(presetValue), 1));
+
                 }
                     break;
                 case MotorControllerTypes.FixedRpm:
@@ -410,36 +378,36 @@ namespace FlowCalc
 
             switch (pump.MotorType)
             {
-                case MotorControllerTypes.RpmControlled:
-                    if (pump.DynamicPerformanceCurves.First().ConstantPowerPoint > 0)
+
+                if (pump.DynamicPerformanceCurves.Select(x => x.PresetValue).Distinct().Count() != pump.DynamicPerformanceCurves.Length)
+                    throw new InvalidDataException("Leistungskurven für identische Drehzahl/Leistung mehrfach definiert.");
+
+                foreach (var pc in pump.DynamicPerformanceCurves)
+                {
+                    pc.PerformanceCurve = pc.PerformanceCurve.OrderBy(x => x.TotalDynamicHead).ToArray();
+
+                    if (CheckRoutines.GetDirection(pc.GetPerformanceFlowValues()) == Direction.NotUnique)
+                        throw new InvalidDataException($"Leistungskurve für den Vorgabewert {pc.PresetValue} ist unplausibel.");
+
+                    if (CheckRoutines.GetDirection(pc.GetPerformanceFlowValues()) == Direction.Ascending)
+                        throw new InvalidDataException($"Leistungskurve für den Vorgabewert {pc.PresetValue} ist unplausibel. Fördermenge steigt mit Förderhöhe.");
+                }
+
+                if (pump.DynamicPerformanceCurves.First().PresetValueType == PresetValueTypes.Power)
+                {
+                    for (int i = 0; i < pump.DynamicPerformanceCurves.Length; i++)
                     {
-                        if (pump.DynamicPerformanceCurves.Select(x => x.ConstantPowerPoint).Distinct().Count() != pump.DynamicPerformanceCurves.Length)
-                            throw new InvalidDataException("Leistungskurven für identische konstante Leistungen mehrfach definiert.");
+                        if (pump.DynamicPerformanceCurves[i].PowerInput == 0)
+                            pump.DynamicPerformanceCurves[i].PowerInput = pump.PowerInput * pump.DynamicPerformanceCurves[i].PresetValue / 100;
                     }
-                    else
-                    {
-                        if (pump.DynamicPerformanceCurves.Select(x => x.Rpm).Distinct().Count() != pump.DynamicPerformanceCurves.Length)
-                            throw new InvalidDataException("Leistungskurven für identische Drehzahl mehrfach definiert.");
+                }
+            }
+            else if (pump.PerformanceCurve == null || pump.PerformanceCurve.Length <= 0)
+                throw new InvalidDataException("Leistungskurve konnte nicht geladen werden.");
+            else
+            {
+                pump.PerformanceCurve = pump.PerformanceCurve.OrderBy(x => x.TotalDynamicHead).ToArray();
 
-
-                        foreach (var pc in pump.DynamicPerformanceCurves)
-                        {
-                            pc.PerformanceCurve = pc.PerformanceCurve.OrderBy(x => x.TotalDynamicHead).ToArray();
-
-                            if (CheckRoutines.GetDirection(pc.GetPerformanceFlowValues()) == Direction.NotUnique)
-                                throw new InvalidDataException($"Leistungskurve für {pc.Rpm} rpm ist unplausibel.");
-
-                            if (CheckRoutines.GetDirection(pc.GetPerformanceFlowValues()) == Direction.Ascending)
-                                throw new InvalidDataException($"Leistungskurve für {pc.Rpm} rpm ist unplausibel. Fördermenge steigt mit Förderhöhe.");
-                        }
-                    }
-                    break;
-                case MotorControllerTypes.FixedRpm:
-                    if (pump.PerformanceCurve == null || pump.PerformanceCurve.Length <= 0)
-                        throw new InvalidDataException("Leistungskurve konnte nicht geladen werden.");
-                    else
-                    {
-                        pump.PerformanceCurve = pump.PerformanceCurve.OrderBy(x => x.TotalDynamicHead).ToArray();
 
                         if (CheckRoutines.GetDirection(pump.GetPerformanceFlowValuesByRpm()) == Direction.NotUnique)
                             throw new InvalidDataException("Leistungskurve ist unplausibel.");
@@ -487,17 +455,20 @@ namespace FlowCalc
         }
         #endregion Serialization
 
-        public double[] GetPerformanceHeadValuesByRpm(int? rpm = null)
+
+        public double[] GetPerformanceHeadValues(int? presetValue = null)
+
         {
-            if (rpm == 0 || rpm == null)
+            if (presetValue == 0 || presetValue == null)
                 return PerformanceCurve.Select(x => x.TotalDynamicHead).ToArray();
-            else if (DynamicPerformanceCurves.Any(x => x.Rpm == rpm))
-                return DynamicPerformanceCurves.First(x => x.Rpm == rpm).GetPerformanceHeadValues();
+            else if (DynamicPerformanceCurves.Any(x => x.PresetValue == presetValue))
+                return DynamicPerformanceCurves.First(x => x.PresetValue == presetValue).GetPerformanceHeadValues();
             else
             {
-                var maxPerformanceFlowValues = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve.Select(x => x.FlowRate).ToArray();
-                var p = new Polynom();
-                GetPerformancePolynomByRpm((int)rpm);
+
+                var maxPerformanceFlowValues = DynamicPerformanceCurves.First(x => x.PresetValue == DynamicPerformanceCurves.Max(y => y.PresetValue)).PerformanceCurve.Select(x => x.FlowRate).ToArray();
+                var p = GetPerformancePolynom((int)presetValue);
+
                 var pLim = UpperPerformanceCurveLimit;
                 var result = new List<double>();
                 var isLastPoint = true;
@@ -518,81 +489,18 @@ namespace FlowCalc
             }
         }
 
-        public double[] GetPerformanceHeadValuesByPower(int? powerPreset = null)
-        {
-            if (powerPreset == 0 || powerPreset == null)
-                return PerformanceCurve.Select(x => x.TotalDynamicHead).ToArray();
-            else if (DynamicPerformanceCurves.Any(x => x.ConstantPowerPoint == powerPreset))
-                return DynamicPerformanceCurves.First(x => x.ConstantPowerPoint == powerPreset).GetPerformanceHeadValues();
-            else
-            {
-                var maxPerformanceFlowValues = DynamicPerformanceCurves.First(x => x.ConstantPowerPoint == DynamicPerformanceCurves.Max(y => y.ConstantPowerPoint)).PerformanceCurve.Select(x => x.FlowRate).ToArray();
-                var p = new Polynom();
-                GetPerformancePolynomByPower((int)powerPreset);
-                var pLim = UpperPerformanceCurveLimit;
-                var result = new List<double>();
-                var isLastPoint = true;
-                foreach (var q in maxPerformanceFlowValues)
-                {
-                    var h = (p.Polyval(q));
-                    if (h >= pLim.Polyval(q))
-                        result.Add(h);
-                    else if (isLastPoint)
-                    {
-                        isLastPoint = false;
-                        var crossPoints = p.GetCrossPoints(pLim);
-                        if (crossPoints.Length == 1)
-                            result.Add(p.Polyval(crossPoints[0]));
-                    }
-                }
-                return result.ToArray();
-            }
-        }
 
-        public double[] GetPerformanceFlowValuesByRpm(int? powerPreset = null)
+        public double[] GetPerformanceFlowValues(int? presetValue = null)
         {
-            if (powerPreset == null)
+            if (presetValue == null)
                 return PerformanceCurve.Select(x => x.FlowRate).ToArray();
-            else if (DynamicPerformanceCurves.Any(x => x.Rpm == powerPreset))
-                return DynamicPerformanceCurves.First(x => x.Rpm == powerPreset).GetPerformanceFlowValues();
+            else if (DynamicPerformanceCurves.Any(x => x.PresetValue == presetValue))
+                return DynamicPerformanceCurves.First(x => x.PresetValue == presetValue).GetPerformanceFlowValues();
             else
             {
-                var maxPerformanceFlowValues = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve.Select(x => x.FlowRate).ToArray();
-                var p = GetPerformancePolynomByRpm((int)powerPreset);
-                var pLim = UpperPerformanceCurveLimit;
-                var result = new List<double>();
-                var isLastPoint = true;
-                foreach (var q in maxPerformanceFlowValues)
-                {
-                    var h = (p.Polyval(q));
-                    if (h >= pLim.Polyval(q))
-                        result.Add(q);
-                    else if (isLastPoint)
-                    {
-                        isLastPoint = false;
-                        var crossPoints = p.GetCrossPoints(pLim);
-                        if (crossPoints.Length == 1)
-                            result.Add(crossPoints[0]);
-                    }
-                }
-                return result.ToArray();
+                var maxPerformanceFlowValues = DynamicPerformanceCurves.First(x => x.PresetValue == DynamicPerformanceCurves.Max(y => y.PresetValue)).PerformanceCurve.Select(x => x.FlowRate).ToArray();
+                var p = GetPerformancePolynom((int)presetValue);
 
-
-                //var maxRpmCurve = DynamicPerformanceCurves.First(x => x.Rpm == DynamicPerformanceCurves.Max(y => y.Rpm)).PerformanceCurve;
-                //return maxRpmCurve.Select(x => x.FlowRate).ToArray();
-            }
-        }
-
-        public double[] GetPerformanceFlowValuesByPower(int? powerPreset = null)
-        {
-            if (powerPreset == null)
-                return PerformanceCurve.Select(x => x.FlowRate).ToArray();
-            else if (DynamicPerformanceCurves.Any(x => x.ConstantPowerPoint == powerPreset))
-                return DynamicPerformanceCurves.First(x => x.ConstantPowerPoint == powerPreset).GetPerformanceFlowValues();
-            else
-            {
-                var maxPerformanceFlowValues = DynamicPerformanceCurves.First(x => x.ConstantPowerPoint == DynamicPerformanceCurves.Max(y => y.ConstantPowerPoint)).PerformanceCurve.Select(x => x.FlowRate).ToArray();
-                var p = GetPerformancePolynomByPower((int)powerPreset);
                 var pLim = UpperPerformanceCurveLimit;
                 var result = new List<double>();
                 var isLastPoint = true;
@@ -619,40 +527,20 @@ namespace FlowCalc
 
         public Tuple<double[], double[]> GetPerformanceRange()
         {
-            var minRpm = MinRpm;
-            var maxRpm = MaxRpm;
+            var minPresetValue = MinPresetValue;
+            var maxPresetValue = MaxPresetValue;
 
-            var maxPower = MaxPowerPreset;
 
-            var pLower = new Polynom();
-            var pUpper = new Polynom();
-            double upperLimitQ;
-
-            switch (MotorType)
-            {
-                case MotorControllerTypes.RpmControlled:
-                    pLower = GetPerformancePolynomByRpm((int)minRpm);
-                    pUpper = GetPerformancePolynomByRpm((int)maxRpm);
-
-                    //Nur Schnittpunkte im gültigen Bereich heranzihene
-                    upperLimitQ = GetPerformanceFlowValuesByRpm(maxRpm).Max();
-                    break;
-                case MotorControllerTypes.PowerControlled:
-                    pLower = GetPerformancePolynomByPower((int)minRpm);
-                    pUpper = GetPerformancePolynomByPower((int)maxRpm);
-
-                    //Nur Schnittpunkte im gültigen Bereich heranzihene
-                    upperLimitQ = GetPerformanceFlowValuesByPower(maxPower).Max();
-                    break;
-            }
-            
+            var pLower = GetPerformancePolynom(minPresetValue);
+            var pUpper = GetPerformancePolynom(maxPresetValue);
             var pQCut = UpperPerformanceCurveLimit;
 
             //Nur Schnittpunkte im gültigen Bereich heranzihene
-            upperLimitQ = GetPerformanceFlowValuesByRpm(maxRpm).Max();
+            var upperLimitQ = GetPerformanceFlowValues(maxPresetValue).Max();
 
-            var lowerCrossPoint = HelpFunctions.CutOutRange(pLower.GetCrossPoints(pQCut), 0, upperLimitQ+1);
-            var upperCrossPoint = HelpFunctions.CutOutRange(pUpper.GetCrossPoints(pQCut), 0, upperLimitQ+1);
+
+            var lowerCrossPoint = HelpFunctions.CutOutRange(pLower.GetCrossPoints(pQCut), 0, upperLimitQ + 1);
+            var upperCrossPoint = HelpFunctions.CutOutRange(pUpper.GetCrossPoints(pQCut), 0, upperLimitQ + 1);
 
 
             HelpFunctions.CutOutRange(pLower.GetCrossPoints(pQCut), 0, upperLimitQ);
@@ -664,20 +552,20 @@ namespace FlowCalc
             var x = new List<double>();
             var y = new List<double>();
 
-            //Kennlinie für kleinste Drehzahl
+            //Kennlinie für kleinste Drehzahl/Leistung
             for (double i = 0; i < lowerCrossPoint[0]; i += 0.25)
             {
                 x.Add(i);
                 y.Add(pLower.Polyval(i));
             }
-            //Schnittpunkt KL kleinste Drehzahl mit oberem Q-Limit
+            //Schnittpunkt KL kleinste Drehzahl/Leistung mit oberem Q-Limit
             x.Add(lowerCrossPoint[0]);
             y.Add(pQCut.Polyval(lowerCrossPoint[0]));
-            //Schnittpunkt KL maximale Drehzahl mit oberem Q-Limit
+            //Schnittpunkt KL maximale Drehzahl/Leistung mit oberem Q-Limit
             x.Add(upperCrossPoint[0]);
             y.Add(pQCut.Polyval(upperCrossPoint[0]));
 
-            //Kennlinie für maximale Drehzahl
+            //Kennlinie für maximale Drehzahl/Leistung
             var xTemp = new List<double>();
             var yTemp = new List<double>();
             for (double i = 0; i < upperCrossPoint[0]; i += 0.25)
@@ -695,38 +583,32 @@ namespace FlowCalc
             return new Tuple<double[], double[]>(x.ToArray(), y.ToArray());
         }
 
-        public int[] GetDefaultRpms()
+        public int[] GetDefaultPresetValues()
         {
-            switch (MotorType)
+
+            if (IsVarioPump)
+                return DynamicPerformanceCurves.Select(x => x.PresetValue).ToArray();
+            else
+                return null;
+        }
+
+        public double GetMaxTotalHead(int? presetValue = null)
+        {
+            return GetPerformanceHeadValues(presetValue).Max();
+
+        }
+
+        public double GetInputPower(int? _presetValue, double flowrate)
+        {
+
+            if (_presetValue is int rpm && IsVarioPump)
+
             {
-                case MotorControllerTypes.RpmControlled:
-                    return DynamicPerformanceCurves.Select(x => x.Rpm).ToArray();
-                default:
-                    return null;
-            }
-        }
-
-        public double GetMaxTotalHeadByRpm(int? rpm = null)
-        {
-            return GetPerformanceHeadValuesByRpm(rpm).Max();
-        }
-
-        public double GetMaxTotalHeadByPower(int? powerSetpoint = null)
-        {
-            return GetPerformanceHeadValuesByPower(powerSetpoint).Max();
-        }
-
-        public double GetInputPower(int? _rpm, double flowrate)
-        {
-            //TODO: add power controlled pump
-
-            if (_rpm is int rpm && MotorType == MotorControllerTypes.RpmControlled)
-            {
-                var x_n = DynamicPerformanceCurves.Select(x => (double)x.Rpm).ToArray();
+                var x_n = DynamicPerformanceCurves.Select(x => (double)x.PresetValue).ToArray();
                 var y_P = DynamicPerformanceCurves.Select(x => x.PowerInput).ToArray();
 
                 if (x_n.Count() != y_P.Count())
-                    throw new ArgumentException("Angegebene drehzahlabhängige Leistungsdaten unplausibel.");
+                    throw new ArgumentException("Angegebene drehzahl/-leistungsabhängige Kennlinie unplausibel.");
 
                 var p = Polynom.Polyfit(x_n, y_P, 2);
 
@@ -761,21 +643,23 @@ namespace FlowCalc
 
         #region Internal services
 
-        private Polynom GetPerformancePolynomByRpm(int rpm)
+
+        private Polynom GetPerformancePolynom(int presetValue)
+
         {
             if (MotorType != MotorControllerTypes.RpmControlled)
                 return null;
 
-            if (DynamicPerformanceCurves.Any(x => x.Rpm == rpm))
+            if (DynamicPerformanceCurves.Any(x => x.PresetValue == presetValue))
             {
-                return DynamicPerformanceCurves.First(x => x.Rpm == rpm).GetPerformancePolynom();
+                return DynamicPerformanceCurves.First(x => x.PresetValue == presetValue).GetPerformancePolynom();
             }
 
-            var upperCurve = DynamicPerformanceCurves.First(x => x.Rpm > rpm);
-            var lowerCurve = DynamicPerformanceCurves.Last(x => x.Rpm < rpm);
+            var upperCurve = DynamicPerformanceCurves.First(x => x.PresetValue > presetValue);
+            var lowerCurve = DynamicPerformanceCurves.Last(x => x.PresetValue < presetValue);
 
-            var rpmDelta = upperCurve.Rpm - lowerCurve.Rpm;
-            var rpmGap = rpm - lowerCurve.Rpm;
+            var delta = upperCurve.PresetValue - lowerCurve.PresetValue;
+            var gap = presetValue - lowerCurve.PresetValue;
 
             var result = new Polynom(0, 0, 0, 0);
 
@@ -783,39 +667,12 @@ namespace FlowCalc
             {
                 var coefficientDelta = upperCurve.GetPerformancePolynom().Coefficients[i] - lowerCurve.GetPerformancePolynom().Coefficients[i];
 
-                result.Coefficients[i] = lowerCurve.GetPerformancePolynom().Coefficients[i] + coefficientDelta * rpmGap / rpmDelta;
+                result.Coefficients[i] = lowerCurve.GetPerformancePolynom().Coefficients[i] + coefficientDelta * gap / delta;
             }
 
             return result;
         }
 
-        private Polynom GetPerformancePolynomByPower(int power)
-        {
-            if (MotorType != MotorControllerTypes.PowerControlled)
-                return null;
-
-            if (DynamicPerformanceCurves.Any(x => x.ConstantPowerPoint == power))
-            {
-                return DynamicPerformanceCurves.First(x => x.ConstantPowerPoint == power).GetPerformancePolynom();
-            }
-
-            var upperCurve = DynamicPerformanceCurves.First(x => x.ConstantPowerPoint > power);
-            var lowerCurve = DynamicPerformanceCurves.Last(x => x.ConstantPowerPoint < power);
-
-            var powerDelta = upperCurve.ConstantPowerPoint - lowerCurve.ConstantPowerPoint;
-            var powerGap = power - lowerCurve.ConstantPowerPoint;
-
-            var result = new Polynom(0, 0, 0, 0);
-
-            for (int i = 0; i < 4; i++)
-            {
-                var coefficientDelta = upperCurve.GetPerformancePolynom().Coefficients[i] - lowerCurve.GetPerformancePolynom().Coefficients[i];
-
-                result.Coefficients[i] = lowerCurve.GetPerformancePolynom().Coefficients[i] + coefficientDelta * powerGap / powerDelta;
-            }
-
-            return result;
-        }
 
         private string GenerateCsvLine(params object[] items)
         {
