@@ -16,20 +16,22 @@ namespace FlowCalc
     public class PumpDynamicPerformanceCurve
     {
         /// <summary>
-        /// Einstellung Konstante Leistung
-        /// in [%]
+        /// Vorgabewert zur Steuerung der Motordrehzahl/-leistung
+        /// <seealso cref="PresetValueType"/> beschreibt ob eine Drehzahl oder Leistung vorgegeben wird
         /// </summary>
         [Category("Leistungsdaten")]
-        [DisplayName("Konstante Leistung in %")]
-        [Description("Einstellung der konstanten Leistung")]
-        public double ConstantPowerPoint { get; set; }
+        [DisplayName("Vorgabewert zur Steuerung der Motordrehzahl/-leistung")]
+        [Description("PresetValueType beschreibt ob eine Drehzahl oder Leistung vorgegeben wird")]
+        public int PresetValue { get; set; }
 
         /// <summary>
-        /// Drehzahl
+        /// Beschreibung des Vorgabewertes <see cref="PresetValue"/>
+        /// Leistungsvorgabe erfolgt in [%]
+        /// Drehzahlvorgabe in [min^-1]
         /// </summary>
         [Category("Leistungsdaten")]
-        [DisplayName("Motor Drehzahl")]
-        public int Rpm { get; set; }
+        [DisplayName("Beschreibung des Vorgabewertes")]
+        public PresetValueTypes PresetValueType { get; set; }
 
         /// <summary>
         /// Leistungsaufname Motor P_1

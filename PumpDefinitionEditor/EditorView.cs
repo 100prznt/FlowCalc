@@ -231,7 +231,7 @@ namespace PumpDefinitionEditor
                 //var performanceRange = m_Controller.Pump.GetPerformanceRange();
                 //m_ChartView.AddRange(m_Controller.Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
 
-                foreach (var rpm in m_Controller.Pump.GetDefaultRpms())
+                foreach (var rpm in m_Controller.Pump.GetDefaultPresetValues())
                     m_ChartView.AddCurve(m_Controller.Pump.ModellName + $" ({rpm} min^-1)", m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
 
                 //Interpolierte Kennlinien ploten

@@ -37,6 +37,8 @@ namespace FlowCalc
         Controller m_Controller;
         ChartView m_ChartView;
 
+        string m_PresetValueUnit;
+
         public string WindowTitle
         {
             get
@@ -191,10 +193,10 @@ namespace FlowCalc
             {
                 m_Controller.FilterPressure = pressure;
                 if (m_Controller.Pump.IsVarioPump)
-                    m_Controller.CalcFlowRate(pressure, tb_Rpm.Value);
+                    m_Controller.CalcFlowRate(pressure, tb_PresetValue.Value);
                 else
                     m_Controller.CalcFlowRate(pressure);
-                txt_SystemFlowRate.Text = m_Controller.SystemFlowRate.ToString("f2") + " m³/h";
+                txt_SystemFlowRate.Text = m_Controller.SystemFlowRate.ToString("f2") + " m^3/h";
                 txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " m WS";
 
                 if (cbx_CalcSuctionPipe.Checked)
@@ -224,10 +226,16 @@ namespace FlowCalc
 
                 if (m_Controller.SystemFlowRate <= 0)
                 {
-                    if (m_Controller.Pump.IsVarioPump && tb_Rpm.Value < m_Controller.Pump.MaxRpm)
+                    if (m_Controller.Pump.IsVarioPump && tb_PresetValue.Value < m_Controller.Pump.MaxPresetValue)
                     {
+                        var note = string.Empty;
+                        if (m_Controller.Pump.DynamicPerformanceCurves.First().PresetValueType == PresetValueTypes.Rpm)
+                            note = $"Gegebenfalls muss die Drehzahl (akt. {tb_PresetValue.Value} min^-1) der regelbaren Pumpe erhöht werden.";
+                        else if (m_Controller.Pump.DynamicPerformanceCurves.First().PresetValueType == PresetValueTypes.Power)
+                            note = $"Gegebenfalls muss die Leistung (akt. {tb_PresetValue.Value} %) der regelbaren Pumpe erhöht werden.";
+
                         MessageBox.Show("Der angegebene Systemdruck entspricht einer Förderhöhe, welche außerhalb der Pumpenkennlinie liegt. Es kann keine Fördermenge berechnet werden.\n\n" +
-                            $"Gegebenfalls muss die Drehzahl (akt. {tb_Rpm.Value} min^-1) der Vario-Pumpe erhöht werden.", "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            note , "Maximale Förderhöhe überschritten", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -259,28 +267,39 @@ namespace FlowCalc
                 txt_PumpPowerOut.Text = "-";
             else
                 txt_PumpPowerOut.Text = m_Controller.Pump.PowerOutput + " kW";
-            txt_PumpNominalFlowRate.Text = m_Controller.Pump.NominalFlowRate + " m³/h";
+            txt_PumpNominalFlowRate.Text = m_Controller.Pump.NominalFlowRate + " m^3/h";
             txt_PumpNominalHead.Text = m_Controller.Pump.NominalDynamicHead + " m WS";
-            int? rpm = null;
+            int? presetValue = null;
             if (m_Controller.Pump.IsVarioPump)
             {
                 gb_VarioPump.Enabled = true;
-                tb_Rpm.Minimum = m_Controller.Pump.MinRpm;
-                rpm = m_Controller.Pump.MaxRpm;
-                tb_Rpm.Maximum = (int)rpm;
-                tb_Rpm.Value = (int)rpm;
+                tb_PresetValue.Minimum = m_Controller.Pump.MinPresetValue;
+                presetValue = m_Controller.Pump.MaxPresetValue;
+                switch (m_Controller.Pump.DynamicPerformanceCurves.First().PresetValueType)
+                {
+                    case PresetValueTypes.Rpm:
+                        m_PresetValueUnit = "min^-1";
+                        break;
+                    case PresetValueTypes.Power:
+                        m_PresetValueUnit = "%";
+                        break;
+                }
+                tb_PresetValue.Maximum = (int)presetValue;
+                tb_PresetValue.Value = (int)presetValue;
+
+                tb_Rpm_ValueChanged(null, null);
             }
             else
             {
                 gb_VarioPump.Enabled = false;
-                tb_Rpm.Maximum = 1000;
-                tb_Rpm.Minimum = 0;
-                tb_Rpm.Value = 0;
-                lbl_Rpm.Text = "0 min^-1";
+                tb_PresetValue.Maximum = 1000;
+                tb_PresetValue.Minimum = 0;
+                tb_PresetValue.Value = 0;
+                lbl_PresetValue.Text = $"0 min^-1";
                 txt_PumpRpmPowerIn.Clear();
                 txt_PumpRpmHead.Clear();
             }
-            txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHead(rpm).ToString("f2") + " m WS";
+            txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHead(presetValue).ToString("f2") + " m WS";
 
             lbl_PumpFileAuthor.Text = m_Controller.Pump.AuthorPumpFile;
             lbl_PumpDataSourceUrl.Text = m_Controller.Pump.DataSourceUrl;
@@ -320,19 +339,19 @@ namespace FlowCalc
             if (m_ChartView == null || !m_ChartView.Visible)
                 m_ChartView = new ChartView("Anzeige Pumpenkennlinie");
 
-            int? rpm = null;
+            int? presetValue = null;
             var pumpName = m_Controller.Pump.ModellName;
 
             if (m_Controller.Pump.IsVarioPump)
             {
-                rpm = tb_Rpm.Value;
-                pumpName = pumpName + $" ({rpm} min^-1)";
+                presetValue = tb_PresetValue.Value;
+                pumpName = pumpName + $" ({presetValue} {m_PresetValueUnit})";
 
                 var performanceRange = m_Controller.Pump.GetPerformanceRange();
                 m_ChartView.AddRange(m_Controller.Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
             }
 
-            m_ChartView.AddCurve(pumpName, m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
+            m_ChartView.AddCurve(pumpName, m_Controller.Pump.GetPerformanceFlowValues(presetValue), m_Controller.Pump.GetPerformanceHeadValues(presetValue));
 
             m_ChartView.Show();
         }
@@ -342,17 +361,17 @@ namespace FlowCalc
             if (m_ChartView == null || !m_ChartView.Visible)
                 m_ChartView = new ChartView("Anzeige Arbeitspunkt auf Pumpenkennlinie");
 
-            int? rpm = null;
+            int? presetValue = null;
             string pumpName = m_Controller.Pump.ModellName;
             if (m_Controller.Pump.IsVarioPump)
             {
-                rpm = tb_Rpm.Value;
-                pumpName = pumpName + $" @ {rpm} min^-1";
+                presetValue = tb_PresetValue.Value;
+                pumpName = pumpName + $" @ {presetValue} {m_PresetValueUnit}";
 
                 var performanceRange = m_Controller.Pump.GetPerformanceRange();
                 m_ChartView.AddRange(m_Controller.Pump.ModellName, performanceRange.Item1, performanceRange.Item2);
             }
-            m_ChartView.AddCurve(pumpName, m_Controller.Pump.GetPerformanceFlowValues(rpm), m_Controller.Pump.GetPerformanceHeadValues(rpm));
+            m_ChartView.AddCurve(pumpName, m_Controller.Pump.GetPerformanceFlowValues(presetValue), m_Controller.Pump.GetPerformanceHeadValues(presetValue));
             m_ChartView.PowerPoint = new Tuple<double, double>(m_Controller.SystemFlowRate, m_Controller.SystemHead);
 
             m_ChartView.Show();
@@ -625,12 +644,12 @@ namespace FlowCalc
 
             saveFileDialog1.FileName = "Report_" + GetFriendlyName(m_Controller.Pump.ModellName + "_at_" + m_Controller.SystemHead.ToString("f2") + "mWS.pdf");
 
-            int? rpm = null;
+            int? presetValue = null;
             if (m_Controller.Pump.IsVarioPump)
-                rpm = tb_Rpm.Value;
+                presetValue = tb_PresetValue.Value;
 
             if (reportSetupDlg.ShowDialog() == DialogResult.OK && saveFileDialog1.ShowDialog() == DialogResult.OK)
-                m_Controller.GeneratePdfReport(saveFileDialog1.FileName, reportSetupDlg.PoolVolume, reportSetupDlg.FilterDiameter, rpm);
+                m_Controller.GeneratePdfReport(saveFileDialog1.FileName, reportSetupDlg.PoolVolume, reportSetupDlg.FilterDiameter, presetValue);
         }
 
         private string GetFriendlyName(string name)
@@ -652,11 +671,11 @@ namespace FlowCalc
 
         private void tb_Rpm_ValueChanged(object sender, EventArgs e)
         {
-            lbl_Rpm.Text = tb_Rpm.Value + " min^-1";
+            lbl_PresetValue.Text = $"{tb_PresetValue.Value} {m_PresetValueUnit}";
 
-            txt_PumpRpmHead.Text = m_Controller.Pump.GetMaxTotalHead(tb_Rpm.Value).ToString("f2") + " m WS";
+            txt_PumpRpmHead.Text = m_Controller.Pump.GetMaxTotalHead(tb_PresetValue.Value).ToString("f2") + " m WS";
 
-            txt_PumpRpmPowerIn.Text = m_Controller.Pump.GetInputPower(tb_Rpm.Value, double.NaN).ToString("f3") + " kW";
+            txt_PumpRpmPowerIn.Text = m_Controller.Pump.GetInputPower(tb_PresetValue.Value, double.NaN).ToString("f3") + " kW";
         }
 
         private void searchPathPipesToolStripMenuItem2_Click(object sender, EventArgs e)
