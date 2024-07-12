@@ -22,7 +22,7 @@ namespace FlowCalc
         [Category("Leistungsdaten")]
         [DisplayName("Konstante Leistung in %")]
         [Description("Einstellung der konstanten Leistung")]
-        public double ConstantPowerPoint { get; set; }
+        public int ConstantPowerPoint { get; set; }
 
         /// <summary>
         /// Drehzahl

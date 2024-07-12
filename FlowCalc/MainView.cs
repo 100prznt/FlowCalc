@@ -190,10 +190,17 @@ namespace FlowCalc
             if (double.TryParse(txt_SystemPressure.Text, out pressure))
             {
                 m_Controller.FilterPressure = pressure;
-                if (m_Controller.Pump.IsVarioPump)
-                    m_Controller.CalcFlowRate(pressure, tb_Rpm.Value);
-                else
-                    m_Controller.CalcFlowRate(pressure);
+                switch (m_Controller.Pump.MotorType)
+                {
+                    case MotorControllerTypes.RpmControlled:
+                        m_Controller.CalcFlowRateByRpm(pressure, tb_Rpm.Value);
+                        break;
+                    case MotorControllerTypes.FixedRpm:
+                        m_Controller.CalcFlowRateByRpm(pressure);
+                        break;
+                    case MotorControllerTypes.PowerControlled:
+                        throw new NotImplementedException();
+            }
                 txt_SystemFlowRate.Text = m_Controller.SystemFlowRate.ToString("f2") + " m³/h";
                 txt_SystemHead.Text = m_Controller.SystemHead.ToString("f2") + " m WS";
 
@@ -262,25 +269,30 @@ namespace FlowCalc
             txt_PumpNominalFlowRate.Text = m_Controller.Pump.NominalFlowRate + " m³/h";
             txt_PumpNominalHead.Text = m_Controller.Pump.NominalDynamicHead + " m WS";
             int? rpm = null;
-            if (m_Controller.Pump.IsVarioPump)
+            switch (m_Controller.Pump.MotorType)
             {
-                gb_VarioPump.Enabled = true;
-                tb_Rpm.Minimum = m_Controller.Pump.MinRpm;
-                rpm = m_Controller.Pump.MaxRpm;
-                tb_Rpm.Maximum = (int)rpm;
-                tb_Rpm.Value = (int)rpm;
+                case MotorControllerTypes.RpmControlled:
+                    gb_VarioPump.Enabled = true;
+                    tb_Rpm.Minimum = (int)m_Controller.Pump.MinRpm;
+                    rpm = m_Controller.Pump.MaxRpm;
+                    tb_Rpm.Maximum = (int)rpm;
+                    tb_Rpm.Value = (int)rpm;
+                    txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHeadByRpm(rpm).ToString("f2") + " m WS";
+                    break;
+                case MotorControllerTypes.FixedRpm:
+                    gb_VarioPump.Enabled = false;
+                    tb_Rpm.Maximum = 1000;
+                    tb_Rpm.Minimum = 0;
+                    tb_Rpm.Value = 0;
+                    lbl_Rpm.Text = "0 min^-1";
+                    txt_PumpRpmPowerIn.Clear();
+                    txt_PumpRpmHead.Clear();
+                    txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHeadByRpm(rpm).ToString("f2") + " m WS";
+                    break;
+                case MotorControllerTypes.PowerControlled:
+                    throw new NotImplementedException();
             }
-            else
-            {
-                gb_VarioPump.Enabled = false;
-                tb_Rpm.Maximum = 1000;
-                tb_Rpm.Minimum = 0;
-                tb_Rpm.Value = 0;
-                lbl_Rpm.Text = "0 min^-1";
-                txt_PumpRpmPowerIn.Clear();
-                txt_PumpRpmHead.Clear();
-            }
-            txt_PumpMaxHead.Text = m_Controller.Pump.GetMaxTotalHead(rpm).ToString("f2") + " m WS";
+            
 
             lbl_PumpFileAuthor.Text = m_Controller.Pump.AuthorPumpFile;
             lbl_PumpDataSourceUrl.Text = m_Controller.Pump.DataSourceUrl;

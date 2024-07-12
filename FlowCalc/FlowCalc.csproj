@@ -151,6 +151,7 @@
       <DependentUpon>PipeSelectView.cs</DependentUpon>
     </Compile>
     <Compile Include="PoolSystem\PipeBase.cs" />
+    <Compile Include="MotorControllerTypes.cs" />
     <Compile Include="PumpDynamicPerformanceCurve.cs" />
     <Compile Include="PumpPowerPoint.cs" />
     <Compile Include="Report\BarlowFontResolver.cs" />
