@@ -13,7 +13,6 @@
     <DynamicPerformanceCurve>
       <PresetValue>5</PresetValue>
       <PresetValueType>Power</PresetValueType>
-
       <PerformanceCurve>
         <Ipp>
           <H>2.8</H>
@@ -36,7 +35,6 @@
     <DynamicPerformanceCurve>
       <PresetValue>20</PresetValue>
       <PresetValueType>Power</PresetValueType>
-
       <PerformanceCurve>
         <Ipp>
           <H>10.7</H>
@@ -63,7 +61,6 @@
     <DynamicPerformanceCurve>
       <PresetValue>40</PresetValue>
       <PresetValueType>Power</PresetValueType>
-
       <PerformanceCurve>
         <Ipp>
           <H>18.6</H>
