@@ -490,7 +490,8 @@ namespace FlowCalc
                         Debug.WriteLine("Add menuitem (" + pump.ModellName + ")");
                         pumps.Add(new ToolStripMenuItem(pump.ModellName, null, selectPump)
                         {
-                            Tag = pump.FilePath
+                            Tag = pump.FilePath,
+                            BackColor = pump.IsVarioPump ? Color.GreenYellow : Color.WhiteSmoke
                         });
                     }
                     auswahlPumpeToolStripMenuItem.Enabled = true;
