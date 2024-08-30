@@ -499,7 +499,7 @@ namespace FlowCalc
             var pUpper = GetPerformancePolynom(maxPresetValue);
             var pQCut = UpperPerformanceCurveLimit;
 
-            //Nur Schnittpunkte im gültigen Bereich heranzihene
+            //Nur Schnittpunkte im gültigen Bereich heranziehen
             var upperLimitQ = GetPerformanceFlowValues(maxPresetValue).Max();
 
             var lowerCrossPoint = HelpFunctions.CutOutRange(pLower.GetCrossPoints(pQCut), 0, upperLimitQ + 1);
