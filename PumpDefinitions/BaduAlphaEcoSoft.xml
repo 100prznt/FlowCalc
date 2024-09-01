@@ -15,8 +15,12 @@
       <PresetValueType>Power</PresetValueType>
       <PerformanceCurve>
         <Ipp>
-          <H>2.25</H>
+          <H>2.3</H>
           <Q>0</Q>
+        </Ipp>
+        <Ipp>
+          <H>1.9</H>
+          <Q>1</Q>
         </Ipp>
         <Ipp>
           <H>1.6</H>
@@ -27,8 +31,8 @@
           <Q>4</Q>
         </Ipp>
         <Ipp>
-          <H>0.2</H>
-          <Q>5.4</Q>
+          <H>0.3</H>
+          <Q>5</Q>
         </Ipp>
       </PerformanceCurve>
     </DynamicPerformanceCurve>
@@ -41,6 +45,10 @@
           <Q>0</Q>
         </Ipp>
         <Ipp>
+          <H>6.9</H>
+          <Q>2</Q>
+        </Ipp>
+        <Ipp>
           <H>4.8</H>
           <Q>5</Q>
         </Ipp>
@@ -49,8 +57,8 @@
           <Q>7</Q>
         </Ipp>
         <Ipp>
-          <H>0.5</H>
-          <Q>11.1</Q>
+          <H>1.3</H>
+          <Q>10.1</Q>
         </Ipp>
       </PerformanceCurve>
     </DynamicPerformanceCurve>
@@ -63,6 +71,10 @@
           <Q>0</Q>
         </Ipp>
         <Ipp>
+          <H>11.2</H>
+          <Q>3</Q>
+        </Ipp>
+        <Ipp>
           <H>7.5</H>
           <Q>7</Q>
         </Ipp>
@@ -71,8 +83,8 @@
           <Q>10</Q>
         </Ipp>
         <Ipp>
-          <H>0.75</H>
-          <Q>14.9</Q>
+          <H>1.9</H>
+          <Q>13.5</Q>
         </Ipp>
       </PerformanceCurve>
     </DynamicPerformanceCurve>
@@ -83,6 +95,10 @@
         <Ipp>
           <H>18</H>
           <Q>0</Q>
+        </Ipp>
+        <Ipp>
+          <H>13.1</H>
+          <Q>5</Q>
         </Ipp>
         <Ipp>
           <H>8.25</H>
