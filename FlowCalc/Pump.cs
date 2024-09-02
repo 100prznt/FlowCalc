@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Drawing.Design;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -393,35 +394,76 @@ namespace FlowCalc
 
         public void ImportMatCurve(string path)
         {
+
             var mfr = new MatFileReader(path);
             var h = (mfr.GetMLArray("H") as MLDouble)?.GetArray();
             var q = (mfr.GetMLArray("Q") as MLDouble)?.GetArray();
             var hOpt = (mfr.GetMLArray("H_Opt") as MLDouble)?.GetArray();
             var qOpt = (mfr.GetMLArray("Q_Opt") as MLDouble)?.GetArray();
 
-            var curve = new List<PumpPerformancePoint>();
+            var arrNames = mfr.Content.Select(x => x.Key);
+            var presetValues = new List<int>();
+            foreach (var name in arrNames)
+            {
+                if (name.StartsWith("Q_Opt_") && int.TryParse(name.Substring(6), out var value))
+                    presetValues.Add(value);
+            }
 
-            if (qOpt != null && hOpt != null && qOpt[0].Count() == hOpt[0].Count())
+            if (IsVarioPump)
             {
-                for (int i = 0; i < qOpt[0].Count(); i++)
-                    curve.Add(new PumpPerformancePoint(hOpt[0][i], qOpt[0][i]));
-            }
-            else if (hOpt != null && q != null && hOpt[0].Count() == q[0].Count())
-            {
-                for (int i = 0; i < q.Count(); i++)
-                    curve.Add(new PumpPerformancePoint(hOpt[0][i], q[0][i]));
-            }
-            else if (h != null && q != null && h[0].Count() == q[0].Count())
-            {
-                for (int i = 0; i < q[0].Count(); i++)
-                    curve.Add(new PumpPerformancePoint(h[0][i], q[0][i]));
+                ImportMatCurve(path, presetValues.ToArray());
             }
             else
             {
-                throw new InvalidDataException("Keine gültigen Daten in MAT-File vorhanden.");
+
+                var curve = new List<PumpPerformancePoint>();
+
+                if (qOpt != null && hOpt != null && qOpt[0].Count() == hOpt[0].Count())
+                {
+                    for (int i = 0; i < qOpt[0].Count(); i++)
+                        curve.Add(new PumpPerformancePoint(hOpt[0][i], qOpt[0][i]));
+                }
+                else if (hOpt != null && q != null && hOpt[0].Count() == q[0].Count())
+                {
+                    for (int i = 0; i < q.Count(); i++)
+                        curve.Add(new PumpPerformancePoint(hOpt[0][i], q[0][i]));
+                }
+                else if (h != null && q != null && h[0].Count() == q[0].Count())
+                {
+                    for (int i = 0; i < q[0].Count(); i++)
+                        curve.Add(new PumpPerformancePoint(h[0][i], q[0][i]));
+                }
+                else
+                {
+                    throw new InvalidDataException("Keine gültigen Daten in MAT-File vorhanden.");
+                }
+
+                PerformanceCurve = curve.ToArray();
             }
-            
-            PerformanceCurve = curve.ToArray();
+        }
+
+        public void ImportMatCurve(string path, int[] presetValues)
+        {
+            foreach (int value in presetValues)
+            {
+                var curve = new List<PumpPerformancePoint>();
+
+                var mfr = new MatFileReader(path);
+                var hOpt = (mfr.GetMLArray($"H_Opt_{value}") as MLDouble)?.GetArray();
+                var qOpt = (mfr.GetMLArray($"Q_Opt_{value}") as MLDouble)?.GetArray();
+
+                if (qOpt != null && hOpt != null && qOpt[0].Count() == hOpt[0].Count())
+                {
+                    for (int i = 0; i < qOpt[0].Count(); i++)
+                        curve.Add(new PumpPerformancePoint(hOpt[0][i], qOpt[0][i]));
+                }
+                else
+                {
+                    throw new InvalidDataException("Keine gültigen Daten in MAT-File vorhanden.");
+                }
+
+                DynamicPerformanceCurves.First(x => x.PresetValue == value).PerformanceCurve = curve.ToArray();
+            }
         }
 
         #endregion Serialization
