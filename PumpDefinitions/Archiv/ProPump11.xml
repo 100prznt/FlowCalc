@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Modell>Pro-Pump 11</Modell>
+  <Manufacturer>SPECK Pumpen Verkaufsgesellschaft GmbH</Manufacturer>
+  <NominalQ>15.5</NominalQ>
+  <NominalH>14.6</NominalH>
+  <PowerInput>0.69</PowerInput>
+  <PowerOutput>0.45</PowerOutput>
+  <Author>Elias Ruemmler</Author>
+  <AuthorEmail>pool@100prznt.de</AuthorEmail>
+  <DataSourceUrl>Datasheets/Speck_ProPump11.pdf</DataSourceUrl>
+  <PerformanceCurve>
+    <Ipp>
+      <H>15.5</H>
+      <Q>0</Q>
+    </Ipp>
+    <Ipp>
+      <H>14.7</H>
+      <Q>3</Q>
+    </Ipp>
+    <Ipp>
+      <H>13.7</H>
+      <Q>5</Q>
+    </Ipp>
+    <Ipp>
+      <H>11.3</H>
+      <Q>8</Q>
+    </Ipp>
+    <Ipp>
+      <H>9.5</H>
+      <Q>10</Q>
+    </Ipp>
+    <Ipp>
+      <H>6.8</H>
+      <Q>12</Q>
+    </Ipp>
+    <Ipp>
+      <H>3.8</H>
+      <Q>14.6</Q>
+    </Ipp>
+  </PerformanceCurve>
+</Pump>
